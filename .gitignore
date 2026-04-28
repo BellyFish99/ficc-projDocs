@@ -9,6 +9,7 @@ ref/
 
 # ── Binary document formats (generated artifacts — regenerate from .md source)
 *.pptx
+!gy/gy_ppt.pptx
 *.pdf
 *.doc
 *.docx
