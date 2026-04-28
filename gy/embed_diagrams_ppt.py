@@ -22,7 +22,7 @@ os.makedirs("gy/tmp_diagrams", exist_ok=True)
 # (slide_index, drawio_filename_stem, y_start_in, avail_h_in)
 PLACEMENTS = [
     (9,  "diagram_4_竞争定位",      1.10, 5.26),  # S10 competitor
-    (13, "diagram_H_1+16架构",      1.73, 4.62),  # S14 product arch
+    (13, "diagram_A_功能全景图",      1.30, 5.20),  # S14 capability panorama
     (29, "diagram_7_CEP风控引擎",   1.10, 4.45),  # S30 CEP engine
     (30, "diagram_8_指令执行泳道",  1.10, 4.55),  # S31 order exec
     (32, "diagram_6_实施路线图",    1.10, 5.00),  # S33 roadmap
