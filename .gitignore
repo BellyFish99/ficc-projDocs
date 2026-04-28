@@ -1,0 +1,54 @@
+# ── Large reference / vendor folders (not authored — too large to track) ──────
+Systems/
+vendors/
+Institutes/
+Training/
+scratch/
+BaiduSyncdisk/
+ref/
+
+# ── Binary document formats (generated artifacts — regenerate from .md source)
+*.pptx
+*.pdf
+*.doc
+*.docx
+*.xlsx
+*.xls
+*.ppt
+
+# ── Media / archives ──────────────────────────────────────────────────────────
+*.mp4
+*.mp3
+*.avi
+*.mov
+*.zip
+*.rar
+*.7z
+*.tar.gz
+*.exe
+*.dll
+
+# ── OS / editor noise ─────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+*.tmp
+*.bak
+*.bkp
+.$*.bkp
+
+# ── Python ────────────────────────────────────────────────────────────────────
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# ── What IS tracked (no entry needed — tracked by default) ───────────────────
+# *.md        solution docs, PPT content, checkpoints, READMEs
+# *.drawio    diagrams
+# *.py        generation scripts
+# *.txt       notes, key values
+# *.json      manifests, config
+# *.yaml      frontmatter
+# *.mmd       mermaid diagrams

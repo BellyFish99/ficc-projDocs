@@ -1,0 +1,97 @@
+<mxfile host="Electron">
+  <diagram name="ROI决策框架" id="0">
+    <mxGraphModel dx="1384" dy="811" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="#F5F7FA" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="10" parent="1" style="fillColor=#1B3275;fontColor=#FFFFFF;strokeColor=#1B3275;fontSize=15;fontStyle=1;align=center;verticalAlign=middle;html=1;" value="&lt;b&gt;投资决策框架：行动收益 vs 不行动代价&lt;/b&gt;&lt;br&gt;&lt;font style=&#39;font-size:11px;&#39;&gt;3 年维度 · 量化对比 · 现在就是最好的决策时机&lt;/font&gt;" vertex="1">
+          <mxGeometry height="58" width="1060" as="geometry" />
+        </mxCell>
+        <mxCell id="11" parent="1" style="fillColor=#EEF3FA;strokeColor=#1B3275;fontSize=13;fontStyle=1;align=center;html=1;fontColor=#1B3275;" value="&lt;b&gt;⚠️  不行动的代价（3 年累计）&lt;/b&gt;" vertex="1">
+          <mxGeometry height="42" width="480" x="20" y="68" as="geometry" />
+        </mxCell>
+        <mxCell id="12" parent="1" style="fillColor=#EEF3FA;strokeColor=#1B3275;fontSize=11;fontStyle=0;align=left;spacingLeft=10;verticalAlign=middle;html=1;fontColor=#1B3275;" value="&lt;font style=&#39;font-size:11px;font-weight:bold;color:#c62828;&#39;&gt;①&lt;/font&gt;  极端行情损失风险" vertex="1">
+          <mxGeometry height="40" width="360" x="20" y="114" as="geometry" />
+        </mxCell>
+        <mxCell id="13" parent="1" style="fillColor=#EEF3FA;strokeColor=#3B7DD8;fontColor=#1B3275;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;html=1;" value="潜在 ~2 亿 / 次" vertex="1">
+          <mxGeometry height="40" width="116" x="384" y="114" as="geometry" />
+        </mxCell>
+        <mxCell id="14" parent="1" style="fillColor=#EEF3FA;strokeColor=#1B3275;fontSize=11;fontStyle=0;align=left;spacingLeft=10;verticalAlign=middle;html=1;fontColor=#1B3275;" value="&lt;font style=&#39;font-size:11px;font-weight:bold;color:#c62828;&#39;&gt;②&lt;/font&gt;  人工操作失误成本" vertex="1">
+          <mxGeometry height="40" width="360" x="20" y="156" as="geometry" />
+        </mxCell>
+        <mxCell id="15" parent="1" style="fillColor=#EEF3FA;strokeColor=#3B7DD8;fontColor=#1B3275;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;html=1;" value="~3,000 万 / 年" vertex="1">
+          <mxGeometry height="40" width="116" x="384" y="156" as="geometry" />
+        </mxCell>
+        <mxCell id="16" parent="1" style="fillColor=#EEF3FA;strokeColor=#1B3275;fontSize=11;fontStyle=0;align=left;spacingLeft=10;verticalAlign=middle;html=1;fontColor=#1B3275;" value="&lt;font style=&#39;font-size:11px;font-weight:bold;color:#c62828;&#39;&gt;③&lt;/font&gt;  IT 重复开发与维护" vertex="1">
+          <mxGeometry height="40" width="360" x="20" y="198" as="geometry" />
+        </mxCell>
+        <mxCell id="17" parent="1" style="fillColor=#EEF3FA;strokeColor=#3B7DD8;fontColor=#1B3275;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;html=1;" value="~1,500 万 / 年" vertex="1">
+          <mxGeometry height="40" width="116" x="384" y="198" as="geometry" />
+        </mxCell>
+        <mxCell id="18" parent="1" style="fillColor=#EEF3FA;strokeColor=#1B3275;fontSize=11;fontStyle=0;align=left;spacingLeft=10;verticalAlign=middle;html=1;fontColor=#1B3275;" value="&lt;font style=&#39;font-size:11px;font-weight:bold;color:#c62828;&#39;&gt;④&lt;/font&gt;  监管合规罚款风险" vertex="1">
+          <mxGeometry height="40" width="360" x="20" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="19" parent="1" style="fillColor=#EEF3FA;strokeColor=#3B7DD8;fontColor=#1B3275;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;html=1;" value="~500 万 / 次" vertex="1">
+          <mxGeometry height="40" width="116" x="384" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="20" parent="1" style="fillColor=#EEF3FA;strokeColor=#1B3275;fontSize=11;fontStyle=0;align=left;spacingLeft=10;verticalAlign=middle;html=1;fontColor=#1B3275;" value="&lt;font style=&#39;font-size:11px;font-weight:bold;color:#c62828;&#39;&gt;⑤&lt;/font&gt;  人才流失与招募成本" vertex="1">
+          <mxGeometry height="40" width="360" x="20" y="282" as="geometry" />
+        </mxCell>
+        <mxCell id="21" parent="1" style="fillColor=#EEF3FA;strokeColor=#3B7DD8;fontColor=#1B3275;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;html=1;" value="~800 万 / 年" vertex="1">
+          <mxGeometry height="40" width="116" x="384" y="282" as="geometry" />
+        </mxCell>
+        <mxCell id="22" parent="1" style="fillColor=#EEF3FA;strokeColor=#1B3275;fontSize=13;fontStyle=1;align=left;spacingLeft=10;verticalAlign=middle;html=1;fontColor=#1B3275;" value="&lt;font style=&#39;font-size:11px;font-weight:bold;color:white;&#39;&gt;合计&lt;/font&gt;  3 年不行动总敞口" vertex="1">
+          <mxGeometry height="40" width="360" x="20" y="324" as="geometry" />
+        </mxCell>
+        <mxCell id="23" parent="1" style="fillColor=#EEF3FA;strokeColor=#1B3275;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;html=1;" value="约 &lt;b&gt;8 亿+&lt;/b&gt;" vertex="1">
+          <mxGeometry height="40" width="116" x="384" y="324" as="geometry" />
+        </mxCell>
+        <mxCell id="24" parent="1" style="fillColor=#1B3275;fontColor=#FFFFFF;strokeColor=none;fontSize=13;fontStyle=1;align=center;html=1;" value="&lt;b&gt;✅  POMS 投资回报（3 年）&lt;/b&gt;" vertex="1">
+          <mxGeometry height="42" width="480" x="560" y="68" as="geometry" />
+        </mxCell>
+        <mxCell id="25" parent="1" style="fillColor=#F0F5FF;strokeColor=#3B7DD8;fontSize=11;fontStyle=0;align=left;spacingLeft=10;verticalAlign=middle;html=1;" value="&lt;b&gt;&lt;font color=&#39;#2e7d32&#39;&gt;开源&lt;/font&gt;&lt;/b&gt;  投资效率提升额外收益" vertex="1">
+          <mxGeometry height="40" width="360" x="560" y="114" as="geometry" />
+        </mxCell>
+        <mxCell id="26" parent="1" style="fillColor=#F0F5FF;strokeColor=#3B7DD8;fontColor=#1B3275;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;html=1;" value="年化 ~3,000 万" vertex="1">
+          <mxGeometry height="40" width="116" x="924" y="114" as="geometry" />
+        </mxCell>
+        <mxCell id="27" parent="1" style="fillColor=#F0F5FF;strokeColor=#3B7DD8;fontSize=11;fontStyle=0;align=left;spacingLeft=10;verticalAlign=middle;html=1;" value="&lt;b&gt;&lt;font color=&#39;#2e7d32&#39;&gt;防损&lt;/font&gt;&lt;/b&gt;  风控拦截极端损失节约" vertex="1">
+          <mxGeometry height="40" width="360" x="560" y="156" as="geometry" />
+        </mxCell>
+        <mxCell id="28" parent="1" style="fillColor=#F0F5FF;strokeColor=#3B7DD8;fontColor=#1B3275;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;html=1;" value="年化 ~1.2 亿" vertex="1">
+          <mxGeometry height="40" width="116" x="924" y="156" as="geometry" />
+        </mxCell>
+        <mxCell id="29" parent="1" style="fillColor=#F0F5FF;strokeColor=#3B7DD8;fontSize=11;fontStyle=0;align=left;spacingLeft=10;verticalAlign=middle;html=1;" value="&lt;b&gt;&lt;font color=&#39;#2e7d32&#39;&gt;节流&lt;/font&gt;&lt;/b&gt;  IT 人力与系统成本优化" vertex="1">
+          <mxGeometry height="40" width="360" x="560" y="198" as="geometry" />
+        </mxCell>
+        <mxCell id="30" parent="1" style="fillColor=#F0F5FF;strokeColor=#3B7DD8;fontColor=#1B3275;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;html=1;" value="年化 ~1,500 万" vertex="1">
+          <mxGeometry height="40" width="116" x="924" y="198" as="geometry" />
+        </mxCell>
+        <mxCell id="31" parent="1" style="fillColor=#F0F5FF;strokeColor=#3B7DD8;fontSize=11;fontStyle=0;align=left;spacingLeft=10;verticalAlign=middle;html=1;" value="&lt;b&gt;&lt;font color=&#39;#2e7d32&#39;&gt;合规&lt;/font&gt;&lt;/b&gt;  监管罚款风险规避" vertex="1">
+          <mxGeometry height="40" width="360" x="560" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="32" parent="1" style="fillColor=#F0F5FF;strokeColor=#3B7DD8;fontColor=#1B3275;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;html=1;" value="~500 万 / 次" vertex="1">
+          <mxGeometry height="40" width="116" x="924" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="33" parent="1" style="fillColor=#EEF3FA;strokeColor=#3B7DD8;fontSize=11;fontStyle=0;align=left;spacingLeft=10;verticalAlign=middle;html=1;" value="&lt;b&gt;&lt;font color=&#39;#f57f17&#39;&gt;投入&lt;/font&gt;&lt;/b&gt;  POMS 项目建设总投入" vertex="1">
+          <mxGeometry height="40" width="360" x="560" y="282" as="geometry" />
+        </mxCell>
+        <mxCell id="34" parent="1" style="fillColor=#EEF3FA;strokeColor=#3B7DD8;fontColor=#1B3275;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;html=1;" value="约 2,500 万" vertex="1">
+          <mxGeometry height="40" width="116" x="924" y="282" as="geometry" />
+        </mxCell>
+        <mxCell id="35" parent="1" style="fillColor=#1B3275;strokeColor=#3B7DD8;fontSize=11;fontStyle=1;align=left;spacingLeft=10;verticalAlign=middle;html=1;fontColor=#FFFFFF;" value="&lt;b&gt;&lt;font color=&#39;#ffffff&#39;&gt;ROI&lt;/font&gt;&lt;/b&gt;  &lt;b&gt;3 年净回报率（IRR）&lt;/b&gt;" vertex="1">
+          <mxGeometry height="40" width="360" x="560" y="324" as="geometry" />
+        </mxCell>
+        <mxCell id="36" parent="1" style="fillColor=#1B3275;strokeColor=#3B7DD8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;html=1;" value="约 &lt;b&gt;1,000%&lt;/b&gt;" vertex="1">
+          <mxGeometry height="40" width="116" x="924" y="324" as="geometry" />
+        </mxCell>
+        <mxCell id="37" parent="1" style="ellipse;fillColor=#1B3275;fontColor=#FFFFFF;strokeColor=none;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;html=1;" value="&lt;b&gt;VS&lt;/b&gt;" vertex="1">
+          <mxGeometry height="54" width="54" x="503" y="218" as="geometry" />
+        </mxCell>
+        <mxCell id="38" parent="1" style="fillColor=#2B5EC7;fontColor=#FFFFFF;strokeColor=none;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;rounded=1;html=1;" value="&lt;b&gt;📢  现在是最佳决策时机 — 每延迟 1 年，潜在损失敞口超 2.5 亿&lt;/b&gt;" vertex="1">
+          <mxGeometry height="44" width="1020" x="20" y="376" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

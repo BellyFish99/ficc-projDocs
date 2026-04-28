@@ -1,0 +1,186 @@
+<mxfile host="app.diagrams.net" modified="2026-04-22T00:00:00.000Z" agent="Archforce-SA" version="21.0.0">
+  <diagram name="项目路线图-三期18月" id="gantt">
+    <mxGraphModel dx="1600" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="t" value="项目路线图：分三期 18 个月——Phase 1 六个月 CEO 即看全公司自营实时全貌" style="text;html=1;align=center;fontSize=20;fontStyle=1;fillColor=none;strokeColor=none;fontColor=#1a3a5c;" vertex="1" parent="1">
+          <mxGeometry x="60" y="20" width="1480" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="subt" value="从底向上、分步见效  ·  每期交付可量化价值  ·  Phase 1 就是 &quot;lighthouse&quot; 灯塔期" style="text;html=1;align=center;fontSize=12;fillColor=none;strokeColor=none;fontColor=#666;" vertex="1" parent="1">
+          <mxGeometry x="60" y="62" width="1480" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="leg1" value="▲" style="text;html=1;align=center;fontSize=18;fontColor=#2e75b6;fillColor=none;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1070" y="93" width="20" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="leg1t" value="关键里程碑" style="text;html=1;fontSize=10;fillColor=none;strokeColor=none;fontColor=#555;" vertex="1" parent="1">
+          <mxGeometry x="1090" y="95" width="80" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="leg2" value="△" style="text;html=1;align=center;fontSize=18;fontColor=#2e75b6;fillColor=none;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1180" y="93" width="20" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="leg2t" value="局部试点" style="text;html=1;fontSize=10;fillColor=none;strokeColor=none;fontColor=#555;" vertex="1" parent="1">
+          <mxGeometry x="1200" y="95" width="80" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="leg3" value="▼" style="text;html=1;align=center;fontSize=14;fontColor=#27ae60;fillColor=none;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1280" y="95" width="20" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="leg3t" value="阶段价值交付" style="text;html=1;fontSize=10;fillColor=none;strokeColor=none;fontColor=#555;" vertex="1" parent="1">
+          <mxGeometry x="1300" y="95" width="100" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="leftH" value="战略落地任务" style="text;html=1;align=left;fontSize=12;fontStyle=1;fillColor=none;strokeColor=none;fontColor=#333;" vertex="1" parent="1">
+          <mxGeometry x="60" y="135" width="220" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="year1" value="2026" style="text;html=1;align=center;fontSize=14;fontStyle=1;fillColor=none;strokeColor=none;fontColor=#1a3a5c;" vertex="1" parent="1">
+          <mxGeometry x="280" y="130" width="450" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="year2" value="2027" style="text;html=1;align=center;fontSize=14;fontStyle=1;fillColor=none;strokeColor=none;fontColor=#1a3a5c;" vertex="1" parent="1">
+          <mxGeometry x="730" y="130" width="680" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="rightH" value="负责方" style="text;html=1;align=center;fontSize=12;fontStyle=1;fillColor=none;strokeColor=none;fontColor=#333;" vertex="1" parent="1">
+          <mxGeometry x="1410" y="135" width="140" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="q1" value="Q2" style="text;html=1;align=center;fontSize=11;fillColor=none;strokeColor=none;fontColor=#666;" vertex="1" parent="1">
+          <mxGeometry x="280" y="158" width="113" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="q2" value="Q3" style="text;html=1;align=center;fontSize=11;fillColor=none;strokeColor=none;fontColor=#666;" vertex="1" parent="1">
+          <mxGeometry x="393" y="158" width="113" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="q3" value="Q4" style="text;html=1;align=center;fontSize=11;fillColor=none;strokeColor=none;fontColor=#666;" vertex="1" parent="1">
+          <mxGeometry x="506" y="158" width="113" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="q4" value="Q1" style="text;html=1;align=center;fontSize=11;fillColor=none;strokeColor=none;fontColor=#666;" vertex="1" parent="1">
+          <mxGeometry x="619" y="158" width="113" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="q5" value="Q2" style="text;html=1;align=center;fontSize=11;fillColor=none;strokeColor=none;fontColor=#666;" vertex="1" parent="1">
+          <mxGeometry x="732" y="158" width="113" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="q6" value="Q3" style="text;html=1;align=center;fontSize=11;fillColor=none;strokeColor=none;fontColor=#666;" vertex="1" parent="1">
+          <mxGeometry x="845" y="158" width="113" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="q7" value="Q4" style="text;html=1;align=center;fontSize=11;fillColor=none;strokeColor=none;fontColor=#666;" vertex="1" parent="1">
+          <mxGeometry x="958" y="158" width="113" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="phaseBar" value="Phase 1 · 筑基期 (0-6月)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1a3a5c;strokeColor=#1a3a5c;fontColor=#FFFFFF;fontSize=12;fontStyle=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="280" y="183" width="339" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="phaseBar2" value="Phase 2 · 能力期 (6-12月)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#5b9bd5;strokeColor=#2e75b6;fontColor=#FFFFFF;fontSize=12;fontStyle=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="619" y="183" width="339" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="phaseBar3" value="Phase 3 · 生态期 (12-18月)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#b4c7e7;strokeColor=#6c8ebf;fontColor=#1a3a5c;fontSize=12;fontStyle=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="958" y="183" width="339" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="r1l" value="1. 组合管理 + 全资产持仓" style="text;html=1;align=left;fontSize=11;fontStyle=1;fillColor=none;strokeColor=none;fontColor=#1a3a5c;" vertex="1" parent="1">
+          <mxGeometry x="60" y="230" width="220" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="r1bar" style="rounded=0;fillColor=#1a3a5c;strokeColor=#1a3a5c;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="280" y="248" width="339" height="6" as="geometry"/>
+        </mxCell>
+        <mxCell id="r1m" value="▲" style="text;html=1;align=center;fontSize=18;fontColor=#2e75b6;fillColor=none;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="500" y="240" width="20" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="r1mt" value="全公司持仓实时上线" style="text;html=1;align=center;fontSize=9;fillColor=none;strokeColor=none;fontColor=#555;" vertex="1" parent="1">
+          <mxGeometry x="440" y="262" width="140" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="r1r" value="国元 自营部 + 信息部&#10;华锐 核心团队" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#999;fontSize=10;align=center;" vertex="1" parent="1">
+          <mxGeometry x="1410" y="228" width="140" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="r2l" value="2. 实时风控 + 绩效归因" style="text;html=1;align=left;fontSize=11;fontStyle=1;fillColor=none;strokeColor=none;fontColor=#1a3a5c;" vertex="1" parent="1">
+          <mxGeometry x="60" y="295" width="220" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="r2bar" style="rounded=0;fillColor=#1a3a5c;strokeColor=#1a3a5c;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="280" y="313" width="339" height="6" as="geometry"/>
+        </mxCell>
+        <mxCell id="r2m" value="▲" style="text;html=1;align=center;fontSize=18;fontColor=#2e75b6;fillColor=none;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="589" y="305" width="20" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="r2mt" value="CEO 驾驶舱上线" style="text;html=1;align=center;fontSize=9;fillColor=none;strokeColor=none;fontColor=#555;" vertex="1" parent="1">
+          <mxGeometry x="540" y="327" width="130" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="r2r" value="风控部 + 华锐&#10;风控引擎" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#999;fontSize=10;align=center;" vertex="1" parent="1">
+          <mxGeometry x="1410" y="293" width="140" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="v1" value="▼ Phase 1 交付价值：全公司实时持仓 + 实时风险 + IFRS9 模拟 + 现券集成&#10;估算价值：基础能力就位 · 日常决策从 &quot;感觉&quot; 到 &quot;数据&quot;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e2f0d9;strokeColor=#548235;fontSize=10;fontStyle=1;align=center;fontColor=#548235;" vertex="1" parent="1">
+          <mxGeometry x="280" y="360" width="339" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="r3l" value="3. 指令管理 + 交易集成" style="text;html=1;align=left;fontSize=11;fontStyle=1;fillColor=none;strokeColor=none;fontColor=#1a3a5c;" vertex="1" parent="1">
+          <mxGeometry x="60" y="430" width="220" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="r3bar" style="rounded=0;fillColor=#5b9bd5;strokeColor=#2e75b6;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="619" y="448" width="339" height="6" as="geometry"/>
+        </mxCell>
+        <mxCell id="r3m" value="▲" style="text;html=1;align=center;fontSize=18;fontColor=#2e75b6;fillColor=none;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="838" y="440" width="20" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="r3mt" value="指令全链路贯通" style="text;html=1;align=center;fontSize=9;fillColor=none;strokeColor=none;fontColor=#555;" vertex="1" parent="1">
+          <mxGeometry x="780" y="462" width="130" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="r3r" value="交易部 + 华锐&#10;交易引擎" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#999;fontSize=10;align=center;" vertex="1" parent="1">
+          <mxGeometry x="1410" y="428" width="140" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="r4l" value="4. 成本核算 + 合规预检" style="text;html=1;align=left;fontSize=11;fontStyle=1;fillColor=none;strokeColor=none;fontColor=#1a3a5c;" vertex="1" parent="1">
+          <mxGeometry x="60" y="490" width="220" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="r4bar" style="rounded=0;fillColor=#5b9bd5;strokeColor=#2e75b6;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="619" y="508" width="339" height="6" as="geometry"/>
+        </mxCell>
+        <mxCell id="r4m" value="▲" style="text;html=1;align=center;fontSize=18;fontColor=#2e75b6;fillColor=none;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="928" y="500" width="20" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="r4mt" value="全包成本上线" style="text;html=1;align=center;fontSize=9;fillColor=none;strokeColor=none;fontColor=#555;" vertex="1" parent="1">
+          <mxGeometry x="870" y="522" width="130" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="r4r" value="财务部 + 合规部&#10;华锐核算引擎" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#999;fontSize=10;align=center;" vertex="1" parent="1">
+          <mxGeometry x="1410" y="488" width="140" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="v2" value="▼ Phase 2 交付价值：交易窗口期捕捉 + 融资成本优化 + 合规事前拦截&#10;估算年化增量：3000-6000 万 / 年（量化 + 执行改善）" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e2f0d9;strokeColor=#548235;fontSize=10;fontStyle=1;align=center;fontColor=#548235;" vertex="1" parent="1">
+          <mxGeometry x="619" y="555" width="339" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="r5l" value="5. 量化策略 + 宏观因子" style="text;html=1;align=left;fontSize=11;fontStyle=1;fillColor=none;strokeColor=none;fontColor=#1a3a5c;" vertex="1" parent="1">
+          <mxGeometry x="60" y="625" width="220" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="r5bar" style="rounded=0;fillColor=#b4c7e7;strokeColor=#6c8ebf;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="958" y="643" width="339" height="6" as="geometry"/>
+        </mxCell>
+        <mxCell id="r5m" value="▲" style="text;html=1;align=center;fontSize=18;fontColor=#2e75b6;fillColor=none;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1177" y="635" width="20" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="r5mt" value="策略平台上线" style="text;html=1;align=center;fontSize=9;fillColor=none;strokeColor=none;fontColor=#555;" vertex="1" parent="1">
+          <mxGeometry x="1120" y="657" width="130" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="r5r" value="自营部 + 信息部&#10;策略研究室" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#999;fontSize=10;align=center;" vertex="1" parent="1">
+          <mxGeometry x="1410" y="623" width="140" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="r6l" value="6. 极端压力测试 + 生态扩展" style="text;html=1;align=left;fontSize=11;fontStyle=1;fillColor=none;strokeColor=none;fontColor=#1a3a5c;" vertex="1" parent="1">
+          <mxGeometry x="60" y="690" width="220" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="r6bar" style="rounded=0;fillColor=#b4c7e7;strokeColor=#6c8ebf;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="958" y="708" width="339" height="6" as="geometry"/>
+        </mxCell>
+        <mxCell id="r6m1" value="△" style="text;html=1;align=center;fontSize=18;fontColor=#2e75b6;fillColor=none;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1080" y="700" width="20" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="r6m1t" value="压力测试试点" style="text;html=1;align=center;fontSize=9;fillColor=none;strokeColor=none;fontColor=#555;" vertex="1" parent="1">
+          <mxGeometry x="1020" y="722" width="140" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="r6m2" value="▲" style="text;html=1;align=center;fontSize=18;fontColor=#2e75b6;fillColor=none;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1280" y="700" width="20" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="r6m2t" value="全面交付" style="text;html=1;align=center;fontSize=9;fillColor=none;strokeColor=none;fontColor=#555;" vertex="1" parent="1">
+          <mxGeometry x="1230" y="722" width="120" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="r6r" value="全公司 + 华锐&#10;联合工作组" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#999;fontSize=10;align=center;" vertex="1" parent="1">
+          <mxGeometry x="1410" y="688" width="140" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="v3" value="▼ Phase 3 交付价值：极端压力准备 + 量化策略规模化 + 第二增长曲线&#10;估算年化总价值：1-1.8 亿 / 年 + 单次极端避损 1-2 亿" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e2f0d9;strokeColor=#548235;fontSize=10;fontStyle=1;align=center;fontColor=#548235;" vertex="1" parent="1">
+          <mxGeometry x="958" y="755" width="339" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="sep1" style="endArrow=none;dashed=1;strokeColor=#999;strokeWidth=1;html=1;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="619" y="213" as="sourcePoint"/><mxPoint x="619" y="820" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="sep2" style="endArrow=none;dashed=1;strokeColor=#999;strokeWidth=1;html=1;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="958" y="213" as="sourcePoint"/><mxPoint x="958" y="820" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="footer" value="建议立即启动 Phase 1：第 1 月联合工作组 · 第 3 月数据底座 · 第 6 月 CEO 驾驶舱上线" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1a3a5c;strokeColor=#1a3a5c;fontColor=#FFFFFF;fontSize=14;fontStyle=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="60" y="840" width="1490" height="40" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,123 @@
+<mxfile host="app.diagrams.net" modified="2026-04-22T00:00:00.000Z" agent="Archforce-SA" version="21.0.0">
+  <diagram name="交易生命周期-前后对比" id="swim">
+    <mxGraphModel dx="1600" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="t" value="连得通：交易全链路从小时级到分钟级——同样的人、同样的市场，结果完全不同" style="text;html=1;align=center;fontSize=20;fontStyle=1;fillColor=none;strokeColor=none;fontColor=#1a3a5c;" vertex="1" parent="1">
+          <mxGeometry x="60" y="20" width="1480" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="leftTitle" value="当前链路（手工 / 小时级 / 断点多）" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#c0392b;strokeColor=#c0392b;fontColor=#FFFFFF;fontSize=14;fontStyle=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="40" y="70" width="760" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="rightTitle" value="POMS 链路（自动 / 秒级 / 全贯通）" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#27ae60;strokeColor=#27ae60;fontColor=#FFFFFF;fontSize=14;fontStyle=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="820" y="70" width="740" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="poolL" value="Before" style="swimlane;fontSize=0;html=1;horizontal=0;startSize=0;fillColor=none;strokeColor=#999;swimlaneFillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="40" y="120" width="760" height="700" as="geometry"/>
+        </mxCell>
+        <mxCell id="lL1" value="投研" style="swimlane;fontSize=12;fontStyle=1;html=1;startSize=80;fillColor=#f5f5f5;strokeColor=#999;fontColor=#333;" vertex="1" parent="poolL">
+          <mxGeometry x="0" y="0" width="760" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="lL2" value="投资经理 PM" style="swimlane;fontSize=12;fontStyle=1;html=1;startSize=80;fillColor=#f5f5f5;strokeColor=#999;fontColor=#333;" vertex="1" parent="poolL">
+          <mxGeometry x="0" y="100" width="760" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="lL3" value="合规" style="swimlane;fontSize=12;fontStyle=1;html=1;startSize=80;fillColor=#f5f5f5;strokeColor=#999;fontColor=#333;" vertex="1" parent="poolL">
+          <mxGeometry x="0" y="220" width="760" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="lL4" value="交易员" style="swimlane;fontSize=12;fontStyle=1;html=1;startSize=80;fillColor=#f5f5f5;strokeColor=#999;fontColor=#333;" vertex="1" parent="poolL">
+          <mxGeometry x="0" y="340" width="760" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="lL5" value="风控" style="swimlane;fontSize=12;fontStyle=1;html=1;startSize=80;fillColor=#f5f5f5;strokeColor=#999;fontColor=#333;" vertex="1" parent="poolL">
+          <mxGeometry x="0" y="460" width="760" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="lL6" value="后台" style="swimlane;fontSize=12;fontStyle=1;html=1;startSize=80;fillColor=#f5f5f5;strokeColor=#999;fontColor=#333;" vertex="1" parent="poolL">
+          <mxGeometry x="0" y="580" width="760" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="bL1" value="① 投研发现信号&#10;(人工研判)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fde8e8;strokeColor=#c0392b;fontSize=11;align=center;" vertex="1" parent="lL1">
+          <mxGeometry x="90" y="20" width="140" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="bL2" value="② 电话 / 微信&#10;传给 PM" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fde8e8;strokeColor=#c0392b;fontSize=11;align=center;" vertex="1" parent="lL2">
+          <mxGeometry x="90" y="30" width="140" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="bL3" value="③ Excel 调仓&#10;手工计算" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fde8e8;strokeColor=#c0392b;fontSize=11;align=center;" vertex="1" parent="lL2">
+          <mxGeometry x="260" y="30" width="140" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="bL4" value="④ 事后抽查&#10;合规 T+1 排查" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fde8e8;strokeColor=#c0392b;fontSize=11;align=center;" vertex="1" parent="lL3">
+          <mxGeometry x="430" y="30" width="140" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="bL5" value="⑤ 电话 / QQ&#10;下单给交易员" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fde8e8;strokeColor=#c0392b;fontSize=11;align=center;" vertex="1" parent="lL4">
+          <mxGeometry x="430" y="30" width="140" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="bL6" value="⑥ 执行时价格已变&#10;错失窗口" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fde8e8;strokeColor=#c0392b;fontSize=11;align=center;" vertex="1" parent="lL4">
+          <mxGeometry x="590" y="30" width="140" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="bL7" value="⑦ 风险 T+1 批量&#10;未实时穿透" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fde8e8;strokeColor=#c0392b;fontSize=11;align=center;" vertex="1" parent="lL5">
+          <mxGeometry x="430" y="30" width="140" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="bL8" value="⑧ 次日手工对账&#10;差异排查" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fde8e8;strokeColor=#c0392b;fontSize=11;align=center;" vertex="1" parent="lL6">
+          <mxGeometry x="590" y="30" width="140" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="arL1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=classic;strokeColor=#c0392b;strokeWidth=2;html=1;" edge="1" parent="1" source="bL1" target="bL2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="arL2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=classic;strokeColor=#c0392b;strokeWidth=2;html=1;" edge="1" parent="1" source="bL2" target="bL3"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="arL3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=classic;strokeColor=#c0392b;strokeWidth=2;html=1;" edge="1" parent="1" source="bL3" target="bL5"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="arL4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=classic;strokeColor=#c0392b;strokeWidth=2;html=1;" edge="1" parent="1" source="bL5" target="bL6"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="arL5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=classic;strokeColor=#c0392b;strokeWidth=2;html=1;dashed=1;" edge="1" parent="1" source="bL6" target="bL7"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="arL6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=classic;strokeColor=#c0392b;strokeWidth=2;html=1;dashed=1;" edge="1" parent="1" source="bL7" target="bL8"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="painL" value="⚠ 痛点：8 次人工触点 · 小时级延迟 · 合规事后 · 风险 T+1 · 对账次日" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fde8e8;strokeColor=#c0392b;fontSize=12;fontStyle=1;align=center;fontColor=#c0392b;" vertex="1" parent="1">
+          <mxGeometry x="40" y="830" width="760" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="poolR" value="After" style="swimlane;fontSize=0;html=1;horizontal=0;startSize=0;fillColor=none;strokeColor=#999;swimlaneFillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="820" y="120" width="740" height="700" as="geometry"/>
+        </mxCell>
+        <mxCell id="lR1" value="投研 / 策略" style="swimlane;fontSize=12;fontStyle=1;html=1;startSize=80;fillColor=#f5f5f5;strokeColor=#999;fontColor=#333;" vertex="1" parent="poolR">
+          <mxGeometry x="0" y="0" width="740" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="lR2" value="投资经理 PM" style="swimlane;fontSize=12;fontStyle=1;html=1;startSize=80;fillColor=#f5f5f5;strokeColor=#999;fontColor=#333;" vertex="1" parent="poolR">
+          <mxGeometry x="0" y="100" width="740" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="lR3" value="合规 / 风控（实时嵌入）" style="swimlane;fontSize=12;fontStyle=1;html=1;startSize=80;fillColor=#f5f5f5;strokeColor=#999;fontColor=#333;" vertex="1" parent="poolR">
+          <mxGeometry x="0" y="220" width="740" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="lR4" value="交易员" style="swimlane;fontSize=12;fontStyle=1;html=1;startSize=80;fillColor=#f5f5f5;strokeColor=#999;fontColor=#333;" vertex="1" parent="poolR">
+          <mxGeometry x="0" y="340" width="740" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="lR5" value="POMS 系统&#10;（自动化）" style="swimlane;fontSize=12;fontStyle=1;html=1;startSize=80;fillColor=#e2f0d9;strokeColor=#548235;fontColor=#548235;" vertex="1" parent="poolR">
+          <mxGeometry x="0" y="460" width="740" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="lR6" value="后台（实时入账）" style="swimlane;fontSize=12;fontStyle=1;html=1;startSize=80;fillColor=#f5f5f5;strokeColor=#999;fontColor=#333;" vertex="1" parent="poolR">
+          <mxGeometry x="0" y="580" width="740" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="aR1" value="① 策略信号自动&#10;（量化 + 宏观因子）" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e2f0d9;strokeColor=#548235;fontSize=11;align=center;" vertex="1" parent="lR1">
+          <mxGeometry x="90" y="20" width="140" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="aR2" value="② 组合调整建议&#10;（POMS 仪表盘）" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e2f0d9;strokeColor=#548235;fontSize=11;align=center;" vertex="1" parent="lR2">
+          <mxGeometry x="90" y="30" width="140" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="aR3" value="③ PM 审阅 / 批准" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e2f0d9;strokeColor=#548235;fontSize=11;align=center;" vertex="1" parent="lR2">
+          <mxGeometry x="260" y="30" width="140" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="aR4" value="④ 合规预检&#10;（秒级 · 事前拦截）" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e2f0d9;strokeColor=#548235;fontSize=11;align=center;" vertex="1" parent="lR3">
+          <mxGeometry x="430" y="30" width="140" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="aR5" value="⑤ 自动路由&#10;最优执行" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e2f0d9;strokeColor=#548235;fontSize=11;align=center;" vertex="1" parent="lR4">
+          <mxGeometry x="590" y="30" width="140" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="aR6" value="实时风险 + 敞口&#10;全公司穿透视图" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e2f0d9;strokeColor=#548235;fontSize=11;align=center;" vertex="1" parent="lR5">
+          <mxGeometry x="300" y="20" width="280" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="aR7" value="⑥ 实时对账&#10;前中后台一体化" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e2f0d9;strokeColor=#548235;fontSize=11;align=center;" vertex="1" parent="lR6">
+          <mxGeometry x="590" y="30" width="140" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="arR1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=classic;strokeColor=#548235;strokeWidth=2;html=1;" edge="1" parent="1" source="aR1" target="aR2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="arR2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=classic;strokeColor=#548235;strokeWidth=2;html=1;" edge="1" parent="1" source="aR2" target="aR3"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="arR3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=classic;strokeColor=#548235;strokeWidth=2;html=1;" edge="1" parent="1" source="aR3" target="aR4"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="arR4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=classic;strokeColor=#548235;strokeWidth=2;html=1;" edge="1" parent="1" source="aR4" target="aR5"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="arR5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=classic;strokeColor=#548235;strokeWidth=2;html=1;" edge="1" parent="1" source="aR5" target="aR7"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="gainR" value="✓ 收益：秒级决策 · 合规事前拦截 · 风险实时穿透 · 对账自动化 · 捕捉窗口期" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e2f0d9;strokeColor=#27ae60;fontSize=12;fontStyle=1;align=center;fontColor=#27ae60;" vertex="1" parent="1">
+          <mxGeometry x="820" y="830" width="740" height="40" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

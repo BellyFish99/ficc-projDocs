@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net">
+  <diagram name="K8s部署架构">
+    <mxGraphModel width="1140" height="640" background="#F5F7FA">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="10" value="&lt;b&gt;POMS K8s 生产部署架构&lt;/b&gt;&lt;br&gt;&lt;font style='font-size:11px;'&gt;双中心 · 高可用 99.99% | RTO &amp;lt;30s | RPO &amp;lt;10s | 信创全栈&lt;/font&gt;" style="fillColor=#0F2060;fontColor=#FFFFFF;strokeColor=none;fontSize=14;fontStyle=1;align=center;verticalAlign=middle;html=1;" vertex="1" parent="1">
+          <mxGeometry x="0" y="0" width="1140" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="11" value="" style="fillColor=#EEF3FA;strokeColor=#1B3275;strokeWidth=2;rounded=1;html=1;" vertex="1" parent="1">
+          <mxGeometry x="20" y="66" width="380" height="500" as="geometry" />
+        </mxCell>
+        <mxCell id="12" value="&lt;b&gt;生产中心（Primary）&lt;/b&gt;" style="fillColor=#2B5EC7;fontColor=#FFFFFF;strokeColor=none;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;html=1;" vertex="1" parent="1">
+          <mxGeometry x="20" y="66" width="380" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="13" value="" style="fillColor=#F0F5FF;strokeColor=#1B3275;strokeWidth=2;rounded=1;html=1;" vertex="1" parent="1">
+          <mxGeometry x="430" y="66" width="330" height="500" as="geometry" />
+        </mxCell>
+        <mxCell id="14" value="&lt;b&gt;容灾中心（DR）&lt;/b&gt;" style="fillColor=#1B3275;fontColor=#FFFFFF;strokeColor=none;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;html=1;" vertex="1" parent="1">
+          <mxGeometry x="430" y="66" width="330" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="15" value="" style="fillColor=#EEF3FA;strokeColor=#1B3275;strokeWidth=2;rounded=1;html=1;" vertex="1" parent="1">
+          <mxGeometry x="790" y="66" width="320" height="500" as="geometry" />
+        </mxCell>
+        <mxCell id="16" value="&lt;b&gt;管控运维（Ops）&lt;/b&gt;" style="fillColor=#1B3275;fontColor=#FFFFFF;strokeColor=none;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;html=1;" vertex="1" parent="1">
+          <mxGeometry x="790" y="66" width="320" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="17" value="Nginx Ingress  负载均衡" style="fillColor=#D6E4F7;strokeColor=#1B3275;strokeWidth=2;fontSize=10;fontStyle=1;rounded=1;align=center;verticalAlign=middle;shadow=1;html=1;" vertex="1" parent="1">
+          <mxGeometry x="30" y="100" width="360" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="18" value="API Gateway  Spring Cloud GW" style="fillColor=#D6E4F7;strokeColor=#1B3275;strokeWidth=2;fontSize=10;fontStyle=1;rounded=1;align=center;verticalAlign=middle;shadow=1;html=1;" vertex="1" parent="1">
+          <mxGeometry x="30" y="170" width="360" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="19" value="POMS Core Pods  3副本 × 5服务" style="fillColor=#D6E4F7;strokeColor=#1B3275;strokeWidth=2;fontSize=10;fontStyle=1;rounded=1;align=center;verticalAlign=middle;shadow=1;html=1;" vertex="1" parent="1">
+          <mxGeometry x="30" y="240" width="360" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="20" value="Redis Sentinel  3节点主从" style="fillColor=#EEF3FA;strokeColor=#1B3275;strokeWidth=2;fontSize=10;fontStyle=1;rounded=1;align=center;verticalAlign=middle;shadow=1;html=1;" vertex="1" parent="1">
+          <mxGeometry x="30" y="316" width="360" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="21" value="OceanBase  3副本分布式" style="fillColor=#D6E4F7;strokeColor=#1B3275;strokeWidth=2;fontSize=10;fontStyle=1;rounded=1;align=center;verticalAlign=middle;shadow=1;html=1;" vertex="1" parent="1">
+          <mxGeometry x="30" y="388" width="360" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="22" value="Kafka Cluster  3 Broker" style="fillColor=#D6E4F7;strokeColor=#0F2060;strokeWidth=2;fontSize=10;fontStyle=1;rounded=1;align=center;verticalAlign=middle;shadow=1;html=1;" vertex="1" parent="1">
+          <mxGeometry x="30" y="460" width="360" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="23" value="POMS Standby  热备 1副本" style="fillColor=#D6E4F7;strokeColor=#1B3275;strokeWidth=2;fontSize=10;fontStyle=1;rounded=1;align=center;verticalAlign=middle;html=1;" vertex="1" parent="1">
+          <mxGeometry x="440" y="100" width="310" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="24" value="OceanBase Replica  同步 &amp;lt;10s" style="fillColor=#D6E4F7;strokeColor=#1B3275;strokeWidth=2;fontSize=10;fontStyle=1;rounded=1;align=center;verticalAlign=middle;html=1;" vertex="1" parent="1">
+          <mxGeometry x="440" y="180" width="310" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="25" value="Redis Replica  只读副本" style="fillColor=#EEF3FA;strokeColor=#1B3275;strokeWidth=2;fontSize=10;fontStyle=1;rounded=1;align=center;verticalAlign=middle;html=1;" vertex="1" parent="1">
+          <mxGeometry x="440" y="260" width="310" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="26" value="Kafka Mirror  异地镜像" style="fillColor=#D6E4F7;strokeColor=#0F2060;strokeWidth=2;fontSize=10;fontStyle=1;rounded=1;align=center;verticalAlign=middle;html=1;" vertex="1" parent="1">
+          <mxGeometry x="440" y="340" width="310" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="27" value="MinIO  对象存储备份" style="fillColor=#D6E4F7;strokeColor=#1B3275;strokeWidth=2;fontSize=10;fontStyle=1;rounded=1;align=center;verticalAlign=middle;html=1;" vertex="1" parent="1">
+          <mxGeometry x="440" y="420" width="310" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="28" value="Prometheus + Grafana  监控/告警" style="fillColor=#D6E4F7;strokeColor=#1B3275;strokeWidth=2;fontSize=10;fontStyle=1;rounded=1;align=center;verticalAlign=middle;html=1;" vertex="1" parent="1">
+          <mxGeometry x="800" y="100" width="300" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="29" value="ELK Stack  日志中心" style="fillColor=#D6E4F7;strokeColor=#1B3275;strokeWidth=2;fontSize=10;fontStyle=1;rounded=1;align=center;verticalAlign=middle;html=1;" vertex="1" parent="1">
+          <mxGeometry x="800" y="166" width="300" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="30" value="ArgoCD GitOps  CI/CD 流水线" style="fillColor=#D6E4F7;strokeColor=#1B3275;strokeWidth=2;fontSize=10;fontStyle=1;rounded=1;align=center;verticalAlign=middle;html=1;" vertex="1" parent="1">
+          <mxGeometry x="800" y="232" width="300" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="31" value="Vault  密钥管理" style="fillColor=#D6E4F7;strokeColor=#1B3275;strokeWidth=2;fontSize=10;fontStyle=1;rounded=1;align=center;verticalAlign=middle;html=1;" vertex="1" parent="1">
+          <mxGeometry x="800" y="298" width="300" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="32" value="华为 CCE  K8s 集群管理" style="fillColor=#D6E4F7;strokeColor=#1B3275;strokeWidth=2;fontSize=10;fontStyle=1;rounded=1;align=center;verticalAlign=middle;html=1;" vertex="1" parent="1">
+          <mxGeometry x="800" y="364" width="300" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="33" value="SkyWalking  链路追踪 APM" style="fillColor=#D6E4F7;strokeColor=#1B3275;strokeWidth=2;fontSize=10;fontStyle=1;rounded=1;align=center;verticalAlign=middle;html=1;" vertex="1" parent="1">
+          <mxGeometry x="800" y="430" width="300" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="34" value="Harbor  镜像仓库" style="fillColor=#D6E4F7;strokeColor=#1B3275;strokeWidth=2;fontSize=10;fontStyle=1;rounded=1;align=center;verticalAlign=middle;html=1;" vertex="1" parent="1">
+          <mxGeometry x="800" y="496" width="300" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="35" value="&lt;b&gt;⟺&lt;/b&gt;&lt;br&gt;&lt;b&gt;实时同步&lt;/b&gt;&lt;br&gt;RPO &amp;lt;10s" style="fillColor=#2B5EC7;fontColor=#FFFFFF;strokeColor=none;fontSize=10;fontStyle=1;align=center;verticalAlign=middle;rounded=1;html=1;" vertex="1" parent="1">
+          <mxGeometry x="404" y="260" width="24" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="36" value="&lt;b&gt;SLA 99.99%&lt;/b&gt;&lt;br&gt;RTO &amp;lt; 30s  |  RPO &amp;lt; 10s" style="fillColor=#1B3275;fontColor=#FFFFFF;strokeColor=none;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;rounded=1;html=1;" vertex="1" parent="1">
+          <mxGeometry x="430" y="578" width="330" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="37" value="&lt;b&gt;用户流量&lt;/b&gt;  HTTPS / WebSocket" style="fillColor=#EEF3FA;strokeColor=#1B3275;fontSize=10;fontStyle=1;align=center;verticalAlign=middle;rounded=1;html=1;" vertex="1" parent="1">
+          <mxGeometry x="30" y="578" width="250" height="44" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

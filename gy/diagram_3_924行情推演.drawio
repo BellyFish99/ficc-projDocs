@@ -1,0 +1,128 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net">
+  <diagram name="924行情推演">
+    <mxGraphModel width="1280" height="412" background="#F5F7FA">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="10" value="&lt;b&gt;924 行情极端压力情景推演&lt;/b&gt;&lt;br&gt;&lt;font style='font-size:11px;'&gt;2024-09-24 沪深 300 单日 +9.6% | POMS 毫秒级响应 vs 人工滞后应急&lt;/font&gt;" style="fillColor=#1B3275;fontColor=#FFFFFF;strokeColor=none;fontSize=15;fontStyle=1;align=center;verticalAlign=middle;html=1;" vertex="1" parent="1">
+          <mxGeometry x="0" y="0" width="1280" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="200" value="&lt;b&gt;⏰ 时间轴&lt;/b&gt;" style="fillColor=#2B5EC7;fontColor=#FFFFFF;strokeColor=none;fontSize=10;fontStyle=1;align=center;verticalAlign=middle;rounded=1;html=1;" vertex="1" parent="1">
+          <mxGeometry x="8" y="56" width="68" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="11" value="&lt;b&gt;09:25&lt;/b&gt;&lt;br&gt;&lt;font style='font-size:10px;'&gt;沪深300&lt;br&gt;急拉 +9.6%&lt;/font&gt;" style="fillColor=#2B5EC7;fontColor=#FFFFFF;strokeColor=none;fontSize=11;fontStyle=1;rounded=1;align=center;verticalAlign=middle;html=1;" vertex="1" parent="1">
+          <mxGeometry x="8" y="60" width="152" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="12" value="&lt;b&gt;09:27&lt;/b&gt;&lt;br&gt;&lt;font style='font-size:10px;'&gt;股指期货&lt;br&gt;跳空高开&lt;/font&gt;" style="fillColor=#2B5EC7;fontColor=#FFFFFF;strokeColor=none;fontSize=11;fontStyle=1;rounded=1;align=center;verticalAlign=middle;html=1;" vertex="1" parent="1">
+          <mxGeometry x="168" y="60" width="152" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="13" value="&lt;b&gt;09:40&lt;/b&gt;&lt;br&gt;&lt;font style='font-size:10px;'&gt;债券暴跌&lt;br&gt;触发预警&lt;/font&gt;" style="fillColor=#2B5EC7;fontColor=#FFFFFF;strokeColor=none;fontSize=11;fontStyle=1;rounded=1;align=center;verticalAlign=middle;html=1;" vertex="1" parent="1">
+          <mxGeometry x="328" y="60" width="152" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="14" value="&lt;b&gt;10:00&lt;/b&gt;&lt;br&gt;&lt;font style='font-size:10px;'&gt;多基金&lt;br&gt;净值偏离&lt;/font&gt;" style="fillColor=#2B5EC7;fontColor=#FFFFFF;strokeColor=none;fontSize=11;fontStyle=1;rounded=1;align=center;verticalAlign=middle;html=1;" vertex="1" parent="1">
+          <mxGeometry x="488" y="60" width="152" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="15" value="&lt;b&gt;11:30&lt;/b&gt;&lt;br&gt;&lt;font style='font-size:10px;'&gt;监管上报&lt;br&gt;敞口&lt;/font&gt;" style="fillColor=#1B3275;fontColor=#FFFFFF;strokeColor=none;fontSize=11;fontStyle=1;rounded=1;align=center;verticalAlign=middle;html=1;" vertex="1" parent="1">
+          <mxGeometry x="648" y="60" width="152" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="16" value="&lt;b&gt;14:00&lt;/b&gt;&lt;br&gt;&lt;font style='font-size:10px;'&gt;被迫平仓&lt;br&gt;止损决策&lt;/font&gt;" style="fillColor=#1B3275;fontColor=#FFFFFF;strokeColor=none;fontSize=11;fontStyle=1;rounded=1;align=center;verticalAlign=middle;html=1;" vertex="1" parent="1">
+          <mxGeometry x="808" y="60" width="152" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="18" value="&lt;b&gt;❌  无 POMS（现状）— 人工应急，响应严重滞后&lt;/b&gt;" style="fillColor=#1B3275;fontColor=#FFFFFF;strokeColor=none;fontSize=12;fontStyle=1;align=left;spacingLeft=12;html=1;" vertex="1" parent="1">
+          <mxGeometry x="0" y="128" width="966" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="19" value="手工核查&lt;br&gt;持仓列表&lt;br&gt;&lt;font style='font-size:10px;color:#c62828;'&gt;⏱ 30 min&lt;/font&gt;" style="fillColor=#EEF3FA;strokeColor=#3B7DD8;strokeWidth=1.5;fontSize=10;align=center;verticalAlign=middle;rounded=1;html=1;" vertex="1" parent="1">
+          <mxGeometry x="8" y="156" width="152" height="86" as="geometry" />
+        </mxCell>
+        <mxCell id="20" value="电话通知&lt;br&gt;交易员暂停&lt;br&gt;&lt;font style='font-size:10px;color:#c62828;'&gt;⏱ 15 min&lt;/font&gt;" style="fillColor=#EEF3FA;strokeColor=#3B7DD8;strokeWidth=1.5;fontSize=10;align=center;verticalAlign=middle;rounded=1;html=1;" vertex="1" parent="1">
+          <mxGeometry x="168" y="156" width="152" height="86" as="geometry" />
+        </mxCell>
+        <mxCell id="21" value="人工计算&lt;br&gt;DV01&lt;br&gt;&lt;font style='font-size:10px;color:#c62828;'&gt;⏱ 45 min&lt;/font&gt;" style="fillColor=#EEF3FA;strokeColor=#3B7DD8;strokeWidth=1.5;fontSize=10;align=center;verticalAlign=middle;rounded=1;html=1;" vertex="1" parent="1">
+          <mxGeometry x="328" y="156" width="152" height="86" as="geometry" />
+        </mxCell>
+        <mxCell id="22" value="T+1 才发现&lt;br&gt;净值偏离&lt;br&gt;&lt;font style='font-size:10px;color:#c62828;'&gt;⏱ 次日&lt;/font&gt;" style="fillColor=#EEF3FA;strokeColor=#3B7DD8;strokeWidth=1.5;fontSize=10;align=center;verticalAlign=middle;rounded=1;html=1;" vertex="1" parent="1">
+          <mxGeometry x="488" y="156" width="152" height="86" as="geometry" />
+        </mxCell>
+        <mxCell id="23" value="汇总数据&lt;br&gt;上报监管&lt;br&gt;&lt;font style='font-size:10px;color:#c62828;'&gt;⏱ &amp;gt;2 h&lt;/font&gt;" style="fillColor=#EEF3FA;strokeColor=#3B7DD8;strokeWidth=1.5;fontSize=10;align=center;verticalAlign=middle;rounded=1;html=1;" vertex="1" parent="1">
+          <mxGeometry x="648" y="156" width="152" height="86" as="geometry" />
+        </mxCell>
+        <mxCell id="24" value="错过最优&lt;br&gt;平仓时机&lt;br&gt;&lt;font style='font-size:10px;color:#c62828;'&gt;⚠ 亏损扩大&lt;/font&gt;" style="fillColor=#EEF3FA;strokeColor=#3B7DD8;strokeWidth=1.5;fontSize=10;align=center;verticalAlign=middle;rounded=1;html=1;" vertex="1" parent="1">
+          <mxGeometry x="808" y="156" width="152" height="86" as="geometry" />
+        </mxCell>
+        <mxCell id="50" value="" style="endArrow=open;endFill=0;endSize=8;strokeColor=#1B3275;strokeWidth=2;html=1;" edge="1" source="19" target="20" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="51" value="" style="endArrow=open;endFill=0;endSize=8;strokeColor=#1B3275;strokeWidth=2;html=1;" edge="1" source="20" target="21" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="52" value="" style="endArrow=open;endFill=0;endSize=8;strokeColor=#1B3275;strokeWidth=2;html=1;" edge="1" source="21" target="22" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="53" value="" style="endArrow=open;endFill=0;endSize=8;strokeColor=#1B3275;strokeWidth=2;html=1;" edge="1" source="22" target="23" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="54" value="" style="endArrow=open;endFill=0;endSize=8;strokeColor=#1B3275;strokeWidth=2;html=1;" edge="1" source="23" target="24" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="26" value="&lt;b&gt;✅  有 POMS — 引擎自动响应，毫秒级处置&lt;/b&gt;" style="fillColor=#1B3275;fontColor=#FFFFFF;strokeColor=none;fontSize=12;fontStyle=1;align=left;spacingLeft=12;html=1;" vertex="1" parent="1">
+          <mxGeometry x="0" y="252" width="966" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="27" value="POMS 实时&lt;br&gt;全资产持仓&lt;br&gt;&lt;font style='font-size:10px;color:#2e7d32;'&gt;⚡ &amp;lt;1 s&lt;/font&gt;" style="fillColor=#D6E4F7;strokeColor=#3B7DD8;strokeWidth=1.5;fontSize=10;align=center;verticalAlign=middle;rounded=1;html=1;" vertex="1" parent="1">
+          <mxGeometry x="8" y="280" width="152" height="86" as="geometry" />
+        </mxCell>
+        <mxCell id="28" value="CEP 自动&lt;br&gt;触发止损规则&lt;br&gt;&lt;font style='font-size:10px;color:#2e7d32;'&gt;⚡ 毫秒&lt;/font&gt;" style="fillColor=#D6E4F7;strokeColor=#3B7DD8;strokeWidth=1.5;fontSize=10;align=center;verticalAlign=middle;rounded=1;html=1;" vertex="1" parent="1">
+          <mxGeometry x="168" y="280" width="152" height="86" as="geometry" />
+        </mxCell>
+        <mxCell id="29" value="DV01 实时&lt;br&gt;毫秒级显示&lt;br&gt;&lt;font style='font-size:10px;color:#2e7d32;'&gt;⚡ 毫秒&lt;/font&gt;" style="fillColor=#D6E4F7;strokeColor=#3B7DD8;strokeWidth=1.5;fontSize=10;align=center;verticalAlign=middle;rounded=1;html=1;" vertex="1" parent="1">
+          <mxGeometry x="328" y="280" width="152" height="86" as="geometry" />
+        </mxCell>
+        <mxCell id="30" value="NAV 偏离&lt;br&gt;自动推送预警&lt;br&gt;&lt;font style='font-size:10px;color:#2e7d32;'&gt;⚡ 实时&lt;/font&gt;" style="fillColor=#D6E4F7;strokeColor=#3B7DD8;strokeWidth=1.5;fontSize=10;align=center;verticalAlign=middle;rounded=1;html=1;" vertex="1" parent="1">
+          <mxGeometry x="488" y="280" width="152" height="86" as="geometry" />
+        </mxCell>
+        <mxCell id="31" value="一键生成&lt;br&gt;监管报表&lt;br&gt;&lt;font style='font-size:10px;color:#2e7d32;'&gt;⚡ 5 min&lt;/font&gt;" style="fillColor=#D6E4F7;strokeColor=#3B7DD8;strokeWidth=1.5;fontSize=10;align=center;verticalAlign=middle;rounded=1;html=1;" vertex="1" parent="1">
+          <mxGeometry x="648" y="280" width="152" height="86" as="geometry" />
+        </mxCell>
+        <mxCell id="32" value="系统执行&lt;br&gt;最优平仓路径&lt;br&gt;&lt;font style='font-size:10px;color:#2e7d32;'&gt;✅ 高效&lt;/font&gt;" style="fillColor=#D6E4F7;strokeColor=#3B7DD8;strokeWidth=1.5;fontSize=10;align=center;verticalAlign=middle;rounded=1;html=1;" vertex="1" parent="1">
+          <mxGeometry x="808" y="280" width="152" height="86" as="geometry" />
+        </mxCell>
+        <mxCell id="60" value="" style="endArrow=open;endFill=0;endSize=8;strokeColor=#1B3275;strokeWidth=2;html=1;" edge="1" source="27" target="28" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="61" value="" style="endArrow=open;endFill=0;endSize=8;strokeColor=#1B3275;strokeWidth=2;html=1;" edge="1" source="28" target="29" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="62" value="" style="endArrow=open;endFill=0;endSize=8;strokeColor=#1B3275;strokeWidth=2;html=1;" edge="1" source="29" target="30" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="63" value="" style="endArrow=open;endFill=0;endSize=8;strokeColor=#1B3275;strokeWidth=2;html=1;" edge="1" source="30" target="31" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="64" value="" style="endArrow=open;endFill=0;endSize=8;strokeColor=#1B3275;strokeWidth=2;html=1;" edge="1" source="31" target="32" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="100" value="" style="fillColor=#EEF3FA;strokeColor=#3B7DD8;strokeWidth=2;rounded=1;html=1;" vertex="1" parent="1">
+          <mxGeometry x="972" y="60" width="296" height="304" as="geometry" />
+        </mxCell>
+        <mxCell id="101" value="&lt;b&gt;结果对比&lt;/b&gt;" style="fillColor=#1B3275;fontColor=#FFFFFF;strokeColor=none;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;html=1;" vertex="1" parent="1">
+          <mxGeometry x="972" y="60" width="296" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="102" value="&lt;b&gt;&lt;font style='font-size:30px;'&gt;~2 亿&lt;/font&gt;&lt;/b&gt;&lt;br&gt;&lt;font style='font-size:11px;'&gt;潜在损失（无 POMS）&lt;/font&gt;&lt;br&gt;&lt;font style='font-size:9px;'&gt;反应滞后 · 决策失误&lt;/font&gt;" style="ellipse;fillColor=#1B3275;fontColor=#FFFFFF;strokeColor=none;fontSize=11;fontStyle=1;align=center;verticalAlign=middle;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1000" y="96" width="240" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="103" value="&lt;b&gt;VS&lt;/b&gt;" style="ellipse;fillColor=#1B3275;fontColor=#FFFFFF;strokeColor=none;fontSize=14;fontStyle=1;align=center;verticalAlign=middle;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1098" y="190" width="44" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="104" value="&lt;b&gt;&lt;font style='font-size:30px;'&gt;~0.8 亿&lt;/font&gt;&lt;/b&gt;&lt;br&gt;&lt;font style='font-size:11px;'&gt;损失（有 POMS）&lt;/font&gt;&lt;br&gt;&lt;font style='font-size:9px;'&gt;秒级响应 · 系统执行&lt;/font&gt;" style="ellipse;fillColor=#1B3275;fontColor=#FFFFFF;strokeColor=none;fontSize=11;fontStyle=1;align=center;verticalAlign=middle;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1000" y="220" width="240" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="105" value="&lt;b&gt;POMS 减少损失&lt;/b&gt;&lt;br&gt;&lt;font style='font-size:24px;font-weight:bold;'&gt;1.2 亿&lt;/font&gt;&lt;br&gt;&lt;font style='font-size:9px;'&gt;约 60% 损失降低&lt;/font&gt;" style="fillColor=#2B5EC7;fontColor=#FFFFFF;strokeColor=none;fontSize=11;fontStyle=1;align=center;verticalAlign=middle;rounded=1;html=1;" vertex="1" parent="1">
+          <mxGeometry x="988" y="318" width="264" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="110" value="&lt;i&gt;* 基于 2024-09-24 沪深 300 单日 +9.6% 实际波动测算 | POMS 毫秒级风控可将极端行情损失降低约 60%&lt;/i&gt;" style="fillColor=none;strokeColor=none;fontColor=#1B3275;fontSize=10;align=left;html=1;" vertex="1" parent="1">
+          <mxGeometry x="10" y="380" width="950" height="20" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

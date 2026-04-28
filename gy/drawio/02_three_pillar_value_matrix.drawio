@@ -1,0 +1,110 @@
+<mxfile host="app.diagrams.net" modified="2026-04-22T00:00:00.000Z" agent="Archforce-SA" version="21.0.0">
+  <diagram name="三支柱价值矩阵" id="value">
+    <mxGraphModel dx="1600" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="t" value="四大核心能力通过三支柱驱动价值：年化 1-1.8 亿直接价值 + 单次极端事件避损 1-2 亿" style="text;html=1;align=center;fontSize=20;fontStyle=1;fillColor=none;strokeColor=none;fontColor=#1a3a5c;" vertex="1" parent="1">
+          <mxGeometry x="60" y="30" width="1480" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="subt" value="价值驱动树（左） + 能力 × 支柱 映射矩阵（右）" style="text;html=1;align=center;fontSize=12;fillColor=none;strokeColor=none;fontColor=#666;" vertex="1" parent="1">
+          <mxGeometry x="60" y="72" width="1480" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="treeTitle" value="自营总价值" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1a3a5c;strokeColor=#1a3a5c;fontColor=#FFFFFF;fontSize=14;fontStyle=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="80" y="130" width="140" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="grow" value="多赚&#10;Grow" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#5b9bd5;strokeColor=#2e75b6;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="280" y="130" width="120" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="protect" value="少亏&#10;Protect" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#5b9bd5;strokeColor=#2e75b6;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="280" y="370" width="120" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="opt" value="少花&#10;Optimize" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#5b9bd5;strokeColor=#2e75b6;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="280" y="580" width="120" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="e1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=classic;strokeColor=#1a3a5c;strokeWidth=2;" edge="1" parent="1" source="treeTitle" target="grow">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=classic;strokeColor=#1a3a5c;strokeWidth=2;" edge="1" parent="1" source="treeTitle" target="protect">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=classic;strokeColor=#1a3a5c;strokeWidth=2;" edge="1" parent="1" source="treeTitle" target="opt">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="g1" value="配置优化 · +2000–5000 万/年" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1ecf7;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="430" y="120" width="260" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="g2" value="量化策略 · +3000–6000 万/年" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1ecf7;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="430" y="165" width="260" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="g3" value="执行改善 / TCA · +1000–2000 万/年" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1ecf7;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="430" y="210" width="260" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="g4" value="IFRS9 分类优化 · +500–1500 万/年" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1ecf7;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="430" y="255" width="260" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="eg1" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=none;strokeColor=#6c8ebf;" edge="1" parent="1" source="grow" target="g1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="eg2" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=none;strokeColor=#6c8ebf;" edge="1" parent="1" source="grow" target="g2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="eg3" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=none;strokeColor=#6c8ebf;" edge="1" parent="1" source="grow" target="g3"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="eg4" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=none;strokeColor=#6c8ebf;" edge="1" parent="1" source="grow" target="g4"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="p1v" value="极端事件避损 · 1–2 亿/次 · 3-5 年一次" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fde8e8;strokeColor=#c0392b;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="430" y="360" width="260" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="p2v" value="常规回撤控制 · 1-2% × AUM / 事件" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fde8e8;strokeColor=#c0392b;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="430" y="405" width="260" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="p3v" value="合规违规避免 · 1000 万 – 1 亿/次" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fde8e8;strokeColor=#c0392b;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="430" y="450" width="260" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="p4v" value="结算 / 操作风险避免 · 数百万/次" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fde8e8;strokeColor=#c0392b;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="430" y="495" width="260" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="ep1" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=none;strokeColor=#c0392b;" edge="1" parent="1" source="protect" target="p1v"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="ep2" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=none;strokeColor=#c0392b;" edge="1" parent="1" source="protect" target="p2v"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="ep3" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=none;strokeColor=#c0392b;" edge="1" parent="1" source="protect" target="p3v"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="ep4" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=none;strokeColor=#c0392b;" edge="1" parent="1" source="protect" target="p4v"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="o1" value="全包成本识别 · -500–1500 万/年" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e2f0d9;strokeColor=#548235;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="430" y="570" width="260" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="o2" value="融资成本优化 · -5–10 bp × 杠杆规模" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e2f0d9;strokeColor=#548235;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="430" y="615" width="260" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="o3" value="人工 / 对账 FTE 节约" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e2f0d9;strokeColor=#548235;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="430" y="660" width="260" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="eo1" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=none;strokeColor=#548235;" edge="1" parent="1" source="opt" target="o1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="eo2" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=none;strokeColor=#548235;" edge="1" parent="1" source="opt" target="o2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="eo3" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=none;strokeColor=#548235;" edge="1" parent="1" source="opt" target="o3"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="mH" value="能力 × 支柱 贡献映射（✓ = 该能力显著驱动该支柱价值）" style="text;html=1;align=center;fontSize=13;fontStyle=1;fillColor=none;strokeColor=none;fontColor=#1a3a5c;" vertex="1" parent="1">
+          <mxGeometry x="760" y="130" width="780" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="mhead0" value="" style="rounded=0;fillColor=#f5f5f5;strokeColor=#999;" vertex="1" parent="1"><mxGeometry x="760" y="170" width="220" height="50" as="geometry"/></mxCell>
+        <mxCell id="mhead1" value="多赚&#10;Grow" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1a3a5c;strokeColor=#1a3a5c;fontColor=#FFFFFF;fontSize=12;fontStyle=1;align=center;" vertex="1" parent="1"><mxGeometry x="980" y="170" width="180" height="50" as="geometry"/></mxCell>
+        <mxCell id="mhead2" value="少亏&#10;Protect" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1a3a5c;strokeColor=#1a3a5c;fontColor=#FFFFFF;fontSize=12;fontStyle=1;align=center;" vertex="1" parent="1"><mxGeometry x="1160" y="170" width="180" height="50" as="geometry"/></mxCell>
+        <mxCell id="mhead3" value="少花&#10;Optimize" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1a3a5c;strokeColor=#1a3a5c;fontColor=#FFFFFF;fontSize=12;fontStyle=1;align=center;" vertex="1" parent="1"><mxGeometry x="1340" y="170" width="180" height="50" as="geometry"/></mxCell>
+        <mxCell id="r1l" value="配得优 · 资产配置" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;fontStyle=1;align=center;" vertex="1" parent="1"><mxGeometry x="760" y="220" width="220" height="100" as="geometry"/></mxCell>
+        <mxCell id="r1c1" value="✓" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#999;fontSize=32;fontStyle=1;align=center;fontColor=#1a3a5c;" vertex="1" parent="1"><mxGeometry x="980" y="220" width="180" height="100" as="geometry"/></mxCell>
+        <mxCell id="r1c2" value="✓" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#999;fontSize=32;fontStyle=1;align=center;fontColor=#1a3a5c;" vertex="1" parent="1"><mxGeometry x="1160" y="220" width="180" height="100" as="geometry"/></mxCell>
+        <mxCell id="r1c3" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#999;fontSize=32;align=center;" vertex="1" parent="1"><mxGeometry x="1340" y="220" width="180" height="100" as="geometry"/></mxCell>
+        <mxCell id="r2l" value="算得快 · 精细算账" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;fontStyle=1;align=center;" vertex="1" parent="1"><mxGeometry x="760" y="320" width="220" height="100" as="geometry"/></mxCell>
+        <mxCell id="r2c1" value="✓" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#999;fontSize=32;fontStyle=1;align=center;fontColor=#1a3a5c;" vertex="1" parent="1"><mxGeometry x="980" y="320" width="180" height="100" as="geometry"/></mxCell>
+        <mxCell id="r2c2" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#999;fontSize=32;align=center;" vertex="1" parent="1"><mxGeometry x="1160" y="320" width="180" height="100" as="geometry"/></mxCell>
+        <mxCell id="r2c3" value="✓" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#999;fontSize=32;fontStyle=1;align=center;fontColor=#1a3a5c;" vertex="1" parent="1"><mxGeometry x="1340" y="320" width="180" height="100" as="geometry"/></mxCell>
+        <mxCell id="r3l" value="控得稳 · 风险防线" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;fontStyle=1;align=center;" vertex="1" parent="1"><mxGeometry x="760" y="420" width="220" height="100" as="geometry"/></mxCell>
+        <mxCell id="r3c1" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#999;fontSize=32;align=center;" vertex="1" parent="1"><mxGeometry x="980" y="420" width="180" height="100" as="geometry"/></mxCell>
+        <mxCell id="r3c2" value="✓ ✓" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#999;fontSize=32;fontStyle=1;align=center;fontColor=#c0392b;" vertex="1" parent="1"><mxGeometry x="1160" y="420" width="180" height="100" as="geometry"/></mxCell>
+        <mxCell id="r3c3" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#999;fontSize=32;align=center;" vertex="1" parent="1"><mxGeometry x="1340" y="420" width="180" height="100" as="geometry"/></mxCell>
+        <mxCell id="r4l" value="连得通 · 全链路贯通" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;fontStyle=1;align=center;" vertex="1" parent="1"><mxGeometry x="760" y="520" width="220" height="100" as="geometry"/></mxCell>
+        <mxCell id="r4c1" value="✓" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#999;fontSize=32;fontStyle=1;align=center;fontColor=#1a3a5c;" vertex="1" parent="1"><mxGeometry x="980" y="520" width="180" height="100" as="geometry"/></mxCell>
+        <mxCell id="r4c2" value="✓" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#999;fontSize=32;fontStyle=1;align=center;fontColor=#1a3a5c;" vertex="1" parent="1"><mxGeometry x="1160" y="520" width="180" height="100" as="geometry"/></mxCell>
+        <mxCell id="r4c3" value="✓ ✓" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#999;fontSize=32;fontStyle=1;align=center;fontColor=#548235;" vertex="1" parent="1"><mxGeometry x="1340" y="520" width="180" height="100" as="geometry"/></mxCell>
+        <mxCell id="sum" value="CEO 价值一行话：年化多赚 1-1.8 亿  +  单次避损 1-2 亿  +  年化少花 数千万" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1a3a5c;strokeColor=#1a3a5c;fontColor=#FFFFFF;fontSize=16;fontStyle=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="80" y="770" width="1440" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="foot" value="注：数字为基于千亿 AUM 规模的保守估算（多赚取行业基准 1/10）。具体数值需根据国元实际配置和策略敲定。" style="text;html=1;align=center;fontSize=9;fillColor=none;strokeColor=none;fontColor=#999;" vertex="1" parent="1">
+          <mxGeometry x="60" y="842" width="1480" height="20" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

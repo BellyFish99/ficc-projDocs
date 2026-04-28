@@ -1,0 +1,106 @@
+<mxfile host="Electron">
+  <diagram name="CEP风控管道" id="0">
+    <mxGraphModel dx="1384" dy="811" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="#F5F7FA" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="10" parent="1" style="fillColor=#1B3275;fontColor=#FFFFFF;strokeColor=#1B3275;fontSize=14;fontStyle=1;align=center;verticalAlign=middle;html=1;" value="&lt;b&gt;Engine④ 事件驱动风控引擎：CEP 实时处理管道&lt;/b&gt;&lt;br&gt;&lt;font style=&#39;font-size:11px;&#39;&gt;行情变动 → 风险计算 → 分级预警 → 指令拦截 | 端到端 &amp;lt;50ms&lt;/font&gt;" vertex="1">
+          <mxGeometry height="58" width="1080" as="geometry" />
+        </mxCell>
+        <mxCell id="11" parent="1" style="fillColor=#EEF3FA;fontColor=#1B3275;strokeColor=#1B3275;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;rounded=1;shadow=1;html=1;" value="&lt;font style=&#39;font-size:22px;&#39;&gt;📡&lt;/font&gt;&lt;br&gt;&lt;b&gt;市场数据&lt;br&gt;事件流&lt;/b&gt;" vertex="1">
+          <mxGeometry height="58" width="158" x="20" y="68" as="geometry" />
+        </mxCell>
+        <mxCell id="12" parent="1" style="fillColor=#EEF3FA;strokeColor=#1B3275;strokeWidth=1;fontSize=10;align=center;verticalAlign=middle;rounded=1;html=1;fontColor=#1B3275;" value="行情变动&lt;br&gt;&amp;lt;5ms 推送" vertex="1">
+          <mxGeometry height="40" width="158" x="20" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="13" parent="1" style="ellipse;fillColor=#2B5EC7;fontColor=#FFFFFF;strokeColor=none;fontSize=11;fontStyle=1;align=center;verticalAlign=middle;html=1;" value="&lt;b&gt;1&lt;/b&gt;" vertex="1">
+          <mxGeometry height="24" width="24" x="87" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="14" parent="1" style="fillColor=#EEF3FA;strokeColor=#1B3275;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;rounded=1;shadow=1;html=1;" value="&lt;font style=&#39;font-size:22px;&#39;&gt;⚙️&lt;/font&gt;&lt;br&gt;&lt;b&gt;CEP&lt;br&gt;规则引擎&lt;/b&gt;" vertex="1">
+          <mxGeometry height="58" width="158" x="190" y="68" as="geometry" />
+        </mxCell>
+        <mxCell id="15" parent="1" style="fillColor=#EEF3FA;strokeColor=#1B3275;strokeWidth=1;fontSize=10;align=center;verticalAlign=middle;rounded=1;html=1;fontColor=#1B3275;" value="复合事件&lt;br&gt;模式匹配" vertex="1">
+          <mxGeometry height="40" width="158" x="190" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="16" parent="1" style="ellipse;fillColor=#2B5EC7;fontColor=#FFFFFF;strokeColor=none;fontSize=11;fontStyle=1;align=center;verticalAlign=middle;html=1;" value="&lt;b&gt;2&lt;/b&gt;" vertex="1">
+          <mxGeometry height="24" width="24" x="257" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="17" parent="1" style="fillColor=#D6E4F7;strokeColor=#1B3275;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;rounded=1;shadow=1;html=1;" value="&lt;font style=&#39;font-size:22px;&#39;&gt;📊&lt;/font&gt;&lt;br&gt;&lt;b&gt;风险&lt;br&gt;计算层&lt;/b&gt;" vertex="1">
+          <mxGeometry height="58" width="158" x="360" y="68" as="geometry" />
+        </mxCell>
+        <mxCell id="18" parent="1" style="fillColor=#EEF3FA;strokeColor=#1B3275;strokeWidth=1;fontSize=10;align=center;verticalAlign=middle;rounded=1;html=1;fontColor=#1B3275;" value="VaR / CVaR&lt;br&gt;DV01 / CS01" vertex="1">
+          <mxGeometry height="40" width="158" x="360" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="19" parent="1" style="ellipse;fillColor=#2B5EC7;fontColor=#FFFFFF;strokeColor=none;fontSize=11;fontStyle=1;align=center;verticalAlign=middle;html=1;" value="&lt;b&gt;3&lt;/b&gt;" vertex="1">
+          <mxGeometry height="24" width="24" x="427" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="20" parent="1" style="fillColor=#EEF3FA;strokeColor=#1B3275;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;rounded=1;shadow=1;html=1;" value="&lt;font style=&#39;font-size:22px;&#39;&gt;🔔&lt;/font&gt;&lt;br&gt;&lt;b&gt;预警&lt;br&gt;决策层&lt;/b&gt;" vertex="1">
+          <mxGeometry height="58" width="158" x="530" y="68" as="geometry" />
+        </mxCell>
+        <mxCell id="21" parent="1" style="fillColor=#EEF3FA;strokeColor=#1B3275;strokeWidth=1;fontSize=10;align=center;verticalAlign=middle;rounded=1;html=1;fontColor=#1B3275;" value="分级预警&lt;br&gt;自动路由" vertex="1">
+          <mxGeometry height="40" width="158" x="530" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="22" parent="1" style="ellipse;fillColor=#2B5EC7;fontColor=#FFFFFF;strokeColor=none;fontSize=11;fontStyle=1;align=center;verticalAlign=middle;html=1;" value="&lt;b&gt;4&lt;/b&gt;" vertex="1">
+          <mxGeometry height="24" width="24" x="597" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="23" parent="1" style="fillColor=#EEF3FA;strokeColor=#1B3275;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;rounded=1;shadow=1;html=1;" value="&lt;font style=&#39;font-size:22px;&#39;&gt;🚫&lt;/font&gt;&lt;br&gt;&lt;b&gt;指令&lt;br&gt;拦截层&lt;/b&gt;" vertex="1">
+          <mxGeometry height="58" width="158" x="700" y="68" as="geometry" />
+        </mxCell>
+        <mxCell id="24" parent="1" style="fillColor=#EEF3FA;strokeColor=#1B3275;strokeWidth=1;fontSize=10;align=center;verticalAlign=middle;rounded=1;html=1;fontColor=#1B3275;" value="合规预检&lt;br&gt;超限自动拦截" vertex="1">
+          <mxGeometry height="40" width="158" x="700" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="25" parent="1" style="ellipse;fillColor=#1B3275;fontColor=#FFFFFF;strokeColor=none;fontSize=11;fontStyle=1;align=center;verticalAlign=middle;html=1;" value="&lt;b&gt;5&lt;/b&gt;" vertex="1">
+          <mxGeometry height="24" width="24" x="767" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="26" parent="1" style="fillColor=#1B3275;fontColor=#FFFFFF;strokeColor=none;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;rounded=1;shadow=1;html=1;" value="&lt;font style=&#39;font-size:22px;&#39;&gt;✅&lt;/font&gt;&lt;br&gt;&lt;b&gt;成交&lt;br&gt;回报&lt;/b&gt;" vertex="1">
+          <mxGeometry height="58" width="158" x="870" y="68" as="geometry" />
+        </mxCell>
+        <mxCell id="27" parent="1" style="strokeWidth=1;fontSize=10;align=center;verticalAlign=middle;rounded=1;html=1;fillColor=#EEF3FA;fontColor=#1B3275;strokeColor=#1B3275;" value="入账 + 审计&lt;br&gt;全链路记录" vertex="1">
+          <mxGeometry height="40" width="158" x="870" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="28" parent="1" style="ellipse;fillColor=#1B3275;fontColor=#FFFFFF;strokeColor=none;fontSize=11;fontStyle=1;align=center;verticalAlign=middle;html=1;" value="&lt;b&gt;6&lt;/b&gt;" vertex="1">
+          <mxGeometry height="24" width="24" x="937" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="29" edge="1" parent="1" source="11" style="endArrow=block;endFill=1;strokeColor=#1B3275;strokeWidth=2.5;html=1;" target="14" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="30" edge="1" parent="1" source="14" style="endArrow=block;endFill=1;strokeColor=#1B3275;strokeWidth=2.5;html=1;" target="17" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="31" edge="1" parent="1" source="17" style="endArrow=block;endFill=1;strokeColor=#1B3275;strokeWidth=2.5;html=1;" target="20" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="32" edge="1" parent="1" source="20" style="endArrow=block;endFill=1;strokeColor=#1B3275;strokeWidth=2.5;html=1;" target="23" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="33" edge="1" parent="1" source="23" style="endArrow=block;endFill=1;strokeColor=#1B3275;strokeWidth=2.5;html=1;" target="26" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="34" parent="1" style="fillColor=#F0F5FF;strokeColor=#3B7DD8;strokeWidth=2;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;rounded=1;html=1;" value="&lt;b&gt;⏱  端到端延迟 &amp;lt;50ms&lt;/b&gt;　|　毫秒级预警推送　|　零误报架构（CEP 复合事件）" vertex="1">
+          <mxGeometry height="32" width="1040" x="20" y="182" as="geometry" />
+        </mxCell>
+        <mxCell id="35" parent="1" style="fillColor=#1B3275;fontColor=#FFFFFF;strokeColor=none;fontSize=12;fontStyle=1;align=left;spacingLeft=12;html=1;" value="&lt;b&gt;核心风控规则示例（共 100+ 条可配置规则）&lt;/b&gt;" vertex="1">
+          <mxGeometry height="28" width="1040" x="20" y="226" as="geometry" />
+        </mxCell>
+        <mxCell id="36" parent="1" style="fillColor=#EEF3FA;strokeColor=#1B3275;strokeWidth=1.5;fontSize=11;align=left;spacingLeft=10;verticalAlign=middle;rounded=1;html=1;" value="&lt;b&gt;集中度预警&lt;/b&gt;&lt;br&gt;&lt;font style=&#39;font-size:10px;&#39;&gt;单券持仓 &amp;gt; 净值 5%&lt;br&gt;→ 黄色预警 + 新增拦截&lt;/font&gt;" vertex="1">
+          <mxGeometry height="64" width="340" x="20" y="264" as="geometry" />
+        </mxCell>
+        <mxCell id="37" parent="1" style="fillColor=#EEF3FA;strokeColor=#1B3275;strokeWidth=1.5;fontSize=11;align=left;spacingLeft=10;verticalAlign=middle;rounded=1;html=1;" value="&lt;b&gt;流动性风险&lt;/b&gt;&lt;br&gt;&lt;font style=&#39;font-size:10px;&#39;&gt;期限 &amp;gt;5Y &amp;amp; 日成交 &amp;lt;100万&lt;br&gt;→ 橙色预警&lt;/font&gt;" vertex="1">
+          <mxGeometry height="64" width="340" x="370" y="264" as="geometry" />
+        </mxCell>
+        <mxCell id="38" parent="1" style="fillColor=#EEF3FA;strokeColor=#1B3275;strokeWidth=1.5;fontSize=11;align=left;spacingLeft=10;verticalAlign=middle;rounded=1;html=1;" value="&lt;b&gt;VaR 超限&lt;/b&gt;&lt;br&gt;&lt;font style=&#39;font-size:10px;&#39;&gt;组合 VaR(95%,10D) &amp;gt;2%&lt;br&gt;→ 红色预警 + 通知 CRO&lt;/font&gt;" vertex="1">
+          <mxGeometry height="64" width="340" x="720" y="264" as="geometry" />
+        </mxCell>
+        <mxCell id="39" parent="1" style="fillColor=#EEF3FA;strokeColor=#1B3275;strokeWidth=1.5;fontSize=11;align=left;spacingLeft=10;verticalAlign=middle;rounded=1;html=1;" value="&lt;b&gt;利率敞口&lt;/b&gt;&lt;br&gt;&lt;font style=&#39;font-size:10px;&#39;&gt;组合 DV01 &amp;gt;50 万元&lt;br&gt;→ 实时提示 + 对冲建议&lt;/font&gt;" vertex="1">
+          <mxGeometry height="64" width="340" x="20" y="334" as="geometry" />
+        </mxCell>
+        <mxCell id="40" parent="1" style="fillColor=#EEF3FA;strokeColor=#1B3275;strokeWidth=1.5;fontSize=11;align=left;spacingLeft=10;verticalAlign=middle;rounded=1;html=1;" value="&lt;b&gt;极端行情&lt;/b&gt;&lt;br&gt;&lt;font style=&#39;font-size:10px;&#39;&gt;标的单日涨跌幅 &amp;gt;7%&lt;br&gt;→ 暂停相关策略信号&lt;/font&gt;" vertex="1">
+          <mxGeometry height="64" width="340" x="370" y="334" as="geometry" />
+        </mxCell>
+        <mxCell id="41" parent="1" style="fillColor=#F0F5FF;strokeColor=#1B3275;strokeWidth=1.5;fontSize=11;align=left;spacingLeft=10;verticalAlign=middle;rounded=1;html=1;" value="&lt;b&gt;合规预检&lt;/b&gt;&lt;br&gt;&lt;font style=&#39;font-size:10px;&#39;&gt;超出基金合同限制&lt;br&gt;→ 指令发出前自动拦截&lt;/font&gt;" vertex="1">
+          <mxGeometry height="64" width="340" x="720" y="334" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,142 @@
+<mxfile host="Electron">
+  <diagram name="信创技术栈" id="0">
+    <mxGraphModel dx="1384" dy="811" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="#F5F7FA" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="10" parent="1" style="fillColor=#D6E4F7;strokeColor=#1B3275;fontSize=14;fontStyle=1;align=center;verticalAlign=middle;html=1;" value="&lt;b&gt;POMS 信创（国产化）技术栈全景&lt;/b&gt;&lt;br&gt;&lt;font style=&#39;font-size:11px;&#39;&gt;从芯片到应用 · 全栈信创适配 · 已通过鲲鹏 + 麒麟双核认证&lt;/font&gt;" vertex="1">
+          <mxGeometry height="56" width="1060" as="geometry" />
+        </mxCell>
+        <mxCell id="11" parent="1" style="fillColor=#EEF3FA;strokeColor=#1B3275;strokeWidth=1;html=1;" value="" vertex="1">
+          <mxGeometry height="68" width="1060" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="12" parent="1" style="fillColor=#EEF3FA;fontColor=#1B3275;strokeColor=#1B3275;fontSize=11;fontStyle=1;align=center;verticalAlign=middle;html=1;" value="&lt;b&gt;硬件层&lt;/b&gt;" vertex="1">
+          <mxGeometry height="68" width="130" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="13" parent="1" style="fillColor=#EEF3FA;strokeColor=#1B3275;strokeWidth=1.5;fontSize=9;rounded=1;align=center;verticalAlign=middle;html=1;" value="CPU&lt;br&gt;鲲鹏 920&lt;br&gt;（华为）" vertex="1">
+          <mxGeometry height="52" width="174" x="140" y="68" as="geometry" />
+        </mxCell>
+        <mxCell id="14" parent="1" style="fillColor=#EEF3FA;strokeColor=#1B3275;strokeWidth=1.5;fontSize=9;rounded=1;align=center;verticalAlign=middle;html=1;" value="GPU / NPU&lt;br&gt;昇腾系列&lt;br&gt;（华为）" vertex="1">
+          <mxGeometry height="52" width="174" x="322" y="68" as="geometry" />
+        </mxCell>
+        <mxCell id="15" parent="1" style="fillColor=#EEF3FA;strokeColor=#1B3275;strokeWidth=1.5;fontSize=9;rounded=1;align=center;verticalAlign=middle;html=1;" value="服务器&lt;br&gt;华为 TaiShan&lt;br&gt;浪潮 NF5280" vertex="1">
+          <mxGeometry height="52" width="174" x="504" y="68" as="geometry" />
+        </mxCell>
+        <mxCell id="16" parent="1" style="fillColor=#EEF3FA;strokeColor=#1B3275;strokeWidth=1.5;fontSize=9;rounded=1;align=center;verticalAlign=middle;html=1;" value="存储&lt;br&gt;华为 OceanStor&lt;br&gt;全闪存阵列" vertex="1">
+          <mxGeometry height="52" width="174" x="686" y="68" as="geometry" />
+        </mxCell>
+        <mxCell id="17" parent="1" style="fillColor=#EEF3FA;strokeColor=#1B3275;strokeWidth=1.5;fontSize=9;rounded=1;align=center;verticalAlign=middle;html=1;" value="网络&lt;br&gt;华为 CloudEngine&lt;br&gt;万兆交换" vertex="1">
+          <mxGeometry height="52" width="174" x="868" y="68" as="geometry" />
+        </mxCell>
+        <mxCell id="18" parent="1" style="fillColor=#EEF3FA;strokeColor=#1B3275;strokeWidth=1;html=1;" value="" vertex="1">
+          <mxGeometry height="68" width="1060" y="134" as="geometry" />
+        </mxCell>
+        <mxCell id="19" parent="1" style="fillColor=#EEF3FA;strokeColor=#1B3275;fontSize=11;fontStyle=1;align=center;verticalAlign=middle;html=1;" value="&lt;b&gt;操作系统层&lt;/b&gt;" vertex="1">
+          <mxGeometry height="68" width="130" y="134" as="geometry" />
+        </mxCell>
+        <mxCell id="20" parent="1" style="fillColor=#D6E4F7;strokeColor=#1B3275;strokeWidth=1.5;fontSize=9;rounded=1;align=center;verticalAlign=middle;html=1;" value="OS&lt;br&gt;麒麟 V10&lt;br&gt;（银河麒麟）" vertex="1">
+          <mxGeometry height="52" width="174" x="140" y="142" as="geometry" />
+        </mxCell>
+        <mxCell id="21" parent="1" style="fillColor=#D6E4F7;strokeColor=#1B3275;strokeWidth=1.5;fontSize=9;rounded=1;align=center;verticalAlign=middle;html=1;" value="OS 备选&lt;br&gt;UOS&lt;br&gt;（统信）" vertex="1">
+          <mxGeometry height="52" width="174" x="322" y="142" as="geometry" />
+        </mxCell>
+        <mxCell id="22" parent="1" style="fillColor=#D6E4F7;strokeColor=#1B3275;strokeWidth=1.5;fontSize=9;rounded=1;align=center;verticalAlign=middle;html=1;" value="内核&lt;br&gt;Linux 5.x&lt;br&gt;鲲鹏补丁" vertex="1">
+          <mxGeometry height="52" width="174" x="504" y="142" as="geometry" />
+        </mxCell>
+        <mxCell id="23" parent="1" style="fillColor=#D6E4F7;strokeColor=#1B3275;strokeWidth=1.5;fontSize=9;rounded=1;align=center;verticalAlign=middle;html=1;" value="驱动&lt;br&gt;鲲鹏官方驱动&lt;br&gt;认证通过" vertex="1">
+          <mxGeometry height="52" width="174" x="686" y="142" as="geometry" />
+        </mxCell>
+        <mxCell id="24" parent="1" style="fillColor=#D6E4F7;strokeColor=#3B7DD8;strokeWidth=1.5;fontSize=9;rounded=1;align=center;verticalAlign=middle;html=1;" value="容器运行时&lt;br&gt;containerd&lt;br&gt;国产发行版" vertex="1">
+          <mxGeometry height="52" width="174" x="868" y="142" as="geometry" />
+        </mxCell>
+        <mxCell id="25" parent="1" style="fillColor=#F0F5FF;strokeColor=#1B3275;strokeWidth=1;html=1;" value="" vertex="1">
+          <mxGeometry height="68" width="1060" y="208" as="geometry" />
+        </mxCell>
+        <mxCell id="26" parent="1" style="fillColor=#D6E4F7;strokeColor=#1B3275;fontSize=11;fontStyle=1;align=center;verticalAlign=middle;html=1;" value="&lt;b&gt;数据与中间件层&lt;/b&gt;" vertex="1">
+          <mxGeometry height="68" width="130" y="208" as="geometry" />
+        </mxCell>
+        <mxCell id="27" parent="1" style="fillColor=#D6E4F7;strokeColor=#1B3275;strokeWidth=1.5;fontSize=9;rounded=1;align=center;verticalAlign=middle;html=1;" value="数据库&lt;br&gt;OceanBase 4.x&lt;br&gt;国产分布式" vertex="1">
+          <mxGeometry height="52" width="174" x="140" y="216" as="geometry" />
+        </mxCell>
+        <mxCell id="28" parent="1" style="fillColor=#D6E4F7;strokeColor=#1B3275;strokeWidth=1.5;fontSize=9;rounded=1;align=center;verticalAlign=middle;html=1;" value="数据库备选&lt;br&gt;达梦 DM8&lt;br&gt;兼容 Oracle" vertex="1">
+          <mxGeometry height="52" width="174" x="322" y="216" as="geometry" />
+        </mxCell>
+        <mxCell id="29" parent="1" style="fillColor=#D6E4F7;strokeColor=#1B3275;strokeWidth=1.5;fontSize=9;rounded=1;align=center;verticalAlign=middle;html=1;" value="消息队列&lt;br&gt;RocketMQ&lt;br&gt;国产 Kafka 替代" vertex="1">
+          <mxGeometry height="52" width="174" x="504" y="216" as="geometry" />
+        </mxCell>
+        <mxCell id="30" parent="1" style="fillColor=#D6E4F7;strokeColor=#1B3275;strokeWidth=1.5;fontSize=9;rounded=1;align=center;verticalAlign=middle;html=1;" value="缓存&lt;br&gt;Redis 兼容版&lt;br&gt;Tair（阿里）" vertex="1">
+          <mxGeometry height="52" width="174" x="686" y="216" as="geometry" />
+        </mxCell>
+        <mxCell id="31" parent="1" style="fillColor=#D6E4F7;strokeColor=#1B3275;strokeWidth=1.5;fontSize=9;rounded=1;align=center;verticalAlign=middle;html=1;" value="时序数据库&lt;br&gt;TDEngine&lt;br&gt;涛思数据" vertex="1">
+          <mxGeometry height="52" width="174" x="868" y="216" as="geometry" />
+        </mxCell>
+        <mxCell id="32" parent="1" style="fillColor=#EEF3FA;strokeColor=#1B3275;strokeWidth=1;html=1;" value="" vertex="1">
+          <mxGeometry height="60" width="1060" y="282" as="geometry" />
+        </mxCell>
+        <mxCell id="33" parent="1" style="fillColor=#EEF3FA;strokeColor=#1B3275;fontSize=11;fontStyle=1;align=center;verticalAlign=middle;html=1;" value="&lt;b&gt;容器与编排层&lt;/b&gt;" vertex="1">
+          <mxGeometry height="60" width="130" y="282" as="geometry" />
+        </mxCell>
+        <mxCell id="34" parent="1" style="fillColor=#D6E4F7;strokeColor=#1B3275;strokeWidth=1.5;fontSize=9;rounded=1;align=center;verticalAlign=middle;html=1;" value="容器平台&lt;br&gt;华为 CCE&lt;br&gt;K8s 国产发行版" vertex="1">
+          <mxGeometry height="52" width="174" x="140" y="286" as="geometry" />
+        </mxCell>
+        <mxCell id="35" parent="1" style="fillColor=#D6E4F7;strokeColor=#1B3275;strokeWidth=1.5;fontSize=9;rounded=1;align=center;verticalAlign=middle;html=1;" value="服务网格&lt;br&gt;Istio 适配&lt;br&gt;（华为版）" vertex="1">
+          <mxGeometry height="52" width="174" x="322" y="286" as="geometry" />
+        </mxCell>
+        <mxCell id="36" parent="1" style="fillColor=#D6E4F7;strokeColor=#1B3275;strokeWidth=1.5;fontSize=9;rounded=1;align=center;verticalAlign=middle;html=1;" value="CI / CD&lt;br&gt;ArgoCD&lt;br&gt;国内镜像源" vertex="1">
+          <mxGeometry height="52" width="174" x="504" y="286" as="geometry" />
+        </mxCell>
+        <mxCell id="37" parent="1" style="fillColor=#D6E4F7;strokeColor=#1B3275;strokeWidth=1.5;fontSize=9;rounded=1;align=center;verticalAlign=middle;html=1;" value="监控&lt;br&gt;Prometheus&lt;br&gt;+ Grafana" vertex="1">
+          <mxGeometry height="52" width="174" x="686" y="286" as="geometry" />
+        </mxCell>
+        <mxCell id="38" parent="1" style="fillColor=#D6E4F7;strokeColor=#1B3275;strokeWidth=1.5;fontSize=9;rounded=1;align=center;verticalAlign=middle;html=1;" value="日志&lt;br&gt;ELK Stack&lt;br&gt;国产部署" vertex="1">
+          <mxGeometry height="52" width="174" x="868" y="286" as="geometry" />
+        </mxCell>
+        <mxCell id="39" parent="1" style="fillColor=#EEF3FA;strokeColor=#1B3275;strokeWidth=1;html=1;" value="" vertex="1">
+          <mxGeometry height="68" width="1060" y="348" as="geometry" />
+        </mxCell>
+        <mxCell id="40" parent="1" style="fillColor=#EEF3FA;strokeColor=#1B3275;fontSize=11;fontStyle=1;align=center;verticalAlign=middle;html=1;" value="&lt;b&gt;应用层（POMS 核心）&lt;/b&gt;" vertex="1">
+          <mxGeometry height="68" width="130" y="348" as="geometry" />
+        </mxCell>
+        <mxCell id="41" parent="1" style="fillColor=#D6E4F7;strokeColor=#1B3275;strokeWidth=1.5;fontSize=9;rounded=1;align=center;verticalAlign=middle;html=1;" value="后端语言&lt;br&gt;Java 17&lt;br&gt;Spring Boot 3" vertex="1">
+          <mxGeometry height="52" width="174" x="140" y="356" as="geometry" />
+        </mxCell>
+        <mxCell id="42" parent="1" style="fillColor=#D6E4F7;strokeColor=#1B3275;strokeWidth=1.5;fontSize=9;rounded=1;align=center;verticalAlign=middle;html=1;" value="后端语言&lt;br&gt;Python 3.11&lt;br&gt;科学计算" vertex="1">
+          <mxGeometry height="52" width="174" x="322" y="356" as="geometry" />
+        </mxCell>
+        <mxCell id="43" parent="1" style="fillColor=#D6E4F7;strokeColor=#1B3275;strokeWidth=1.5;fontSize=9;rounded=1;align=center;verticalAlign=middle;html=1;" value="前端框架&lt;br&gt;Vue 3&lt;br&gt;Ant Design Pro" vertex="1">
+          <mxGeometry height="52" width="174" x="504" y="356" as="geometry" />
+        </mxCell>
+        <mxCell id="44" parent="1" style="fillColor=#D6E4F7;strokeColor=#1B3275;strokeWidth=1.5;fontSize=9;rounded=1;align=center;verticalAlign=middle;html=1;" value="高性能计算&lt;br&gt;鲲鹏优化 BLAS&lt;br&gt;OpenMP 并行" vertex="1">
+          <mxGeometry height="52" width="174" x="686" y="356" as="geometry" />
+        </mxCell>
+        <mxCell id="45" parent="1" style="fillColor=#D6E4F7;strokeColor=#1B3275;strokeWidth=1.5;fontSize=9;rounded=1;align=center;verticalAlign=middle;html=1;" value="AI 引擎&lt;br&gt;文心 / Qwen&lt;br&gt;国产大模型" vertex="1">
+          <mxGeometry height="52" width="174" x="868" y="356" as="geometry" />
+        </mxCell>
+        <mxCell id="46" parent="1" style="fillColor=#EEF3FA;strokeColor=#1B3275;strokeWidth=1;html=1;" value="" vertex="1">
+          <mxGeometry height="56" width="1060" y="422" as="geometry" />
+        </mxCell>
+        <mxCell id="47" parent="1" style="fillColor=#EEF3FA;strokeColor=#3B7DD8;fontSize=11;fontStyle=1;align=center;verticalAlign=middle;html=1;" value="&lt;b&gt;安全合规层&lt;/b&gt;" vertex="1">
+          <mxGeometry height="56" width="130" y="422" as="geometry" />
+        </mxCell>
+        <mxCell id="48" parent="1" style="fillColor=#D6E4F7;strokeColor=#1B3275;strokeWidth=1.5;fontSize=9;rounded=1;align=center;verticalAlign=middle;html=1;" value="国密算法&lt;br&gt;SM2 / SM3 / SM4&lt;br&gt;全程加密" vertex="1">
+          <mxGeometry height="52" width="174" x="140" y="424" as="geometry" />
+        </mxCell>
+        <mxCell id="49" parent="1" style="fillColor=#D6E4F7;strokeColor=#1B3275;strokeWidth=1.5;fontSize=9;rounded=1;align=center;verticalAlign=middle;html=1;" value="身份认证&lt;br&gt;统信 eID&lt;br&gt;双因子" vertex="1">
+          <mxGeometry height="52" width="174" x="322" y="424" as="geometry" />
+        </mxCell>
+        <mxCell id="50" parent="1" style="fillColor=#D6E4F7;strokeColor=#1B3275;strokeWidth=1.5;fontSize=9;rounded=1;align=center;verticalAlign=middle;html=1;" value="审计日志&lt;br&gt;全链路可追溯&lt;br&gt;不可篡改" vertex="1">
+          <mxGeometry height="52" width="174" x="504" y="424" as="geometry" />
+        </mxCell>
+        <mxCell id="51" parent="1" style="fillColor=#D6E4F7;strokeColor=#1B3275;strokeWidth=1.5;fontSize=9;rounded=1;align=center;verticalAlign=middle;html=1;" value="数据隔离&lt;br&gt;基金级权限&lt;br&gt;零信任架构" vertex="1">
+          <mxGeometry height="52" width="174" x="686" y="424" as="geometry" />
+        </mxCell>
+        <mxCell id="52" parent="1" style="fillColor=#D6E4F7;strokeColor=#1B3275;strokeWidth=1.5;fontSize=9;rounded=1;align=center;verticalAlign=middle;html=1;" value="合规认证&lt;br&gt;等保三级&lt;br&gt;信创兼容认证" vertex="1">
+          <mxGeometry height="52" width="174" x="868" y="424" as="geometry" />
+        </mxCell>
+        <mxCell id="53" parent="1" style="fillColor=#D6E4F7;strokeColor=#1B3275;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;rounded=1;html=1;" value="&lt;b&gt;✓ 鲲鹏技术认证&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&lt;/b&gt;&lt;b&gt;✓ 麒麟兼容认证&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&lt;/b&gt;&lt;b&gt;✓ 等保三级&lt;/b&gt;" vertex="1">
+          <mxGeometry height="40" width="1050" x="10" y="490" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

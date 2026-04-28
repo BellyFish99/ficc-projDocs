@@ -1,0 +1,100 @@
+<mxfile host="app.diagrams.net" modified="2026-04-22T00:00:00.000Z" agent="Archforce-SA" version="21.0.0">
+  <diagram name="战略框架-四大能力" id="framework">
+    <mxGraphModel dx="1600" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="t" value="国元自营战略落地：四大核心能力跃升支撑千亿AUM稳定收益" style="text;html=1;align=center;fontSize=22;fontStyle=1;fillColor=none;strokeColor=none;fontColor=#1a3a5c;" vertex="1" parent="1">
+          <mxGeometry x="80" y="30" width="1440" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="roof" value="愿景  |  金融科技赋能，打造稳定收益 + 全资产覆盖 + 精细化管理的一流自营业务" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fillColor=#1a3a5c;strokeColor=#1a3a5c;fontColor=#FFFFFF;fontSize=16;fontStyle=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="160" y="100" width="1280" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="goal" value="发展目标：低波动 6% 年化收益  ×  千亿 AUM  ×  股 / 债 / 商品 / 衍生品 / 黄金 全资产覆盖" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;fontStyle=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="160" y="175" width="1280" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="capH" value="四大核心能力  ·  Four Core Capability Pillars" style="text;html=1;align=center;fontSize=14;fontStyle=1;fillColor=none;strokeColor=none;fontColor=#555;" vertex="1" parent="1">
+          <mxGeometry x="160" y="225" width="1280" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="p1h" value="配得优" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1a3a5c;strokeColor=#1a3a5c;fontColor=#FFFFFF;fontSize=22;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="180" y="260" width="300" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="p1s" value="ALLOCATION · 多资产最优配置" style="text;html=1;align=center;fontSize=11;fillColor=none;strokeColor=none;fontColor=#888;" vertex="1" parent="1">
+          <mxGeometry x="180" y="332" width="300" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="p1c1" value="全资产组合统一管理&#10;&#10;股/债/商品/衍生品/基金/黄金" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1ecf7;strokeColor=#6c8ebf;fontSize=11;align=center;" vertex="1" parent="1">
+          <mxGeometry x="180" y="360" width="300" height="90" as="geometry"/>
+        </mxCell>
+        <mxCell id="p1c2" value="跨资产相关性 / 风险分析&#10;&#10;宏观视角配置决策" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1ecf7;strokeColor=#6c8ebf;fontSize=11;align=center;" vertex="1" parent="1">
+          <mxGeometry x="180" y="460" width="300" height="90" as="geometry"/>
+        </mxCell>
+        <mxCell id="p1c3" value="数据驱动的试算工具&#10;&#10;情景模拟 / 调仓推演" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1ecf7;strokeColor=#6c8ebf;fontSize=11;align=center;" vertex="1" parent="1">
+          <mxGeometry x="180" y="560" width="300" height="90" as="geometry"/>
+        </mxCell>
+        <mxCell id="p2h" value="算得快" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1a3a5c;strokeColor=#1a3a5c;fontColor=#FFFFFF;fontSize=22;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="500" y="260" width="300" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="p2s" value="CALCULATION · 实时精细化算账" style="text;html=1;align=center;fontSize=11;fillColor=none;strokeColor=none;fontColor=#888;" vertex="1" parent="1">
+          <mxGeometry x="500" y="332" width="300" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="p2c1" value="实时 P&amp;L / 敞口穿透&#10;&#10;自营 → 交易台 → 投资经理" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1ecf7;strokeColor=#6c8ebf;fontSize=11;align=center;" vertex="1" parent="1">
+          <mxGeometry x="500" y="360" width="300" height="90" as="geometry"/>
+        </mxCell>
+        <mxCell id="p2c2" value="全包成本核算&#10;&#10;佣金 + 融资 + 结算 + 冲击" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1ecf7;strokeColor=#6c8ebf;fontSize=11;align=center;" vertex="1" parent="1">
+          <mxGeometry x="500" y="460" width="300" height="90" as="geometry"/>
+        </mxCell>
+        <mxCell id="p2c3" value="IFRS9 会计影响模拟&#10;&#10;投前即看利润表影响" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1ecf7;strokeColor=#6c8ebf;fontSize=11;align=center;" vertex="1" parent="1">
+          <mxGeometry x="500" y="560" width="300" height="90" as="geometry"/>
+        </mxCell>
+        <mxCell id="p3h" value="控得稳" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1a3a5c;strokeColor=#1a3a5c;fontColor=#FFFFFF;fontSize=22;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="820" y="260" width="300" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="p3s" value="CONTROL · 全面风险防线" style="text;html=1;align=center;fontSize=11;fillColor=none;strokeColor=none;fontColor=#888;" vertex="1" parent="1">
+          <mxGeometry x="820" y="332" width="300" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="p3c1" value="实时限额监控&#10;&#10;品种 / 久期 / 集中度 / 交易对手" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1ecf7;strokeColor=#6c8ebf;fontSize=11;align=center;" vertex="1" parent="1">
+          <mxGeometry x="820" y="360" width="300" height="90" as="geometry"/>
+        </mxCell>
+        <mxCell id="p3c2" value="事前 / 事中 合规预检&#10;&#10;从事后追溯到秒级拦截" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1ecf7;strokeColor=#6c8ebf;fontSize=11;align=center;" vertex="1" parent="1">
+          <mxGeometry x="820" y="460" width="300" height="90" as="geometry"/>
+        </mxCell>
+        <mxCell id="p3c3" value="极端情景压力测试&#10;&#10;924 / 钱荒 / Archegos 型事件" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1ecf7;strokeColor=#6c8ebf;fontSize=11;align=center;" vertex="1" parent="1">
+          <mxGeometry x="820" y="560" width="300" height="90" as="geometry"/>
+        </mxCell>
+        <mxCell id="p4h" value="连得通" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1a3a5c;strokeColor=#1a3a5c;fontColor=#FFFFFF;fontSize=22;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1140" y="260" width="300" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="p4s" value="CONNECTIVITY · 全链路贯通" style="text;html=1;align=center;fontSize=11;fillColor=none;strokeColor=none;fontColor=#888;" vertex="1" parent="1">
+          <mxGeometry x="1140" y="332" width="300" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="p4c1" value="投研 → 决策 → 指令 → 执行 → 归因&#10;&#10;从小时级到分钟级" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1ecf7;strokeColor=#6c8ebf;fontSize=11;align=center;" vertex="1" parent="1">
+          <mxGeometry x="1140" y="360" width="300" height="90" as="geometry"/>
+        </mxCell>
+        <mxCell id="p4c2" value="多市场 / 多经纪商接入&#10;&#10;CFETS / 银行间 / 交易所" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1ecf7;strokeColor=#6c8ebf;fontSize=11;align=center;" vertex="1" parent="1">
+          <mxGeometry x="1140" y="460" width="300" height="90" as="geometry"/>
+        </mxCell>
+        <mxCell id="p4c3" value="前中后台一体化&#10;&#10;自营 → 核算 → 清算 穿透" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1ecf7;strokeColor=#6c8ebf;fontSize=11;align=center;" vertex="1" parent="1">
+          <mxGeometry x="1140" y="560" width="300" height="90" as="geometry"/>
+        </mxCell>
+        <mxCell id="found" value="组织保障  ·  Foundation" style="text;html=1;align=center;fontSize=13;fontStyle=1;fillColor=none;strokeColor=none;fontColor=#555;" vertex="1" parent="1">
+          <mxGeometry x="160" y="670" width="1280" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="f1" value="数据底座" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1a3a5c;strokeColor=#1a3a5c;fontColor=#FFFFFF;fontSize=14;fontStyle=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="180" y="700" width="300" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="f2" value="流程优化" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1a3a5c;strokeColor=#1a3a5c;fontColor=#FFFFFF;fontSize=14;fontStyle=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="500" y="700" width="300" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="f3" value="人员能力" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1a3a5c;strokeColor=#1a3a5c;fontColor=#FFFFFF;fontSize=14;fontStyle=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="820" y="700" width="300" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="f4" value="管理机制" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1a3a5c;strokeColor=#1a3a5c;fontColor=#FFFFFF;fontSize=14;fontStyle=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="1140" y="700" width="300" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="foot" value="资料来源：国元证券 2025H1 数据 + 华锐方案组  ·  所有目标数字为方案推算，非承诺值" style="text;html=1;align=center;fontSize=9;fillColor=none;strokeColor=none;fontColor=#999;" vertex="1" parent="1">
+          <mxGeometry x="160" y="830" width="1280" height="20" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

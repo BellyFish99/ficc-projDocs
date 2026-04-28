@@ -1,0 +1,127 @@
+<mxfile host="Electron">
+  <diagram name="数据架构数据流" id="0">
+    <mxGraphModel dx="1623" dy="811" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="#F5F7FA" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="10" parent="1" style="fillColor=#0F2060;fontColor=#FFFFFF;strokeColor=none;fontSize=14;fontStyle=1;align=center;verticalAlign=middle;html=1;" value="&lt;b&gt;POMS 数据架构与数据流图&lt;/b&gt;&lt;br&gt;&lt;font style=&#39;font-size:11px;&#39;&gt;5 层数据架构 | 实时 + 批量双模式 | 数据权限隔离&lt;/font&gt;" vertex="1">
+          <mxGeometry height="56" width="1120" as="geometry" />
+        </mxCell>
+        <mxCell id="11" parent="1" style="fillColor=#D6E4F7;strokeColor=#1B3275;strokeWidth=1;html=1;" value="" vertex="1">
+          <mxGeometry height="64" width="1120" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="12" parent="1" style="fillColor=#2B5EC7;fontColor=#FFFFFF;strokeColor=none;fontSize=11;fontStyle=1;align=center;verticalAlign=middle;html=1;" value="&lt;b&gt;L1 外部数据源&lt;/b&gt;" vertex="1">
+          <mxGeometry height="64" width="150" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="13" parent="1" style="fillColor=#EEF3FA;strokeColor=#1B3275;strokeWidth=1.5;fontSize=10;fontStyle=1;rounded=1;align=center;verticalAlign=middle;html=1;" value="行情中心&lt;br&gt;金仕达" vertex="1">
+          <mxGeometry height="44" width="150" x="160" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="14" parent="1" style="fillColor=#EEF3FA;strokeColor=#1B3275;strokeWidth=1.5;fontSize=10;fontStyle=1;rounded=1;align=center;verticalAlign=middle;html=1;" value="IBOR 系统&lt;br&gt;金证 UFX" vertex="1">
+          <mxGeometry height="44" width="150" x="318" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="15" parent="1" style="fillColor=#EEF3FA;strokeColor=#1B3275;strokeWidth=1.5;fontSize=10;fontStyle=1;rounded=1;align=center;verticalAlign=middle;html=1;" value="交易所&lt;br&gt;FIX 接口" vertex="1">
+          <mxGeometry height="44" width="150" x="476" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="16" parent="1" style="fillColor=#EEF3FA;strokeColor=#1B3275;strokeWidth=1.5;fontSize=10;fontStyle=1;rounded=1;align=center;verticalAlign=middle;html=1;" value="评级 / 财务&lt;br&gt;数据商" vertex="1">
+          <mxGeometry height="44" width="150" x="634" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="17" parent="1" style="fillColor=#EEF3FA;strokeColor=#1B3275;strokeWidth=1.5;fontSize=10;fontStyle=1;rounded=1;align=center;verticalAlign=middle;html=1;" value="监管接口&lt;br&gt;证监会" vertex="1">
+          <mxGeometry height="44" width="150" x="792" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="18" parent="1" style="fillColor=#EEF3FA;strokeColor=#1B3275;strokeWidth=1.5;fontSize=10;fontStyle=1;rounded=1;align=center;verticalAlign=middle;html=1;" value="OEMS&lt;br&gt;执行系统" vertex="1">
+          <mxGeometry height="44" width="150" x="950" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="19" parent="1" style="fillColor=#D6E4F7;strokeColor=none;html=1;" value="" vertex="1">
+          <mxGeometry height="4" width="40" x="540" y="124" as="geometry" />
+        </mxCell>
+        <mxCell id="20" parent="1" style="fillColor=#EEF3FA;strokeColor=#1B3275;strokeWidth=1;html=1;" value="" vertex="1">
+          <mxGeometry height="52" width="1120" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="21" parent="1" style="fillColor=#1B3275;fontColor=#FFFFFF;strokeColor=none;fontSize=11;fontStyle=1;align=center;verticalAlign=middle;html=1;" value="&lt;b&gt;L2 数据接入与总线&lt;/b&gt;" vertex="1">
+          <mxGeometry height="52" width="150" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="22" parent="1" style="fillColor=#EEF3FA;strokeColor=#0F2060;strokeWidth=1.5;fontSize=10;fontStyle=1;rounded=1;align=center;verticalAlign=middle;html=1;" value="Kafka 事件总线&lt;br&gt;(异步解耦 · 持久化)" vertex="1">
+          <mxGeometry height="44" width="308" x="160" y="134" as="geometry" />
+        </mxCell>
+        <mxCell id="23" parent="1" style="fillColor=#EEF3FA;strokeColor=#1B3275;strokeWidth=1.5;fontSize=10;fontStyle=1;rounded=1;align=center;verticalAlign=middle;html=1;" value="REST / FIX 适配器&lt;br&gt;(同步接入)" vertex="1">
+          <mxGeometry height="44" width="308" x="476" y="134" as="geometry" />
+        </mxCell>
+        <mxCell id="24" parent="1" style="fillColor=#EEF3FA;strokeColor=#1B3275;strokeWidth=1.5;fontSize=10;fontStyle=1;rounded=1;align=center;verticalAlign=middle;html=1;" value="数据质量校验&lt;br&gt;(Format · Schema · SLA)" vertex="1">
+          <mxGeometry height="44" width="308" x="792" y="134" as="geometry" />
+        </mxCell>
+        <mxCell id="25" parent="1" style="fillColor=#D6E4F7;strokeColor=none;html=1;" value="" vertex="1">
+          <mxGeometry height="4" width="40" x="540" y="182" as="geometry" />
+        </mxCell>
+        <mxCell id="26" parent="1" style="fillColor=#EEF3FA;strokeColor=#1B3275;strokeWidth=1;html=1;" value="" vertex="1">
+          <mxGeometry height="80" width="1120" y="188" as="geometry" />
+        </mxCell>
+        <mxCell id="27" parent="1" style="fillColor=#0F2060;fontColor=#FFFFFF;strokeColor=none;fontSize=11;fontStyle=1;align=center;verticalAlign=middle;html=1;" value="&lt;b&gt;L3 POMS 核心处理层&lt;/b&gt;" vertex="1">
+          <mxGeometry height="80" width="150" y="188" as="geometry" />
+        </mxCell>
+        <mxCell id="28" parent="1" style="fillColor=#D6E4F7;strokeColor=#1B3275;strokeWidth=1.5;fontSize=10;fontStyle=1;rounded=1;align=center;verticalAlign=middle;html=1;" value="Engine①&lt;br&gt;全资产组合管理" vertex="1">
+          <mxGeometry height="44" width="182" x="160" y="206" as="geometry" />
+        </mxCell>
+        <mxCell id="29" parent="1" style="fillColor=#EEF3FA;strokeColor=#1B3275;strokeWidth=1.5;fontSize=10;fontStyle=1;rounded=1;align=center;verticalAlign=middle;html=1;" value="Engine②&lt;br&gt;高性能计算" vertex="1">
+          <mxGeometry height="44" width="182" x="350" y="206" as="geometry" />
+        </mxCell>
+        <mxCell id="30" parent="1" style="fillColor=#EEF3FA;strokeColor=#1B3275;strokeWidth=1.5;fontSize=10;fontStyle=1;rounded=1;align=center;verticalAlign=middle;html=1;" value="Engine③&lt;br&gt;量化策略" vertex="1">
+          <mxGeometry height="44" width="182" x="540" y="206" as="geometry" />
+        </mxCell>
+        <mxCell id="31" parent="1" style="fillColor=#EEF3FA;strokeColor=#1B3275;strokeWidth=1.5;fontSize=10;fontStyle=1;rounded=1;align=center;verticalAlign=middle;html=1;" value="Engine④&lt;br&gt;事件驱动风控" vertex="1">
+          <mxGeometry height="44" width="182" x="730" y="206" as="geometry" />
+        </mxCell>
+        <mxCell id="32" parent="1" style="fillColor=#EEF3FA;strokeColor=#1B3275;strokeWidth=1.5;fontSize=10;fontStyle=1;rounded=1;align=center;verticalAlign=middle;html=1;" value="Engine⑤&lt;br&gt;决策执行" vertex="1">
+          <mxGeometry height="44" width="182" x="920" y="206" as="geometry" />
+        </mxCell>
+        <mxCell id="33" parent="1" style="fillColor=#D6E4F7;strokeColor=none;html=1;" value="" vertex="1">
+          <mxGeometry height="4" width="40" x="540" y="268" as="geometry" />
+        </mxCell>
+        <mxCell id="34" parent="1" style="fillColor=#EEF3FA;strokeColor=#1B3275;strokeWidth=1;html=1;" value="" vertex="1">
+          <mxGeometry height="64" width="1120" y="274" as="geometry" />
+        </mxCell>
+        <mxCell id="35" parent="1" style="fillColor=#1B3275;fontColor=#FFFFFF;strokeColor=none;fontSize=11;fontStyle=1;align=center;verticalAlign=middle;html=1;" value="&lt;b&gt;L4 数据存储层&lt;/b&gt;" vertex="1">
+          <mxGeometry height="64" width="150" y="274" as="geometry" />
+        </mxCell>
+        <mxCell id="36" parent="1" style="fillColor=#EEF3FA;strokeColor=#1B3275;strokeWidth=1.5;fontSize=10;fontStyle=1;rounded=1;align=center;verticalAlign=middle;html=1;" value="时序数据库&lt;br&gt;TDEngine / InfluxDB" vertex="1">
+          <mxGeometry height="44" width="182" x="160" y="284" as="geometry" />
+        </mxCell>
+        <mxCell id="37" parent="1" style="fillColor=#F0F5FF;strokeColor=#1B3275;strokeWidth=1.5;fontSize=10;fontStyle=1;rounded=1;align=center;verticalAlign=middle;html=1;" value="关系数据库&lt;br&gt;OceanBase / 达梦" vertex="1">
+          <mxGeometry height="44" width="182" x="350" y="284" as="geometry" />
+        </mxCell>
+        <mxCell id="38" parent="1" style="fillColor=#EEF3FA;strokeColor=#1B3275;strokeWidth=1.5;fontSize=10;fontStyle=1;rounded=1;align=center;verticalAlign=middle;html=1;" value="缓存层&lt;br&gt;Redis Sentinel" vertex="1">
+          <mxGeometry height="44" width="182" x="540" y="284" as="geometry" />
+        </mxCell>
+        <mxCell id="39" parent="1" style="fillColor=#EEF3FA;strokeColor=#1B3275;strokeWidth=1.5;fontSize=10;fontStyle=1;rounded=1;align=center;verticalAlign=middle;html=1;" value="对象存储&lt;br&gt;MinIO / OSS" vertex="1">
+          <mxGeometry height="44" width="182" x="730" y="284" as="geometry" />
+        </mxCell>
+        <mxCell id="40" parent="1" style="fillColor=#EEF3FA;strokeColor=#1B3275;strokeWidth=1.5;fontSize=10;fontStyle=1;rounded=1;align=center;verticalAlign=middle;html=1;" value="审计日志&lt;br&gt;Kafka + ELK" vertex="1">
+          <mxGeometry height="44" width="182" x="920" y="284" as="geometry" />
+        </mxCell>
+        <mxCell id="41" parent="1" style="fillColor=#D6E4F7;strokeColor=none;html=1;" value="" vertex="1">
+          <mxGeometry height="4" width="40" x="540" y="338" as="geometry" />
+        </mxCell>
+        <mxCell id="42" parent="1" style="fillColor=#F0F5FF;strokeColor=#1B3275;strokeWidth=1;html=1;" value="" vertex="1">
+          <mxGeometry height="56" width="1120" y="344" as="geometry" />
+        </mxCell>
+        <mxCell id="43" parent="1" style="fillColor=#1B3275;fontColor=#FFFFFF;strokeColor=none;fontSize=11;fontStyle=1;align=center;verticalAlign=middle;html=1;" value="&lt;b&gt;L5 数据消费层&lt;/b&gt;" vertex="1">
+          <mxGeometry height="56" width="150" y="344" as="geometry" />
+        </mxCell>
+        <mxCell id="44" parent="1" style="fillColor=#EEF3FA;strokeColor=#1B3275;strokeWidth=1.5;fontSize=10;fontStyle=1;rounded=1;align=center;verticalAlign=middle;html=1;" value="投资工作台&lt;br&gt;Web / PC" vertex="1">
+          <mxGeometry height="44" width="182" x="160" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="45" parent="1" style="fillColor=#EEF3FA;strokeColor=#1B3275;strokeWidth=1.5;fontSize=10;fontStyle=1;rounded=1;align=center;verticalAlign=middle;html=1;" value="交易工作台&lt;br&gt;APP" vertex="1">
+          <mxGeometry height="44" width="182" x="350" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="46" parent="1" style="fillColor=#EEF3FA;strokeColor=#1B3275;strokeWidth=1.5;fontSize=10;fontStyle=1;rounded=1;align=center;verticalAlign=middle;html=1;" value="监管报表&lt;br&gt;自动生成" vertex="1">
+          <mxGeometry height="44" width="182" x="540" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="47" parent="1" style="fillColor=#EEF3FA;strokeColor=#1B3275;strokeWidth=1.5;fontSize=10;fontStyle=1;rounded=1;align=center;verticalAlign=middle;html=1;" value="API 开放&lt;br&gt;第三方" vertex="1">
+          <mxGeometry height="44" width="182" x="730" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="48" parent="1" style="fillColor=#F0F5FF;strokeColor=#1B3275;strokeWidth=1.5;fontSize=10;fontStyle=1;rounded=1;align=center;verticalAlign=middle;html=1;" value="数据导出&lt;br&gt;Excel / PDF" vertex="1">
+          <mxGeometry height="44" width="182" x="920" y="350" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,100 @@
+<mxfile host="Electron">
+  <diagram name="竞争定位2x2" id="0">
+    <mxGraphModel dx="2234" dy="811" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="#F5F7FA" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="10" parent="1" style="fillColor=#0F2060;fontColor=#FFFFFF;strokeColor=none;fontSize=15;fontStyle=1;align=center;verticalAlign=middle;html=1;" value="&lt;b&gt;市场竞争定位图&lt;/b&gt;&lt;br&gt;&lt;font style=&#39;font-size:11px;&#39;&gt;专业深度 × 国产化程度 | POMS 目标区间：右上象限&lt;/font&gt;" vertex="1">
+          <mxGeometry height="54" width="820" as="geometry" />
+        </mxCell>
+        <mxCell id="11" parent="1" style="fillColor=#EEF3FA;strokeColor=none;html=1;" value="" vertex="1">
+          <mxGeometry height="240" width="310" x="100" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="12" parent="1" style="fillColor=none;strokeColor=none;fontSize=10;align=right;verticalAlign=bottom;html=1;" value="&lt;i&gt;&lt;font color=&#39;#9e9e9e&#39;&gt;观望区&lt;/font&gt;&lt;/i&gt;" vertex="1">
+          <mxGeometry height="232" width="302" x="102" y="82" as="geometry" />
+        </mxCell>
+        <mxCell id="13" parent="1" style="fillColor=#F0F5FF;strokeColor=none;html=1;" value="" vertex="1">
+          <mxGeometry height="240" width="310" x="410" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="14" parent="1" style="fillColor=#EEF3FA;strokeColor=#0F2060;fontSize=10;align=right;verticalAlign=bottom;html=1;" value="&lt;i&gt;&lt;font color=&#39;#9e9e9e&#39;&gt;★ 目标区间&lt;/font&gt;&lt;/i&gt;" vertex="1">
+          <mxGeometry height="232" width="302" x="412" y="82" as="geometry" />
+        </mxCell>
+        <mxCell id="15" parent="1" style="fillColor=#EEF3FA;strokeColor=none;html=1;" value="" vertex="1">
+          <mxGeometry height="240" width="310" x="100" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="16" parent="1" style="fillColor=#EEF3FA;strokeColor=#1B3275;fontSize=10;align=right;verticalAlign=bottom;html=1;" value="&lt;i&gt;&lt;font color=&#39;#9e9e9e&#39;&gt;危险区&lt;/font&gt;&lt;/i&gt;" vertex="1">
+          <mxGeometry height="232" width="302" x="102" y="322" as="geometry" />
+        </mxCell>
+        <mxCell id="17" parent="1" style="fillColor=#EEF3FA;strokeColor=none;html=1;" value="" vertex="1">
+          <mxGeometry height="240" width="310" x="410" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="18" parent="1" style="fillColor=#EEF3FA;strokeColor=#1B3275;fontSize=10;align=right;verticalAlign=bottom;html=1;" value="&lt;i&gt;&lt;font color=&#39;#9e9e9e&#39;&gt;过渡区&lt;/font&gt;&lt;/i&gt;" vertex="1">
+          <mxGeometry height="232" width="302" x="412" y="322" as="geometry" />
+        </mxCell>
+        <mxCell id="19" parent="1" style="fillColor=#1B3275;strokeColor=none;html=1;fontColor=#FFFFFF;" value="" vertex="1">
+          <mxGeometry height="1" width="620" x="100" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="20" parent="1" style="fillColor=#1B3275;strokeColor=none;html=1;fontColor=#FFFFFF;" value="" vertex="1">
+          <mxGeometry height="480" width="1" x="410" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="21" parent="1" style="fillColor=none;strokeColor=none;fontColor=#1B3275;fontSize=14;align=right;verticalAlign=middle;html=1;" value="→" vertex="1">
+          <mxGeometry height="24" width="20" x="704" y="308" as="geometry" />
+        </mxCell>
+        <mxCell id="22" parent="1" style="fillColor=none;strokeColor=none;fontColor=#1B3275;fontSize=14;align=center;verticalAlign=top;html=1;" value="↑" vertex="1">
+          <mxGeometry height="20" width="24" x="398" y="78" as="geometry" />
+        </mxCell>
+        <mxCell id="23" parent="1" style="fillColor=none;strokeColor=none;fontColor=#1B3275;fontSize=12;fontStyle=1;align=center;html=1;" value="&lt;b&gt;国产化程度&lt;/b&gt;" vertex="1">
+          <mxGeometry height="22" width="620" x="100" y="570" as="geometry" />
+        </mxCell>
+        <mxCell id="24" parent="1" style="fillColor=none;strokeColor=none;fontColor=#1B3275;fontSize=10;align=left;html=1;" value="低 ←" vertex="1">
+          <mxGeometry height="22" width="80" x="100" y="570" as="geometry" />
+        </mxCell>
+        <mxCell id="25" parent="1" style="fillColor=none;strokeColor=none;fontColor=#1B3275;fontSize=10;align=right;html=1;" value="→ 高" vertex="1">
+          <mxGeometry height="22" width="620" x="100" y="570" as="geometry" />
+        </mxCell>
+        <mxCell id="26" parent="1" style="fillColor=none;strokeColor=none;fontColor=#1B3275;fontSize=12;fontStyle=1;align=center;rotation=-90;html=1;" value="&lt;b&gt;专业&lt;br&gt;深度&lt;/b&gt;" vertex="1">
+          <mxGeometry height="480" width="40" x="50" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="27" parent="1" style="fillColor=none;strokeColor=none;fontColor=#1B3275;fontSize=10;align=center;html=1;" value="低" vertex="1">
+          <mxGeometry height="18" width="34" x="54" y="542" as="geometry" />
+        </mxCell>
+        <mxCell id="28" parent="1" style="fillColor=none;strokeColor=none;fontColor=#1B3275;fontSize=10;align=center;html=1;" value="高" vertex="1">
+          <mxGeometry height="18" width="34" x="54" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="29" parent="1" style="ellipse;fillColor=#EEF3FA;strokeColor=#1B3275;strokeWidth=2;fontSize=10;fontStyle=1;align=center;verticalAlign=middle;html=1;" value="A 类&lt;br&gt;国际厂商" vertex="1">
+          <mxGeometry height="120" width="120" x="133" y="116" as="geometry" />
+        </mxCell>
+        <mxCell id="30" parent="1" style="fillColor=none;strokeColor=none;fontColor=#1B3275;fontSize=9;align=center;html=1;" value="Aladdin / Calypso&lt;br&gt;专业强·国产化弱" vertex="1">
+          <mxGeometry height="28" width="140" x="123" y="238" as="geometry" />
+        </mxCell>
+        <mxCell id="31" parent="1" style="ellipse;fillColor=#EEF3FA;strokeColor=#1B3275;strokeWidth=2;fontSize=10;fontStyle=1;align=center;verticalAlign=middle;html=1;" value="B 类&lt;br&gt;国内老牌" vertex="1">
+          <mxGeometry height="110" width="110" x="448" y="351" as="geometry" />
+        </mxCell>
+        <mxCell id="32" parent="1" style="fillColor=none;strokeColor=none;fontColor=#1B3275;fontSize=9;align=center;html=1;" value="恒生 / 金证&lt;br&gt;国产化强·功能偏基础" vertex="1">
+          <mxGeometry height="28" width="130" x="438" y="463" as="geometry" />
+        </mxCell>
+        <mxCell id="33" parent="1" style="ellipse;fillColor=#EEF3FA;strokeColor=#1B3275;strokeWidth=2;fontSize=10;fontStyle=1;align=center;verticalAlign=middle;html=1;" value="C 类&lt;br&gt;新兴国产" vertex="1">
+          <mxGeometry height="100" width="100" x="329" y="414" as="geometry" />
+        </mxCell>
+        <mxCell id="34" parent="1" style="fillColor=none;strokeColor=none;fontColor=#1B3275;fontSize=9;align=center;html=1;" value="创业系统&lt;br&gt;国产化好·专业度待成熟" vertex="1">
+          <mxGeometry height="28" width="120" x="319" y="516" as="geometry" />
+        </mxCell>
+        <mxCell id="35" parent="1" style="ellipse;fillColor=#EEF3FA;strokeColor=#1B3275;strokeWidth=2;fontSize=10;fontStyle=1;align=center;verticalAlign=middle;html=1;" value="D 类&lt;br&gt;垂直专业" vertex="1">
+          <mxGeometry height="96" width="96" x="498" y="176" as="geometry" />
+        </mxCell>
+        <mxCell id="36" parent="1" style="fillColor=none;strokeColor=none;fontColor=#1B3275;fontSize=9;align=center;html=1;" value="单一功能系统&lt;br&gt;专业但场景窄" vertex="1">
+          <mxGeometry height="28" width="116" x="488" y="274" as="geometry" />
+        </mxCell>
+        <mxCell id="37" parent="1" style="shape=mxgraph.arrows2.arrow;fillColor=#2B5EC7;fontColor=#FFFFFF;strokeColor=none;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;html=1;" value="&lt;b&gt;POMS&lt;/b&gt;&lt;br&gt;&lt;font style=&#39;font-size:9px;&#39;&gt;华锐科技&lt;/font&gt;" vertex="1">
+          <mxGeometry height="80" width="120" x="490" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="38" parent="1" style="ellipse;fillColor=none;strokeColor=#1B3275;strokeWidth=3;dashed=1;html=1;" value="" vertex="1">
+          <mxGeometry height="100" width="140" x="480" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="39" parent="1" style="fillColor=#F0F5FF;strokeColor=#1B3275;strokeWidth=2;fontSize=11;fontStyle=1;align=center;verticalAlign=middle;rounded=1;html=1;" value="&lt;b&gt;目标区间&lt;/b&gt;" vertex="1">
+          <mxGeometry height="24" width="90" x="420" y="88" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

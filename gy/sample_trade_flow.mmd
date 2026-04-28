@@ -1,0 +1,9 @@
+graph TD
+    A[Investment Decision] --> B{Pre-trade Compliance}
+    B -- Pass --> C[Order Generation]
+    B -- Fail --> D[Rejection/Alert]
+    C --> E[Execution/Trading]
+    E --> F[Post-trade Allocation]
+    F --> G[Clearing & Settlement]
+    G --> H[Risk & PnL Update]
+    H --> I[IFRS9 Accounting]
