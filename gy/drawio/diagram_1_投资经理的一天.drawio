@@ -16,51 +16,63 @@
         <mxCell id="13" parent="1" style="fillColor=#1B3275;fontColor=#FFFFFF;strokeColor=none;fontSize=13;fontStyle=1;align=center;html=1;" value="&lt;b&gt;✅  有 POMS 之后&lt;/b&gt;" vertex="1">
           <mxGeometry height="40" width="530" x="548" y="60" as="geometry" />
         </mxCell>
+
+        <!-- Row 1: 08:30 开盘前 -->
         <mxCell id="14" parent="1" style="fillColor=#EEF3FA;strokeColor=#3B7DD8;strokeWidth=1;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;html=1;" value="08:30&lt;br&gt;开盘前" vertex="1">
           <mxGeometry height="88" width="110" y="100" as="geometry" />
         </mxCell>
-        <mxCell id="15" parent="1" style="fillColor=#EEF3FA;strokeColor=#3B7DD8;strokeWidth=1;fontSize=10;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;html=1;" value="&lt;font color=&#39;#c62828&#39;&gt;▪&lt;/font&gt; 手工拼接 3 个系统导出的持仓文件&lt;br&gt;&lt;font color=&#39;#c62828&#39;&gt;▪&lt;/font&gt; 等待 IT 跑批，09:10 才收到昨日净值&lt;br&gt;&lt;font color=&#39;#c62828&#39;&gt;▪&lt;/font&gt; 晨会推迟，信息不对称" vertex="1">
+        <mxCell id="15" parent="1" style="fillColor=#EEF3FA;strokeColor=#3B7DD8;strokeWidth=1;fontSize=10;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;html=1;" value="&lt;font color=&#39;#c62828&#39;&gt;▪&lt;/font&gt; 打开Wind查债券，切换股票系统，邮件要黄金仓位&lt;br&gt;&lt;font color=&#39;#c62828&#39;&gt;▪&lt;/font&gt; 45分钟后才能拼出全图，数据截至昨日收盘&lt;br&gt;&lt;font color=&#39;#c62828&#39;&gt;▪&lt;/font&gt; 开盘前30分钟仍在拼数据，错过最优建仓窗口" vertex="1">
           <mxGeometry height="88" width="430" x="114" y="100" as="geometry" />
         </mxCell>
-        <mxCell id="16" parent="1" style="fillColor=#F0F5FF;strokeColor=#3B7DD8;strokeWidth=1;fontSize=10;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;html=1;" value="&lt;font color=&#39;#2e7d32&#39;&gt;▶&lt;/font&gt; POMS 自动聚合全资产持仓，&lt;b&gt;09:00 前就绪&lt;/b&gt;&lt;br&gt;&lt;font color=&#39;#2e7d32&#39;&gt;▶&lt;/font&gt; 实时 NAV 与敞口一屏展示&lt;br&gt;&lt;font color=&#39;#2e7d32&#39;&gt;▶&lt;/font&gt; 晨会数据秒级准备，决策更早" vertex="1">
+        <mxCell id="16" parent="1" style="fillColor=#F0F5FF;strokeColor=#3B7DD8;strokeWidth=1;fontSize=10;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;html=1;" value="&lt;font color=&#39;#2e7d32&#39;&gt;▶&lt;/font&gt; 登录POMS：千亿全组合实时状态，&lt;b&gt;8大类资产一屏展示&lt;/b&gt;&lt;br&gt;&lt;font color=&#39;#2e7d32&#39;&gt;▶&lt;/font&gt; DV01 850万（黄色预警），利率债集中度88%，一目了然&lt;br&gt;&lt;font color=&#39;#2e7d32&#39;&gt;▶&lt;/font&gt; 开盘即决策，信息优势领先市场" vertex="1">
           <mxGeometry height="88" width="530" x="548" y="100" as="geometry" />
         </mxCell>
-        <mxCell id="17" parent="1" style="fillColor=#EEF3FA;strokeColor=#3B7DD8;strokeWidth=1;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;html=1;" value="09:30&lt;br&gt;交易中" vertex="1">
+
+        <!-- Row 2: 10:00 发现机会 -->
+        <mxCell id="17" parent="1" style="fillColor=#EEF3FA;strokeColor=#3B7DD8;strokeWidth=1;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;html=1;" value="10:00&lt;br&gt;发现机会" vertex="1">
           <mxGeometry height="88" width="110" y="190" as="geometry" />
         </mxCell>
-        <mxCell id="18" parent="1" style="fillColor=#EEF3FA;strokeColor=#3B7DD8;strokeWidth=1;fontSize=10;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;html=1;" value="&lt;font color=&#39;#c62828&#39;&gt;▪&lt;/font&gt; 电话确认交易员执行状态，效率极低&lt;br&gt;&lt;font color=&#39;#c62828&#39;&gt;▪&lt;/font&gt; 无法实时追踪滑点与交易成本&lt;br&gt;&lt;font color=&#39;#c62828&#39;&gt;▪&lt;/font&gt; 手工记录成交回报，易出错" vertex="1">
+        <mxCell id="18" parent="1" style="fillColor=#EEF3FA;strokeColor=#3B7DD8;strokeWidth=1;fontSize=10;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;html=1;" value="&lt;font color=&#39;#c62828&#39;&gt;▪&lt;/font&gt; 看到利差数据，无历史分位参考，无法判断是否值得做&lt;br&gt;&lt;font color=&#39;#c62828&#39;&gt;▪&lt;/font&gt; 打电话给研究员，等Excel回测耗时2小时，结论仍不确定&lt;br&gt;&lt;font color=&#39;#c62828&#39;&gt;▪&lt;/font&gt; 最终放弃，全年错过5-8次此类机会，损失60-100bp Alpha" vertex="1">
           <mxGeometry height="88" width="430" x="114" y="190" as="geometry" />
         </mxCell>
-        <mxCell id="19" parent="1" style="fillColor=#F0F5FF;strokeColor=#3B7DD8;strokeWidth=1;fontSize=10;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;html=1;" value="&lt;font color=&#39;#2e7d32&#39;&gt;▶&lt;/font&gt; 指令自动路由至 OEMS，&lt;b&gt;全程可视化&lt;/b&gt;&lt;br&gt;&lt;font color=&#39;#2e7d32&#39;&gt;▶&lt;/font&gt; TCA 实时监控执行质量与滑点&lt;br&gt;&lt;font color=&#39;#2e7d32&#39;&gt;▶&lt;/font&gt; 成交回报自动入账，零人工" vertex="1">
+        <mxCell id="19" parent="1" style="fillColor=#F0F5FF;strokeColor=#3B7DD8;strokeWidth=1;fontSize=10;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;html=1;" value="&lt;font color=&#39;#2e7d32&#39;&gt;▶&lt;/font&gt; 系统推送：&lt;b&gt;10Y-5Y利差52bp，历史分位93%，收敛概率78%&lt;/b&gt;&lt;br&gt;&lt;font color=&#39;#2e7d32&#39;&gt;▶&lt;/font&gt; Shadow Portfolio秒级试算：久期中性，预期收益12bp，最大回撤1.8bp&lt;br&gt;&lt;font color=&#39;#2e7d32&#39;&gt;▶&lt;/font&gt; 10分钟内完成分析→决策→审批→执行，新增Alpha &lt;b&gt;1000-2000万/年&lt;/b&gt;" vertex="1">
           <mxGeometry height="88" width="530" x="548" y="190" as="geometry" />
         </mxCell>
-        <mxCell id="20" parent="1" style="fillColor=#EEF3FA;strokeColor=#3B7DD8;strokeWidth=1;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;html=1;" value="11:00&lt;br&gt;风控预警" vertex="1">
+
+        <!-- Row 3: 14:00 全链路执行 -->
+        <mxCell id="20" parent="1" style="fillColor=#EEF3FA;strokeColor=#3B7DD8;strokeWidth=1;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;html=1;" value="14:00&lt;br&gt;全链路执行" vertex="1">
           <mxGeometry height="88" width="110" y="280" as="geometry" />
         </mxCell>
-        <mxCell id="21" parent="1" style="fillColor=#EEF3FA;strokeColor=#3B7DD8;strokeWidth=1;fontSize=10;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;html=1;" value="&lt;font color=&#39;#c62828&#39;&gt;▪&lt;/font&gt; 风控邮件延迟 20 分钟才到达&lt;br&gt;&lt;font color=&#39;#c62828&#39;&gt;▪&lt;/font&gt; 需手工核查是否超限，沟通链路长&lt;br&gt;&lt;font color=&#39;#c62828&#39;&gt;▪&lt;/font&gt; 高压市场中决策严重滞后" vertex="1">
+        <mxCell id="21" parent="1" style="fillColor=#EEF3FA;strokeColor=#3B7DD8;strokeWidth=1;fontSize=10;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;html=1;" value="&lt;font color=&#39;#c62828&#39;&gt;▪&lt;/font&gt; 手写指令单，金额需手工匹配久期，易出错&lt;br&gt;&lt;font color=&#39;#c62828&#39;&gt;▪&lt;/font&gt; 打印→领导签字→扫描→发给交易员，流程耗时30分钟&lt;br&gt;&lt;font color=&#39;#c62828&#39;&gt;▪&lt;/font&gt; 分两笔执行，时间差导致滑点3.2bp，年化损耗3000-5000万" vertex="1">
           <mxGeometry height="88" width="430" x="114" y="280" as="geometry" />
         </mxCell>
-        <mxCell id="22" parent="1" style="fillColor=#F0F5FF;strokeColor=#3B7DD8;strokeWidth=1;fontSize=10;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;html=1;" value="&lt;font color=&#39;#2e7d32&#39;&gt;▶&lt;/font&gt; CEP 引擎 &lt;b&gt;&amp;lt;100ms&lt;/b&gt; 触发分级预警&lt;br&gt;&lt;font color=&#39;#2e7d32&#39;&gt;▶&lt;/font&gt; 一键查看违规详情与处置建议&lt;br&gt;&lt;font color=&#39;#2e7d32&#39;&gt;▶&lt;/font&gt; 合规预检拦截问题指令于发出前" vertex="1">
+        <mxCell id="22" parent="1" style="fillColor=#F0F5FF;strokeColor=#3B7DD8;strokeWidth=1;fontSize=10;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;html=1;" value="&lt;font color=&#39;#2e7d32&#39;&gt;▶&lt;/font&gt; 系统自动生成久期中性multi-leg指令，金额精确匹配&lt;br&gt;&lt;font color=&#39;#2e7d32&#39;&gt;▶&lt;/font&gt; 线上一键审批，移动端&lt;b&gt;30秒确认&lt;/b&gt;&lt;br&gt;&lt;font color=&#39;#2e7d32&#39;&gt;▶&lt;/font&gt; 两腿同步下达OEMS，滑点仅0.3bp，&lt;b&gt;节省1000-1500万/年&lt;/b&gt;" vertex="1">
           <mxGeometry height="88" width="530" x="548" y="280" as="geometry" />
         </mxCell>
-        <mxCell id="23" parent="1" style="fillColor=#EEF3FA;strokeColor=#3B7DD8;strokeWidth=1;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;html=1;" value="14:00&lt;br&gt;策略调仓" vertex="1">
+
+        <!-- Row 4: 14:30 突发预警 -->
+        <mxCell id="23" parent="1" style="fillColor=#EEF3FA;strokeColor=#3B7DD8;strokeWidth=1;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;html=1;" value="14:30&lt;br&gt;突发预警" vertex="1">
           <mxGeometry height="88" width="110" y="370" as="geometry" />
         </mxCell>
-        <mxCell id="24" parent="1" style="fillColor=#EEF3FA;strokeColor=#3B7DD8;strokeWidth=1;fontSize=10;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;html=1;" value="&lt;font color=&#39;#c62828&#39;&gt;▪&lt;/font&gt; 量化模型运行需等待 60 分钟&lt;br&gt;&lt;font color=&#39;#c62828&#39;&gt;▪&lt;/font&gt; 结果无法直接生成交易指令&lt;br&gt;&lt;font color=&#39;#c62828&#39;&gt;▪&lt;/font&gt; 人工二次录入，错误率高" vertex="1">
+        <mxCell id="24" parent="1" style="fillColor=#EEF3FA;strokeColor=#3B7DD8;strokeWidth=1;fontSize=10;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;html=1;" value="&lt;font color=&#39;#c62828&#39;&gt;▪&lt;/font&gt; 从新闻看到城投债负面消息，不知道持仓在哪个账户&lt;br&gt;&lt;font color=&#39;#c62828&#39;&gt;▪&lt;/font&gt; 手工查3个系统汇总持仓耗时60分钟，期间价格已跌1.2%&lt;br&gt;&lt;font color=&#39;#c62828&#39;&gt;▪&lt;/font&gt; 决策严重滞后，减仓净损失2500万" vertex="1">
           <mxGeometry height="88" width="430" x="114" y="370" as="geometry" />
         </mxCell>
-        <mxCell id="25" parent="1" style="fillColor=#F0F5FF;strokeColor=#3B7DD8;strokeWidth=1;fontSize=10;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;html=1;" value="&lt;font color=&#39;#2e7d32&#39;&gt;▶&lt;/font&gt; 高性能计算引擎 &lt;b&gt;秒级&lt;/b&gt; 出再平衡结果&lt;br&gt;&lt;font color=&#39;#2e7d32&#39;&gt;▶&lt;/font&gt; 自动生成指令包，一键批量审批&lt;br&gt;&lt;font color=&#39;#2e7d32&#39;&gt;▶&lt;/font&gt; 推送执行，端到端 &amp;lt;5 分钟" vertex="1">
+        <mxCell id="25" parent="1" style="fillColor=#F0F5FF;strokeColor=#3B7DD8;strokeWidth=1;fontSize=10;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;html=1;" value="&lt;font color=&#39;#2e7d32&#39;&gt;▶&lt;/font&gt; CEP引擎&lt;b&gt;30秒&lt;/b&gt;内预警："发行人全公司敞口8.3亿，超集中度限额7亿"&lt;br&gt;&lt;font color=&#39;#2e7d32&#39;&gt;▶&lt;/font&gt; 实时显示5个组合分布，按流动性排序推荐减仓顺序&lt;br&gt;&lt;font color=&#39;#2e7d32&#39;&gt;▶&lt;/font&gt; 15分钟内合规预检+审批+减仓完成，净损失800万（&lt;b&gt;避损1700万&lt;/b&gt;）" vertex="1">
           <mxGeometry height="88" width="530" x="548" y="370" as="geometry" />
         </mxCell>
-        <mxCell id="26" parent="1" style="fillColor=#EEF3FA;strokeColor=#3B7DD8;strokeWidth=1;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;html=1;" value="收盘&lt;br&gt;归因复盘" vertex="1">
+
+        <!-- Row 5: 17:00 价值复盘 -->
+        <mxCell id="26" parent="1" style="fillColor=#EEF3FA;strokeColor=#3B7DD8;strokeWidth=1;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;html=1;" value="17:00&lt;br&gt;价值复盘" vertex="1">
           <mxGeometry height="88" width="110" y="460" as="geometry" />
         </mxCell>
-        <mxCell id="27" parent="1" style="fillColor=#EEF3FA;strokeColor=#3B7DD8;strokeWidth=1;fontSize=10;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;html=1;" value="&lt;font color=&#39;#c62828&#39;&gt;▪&lt;/font&gt; 绩效归因 T+1 人工完成&lt;br&gt;&lt;font color=&#39;#c62828&#39;&gt;▪&lt;/font&gt; 数据口径不一致，争议多&lt;br&gt;&lt;font color=&#39;#c62828&#39;&gt;▪&lt;/font&gt; 决策链路无法完整追溯" vertex="1">
+        <mxCell id="27" parent="1" style="fillColor=#EEF3FA;strokeColor=#3B7DD8;strokeWidth=1;fontSize=10;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;html=1;" value="&lt;font color=&#39;#c62828&#39;&gt;▪&lt;/font&gt; 绩效归因T+1人工完成，仅知道总体盈亏，不知各策略贡献&lt;br&gt;&lt;font color=&#39;#c62828&#39;&gt;▪&lt;/font&gt; 数据口径不一致，决策链路无法完整追溯&lt;br&gt;&lt;font color=&#39;#c62828&#39;&gt;▪&lt;/font&gt; 年终考核靠"总体感觉"，无法证明能力来源" vertex="1">
           <mxGeometry height="88" width="430" x="114" y="460" as="geometry" />
         </mxCell>
-        <mxCell id="28" parent="1" style="fillColor=#F0F5FF;strokeColor=#3B7DD8;strokeWidth=1;fontSize=10;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;html=1;" value="&lt;font color=&#39;#2e7d32&#39;&gt;▶&lt;/font&gt; IBOR 实时更新，&lt;b&gt;T+0 归因&lt;/b&gt;&lt;br&gt;&lt;font color=&#39;#2e7d32&#39;&gt;▶&lt;/font&gt; 多维归因自动生成，口径统一&lt;br&gt;&lt;font color=&#39;#2e7d32&#39;&gt;▶&lt;/font&gt; 完整决策链路可审计、可追溯" vertex="1">
+        <mxCell id="28" parent="1" style="fillColor=#F0F5FF;strokeColor=#3B7DD8;strokeWidth=1;fontSize=10;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;html=1;" value="&lt;font color=&#39;#2e7d32&#39;&gt;▶&lt;/font&gt; IBOR实时更新，&lt;b&gt;T+0归因&lt;/b&gt;：利差+8bp，黄金+3bp，避损+5bp&lt;br&gt;&lt;font color=&#39;#2e7d32&#39;&gt;▶&lt;/font&gt; 今日净Alpha &lt;b&gt;+15.7bp&lt;/b&gt;，清晰可见&lt;br&gt;&lt;font color=&#39;#2e7d32&#39;&gt;▶&lt;/font&gt; 完整决策链路可审计，数据证明"哪些是能力，哪些是运气"" vertex="1">
           <mxGeometry height="88" width="530" x="548" y="460" as="geometry" />
         </mxCell>
+
+        <!-- Summary bar -->
         <mxCell id="29" parent="1" style="fillColor=#EEF3FA;strokeColor=#3B7DD8;strokeWidth=2;fontSize=12;fontStyle=0;align=center;verticalAlign=middle;rounded=1;html=1;" value="&lt;b&gt;核心转变：&lt;/b&gt; 从 &lt;font color=&#39;#c62828&#39;&gt;&lt;b&gt;手工拼数据 · 事后归因 · 决策滞后&lt;/b&gt;&lt;/font&gt;  →  &lt;font color=&#39;#2e7d32&#39;&gt;&lt;b&gt;实时感知 · 系统执行 · 闭环驱动&lt;/b&gt;&lt;/font&gt;" vertex="1">
           <mxGeometry height="40" width="1080" y="556" as="geometry" />
         </mxCell>

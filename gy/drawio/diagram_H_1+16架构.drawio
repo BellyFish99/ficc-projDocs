@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net">
+  <diagram name="1+16产品架构">
+    <mxGraphModel width="1240" height="520" background="#F5F7FA">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- Title -->
+        <mxCell id="10" value="&lt;b&gt;POMS 1 + 16 产品架构&lt;/b&gt;&lt;br&gt;&lt;font style='font-size:11px;'&gt;1 个核心管理平台 + 16 大协同引擎  ·  覆盖国元五大跃升目标&lt;/font&gt;" style="fillColor=#0F2060;fontColor=#FFFFFF;strokeColor=none;fontSize=15;fontStyle=1;align=center;verticalAlign=middle;html=1;" vertex="1" parent="1">
+          <mxGeometry x="0" y="0" width="1240" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- Core Platform -->
+        <mxCell id="11" value="&lt;b&gt;核心管理平台（Core）&lt;/b&gt;&lt;br&gt;&lt;font style='font-size:10px;font-weight:normal;'&gt;全资产组合管理  ·  实时持仓 IBOR  ·  估值引擎  ·  绩效归因  ·  报告中心  ·  基准管理  ·  多维视图仪表盘&lt;/font&gt;" style="fillColor=#1B3275;fontColor=#FFFFFF;strokeColor=#0F2060;strokeWidth=2;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;rounded=1;html=1;" vertex="1" parent="1">
+          <mxGeometry x="20" y="56" width="1200" height="68" as="geometry" />
+        </mxCell>
+
+        <!-- Group 0: 配得优 header (x=20, w=292) -->
+        <mxCell id="20" value="&lt;b&gt;配得优&lt;/b&gt;&lt;br&gt;&lt;font style='font-size:9px;'&gt;资产配置优化&lt;/font&gt;" style="fillColor=#2B5EC7;fontColor=#FFFFFF;strokeColor=none;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;html=1;" vertex="1" parent="1">
+          <mxGeometry x="20" y="134" width="292" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- Group 1: 算得快 header (x=322, w=292) -->
+        <mxCell id="21" value="&lt;b&gt;算得快&lt;/b&gt;&lt;br&gt;&lt;font style='font-size:9px;'&gt;高性能计算&lt;/font&gt;" style="fillColor=#2B5EC7;fontColor=#FFFFFF;strokeColor=none;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;html=1;" vertex="1" parent="1">
+          <mxGeometry x="322" y="134" width="292" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- Group 2: 控得稳 header (x=624, w=292) -->
+        <mxCell id="22" value="&lt;b&gt;控得稳&lt;/b&gt;&lt;br&gt;&lt;font style='font-size:9px;'&gt;风险全面管控&lt;/font&gt;" style="fillColor=#2B5EC7;fontColor=#FFFFFF;strokeColor=none;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;html=1;" vertex="1" parent="1">
+          <mxGeometry x="624" y="134" width="292" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- Group 3: 连得通 header (x=926, w=292) -->
+        <mxCell id="23" value="&lt;b&gt;连得通&lt;/b&gt;&lt;br&gt;&lt;font style='font-size:9px;'&gt;系统互联互通&lt;/font&gt;" style="fillColor=#2B5EC7;fontColor=#FFFFFF;strokeColor=none;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;html=1;" vertex="1" parent="1">
+          <mxGeometry x="926" y="134" width="292" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- 配得优 系统 (4 cells, y=174 +44 each) -->
+        <mxCell id="30" value="&lt;b&gt;#7&lt;/b&gt;  FOF 管理&lt;br&gt;&lt;font style='font-size:9px;'&gt;穿透式基金底层资产分析&lt;/font&gt;" style="fillColor=#EEF3FA;strokeColor=#D0DCF0;fontSize=10;align=left;verticalAlign=middle;spacingLeft=10;html=1;fontColor=#1B3275;" vertex="1" parent="1">
+          <mxGeometry x="20" y="174" width="292" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="31" value="&lt;b&gt;#11&lt;/b&gt;  模型组合与自动再平衡&lt;br&gt;&lt;font style='font-size:9px;'&gt;主管一个决策→多组合分钟级调仓&lt;/font&gt;" style="fillColor=#F0F5FF;strokeColor=#D0DCF0;fontSize=10;align=left;verticalAlign=middle;spacingLeft=10;html=1;fontColor=#1B3275;" vertex="1" parent="1">
+          <mxGeometry x="20" y="218" width="292" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="32" value="&lt;b&gt;#12&lt;/b&gt;  IFRS9 会计分类管理&lt;br&gt;&lt;font style='font-size:9px;'&gt;投前模拟会计分类对 P&amp;amp;L 的影响&lt;/font&gt;" style="fillColor=#EEF3FA;strokeColor=#D0DCF0;fontSize=10;align=left;verticalAlign=middle;spacingLeft=10;html=1;fontColor=#1B3275;" vertex="1" parent="1">
+          <mxGeometry x="20" y="262" width="292" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="33" value="&lt;b&gt;#14&lt;/b&gt;  多实体 / 多账簿统一管理&lt;br&gt;&lt;font style='font-size:9px;'&gt;跨账簿统一视图 + 自动合并报告&lt;/font&gt;" style="fillColor=#F0F5FF;strokeColor=#D0DCF0;fontSize=10;align=left;verticalAlign=middle;spacingLeft=10;html=1;fontColor=#1B3275;" vertex="1" parent="1">
+          <mxGeometry x="20" y="306" width="292" height="44" as="geometry" />
+        </mxCell>
+
+        <!-- 算得快 系统 (3 cells) -->
+        <mxCell id="40" value="&lt;b&gt;#1&lt;/b&gt;  高性能计算引擎&lt;br&gt;&lt;font style='font-size:9px;'&gt;2000 万次定价/日，K8s 弹性扩缩&lt;/font&gt;" style="fillColor=#EEF3FA;strokeColor=#D0DCF0;fontSize=10;align=left;verticalAlign=middle;spacingLeft=10;html=1;fontColor=#1B3275;" vertex="1" parent="1">
+          <mxGeometry x="322" y="174" width="292" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="41" value="&lt;b&gt;#2&lt;/b&gt;  量化策略引擎&lt;br&gt;&lt;font style='font-size:9px;'&gt;相对价值 + 多维信号 + 策略回测&lt;/font&gt;" style="fillColor=#F0F5FF;strokeColor=#D0DCF0;fontSize=10;align=left;verticalAlign=middle;spacingLeft=10;html=1;fontColor=#1B3275;" vertex="1" parent="1">
+          <mxGeometry x="322" y="218" width="292" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="42" value="&lt;b&gt;#8&lt;/b&gt;  全包成本核算引擎&lt;br&gt;&lt;font style='font-size:9px;'&gt;每笔交易全包成本精确拆解到 bp&lt;/font&gt;" style="fillColor=#EEF3FA;strokeColor=#D0DCF0;fontSize=10;align=left;verticalAlign=middle;spacingLeft=10;html=1;fontColor=#1B3275;" vertex="1" parent="1">
+          <mxGeometry x="322" y="262" width="292" height="44" as="geometry" />
+        </mxCell>
+
+        <!-- 控得稳 系统 (6 cells) -->
+        <mxCell id="50" value="&lt;b&gt;#3&lt;/b&gt;  事件驱动风控引擎&lt;br&gt;&lt;font style='font-size:9px;'&gt;CEP 秒级监控 + 极端压力测试&lt;/font&gt;" style="fillColor=#EEF3FA;strokeColor=#D0DCF0;fontSize=10;align=left;verticalAlign=middle;spacingLeft=10;html=1;fontColor=#1B3275;" vertex="1" parent="1">
+          <mxGeometry x="624" y="174" width="292" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="51" value="&lt;b&gt;#6&lt;/b&gt;  信用风险管理&lt;br&gt;&lt;font style='font-size:9px;'&gt;全生命周期信用评估 + 违约预警&lt;/font&gt;" style="fillColor=#F0F5FF;strokeColor=#D0DCF0;fontSize=10;align=left;verticalAlign=middle;spacingLeft=10;html=1;fontColor=#1B3275;" vertex="1" parent="1">
+          <mxGeometry x="624" y="218" width="292" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="52" value="&lt;b&gt;#9&lt;/b&gt;  投前合规预检引擎&lt;br&gt;&lt;font style='font-size:9px;'&gt;事前拦截违规，内嵌投资工作流&lt;/font&gt;" style="fillColor=#EEF3FA;strokeColor=#D0DCF0;fontSize=10;align=left;verticalAlign=middle;spacingLeft=10;html=1;fontColor=#1B3275;" vertex="1" parent="1">
+          <mxGeometry x="624" y="262" width="292" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="53" value="&lt;b&gt;#10&lt;/b&gt;  现金流预测与流动性规划&lt;br&gt;&lt;font style='font-size:9px;'&gt;T+N 多日前瞻预测 + 资金缺口告警&lt;/font&gt;" style="fillColor=#F0F5FF;strokeColor=#D0DCF0;fontSize=10;align=left;verticalAlign=middle;spacingLeft=10;html=1;fontColor=#1B3275;" vertex="1" parent="1">
+          <mxGeometry x="624" y="306" width="292" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="54" value="&lt;b&gt;#13&lt;/b&gt;  投资决策审计追踪&lt;br&gt;&lt;font style='font-size:9px;'&gt;全程带时间戳的完整决策链记录&lt;/font&gt;" style="fillColor=#EEF3FA;strokeColor=#D0DCF0;fontSize=10;align=left;verticalAlign=middle;spacingLeft=10;html=1;fontColor=#1B3275;" vertex="1" parent="1">
+          <mxGeometry x="624" y="350" width="292" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="55" value="&lt;b&gt;#16&lt;/b&gt;  投资限额实时管理&lt;br&gt;&lt;font style='font-size:9px;'&gt;实时交通灯仪表盘 + 投前越限模拟&lt;/font&gt;" style="fillColor=#F0F5FF;strokeColor=#D0DCF0;fontSize=10;align=left;verticalAlign=middle;spacingLeft=10;html=1;fontColor=#1B3275;" vertex="1" parent="1">
+          <mxGeometry x="624" y="394" width="292" height="44" as="geometry" />
+        </mxCell>
+
+        <!-- 连得通 系统 (3 cells) -->
+        <mxCell id="60" value="&lt;b&gt;#4&lt;/b&gt;  指令与执行管理引擎&lt;br&gt;&lt;font style='font-size:9px;'&gt;全生命周期闭环 + multi-leg 同步执行&lt;/font&gt;" style="fillColor=#EEF3FA;strokeColor=#D0DCF0;fontSize=10;align=left;verticalAlign=middle;spacingLeft=10;html=1;fontColor=#1B3275;" vertex="1" parent="1">
+          <mxGeometry x="926" y="174" width="292" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="61" value="&lt;b&gt;#5&lt;/b&gt;  现券交易系统&lt;br&gt;&lt;font style='font-size:9px;'&gt;统一行情中心 + 多渠道对手方集成&lt;/font&gt;" style="fillColor=#F0F5FF;strokeColor=#D0DCF0;fontSize=10;align=left;verticalAlign=middle;spacingLeft=10;html=1;fontColor=#1B3275;" vertex="1" parent="1">
+          <mxGeometry x="926" y="218" width="292" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="62" value="&lt;b&gt;#15&lt;/b&gt;  交易成本分析 TCA&lt;br&gt;&lt;font style='font-size:9px;'&gt;执行质量评分 + 券商排名 + 闭环优化&lt;/font&gt;" style="fillColor=#EEF3FA;strokeColor=#D0DCF0;fontSize=10;align=left;verticalAlign=middle;spacingLeft=10;html=1;fontColor=#1B3275;" vertex="1" parent="1">
+          <mxGeometry x="926" y="262" width="292" height="44" as="geometry" />
+        </mxCell>
+
+        <!-- Bottom note -->
+        <mxCell id="70" value="&lt;b&gt;1 + 16 架构&lt;/b&gt;：核心平台统筹管理全资产组合，16 大引擎协同赋能 ——  每个系统解决一个核心问题，覆盖配得优 · 算得快 · 控得稳 · 连得通 四大能力目标" style="fillColor=#1B3275;fontColor=#FFFFFF;strokeColor=none;fontSize=11;fontStyle=1;align=center;verticalAlign=middle;rounded=1;html=1;" vertex="1" parent="1">
+          <mxGeometry x="20" y="450" width="1200" height="44" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

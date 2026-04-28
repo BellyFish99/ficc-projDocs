@@ -76,13 +76,13 @@
         <mxCell id="33" parent="1" style="fillColor=#EEF3FA;strokeColor=#3B7DD8;fontSize=11;fontStyle=0;align=left;spacingLeft=10;verticalAlign=middle;html=1;" value="&lt;b&gt;&lt;font color=&#39;#f57f17&#39;&gt;投入&lt;/font&gt;&lt;/b&gt;  POMS 项目建设总投入" vertex="1">
           <mxGeometry height="40" width="360" x="560" y="282" as="geometry" />
         </mxCell>
-        <mxCell id="34" parent="1" style="fillColor=#EEF3FA;strokeColor=#3B7DD8;fontColor=#1B3275;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;html=1;" value="约 2,500 万" vertex="1">
+        <mxCell id="34" parent="1" style="fillColor=#EEF3FA;strokeColor=#3B7DD8;fontColor=#1B3275;fontSize=11;fontStyle=1;align=center;verticalAlign=middle;html=1;" value="分期按里程碑付款" vertex="1">
           <mxGeometry height="40" width="116" x="924" y="282" as="geometry" />
         </mxCell>
         <mxCell id="35" parent="1" style="fillColor=#1B3275;strokeColor=#3B7DD8;fontSize=11;fontStyle=1;align=left;spacingLeft=10;verticalAlign=middle;html=1;fontColor=#FFFFFF;" value="&lt;b&gt;&lt;font color=&#39;#ffffff&#39;&gt;ROI&lt;/font&gt;&lt;/b&gt;  &lt;b&gt;3 年净回报率（IRR）&lt;/b&gt;" vertex="1">
           <mxGeometry height="40" width="360" x="560" y="324" as="geometry" />
         </mxCell>
-        <mxCell id="36" parent="1" style="fillColor=#1B3275;strokeColor=#3B7DD8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;html=1;" value="约 &lt;b&gt;1,000%&lt;/b&gt;" vertex="1">
+        <mxCell id="36" parent="1" style="fillColor=#1B3275;strokeColor=#3B7DD8;fontColor=#FFFFFF;fontSize=11;fontStyle=1;align=center;verticalAlign=middle;html=1;" value="预计3年内完全回收" vertex="1">
           <mxGeometry height="40" width="116" x="924" y="324" as="geometry" />
         </mxCell>
         <mxCell id="37" parent="1" style="ellipse;fillColor=#1B3275;fontColor=#FFFFFF;strokeColor=none;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;html=1;" value="&lt;b&gt;VS&lt;/b&gt;" vertex="1">
