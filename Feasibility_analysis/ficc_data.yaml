@@ -1,0 +1,437 @@
+meta:
+  project: FICC平台建设差距分析
+  company: 华锐技术 / Archforce Technology
+  version: "1.0"
+  updated: "2026-04-29"
+
+roles:
+  - {cn: FICC业务架构师, en: "FICC Business Architect", p1_hc: 2, p2_hc: 2, p3_hc: 1, desc: 负责各模块业务需求与架构设计，需有银行间/衍生品经验}
+  - {cn: 后端研发工程师, en: "Backend Engineer", p1_hc: 15, p2_hc: 20, p3_hc: 10, desc: "Java/Go微服务，低延迟计算，Kafka/Redis"}
+  - {cn: 量化研究员, en: "Quant Researcher", p1_hc: 6, p2_hc: 8, p3_hc: 4, desc: "定价模型、风险计量、因子模型，Python/C++"}
+  - {cn: 前端研发工程师, en: "Frontend Engineer", p1_hc: 4, p2_hc: 6, p3_hc: 3, desc: "交易终端UI，React/Vue，实时数据展示"}
+  - {cn: 数据工程师, en: "Data Engineer", p1_hc: 3, p2_hc: 4, p3_hc: 2, desc: 行情接入、数据管道、历史数据仓库}
+  - {cn: 测试工程师, en: "QA Engineer", p1_hc: 4, p2_hc: 6, p3_hc: 3, desc: 自动化测试，压测，合规验证}
+  - {cn: 产品经理/BA, en: "Product Manager / BA", p1_hc: 3, p2_hc: 3, p3_hc: 2, desc: 需求梳理、验收标准、客户沟通}
+  - {cn: DevOps/基础设施, en: "DevOps / Infra", p1_hc: 2, p2_hc: 3, p3_hc: 2, desc: "信创部署、K8s、监控告警体系"}
+  - {cn: 安全合规专家, en: "Security & Compliance", p1_hc: 1, p2_hc: 2, p3_hc: 1, desc: 合规规则库维护，监管报送，数据安全}
+
+modules:
+  - "no": 1
+    cn: IBOR投资账薄管理
+    en: IBOR
+    domain: 前/中台基础设施
+    priority: P1
+    market_demand: 5
+    competitor_strength: 3
+    current_state: L2
+    target_state: L4
+    gap: 中
+    competitor: 衡泰(老旧)
+    foundation: AMI/AMDB账户体系
+    duration_m: 8
+    team_sz: 10
+    person_months: 70
+    note: 整个FICC平台的账薄主干，先建先通
+    source_slide: ~
+    functions:
+      - {id: F01-01, name: 跨资产持仓实时净值, desc: "支持债券/利率衍生品/回购全品种实时估值，T+0净值计算", complexity: 高, days: 45, priority: P1}
+      - {id: F01-02, name: 多账户层级管理, desc: "账户/策略/产品/公司层级合并与分拆，含多级组合结构", complexity: 中, days: 25, priority: P1}
+      - {id: F01-03, name: 现金流预测, desc: "回购到期/票息支付/衍生品结算现金流7天预测，流动性缓冲预警", complexity: 高, days: 30, priority: P1}
+      - {id: F01-04, name: 账薄T0/T1切换, desc: "日内账薄（含未交割）与结算账薄自动切换，支持对账差异分析", complexity: 中, days: 20, priority: P1}
+      - {id: F01-05, name: 托管行对账接口, desc: 与中登、中债登、托管银行日终对账，差异自动推送告警, complexity: 高, days: 25, priority: P1}
+      - {id: F01-06, name: 估值价格接入, desc: "接入AMD/Bloomberg/Wind估值价格服务，支持估值覆盖", complexity: 中, days: 15, priority: P1}
+
+  - "no": 2
+    cn: 现券交易系统
+    en: Bond Trading
+    domain: 前台交易
+    priority: P1
+    market_demand: 5
+    competitor_strength: 2
+    current_state: L3
+    target_state: L4
+    gap: 小
+    competitor: 恒生/金证
+    foundation: ATP债券报盘引擎
+    duration_m: 6
+    team_sz: 8
+    person_months: 42
+    note: 银行间+交易所双市场覆盖
+    source_slide: ~
+    functions:
+      - {id: F02-01, name: 银行间双边报价, desc: "CFETS/X-Bond两板块报价，支持询价（RFQ）和竞价", complexity: 高, days: 30, priority: P1}
+      - {id: F02-02, name: 交易所债券委托, desc: 上交所/深交所债券买卖下单，支持限价/市价/条件单, complexity: 中, days: 20, priority: P1}
+      - {id: F02-03, name: 收益率/价格计算, desc: 全品种YTM/价格双向转换，含含权债修正久期计算, complexity: 中, days: 15, priority: P1}
+      - {id: F02-04, name: 交易前风险校验, desc: "调用事前风控接口，单笔限额/集中度/利率风险实时拦截", complexity: 中, days: 15, priority: P1}
+      - {id: F02-05, name: 交易确认与指令生成, desc: 成交确认后自动生成DVP/FOP清算指令，推送清算结算模块, complexity: 高, days: 20, priority: P1}
+      - {id: F02-06, name: 做市/询价接口, desc: 支持双边报价模式，库存自动刷新，与做市商系统预留接口, complexity: 中, days: 10, priority: P2}
+
+  - "no": 3
+    cn: 回购管理
+    en: Repo Management
+    domain: 前台交易
+    priority: P1
+    market_demand: 5
+    competitor_strength: 2
+    current_state: L2
+    target_state: L4
+    gap: 中
+    competitor: 恒生/金证
+    foundation: M9回购管理模块
+    duration_m: 5
+    team_sz: 6
+    person_months: 27
+    note: 资金融通核心，与IBOR强耦合
+    source_slide: ~
+    functions:
+      - {id: F03-01, name: 正/逆回购全周期, desc: "协议回购（GC/质押式）发起、续做、到期，双方确认闭环", complexity: 高, days: 30, priority: P1}
+      - {id: F03-02, name: 质押品篮子管理, desc: "多类质押品估值与折扣率，支持替换与追加保证金（Margin Call）", complexity: 高, days: 25, priority: P1}
+      - {id: F03-03, name: 资金头寸监控, desc: 日内融资头寸实时监控，资金缺口预警，与IBOR现金流对接, complexity: 中, days: 20, priority: P1}
+      - {id: F03-04, name: 到期自动提醒, desc: 到期前T-1/T-3提醒，支持批量续作规则配置, complexity: 低, days: 10, priority: P1}
+      - {id: F03-05, name: CCP/上清所接口, desc: 标准化质押式回购通过上清所CCP清算，接口对接, complexity: 高, days: 20, priority: P1}
+
+  - "no": 4
+    cn: FICC风险计量平台
+    en: FICC Risk Measurement
+    domain: 中台风控
+    priority: P1
+    market_demand: 5
+    competitor_strength: 4
+    current_state: L2
+    target_state: L4
+    gap: 中
+    competitor: 衡泰(垄断)
+    foundation: ARC风险引擎
+    duration_m: 10
+    team_sz: 10
+    person_months: 80
+    note: 替代衡泰老旧系统，信创切入口
+    source_slide: ~
+    functions:
+      - {id: F04-01, name: "VaR/CVaR/ES计算", desc: "历史模拟法/参数法/蒙特卡洛三模式，置信度99%/99.5%可选", complexity: 极高, days: 60, priority: P1}
+      - {id: F04-02, name: 压力测试情景库, desc: "内置924行情/2015股灾/2020疫情等10+情景，支持自定义", complexity: 高, days: 40, priority: P1}
+      - {id: F04-03, name: 限额体系与超限预警, desc: "交易员/策略/产品/公司4级限额，实时穿透预警，告警推送", complexity: 高, days: 30, priority: P1}
+      - {id: F04-04, name: "信用风险（CCR）", desc: "交易对手敞口实时聚合，EEPE/PFE/CVA估算", complexity: 极高, days: 50, priority: P1}
+      - {id: F04-05, name: "希腊字母（Greeks）", desc: "Delta/Gamma/Vega/Theta/DV01日内实时计算，覆盖固收+衍生品", complexity: 高, days: 35, priority: P1}
+      - {id: F04-06, name: 风险报告自动化, desc: "每日风险报告（Excel/PDF）自动生成，支持监管报送格式", complexity: 中, days: 20, priority: P1}
+
+  - "no": 5
+    cn: 异常交易风控
+    en: Abnormal Trade Monitor
+    domain: 中台风控
+    priority: P1
+    market_demand: 5
+    competitor_strength: 1
+    current_state: L3
+    target_state: L5
+    gap: 小
+    competitor: 无主导者
+    foundation: ARC+AI规则引擎
+    duration_m: 6
+    team_sz: 8
+    person_months: 42
+    note: 监管驱动，AI差异化，快速商业化
+    source_slide: ~
+    functions:
+      - {id: F05-01, name: 实时CEP监控引擎, desc: "基于复杂事件处理（CEP），毫秒级事件流检测，滑动窗口聚合", complexity: 极高, days: 50, priority: P1}
+      - {id: F05-02, name: 异常价格检测, desc: 基于历史分位数/实时行情计算价格偏离度，动态阈值自适应, complexity: 高, days: 25, priority: P1}
+      - {id: F05-03, name: AI异常识别模型, desc: "机器学习（XGBoost/LSTM）训练异常交易识别模型，在线推理", complexity: 高, days: 40, priority: P1}
+      - {id: F05-04, name: "规则引擎（可配置）", desc: No-Code规则配置界面，合规人员自助维护检测规则, complexity: 中, days: 20, priority: P1}
+      - {id: F05-05, name: 监管报送自动化, desc: 一键生成证监会/人行格式异常交易报告，历史追溯查询, complexity: 中, days: 25, priority: P1}
+
+  - "no": 6
+    cn: 事前风控/合规
+    en: Pre-trade Risk
+    domain: 中台风控
+    priority: P1
+    market_demand: 5
+    competitor_strength: 2
+    current_state: L3
+    target_state: L4
+    gap: 小
+    competitor: 恒生/金证
+    foundation: ARC合规模块
+    duration_m: 5
+    team_sz: 6
+    person_months: 28
+    note: 嵌入交易前拦截，合规刚需
+    source_slide: ~
+    functions:
+      - {id: F06-01, name: 投资策略合规规则库, desc: "内置1000+条监管规则（投资指引/证监会规定），支持新增", complexity: 高, days: 30, priority: P1}
+      - {id: F06-02, name: 实时订单拦截, desc: 在交易指令提交前同步校验，不满足规则则拦截+原因告知, complexity: 极高, days: 25, priority: P1}
+      - {id: F06-03, name: 限额多维度检查, desc: 单笔名义/资产类别/集中度/净敞口/利率敏感度多维并行检查, complexity: 高, days: 25, priority: P1}
+      - {id: F06-04, name: 合规审批工作流, desc: 超限申请→审批→记录全流程，支持移动端审批, complexity: 中, days: 15, priority: P1}
+      - {id: F06-05, name: 监管白/黑名单, desc: 证券/交易对手监管限制名单实时同步，拦截违规交易, complexity: 中, days: 15, priority: P1}
+
+  - "no": 7
+    cn: 组合管理+绩效归因
+    en: Portfolio Mgmt & Perf
+    domain: 前台投资管理
+    priority: P1
+    market_demand: 5
+    competitor_strength: 3
+    current_state: L2
+    target_state: L4
+    gap: 中
+    competitor: SimCorp/衡泰
+    foundation: M9 PMS模块
+    duration_m: 12
+    team_sz: 12
+    person_months: 120
+    note: "17项功能含量化底座集成；Slide44全景展开"
+    source_slide: 44
+    data_inputs: [交易数据, 头寸数据, 行情数据, 估值数据]
+    foundation_layer: [定价计算, 利率曲线, 因子模型]
+    function_domains:
+      - id: A
+        name: 组合分析
+        functions:
+          - {id: F07-01, name: 债券横截面与时序分析, desc: "跨品种横截面信号挖掘（利差/久期偏差），历史时序趋势与均值回归分析", complexity: 高, days: 35, priority: P1, acceptance: "横截面信号与实际收益相关性>0.3", dependency: "AMD行情平台/估值数据"}
+          - {id: F07-02, name: 相对价值分析, desc: "利差/Z-spread/OAS相对价值计算，历史分位数定位，跨品种套利信号识别", complexity: 高, days: 30, priority: P1, acceptance: OAS计算误差<1bps，分位数覆盖5年历史, dependency: 量化定价引擎/AMD行情}
+          - {id: F07-03, name: 组合相关度分析, desc: "资产间收益相关矩阵计算（滚动60/120/250日），组合集中度风险识别，分散化系数监控", complexity: 中, days: 25, priority: P1, acceptance: "相关矩阵计算<30s（500券组合）", dependency: IBOR头寸/AMD历史行情}
+      - id: B
+        name: 风险计量
+        functions:
+          - {id: F07-04, name: 情景分析, desc: "利率/信用/流动性三类自定义情景，组合P&L影响量化，多情景并行对比", complexity: 高, days: 35, priority: P1, acceptance: "情景P&L与手工核算误差<0.5%，支持≥20情景并行", dependency: FICC风险计量平台/量化定价引擎}
+          - {id: F07-05, name: 敏感度分析, desc: "久期/DV01/凸度/利差/Vega敏感度多因子并行计算，组合对冲比率建议", complexity: 高, days: 25, priority: P1, acceptance: "DV01与Bloomberg基准误差<0.5bps", dependency: 量化定价引擎Greeks接口}
+          - {id: F07-06, name: 极端事件分析, desc: "历史极端情景（924行情/2015股灾/2020疫情等8+情景），组合尾部损失分布，ES(99%)计算", complexity: 高, days: 30, priority: P1, acceptance: "历史情景复现误差<1%", dependency: FICC风险计量平台}
+      - id: C
+        name: 绩效归因
+        functions:
+          - {id: F07-07, name: 指数比较分析, desc: "对标中债综合/信用/政策行等指数，跟踪误差（TE）日频监控，超额Alpha三因子分解", complexity: 中, days: 25, priority: P1, acceptance: "TE计算误差<1bps，支持≥10基准指数", dependency: AMD中债估值/IBOR持仓}
+          - {id: F07-08, name: "绩效归因（Brinson）", desc: "BHB三效应：资产配置/个券选择/交互效应，日/周/月/季多维度，报告PDF自动生成", complexity: 高, days: 40, priority: P1, acceptance: "Brinson结果与Bloomberg AIM误差<0.1%，T+1 9:00前自动报告", dependency: IBOR持仓/AMD行情/指数数据}
+      - id: D
+        name: 组合优化与再平衡
+        functions:
+          - {id: F07-09, name: 虚拟组合分析, desc: "组合调整前后净值/风险/收益效果模拟（纸面交易），冲击成本预估，多方案对比", complexity: 高, days: 20, priority: P1, acceptance: "虚拟组合模拟与真实执行偏差<0.3%", dependency: IBOR/现券交易系统}
+          - {id: F07-10, name: 再平衡方案试算与比较, desc: "久期/集中度/流动性/合规约束联合优化（二次规划QP），多方案并行试算，最优路径推荐", complexity: 高, days: 35, priority: P1, acceptance: "QP求解100券组合<5s，约束满足率100%", dependency: 事前风控/合规/IBOR/现券系统}
+          - {id: F07-11, name: 资产配置策略分析, desc: "宏观因子（利率/信用/流动性周期）驱动大类资产配置模型，动态权重优化，历史回测验证", complexity: 高, days: 40, priority: P2, acceptance: "回测期≥5年，预测方向胜率>55%", dependency: AMD宏观数据/因子模型}
+          - {id: F07-12, name: 固收+策略分析, desc: "债券底仓+衍生品增强策略P&L归因，风险分解（利率/信用/期权贡献），固收+净值模拟", complexity: 高, days: 30, priority: P2, acceptance: "固收+净值模拟与实际偏差<0.5%", dependency: IBOR/利率衍生品系统}
+          - {id: F07-13, name: 量化策略组合分析, desc: "多策略组合叠加容量约束，策略相关性管理，Sharpe/最大回撤/Calmar实时监控", complexity: 高, days: 35, priority: P2, acceptance: "策略容量计算误差<5%", dependency: 策略投资/量化系统}
+      - id: E
+        name: 流动性管理
+        functions:
+          - {id: F07-14, name: 流动性分析, desc: "逐券换手率/市场深度评估，组合变现能力分析，流动性压力下变现损失（LVaR）估算", complexity: 中, days: 20, priority: P1, acceptance: "LVaR与市场基准误差<5%，日均成交量覆盖≥95%持仓", dependency: AMD行情/IBOR持仓}
+      - id: F
+        name: 量化底座集成
+        functions:
+          - {id: F07-15, name: 定价计算集成, desc: "调用量化定价引擎实时估值与Greeks，含权债/可转债/IRS，结果缓存（Redis）与Kafka推送", complexity: 高, days: 20, priority: P2, acceptance: "定价API p99<200ms，日终全量估值<30min（10万券）", dependency: 量化定价引擎}
+          - {id: F07-16, name: 利率曲线集成, desc: "多曲线实时消费（国债/政策行/AAA信用/OIS），NS参数提取（水平/斜率/曲率），敏感度映射", complexity: 中, days: 15, priority: P1, acceptance: "曲线更新延迟<1s，NS拟合R²>0.999", dependency: AMD行情平台/量化定价引擎}
+          - {id: F07-17, name: 因子模型, desc: "多因子风险模型（利率/信用/流动性/行业因子），Alpha因子库（≥20因子），因子暴露实时计算", complexity: 高, days: 40, priority: P1, acceptance: "因子模型解释方差>80%，Alpha IC均值>0.05", dependency: AMD历史行情/IBOR持仓}
+
+  - "no": 8
+    cn: 策略投资/量化
+    en: Quant Strategy
+    domain: 前台投研
+    priority: P1
+    market_demand: 4
+    competitor_strength: 2
+    current_state: L1
+    target_state: L3
+    gap: 中
+    competitor: 无主导者
+    foundation: 低延迟ATP执行层
+    duration_m: 10
+    team_sz: 12
+    person_months: 96
+    note: 因子框架+回测引擎，低延迟执行
+    source_slide: ~
+    functions:
+      - {id: F08-01, name: 因子模型框架, desc: "多因子Alpha模型+风险因子，支持自定义因子上传与测试", complexity: 高, days: 40, priority: P1}
+      - {id: F08-02, name: Tick级回测引擎, desc: "Tick数据驱动回测，真实滑点/冲击模型，批量参数优化", complexity: 极高, days: 60, priority: P1}
+      - {id: F08-03, name: 信号生成与调度, desc: "策略信号实时计算，支持Python/C++策略脚本沙箱运行", complexity: 高, days: 40, priority: P1}
+      - {id: F08-04, name: 低延迟执行接口, desc: "与ATP超低延迟执行层对接，算法拆单（TWAP/VWAP/IS）", complexity: 极高, days: 45, priority: P1}
+      - {id: F08-05, name: 实时策略监控, desc: "持仓/PnL/回撤/Sharpe实时看板，风险触发自动平仓", complexity: 中, days: 20, priority: P1}
+
+  - "no": 9
+    cn: 量化定价引擎
+    en: Quant Pricing Engine
+    domain: 中台定价
+    priority: P2
+    market_demand: 5
+    competitor_strength: 5
+    current_state: L1
+    target_state: L4
+    gap: 大
+    competitor: 衡泰(垄断)
+    foundation: ARC基础数值库
+    duration_m: 18
+    team_sz: 15
+    person_months: 225
+    note: 蒙特卡洛/有限差分，替代衡泰核心
+    source_slide: ~
+    functions:
+      - {id: F09-01, name: 期限结构模型, desc: "Nelson-Siegel/Svensson/HJM等多模型参数拟合，实时曲线", complexity: 极高, days: 60, priority: P2}
+      - {id: F09-02, name: 蒙特卡洛求解器, desc: "GPU加速MC，QMC低差异序列，支持路径相关期权定价", complexity: 极高, days: 70, priority: P2}
+      - {id: F09-03, name: "有限差分（PDE）", desc: "Crank-Nicolson/ADI方法，含权债/可转债精确定价", complexity: 极高, days: 60, priority: P2}
+      - {id: F09-04, name: 实时Greeks, desc: "Delta/Gamma/Vega/Theta/Rho分布式实时计算", complexity: 高, days: 40, priority: P2}
+      - {id: F09-05, name: 定价服务微服务架构, desc: "REST/gRPC定价API，支持横向扩展，p99<100ms", complexity: 高, days: 40, priority: P2}
+      - {id: F09-06, name: 历史估值回测, desc: 基于历史行情重放定价误差分析，模型验证框架, complexity: 高, days: 30, priority: P2}
+
+  - "no": 10
+    cn: 利率衍生品
+    en: Interest Rate Derivatives
+    domain: 前台交易
+    priority: P2
+    market_demand: 4
+    competitor_strength: 4
+    current_state: L1
+    target_state: L3
+    gap: 大
+    competitor: Murex/衡泰
+    foundation: 无直接基础
+    duration_m: 12
+    team_sz: 12
+    person_months: 108
+    note: "IRS/OIS/CCS，需专业量化团队"
+    source_slide: ~
+    functions:
+      - {id: F10-01, name: "IRS/OIS/CCS定价", desc: 利率互换标准与非标结构定价，折现曲线OIS, complexity: 极高, days: 60, priority: P2}
+      - {id: F10-02, name: "久期/DV01/凸度", desc: 利率衍生品Greeks实时计算，组合对冲比率, complexity: 高, days: 30, priority: P2}
+      - {id: F10-03, name: LCH/上清所CCP接口, desc: "标准化IRS中央清算，保证金（IM/VM）计算", complexity: 高, days: 35, priority: P2}
+      - {id: F10-04, name: 压力测试/情景分析, desc: 利率曲线平移/扭转/蝶式情景，组合P&L影响, complexity: 高, days: 30, priority: P2}
+      - {id: F10-05, name: 利率曲线发布, desc: "多曲线框架（OIS/中债曲线）实时发布", complexity: 高, days: 30, priority: P2}
+
+  - "no": 11
+    cn: 信用债/信用衍生品
+    en: Credit & CDS
+    domain: 前台交易
+    priority: P2
+    market_demand: 4
+    competitor_strength: 4
+    current_state: L1
+    target_state: L3
+    gap: 大
+    competitor: 衡泰/Bloomberg
+    foundation: ARC信用风险框架
+    duration_m: 10
+    team_sz: 10
+    person_months: 80
+    note: CDS定价+信用利差分析
+    source_slide: ~
+    functions:
+      - {id: F11-01, name: 信用利差分析, desc: 行业/评级/期限信用利差曲线实时计算，历史分位数分析, complexity: 高, days: 30, priority: P2}
+      - {id: F11-02, name: CDS/CLN定价, desc: "信用违约互换定价，ISDA标准，生存概率曲线校准", complexity: 极高, days: 50, priority: P2}
+      - {id: F11-03, name: 信用评级动态监控, desc: "对接外部评级机构（中诚信/联合/大公），评级下调预警", complexity: 中, days: 20, priority: P2}
+      - {id: F11-04, name: "违约概率（PD）建模", desc: "结构化Merton模型+市场隐含PD，信用风险计量", complexity: 高, days: 40, priority: P2}
+      - {id: F11-05, name: 集中度限额管理, desc: 行业/发行人/评级集中度多维限额，超限预警, complexity: 中, days: 20, priority: P2}
+
+  - "no": 12
+    cn: 数据管理/行情平台
+    en: Market Data Platform
+    domain: 基础数据
+    priority: P2
+    market_demand: 4
+    competitor_strength: 3
+    current_state: L3
+    target_state: L4
+    gap: 小
+    competitor: Bloomberg/Wind
+    foundation: AMD行情平台
+    duration_m: 4
+    team_sz: 6
+    person_months: 22
+    note: 多源聚合+估值价格发布，赋能其他模块
+    source_slide: ~
+    functions:
+      - {id: F12-01, name: 多源行情聚合, desc: "Bloomberg/Wind/中汇信/Refinitiv多源融合，冲突解析", complexity: 高, days: 25, priority: P2}
+      - {id: F12-02, name: 数据质量校验, desc: 异常值/缺失值/跳价自动检测，修复建议与人工审核, complexity: 中, days: 15, priority: P2}
+      - {id: F12-03, name: 历史数据仓库, desc: "Tick/日频历史行情存储，高效查询（ClickHouse/TimescaleDB）", complexity: 高, days: 25, priority: P2}
+      - {id: F12-04, name: 收益率曲线发布, desc: 国债/政策行/高等级信用曲线实时发布，Kafka广播, complexity: 高, days: 20, priority: P2}
+      - {id: F12-05, name: 估值价格服务, desc: "非活跃债券估值价格（中债估值基准），API接口提供", complexity: 中, days: 15, priority: P2}
+
+  - "no": 13
+    cn: 交易对手管理
+    en: Counterparty Management
+    domain: 中台信用
+    priority: P2
+    market_demand: 4
+    competitor_strength: 3
+    current_state: L1
+    target_state: L3
+    gap: 中大
+    competitor: 衡泰/专项系统
+    foundation: ARC信用模块
+    duration_m: 8
+    team_sz: 8
+    person_months: 56
+    note: ISDA/CSA管理+CVA/DVA计算
+    source_slide: ~
+    functions:
+      - {id: F13-01, name: 对手方评级与审批, desc: 内部信用评级模型，新增/变更交易对手审批流, complexity: 中, days: 20, priority: P2}
+      - {id: F13-02, name: 实时敞口聚合, desc: "跨产品交易对手名义/MtM敞口实时聚合，压力敞口（EPE）", complexity: 高, days: 35, priority: P2}
+      - {id: F13-03, name: ISDA/CSA协议管理, desc: "主协议文档管理，净额结算协议（Netting Set）配置", complexity: 高, days: 25, priority: P2}
+      - {id: F13-04, name: "CVA/DVA/FVA计算", desc: 信用/债务/资金估值调整实时估算，敞口报告, complexity: 极高, days: 40, priority: P2}
+      - {id: F13-05, name: 集中度与限额, desc: 对手方/集团合并敞口限额，超限审批与记录, complexity: 中, days: 15, priority: P2}
+
+  - "no": 14
+    cn: 清算结算后台
+    en: Clearing & Settlement
+    domain: 后台运营
+    priority: P2
+    market_demand: 4
+    competitor_strength: 4
+    current_state: L2
+    target_state: L3
+    gap: 中
+    competitor: 金证/中台
+    foundation: ACP清算平台
+    duration_m: 7
+    team_sz: 8
+    person_months: 50
+    note: DVP/FOP+中登中债登接口
+    source_slide: ~
+    functions:
+      - {id: F14-01, name: DVP/FOP指令生成, desc: 成交后自动生成交割指令，批量/单笔支持, complexity: 高, days: 25, priority: P2}
+      - {id: F14-02, name: 中登/中债登接口, desc: "银行间债券（中债登）和交易所债券（中登）接口对接", complexity: 极高, days: 40, priority: P2}
+      - {id: F14-03, name: 待交割明细管理, desc: "T+0/T+1待交割跟踪，提前预警可能失败交割", complexity: 高, days: 25, priority: P2}
+      - {id: F14-04, name: 资金调拨确认, desc: 资金划拨指令生成，银行资金头寸确认，轧差净额, complexity: 高, days: 25, priority: P2}
+      - {id: F14-05, name: 交割失败处理, desc: 失败交割自动识别，补交割流程，罚息计算, complexity: 中, days: 20, priority: P2}
+
+  - "no": 15
+    cn: 做市商系统
+    en: Market Making
+    domain: 前台做市
+    priority: P3
+    market_demand: 3
+    competitor_strength: 5
+    current_state: L0
+    target_state: L2
+    gap: 大
+    competitor: Murex/专项
+    foundation: ATP报价接口
+    duration_m: 12
+    team_sz: 12
+    person_months: 120
+    note: 双边报价引擎，需深度市场经验
+    source_slide: ~
+    functions:
+      - {id: F15-01, name: 双边报价引擎, desc: "多品种同时双边报价，延迟<5ms，报价宽度动态优化", complexity: 极高, days: 70, priority: P3}
+      - {id: F15-02, name: 库存风险实时管理, desc: 做市库存PnL实时监控，Delta对冲自动触发, complexity: 极高, days: 60, priority: P3}
+      - {id: F15-03, name: 报价优化算法, desc: 基于市场微结构理论动态调整bid-ask spread, complexity: 极高, days: 50, priority: P3}
+      - {id: F15-04, name: 竞争力分析, desc: 与市场最优报价对比，中签率分析，策略调优, complexity: 高, days: 25, priority: P3}
+      - {id: F15-05, name: 交易对手管理集成, desc: 做市交易对手信用实时检查，额度占用同步更新, complexity: 中, days: 20, priority: P3}
+
+  - "no": 16
+    cn: 外汇/外汇衍生品
+    en: FX & FX Derivatives
+    domain: 前台交易
+    priority: P3
+    market_demand: 3
+    competitor_strength: 5
+    current_state: L0
+    target_state: L2
+    gap: 大
+    competitor: Murex/Bloomberg
+    foundation: 无
+    duration_m: 12
+    team_sz: 10
+    person_months: 100
+    note: "FX/NDF市场门槛极高，建议Phase 3"
+    source_slide: ~
+    functions:
+      - {id: F16-01, name: 即期/远期报价, desc: USD/CNY等主要货币对即期汇率+远期点数报价, complexity: 高, days: 40, priority: P3}
+      - {id: F16-02, name: "外汇期权（FXO）", desc: "欧式/美式FXO定价（Garman-Kohlhagen），Greeks", complexity: 极高, days: 60, priority: P3}
+      - {id: F16-03, name: NDF/NDO定价, desc: 不可交割远期/期权定价，境外对手对接, complexity: 极高, days: 50, priority: P3}
+      - {id: F16-04, name: 跨货币敞口汇总, desc: 多币种资产折算人民币敞口，汇率风险VaR, complexity: 高, days: 30, priority: P3}
+      - {id: F16-05, name: CFETS/外汇局接口, desc: 银行间外汇市场CFETS接口，外汇局合规报送, complexity: 高, days: 35, priority: P3}

@@ -1,9 +1,59 @@
 # Project Checkpoint — 华锐技术 (Archforce Technology) GY
 
-**Last updated:** 2026-04-28  
+**Last updated:** 2026-04-29  
 **Working directory:** `D:\work\FICC`  
 **Git remote:** `git@github.com:BellyFish99/ficc-projDocs.git` (origin/main)  
-**Latest commit:** `00e7587` — Replace S14 diagram: swap 1+16架构 for 功能全景图
+**Latest commit:** `919c42f` — Expand 组合管理 functions (Slide 44) + add detail sheet
+
+---
+
+## Session 2026-04-29 — FICC Gap Analysis + YAML SSoT Pipeline
+
+### What We Did
+
+#### 1. Font Fix (`gy/fix_fonts.py`)
+Fixed corrupted non-Windows fonts in `gy/gy_ppt.pptx` (4,626 replacements across 79 XML files).
+MiSans/Noto Sans SC/PingFang SC → 微软雅黑; Inter UI → Calibri; Helvetica → Arial.
+
+#### 2. FICC Gap Analysis Workbook
+- `Feasibility_analysis/FICC_Gap_Analysis.xlsx` — 4 sheets: 差距分析总表 (16 modules), 关键功能清单, 资源规划, P1优先启动计划
+- Added `!Feasibility_analysis/**` to `.gitignore` — entire folder is now version-controlled
+
+#### 3. 组合管理 Detail (from Slide 44)
+Module 7 expanded: 6 placeholder functions → 17 detailed functions across 6 domains (A.组合分析 / B.风险计量 / C.绩效归因 / D.组合优化 / E.流动性 / F.量化底座). New sheet `详情_组合管理` added.
+
+#### 4. YAML SSoT Pipeline — Decided & Implemented
+
+```
+ficc_data.yaml  ← single source of truth (edit this only)
+      ├── build_excel.py    → FICC_Gap_Analysis.xlsx
+      ├── build_diagrams.py → gy/drawio/detail_NN_<module>.drawio
+      ├── build_ppt.py      → gy/gy_ppt.pptx patches S14/S33/S34/S40  [PENDING]
+      └── build_all.py      → python3 build_all.py
+```
+
+Draw.io diagrams are auto-generated grid/matrix: header → data inputs → domain columns (function cells) → foundation layer. Archforce brand enforced.
+
+### Key Files
+| File | Purpose |
+|------|---------|
+| `Feasibility_analysis/ficc_data.yaml` | SSoT — the only file to edit for data changes |
+| `Feasibility_analysis/build_excel.py` | reads YAML → Excel |
+| `Feasibility_analysis/build_diagrams.py` | reads YAML → draw.io per module |
+| `Feasibility_analysis/build_all.py` | `python3 build_all.py` regenerates everything |
+| `Feasibility_analysis/FICC_Gap_Analysis.xlsx` | generated workbook |
+| `gy/drawio/detail_07_*.drawio` | generated module diagrams |
+
+### Next Actions
+1. `build_ppt.py` — patch S14/S33/S34/S40 from YAML data
+2. Add `function_domains` detail for remaining P1 modules (identify source slides)
+3. Expand module detail sheets as each system is reviewed
+
+### How to Re-run
+```bash
+cd /mnt/d/work/ficc/Feasibility_analysis
+python3 build_all.py
+```
 
 ---
 
