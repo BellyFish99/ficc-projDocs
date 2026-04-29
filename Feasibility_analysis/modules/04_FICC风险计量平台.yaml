@@ -1,55 +1,171 @@
 module:
   'no': 4
   cn: FICC风险计量平台
-  en: FICC Risk Measurement
+  en: FICC Risk Measurement Platform
   domain: 中台风控
   priority: P1
   market_demand: 5
   competitor_strength: 4
   current_state: L2
   target_state: L4
-  gap: 中
+  gap: 大
   competitor: 衡泰(垄断)
-  foundation: ARC风险引擎
-  duration_m: 10
-  team_sz: 10
-  person_months: 80
-  note: 替代衡泰老旧系统，信创切入口
+  foundation: ARC风险引擎/IBOR
+  duration_m: 14
+  team_sz: 12
+  person_months: 140
+  note: 替代衡泰老旧系统，信创切入口；覆盖投前/投中/投后全生命周期风险管理；对应PPT Slide 52
   source_slide: 52
-  functions:
-  - id: F04-01
-    name: VaR/CVaR/ES计算
-    desc: 历史模拟法/参数法/蒙特卡洛三模式，置信度99%/99.5%可选
-    complexity: 极高
-    days: 60
-    priority: P1
-  - id: F04-02
-    name: 压力测试情景库
-    desc: 内置924行情/2015股灾/2020疫情等10+情景，支持自定义
-    complexity: 高
-    days: 40
-    priority: P1
-  - id: F04-03
-    name: 限额体系与超限预警
-    desc: 交易员/策略/产品/公司4级限额，实时穿透预警，告警推送
-    complexity: 高
-    days: 30
-    priority: P1
-  - id: F04-04
-    name: 信用风险（CCR）
-    desc: 交易对手敞口实时聚合，EEPE/PFE/CVA估算
-    complexity: 极高
-    days: 50
-    priority: P1
-  - id: F04-05
-    name: 希腊字母（Greeks）
-    desc: Delta/Gamma/Vega/Theta/DV01日内实时计算，覆盖固收+衍生品
-    complexity: 高
-    days: 35
-    priority: P1
-  - id: F04-06
-    name: 风险报告自动化
-    desc: 每日风险报告（Excel/PDF）自动生成，支持监管报送格式
-    complexity: 中
-    days: 20
-    priority: P1
+  function_domains:
+  - id: D1
+    name: 投前风险分析
+    functions:
+    - id: F04-01
+      name: 组合What-if分析
+      desc: What-if情景建模，Duration & Convexity影响分析，VaR贡献分解，风险因子敞口，集中度分析
+      complexity: 高
+      days: 30
+      priority: P1
+    - id: F04-02
+      name: 授权敞口分析
+      desc: 交易前限额验证，交易对手/集中度/监管/组合约束多维度限额检查，Pre-trade拦截
+      complexity: 高
+      days: 25
+      priority: P1
+    - id: F04-03
+      name: 投资预测分析
+      desc: P&L与风险归因预测建模，收益率曲线/利差/波动率因子预测，组合构建优化，多情景对比分析
+      complexity: 极高
+      days: 35
+      priority: P1
+  - id: D2
+    name: 投中实时监控
+    functions:
+    - id: F04-04
+      name: 实时风险计量
+      desc: Real-time DV01/CS01，Live VaR，Dynamic Greeks，日内P&L与归因，风险限额利用率实时展示
+      complexity: 极高
+      days: 40
+      priority: P1
+    - id: F04-05
+      name: 交易对手风险实时监控
+      desc: 实时敞口聚合，抵押品监控，信用限额使用率，结算风险，净额结算协议管理
+      complexity: 高
+      days: 30
+      priority: P1
+    - id: F04-06
+      name: 流动性分析与交易成本
+      desc: 执行风险监控，市场冲击分析，流动性成本追踪，滑点计量，最优执行合规
+      complexity: 高
+      days: 25
+      priority: P1
+    - id: F04-07
+      name: 实时风险全景图
+      desc: 实时持仓追踪，流式风险指标，实时限额监控，告警管理，异常跟踪仪表板
+      complexity: 高
+      days: 25
+      priority: P1
+  - id: D3
+    name: 风控引擎
+    functions:
+    - id: F04-08
+      name: DV01/CS01计算
+      desc: dPV/dy价格敏感度，信用利差敏感度，分桶移动与关键期限，平行与非平行冲击
+      complexity: 极高
+      days: 40
+      priority: P1
+    - id: F04-09
+      name: Greeks与敏感度计算
+      desc: Delta/Gamma/Vega/Theta/Rho分布式实时计算，覆盖固收全品种与衍生品
+      complexity: 极高
+      days: 35
+      priority: P1
+    - id: F04-10
+      name: VaR模型
+      desc: 参数法/历史模拟法/蒙特卡洛三模式，Expected Shortfall (ES)，回测与例外检验
+      complexity: 极高
+      days: 50
+      priority: P1
+    - id: F04-11
+      name: 压力测试与情景分析
+      desc: 内置历史情景（GFC/COVID-19/利率冲击），假设情景（曲线扭转/利差走阔），反向压力测试
+      complexity: 高
+      days: 35
+      priority: P1
+    - id: F04-12
+      name: 估值与盈亏分解
+      desc: Carry & Roll-down，曲线效应，信用利差贡献，择券贡献，基于因子的盈亏多维分解
+      complexity: 高
+      days: 30
+      priority: P1
+  - id: D4
+    name: 投后风险分析
+    functions:
+    - id: F04-13
+      name: 历史风险回溯
+      desc: 历史VaR计算回放，压力测试结果归档，风险趋势分析，限额例外统计，VaR回测报告
+      complexity: 中
+      days: 20
+      priority: P1
+    - id: F04-14
+      name: 绩效归因与风险计量
+      desc: 收益率曲线效应，信用利差分解，行业配置效应，个券择券，Carry & Roll-down贡献
+      complexity: 高
+      days: 30
+      priority: P1
+    - id: F04-15
+      name: 监管报表与风控日报
+      desc: 日/周/月风险报告自动生成，监管资本计算，Basel III/FRTB报送，压力测试摘要，风险归因仪表板
+      complexity: 中
+      days: 20
+      priority: P1
+  - id: D5
+    name: 风控基础设施
+    functions:
+    - id: F04-16
+      name: 数据底座与IBOR集成
+      desc: 实时持仓追踪（事件溯源架构），全公司持仓聚合，实时数据验证与自动清洗，审计追踪
+      complexity: 高
+      days: 30
+      priority: P1
+    - id: F04-17
+      name: 收益率曲线与波动率曲面
+      desc: 利率曲线构建（多方法），波动率曲面，信用利差曲线，红利曲线，全公司一致性保障
+      complexity: 高
+      days: 30
+      priority: P1
+    - id: F04-18
+      name: HPC计算网格
+      desc: 分布式计算引擎，并行蒙特卡洛，压力测试网格调度，弹性扩容，p99计算延迟<5s
+      complexity: 极高
+      days: 40
+      priority: P1
+    - id: F04-19
+      name: AI风险预警
+      desc: 异常检测（ML模型），预测性分析，模式识别，智能告警，新业务合规风险预分析
+      complexity: 高
+      days: 30
+      priority: P1
+  tech_design:
+    pattern: 事件驱动微服务 + HPC计算网格
+    data_model: >
+      Position (positionId, bookId, instrumentId, qty, marketValue, dv01, cs01, var1d) ;
+      RiskLimit (limitId, dimension, limitType, threshold, current, utilizationPct) ;
+      StressScenario (scenarioId, name, shockParams, asOf) ;
+      RiskReport (reportId, reportType, asOf, content, status)
+    core_stack: >
+      Java 21 (风控引擎核心) + Python (ML/AI预警) + C++ (HPC数值计算) ;
+      Apache Kafka (实时风险事件流) ; Redis (实时限额/持仓缓存) ;
+      ClickHouse (历史风险数据分析) ; Kubernetes (HPC网格弹性调度)
+    key_interfaces:
+    - IBOR → 实时持仓推送 (Kafka topic: position.updated)
+    - 定价平台 → 估值/Greeks数据 (gRPC streaming)
+    - 现券交易/TRS → 交易事件 (Kafka topic: trade.executed)
+    - 监管报送系统 → 标准化风险报告 (REST API)
+    key_decisions:
+    - 采用Event Sourcing确保持仓数据全链路可审计，满足监管穿透式要求
+    - HPC网格与业务逻辑解耦，支持蒙特卡洛/压力测试弹性扩容而不影响实时风控
+    - VaR与Greeks共享同一套曲线/曲面构建服务，确保全公司数据一致性
+    open_questions:
+    - FRTB内部模型法（IMA）vs标准法（SA）的选择取决于监管批准进度
+    - AI预警模型的训练数据来源及监管合规性需法律确认
