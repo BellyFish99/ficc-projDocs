@@ -2,7 +2,7 @@
 build_diagrams.py
 =================
 Reads ficc_data.yaml and generates one draw.io XML file per module that has
-`function_domains`. Output files go to /mnt/d/work/ficc/gy/drawio/ named
+`function_domains`. Output files go to Feasibility_analysis/drawio/ named
 detail_{no:02d}_{cn}.drawio (e.g. detail_07_组合管理+绩效归因.drawio).
 
 Can be run standalone or imported by build_all.py:
@@ -18,7 +18,7 @@ import yaml
 # ---------------------------------------------------------------------------
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 YAML_PATH  = os.path.join(SCRIPT_DIR, 'ficc_data.yaml')
-OUT_DIR    = '/mnt/d/work/ficc/gy/drawio'
+OUT_DIR    = os.path.join(SCRIPT_DIR, 'drawio')
 
 # ---------------------------------------------------------------------------
 # Layout constants
