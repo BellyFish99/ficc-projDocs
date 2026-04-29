@@ -1,0 +1,54 @@
+<mxGraphModel dx="1422" dy="762" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1120" pageHeight="212" math="0" shadow="0">
+  <root>
+    <mxCell id="0"/>
+    <mxCell id="1" parent="0"/>
+    <mxCell id="2" value="事前风控/合规  |  P1  |  6月  |  6人" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#0F2060;fontColor=#FFFFFF;strokeColor=#0F2060;fontStyle=1;fontSize=12;align=center;verticalAlign=middle;" vertex="1" parent="1">
+      <mxGeometry x="10.0" y="10.0" width="1100.0" height="44" as="geometry"/>
+    </mxCell>
+    <mxCell id="3" value="D1. 规则配置（风控端）" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#2B5EC7;fontColor=#FFFFFF;strokeColor=#1B3275;fontStyle=1;fontSize=10;align=center;verticalAlign=middle;" vertex="1" parent="1">
+      <mxGeometry x="10.0" y="54.0" width="366.7" height="36" as="geometry"/>
+    </mxCell>
+    <mxCell id="4" value="D2. 交易前拦截（用户端）" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#2B5EC7;fontColor=#FFFFFF;strokeColor=#1B3275;fontStyle=1;fontSize=10;align=center;verticalAlign=middle;" vertex="1" parent="1">
+      <mxGeometry x="376.7" y="54.0" width="366.7" height="36" as="geometry"/>
+    </mxCell>
+    <mxCell id="5" value="D3. 统计与审计（管理端）" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#2B5EC7;fontColor=#FFFFFF;strokeColor=#1B3275;fontStyle=1;fontSize=10;align=center;verticalAlign=middle;" vertex="1" parent="1">
+      <mxGeometry x="743.3" y="54.0" width="366.7" height="36" as="geometry"/>
+    </mxCell>
+    <mxCell id="6" value="风控规则配置" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
+      <mxGeometry x="10.0" y="90.0" width="366.7" height="28" as="geometry"/>
+    </mxCell>
+    <mxCell id="7" value="实时事前风控拦截" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
+      <mxGeometry x="376.7" y="90.0" width="366.7" height="28" as="geometry"/>
+    </mxCell>
+    <mxCell id="8" value="日内异常统计看板" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
+      <mxGeometry x="743.3" y="90.0" width="366.7" height="28" as="geometry"/>
+    </mxCell>
+    <mxCell id="9" value="多维度限额配置" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
+      <mxGeometry x="10.0" y="118.0" width="366.7" height="28" as="geometry"/>
+    </mxCell>
+    <mxCell id="10" value="异常报备工作流" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
+      <mxGeometry x="376.7" y="118.0" width="366.7" height="28" as="geometry"/>
+    </mxCell>
+    <mxCell id="11" value="合规审批工作流" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
+      <mxGeometry x="743.3" y="118.0" width="366.7" height="28" as="geometry"/>
+    </mxCell>
+    <mxCell id="12" value="白黑名单管理" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
+      <mxGeometry x="10.0" y="146.0" width="366.7" height="28" as="geometry"/>
+    </mxCell>
+    <mxCell id="13" value="AI聊天合规监控" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
+      <mxGeometry x="376.7" y="146.0" width="366.7" height="28" as="geometry"/>
+    </mxCell>
+    <mxCell id="14" value="责任留痕与审计追踪" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
+      <mxGeometry x="743.3" y="146.0" width="366.7" height="28" as="geometry"/>
+    </mxCell>
+    <mxCell id="15" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F7FA;fontColor=#F5F7FA;strokeColor=#D6E4F7;fontSize=9;" vertex="1" parent="1">
+      <mxGeometry x="10.0" y="174.0" width="366.7" height="28" as="geometry"/>
+    </mxCell>
+    <mxCell id="16" value="AI交易要素提取" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
+      <mxGeometry x="376.7" y="174.0" width="366.7" height="28" as="geometry"/>
+    </mxCell>
+    <mxCell id="17" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F7FA;fontColor=#F5F7FA;strokeColor=#D6E4F7;fontSize=9;" vertex="1" parent="1">
+      <mxGeometry x="743.3" y="174.0" width="366.7" height="28" as="geometry"/>
+    </mxCell>
+  </root>
+</mxGraphModel>

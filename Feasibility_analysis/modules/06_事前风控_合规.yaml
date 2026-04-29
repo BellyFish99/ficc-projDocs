@@ -1,7 +1,7 @@
 module:
   'no': 6
   cn: 事前风控/合规
-  en: Pre-trade Risk
+  en: Pre-trade Risk & Compliance
   domain: 中台风控
   priority: P1
   market_demand: 5
@@ -11,39 +11,102 @@ module:
   gap: 小
   competitor: 恒生/金证
   foundation: ARC合规模块
-  duration_m: 5
+  duration_m: 6
   team_sz: 6
-  person_months: 28
-  note: 嵌入交易前拦截，合规刚需
+  person_months: 32
+  note: 嵌入交易前拦截，三端架构（风控/用户/管理），AI聊天合规监控为核心差异化；对应PPT Slide 51
   source_slide: 51
-  functions:
-  - id: F06-01
-    name: 投资策略合规规则库
-    desc: 内置1000+条监管规则（投资指引/证监会规定），支持新增
-    complexity: 高
-    days: 30
-    priority: P1
-  - id: F06-02
-    name: 实时订单拦截
-    desc: 在交易指令提交前同步校验，不满足规则则拦截+原因告知
-    complexity: 极高
-    days: 25
-    priority: P1
-  - id: F06-03
-    name: 限额多维度检查
-    desc: 单笔名义/资产类别/集中度/净敞口/利率敏感度多维并行检查
-    complexity: 高
-    days: 25
-    priority: P1
-  - id: F06-04
-    name: 合规审批工作流
-    desc: 超限申请→审批→记录全流程，支持移动端审批
-    complexity: 中
-    days: 15
-    priority: P1
-  - id: F06-05
-    name: 监管白/黑名单
-    desc: 证券/交易对手监管限制名单实时同步，拦截违规交易
-    complexity: 中
-    days: 15
-    priority: P1
+  function_domains:
+  - id: D1
+    name: 规则配置（风控端）
+    functions:
+    - id: F06-01
+      name: 风控规则配置
+      desc: 风控人员在页面配置事前风控条款，支持按需调整，规则版本管理，内置监管规则库（1000+条）
+      complexity: 高
+      days: 30
+      priority: P1
+    - id: F06-02
+      name: 多维度限额配置
+      desc: 交易对手/交易员/券三维度限额设置，集中度/净敞口/利率敏感度/单笔名义多类型限额
+      complexity: 高
+      days: 25
+      priority: P1
+    - id: F06-03
+      name: 白黑名单管理
+      desc: 证券/交易对手监管限制名单实时同步，支持手工维护，拦截违规交易
+      complexity: 中
+      days: 15
+      priority: P1
+  - id: D2
+    name: 交易前拦截（用户端）
+    functions:
+    - id: F06-04
+      name: 实时事前风控拦截
+      desc: 交易录入时同步三维度校验（交易对手/交易员/券），不通过即时拦截并告知原因，支持发衡泰前校验
+      complexity: 极高
+      days: 25
+      priority: P1
+    - id: F06-05
+      name: 异常报备工作流
+      desc: 触发异常条款后交易界面即时弹出提示，用户填写异常报备信息后方可提交，确保合规留痕
+      complexity: 中
+      days: 20
+      priority: P1
+    - id: F06-06
+      name: AI聊天合规监控
+      desc: AI自动抓取所有交易对手聊天记录，按客户/券归类并保持时间顺序，实时监控潜在聊天违规并提醒交易员
+      complexity: 高
+      days: 30
+      priority: P1
+    - id: F06-07
+      name: AI交易要素提取
+      desc: 询价意向达成后AI自动从聊天记录生成交易要素（债券/数量/价格/对手方），减少手工录入错误
+      complexity: 高
+      days: 25
+      priority: P1
+  - id: D3
+    name: 统计与审计（管理端）
+    functions:
+    - id: F06-08
+      name: 日内异常统计看板
+      desc: 实时查看日内异常触发记录及处理情况，全面掌握团队执行进度与风控落实效果
+      complexity: 中
+      days: 15
+      priority: P1
+    - id: F06-09
+      name: 合规审批工作流
+      desc: 超限申请→多级审批→记录全流程，支持移动端审批，审批结果实时推送
+      complexity: 中
+      days: 15
+      priority: P1
+    - id: F06-10
+      name: 责任留痕与审计追踪
+      desc: 所有交易录入、拦截、报备、审批操作全程留痕，可追溯，监管现场检查时一键提取证据包
+      complexity: 中
+      days: 15
+      priority: P1
+  tech_design:
+    pattern: 同步拦截中间件（嵌入交易录入流程）+ AI聊天监控异步管道
+    data_model: >
+      ComplianceRule (ruleId, dimension, ruleType, parameters, version, isActive) ;
+      PreTradeCheck (checkId, tradeId, traderId, dimension, result, failReason, checkedAt) ;
+      AnomalyReport (reportId, tradeId, traderId, reportContent, approvedBy, submittedAt) ;
+      ChatRecord (recordId, traderId, counterparty, bond, content, flagged, classifiedAt)
+    core_stack: >
+      Java 21 (同步拦截引擎，嵌入交易录入API) ;
+      Python + LLM (AI聊天合规监控 + 交易要素提取) ;
+      Redis (实时限额缓存，毫秒级校验) ;
+      企微/IM API (聊天记录采集) ; PostgreSQL (规则库 + 审计日志)
+    key_interfaces:
+    - 现券交易系统 → 交易录入前调用事前风控API (同步REST, p99<50ms)
+    - 企微/IM → 聊天记录实时抓取 (Webhook + 消息队列)
+    - IBOR → 实时持仓/限额利用率 (用于集中度检查)
+    - 衡泰OMS → 交易发送前最终校验节点
+    key_decisions:
+    - 事前拦截采用同步调用确保零漏检，延迟目标p99<50ms避免影响交易效率
+    - AI聊天监控与拦截引擎解耦，异步处理不阻塞交易主流程
+    - 规则引擎与AI共用同一套违规判定结果，统一写入审计日志
+    open_questions:
+    - 企微/IM聊天记录采集的合规授权（员工知情同意）需法务确认
+    - AI交易要素提取准确率目标（建议95%以上）需与业务确认容错标准

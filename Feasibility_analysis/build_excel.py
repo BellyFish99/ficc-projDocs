@@ -562,7 +562,8 @@ def make_detail_sheet(wb, m):
     """
     cn = m["cn"]
     en = m["en"]
-    ws = wb.create_sheet(f"详情_{cn}")
+    safe_cn = cn.replace("/", "_").replace("\\", "_")
+    ws = wb.create_sheet(f"详情_{safe_cn}")
     ws.sheet_view.showGridLines = False
 
     # Title

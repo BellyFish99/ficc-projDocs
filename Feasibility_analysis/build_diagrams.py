@@ -205,7 +205,7 @@ def main():
 
         xml_str  = build_module_diagram(m)
         no       = m['no']
-        cn       = m['cn']
+        cn       = m['cn'].replace("/", "_").replace("\\", "_")
         filename = f"detail_{no:02d}_{cn}.drawio"
         out_path = os.path.join(OUT_DIR, filename)
 
