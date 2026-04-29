@@ -10,46 +10,106 @@ module:
   target_state: L3
   gap: 中
   competitor: 衡泰/森浦(STC)
-  foundation: 现券交易系统/IBOR
-  duration_m: 5
-  team_sz: 5
-  person_months: 20
-  note: 场外衍生品主经纪商客需服务，覆盖TRS交易端/客户端/管理端及自动对冲；对应PPT Slide 49
+  foundation: 现券交易系统/IBOR/定价平台
+  duration_m: 6
+  team_sz: 6
+  person_months: 30
+  note: 场外衍生品主经纪商客需服务，三端架构（交易端/客户端/管理端），自动对冲与运营一体化；对应PPT Slide 49
   source_slide: 49
-  functions:
-  - id: F13-01
-    name: TRS交易端
-    desc: 报价提供，成交回报，对冲委托与自动对冲，请求报价，行情与资讯，历史确认
-    complexity: 高
-    days: 30
-    priority: P2
-  - id: F13-02
-    name: TRS客户端
-    desc: 开户申请，客户委托，出入金申请，合约持仓，标的持仓，资金管理，行情矩阵，自主下单
-    complexity: 高
-    days: 25
-    priority: P2
-  - id: F13-03
-    name: TRS管理端
-    desc: 开户申请审批，合约成交管理，出入金审批，运营管理，对账，库存，对冲录入
-    complexity: 中
-    days: 20
-    priority: P2
-  - id: F13-04
-    name: 自动对冲
-    desc: 对冲委托自动触发，对冲回报处理，风险校验，组合重叠分析，开平仓设置
-    complexity: 高
-    days: 25
-    priority: P2
-  - id: F13-05
-    name: 通知与确认文件
-    desc: 企微通知提醒，确认书/结算单/估值报告/出入金通知自动生成并通过邮箱发送
-    complexity: 中
-    days: 15
-    priority: P2
-  - id: F13-06
+  function_domains:
+  - id: D1
+    name: TRS交易端（内部）
+    functions:
+    - id: F13-01
+      name: 报价与成交管理
+      desc: 一站式报价（市场各渠道 + 内部自营），成交回报处理，请求报价（RFQ），历史确认查询
+      complexity: 高
+      days: 30
+      priority: P2
+    - id: F13-02
+      name: 自动对冲
+      desc: 对冲委托自动触发，对冲回报处理，风险校验，组合重叠分析，开平仓设置，对冲策略配置
+      complexity: 高
+      days: 30
+      priority: P2
+    - id: F13-03
+      name: 行情与资讯
+      desc: 实时行情矩阵展示，债券行情，我的关注，历史行情，资讯推送
+      complexity: 中
+      days: 15
+      priority: P2
+  - id: D2
+    name: TRS客户端（外部）
+    functions:
+    - id: F13-04
+      name: 开户与账户管理
+      desc: 客户开户申请，账户信息管理，出入金申请，银行账号绑定，资金管理
+      complexity: 中
+      days: 20
+      priority: P2
+    - id: F13-05
+      name: 客户自主交易
+      desc: 客户委托下单，合约持仓查询，标的持仓查询，当日委托，行情矩阵，历史确认，开平仓设置
+      complexity: 高
+      days: 25
+      priority: P2
+  - id: D3
+    name: TRS管理端（运营）
+    functions:
+    - id: F13-06
+      name: 审批管理
+      desc: 开户申请审批，出入金审批，合约成交审核，多级审批工作流，审批留痕
+      complexity: 中
+      days: 20
+      priority: P2
+    - id: F13-07
+      name: 运营管理
+      desc: 对账，库存管理，对冲录入，合约生命周期管理，日终结算处理
+      complexity: 高
+      days: 25
+      priority: P2
+    - id: F13-08
+      name: 通知与文件生成
+      desc: 企微通知提醒，确认书/结算单/估值报告/出入金通知自动生成并通过邮箱发送
+      complexity: 中
+      days: 15
+      priority: P2
+  - id: D4
     name: 系统集成
-    desc: 与衡泰系统客户信息同步，QTrade聊天记录同步，交易管理系统对接，银行流水对接
-    complexity: 高
-    days: 25
-    priority: P2
+    functions:
+    - id: F13-09
+      name: 外部系统集成
+      desc: 衡泰系统客户信息同步，QTrade聊天记录同步，银行流水对接，公司邮箱系统集成
+      complexity: 高
+      days: 25
+      priority: P2
+    - id: F13-10
+      name: 内部系统集成
+      desc: 现券交易系统（对冲交易执行），IBOR（持仓记录），定价平台（估值报告），事前风控（合规校验）
+      complexity: 高
+      days: 20
+      priority: P2
+  tech_design:
+    pattern: 三端分离（内部交易端/客户端/管理端）+ 消息驱动自动对冲
+    data_model: >
+      TrsContract (contractId, clientId, underlier, notional, rate, startDate, maturityDate, status) ;
+      TrsPosition (positionId, contractId, marketValue, pnl, hedgeQty, updatedAt) ;
+      ClientAccount (clientId, accountNo, cashBalance, marginUsed, updatedAt) ;
+      HedgeOrder (orderId, contractId, side, qty, price, status, executedAt)
+    core_stack: >
+      Java 21 (合约管理/审批/对冲引擎) + React/H5 (三端界面) ;
+      Kafka (对冲触发事件流) ; Redis (实时持仓/保证金缓存) ;
+      定时任务 (日终对账/结算/报告生成)
+    key_interfaces:
+    - 定价平台 → TRS估值计算 (gRPC)
+    - 现券交易系统 → 对冲委托执行
+    - IBOR → TRS持仓同步簿记
+    - 衡泰系统 → 客户信息与交易数据同步
+    - 银行系统 → 出入金流水对账
+    key_decisions:
+    - 自动对冲与合约管理解耦，对冲引擎独立部署，故障不影响合约记录
+    - 客户端采用H5/小程序，降低客户接入门槛，无需安装独立客户端
+    - 估值报告生成复用定价平台，不在本模块重复实现定价逻辑
+    open_questions:
+    - TRS业务监管备案要求（需合规确认，影响上线时间）
+    - 衡泰替换路径：是否需要衡泰同步运行过渡期
