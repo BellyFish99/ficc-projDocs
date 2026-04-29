@@ -1,49 +1,126 @@
 module:
   'no': 11
   cn: 信用债/信用衍生品
-  en: Credit & CDS
+  en: Credit Bond & CDS
   domain: 前台交易
   priority: P2
   market_demand: 4
-  competitor_strength: 4
-  current_state: L1
-  target_state: L3
-  gap: 大
-  competitor: 衡泰/Bloomberg
-  foundation: ARC信用风险框架
-  duration_m: 10
-  team_sz: 10
-  person_months: 80
-  note: CDS定价+信用利差分析
+  competitor_strength: 3
+  current_state: L2
+  target_state: L4
+  gap: 中
+  competitor: 衡泰/恒生
+  foundation: IBOR持仓账薄/定价平台
+  duration_m: 8
+  team_sz: 8
+  person_months: 55
+  note: 信用评级/投资池/全生命周期信用风险管理，打通从评级审批到交易下单全链路；对应PPT Slide 42
   source_slide: 42
-  functions:
-  - id: F11-01
-    name: 信用利差分析
-    desc: 行业/评级/期限信用利差曲线实时计算，历史分位数分析
-    complexity: 高
-    days: 30
-    priority: P2
-  - id: F11-02
-    name: CDS/CLN定价
-    desc: 信用违约互换定价，ISDA标准，生存概率曲线校准
-    complexity: 极高
-    days: 50
-    priority: P2
-  - id: F11-03
-    name: 信用评级动态监控
-    desc: 对接外部评级机构（中诚信/联合/大公），评级下调预警
-    complexity: 中
-    days: 20
-    priority: P2
-  - id: F11-04
-    name: 违约概率（PD）建模
-    desc: 结构化Merton模型+市场隐含PD，信用风险计量
-    complexity: 高
-    days: 40
-    priority: P2
-  - id: F11-05
-    name: 集中度限额管理
-    desc: 行业/发行人/评级集中度多维限额，超限预警
-    complexity: 中
-    days: 20
-    priority: P2
+  function_domains:
+  - id: D1
+    name: 信用数据与评估
+    functions:
+    - id: F11-01
+      name: 信用风险数据接入
+      desc: 外部信用数据服务接入（Wind/中诚信/联合评级等），内部数据整合，数据质量检查，信用风险数据集市
+      complexity: 高
+      days: 30
+      priority: P2
+    - id: F11-02
+      name: 信用评估引擎
+      desc: 持续迭代信用评价引擎，资产证券化评价，交易对手评价，违约概率（PD）建模，信用评分
+      complexity: 极高
+      days: 40
+      priority: P2
+    - id: F11-03
+      name: 信用预警系统
+      desc: 市场数据自动触发预警，评级下调动态预警，投后预警跟踪与信号处理，预警规则配置
+      complexity: 高
+      days: 30
+      priority: P2
+  - id: D2
+    name: 投资池与准入管理
+    functions:
+    - id: F11-04
+      name: 投资池管理
+      desc: 债券池配置与维护，债券准入/退出规则，白名单/黑名单管理，池状态实时更新
+      complexity: 中
+      days: 20
+      priority: P2
+    - id: F11-05
+      name: 评级管理
+      desc: 内部评级录入与更新，外部评级同步（中诚信/联合/大公），评级变更历史追踪，评级模型管理
+      complexity: 中
+      days: 20
+      priority: P2
+    - id: F11-06
+      name: 投前审批管理
+      desc: 新券投资准入审批流程，信用额度申请，投资决策材料生成，审批记录留痕
+      complexity: 中
+      days: 20
+      priority: P2
+  - id: D3
+    name: 持仓与风险监控
+    functions:
+    - id: F11-07
+      name: 持仓与敞口管理
+      desc: 信用债持仓实时查询，敞口管理，集中度分析（行业/评级/发行人），到期提醒
+      complexity: 中
+      days: 20
+      priority: P2
+    - id: F11-08
+      name: 信用风险监控看板
+      desc: 多维度风险指标实时监控，信用利差走势，主体信用事件推送，指标监控与查询统计
+      complexity: 高
+      days: 25
+      priority: P2
+    - id: F11-09
+      name: 违约管理
+      desc: 违约事件记录，违约债券处置跟踪，损失估算，监管报送，违约主体黑名单自动更新
+      complexity: 高
+      days: 25
+      priority: P2
+  - id: D4
+    name: 信用利差与衍生品
+    functions:
+    - id: F11-10
+      name: 信用利差分析
+      desc: 行业/评级/期限信用利差曲线实时计算，历史分位数分析，利差走势，相对价值分析
+      complexity: 高
+      days: 30
+      priority: P2
+    - id: F11-11
+      name: CDS定价与管理
+      desc: 信用违约互换定价（ISDA标准），生存概率曲线校准，CDS交易录入与持仓管理
+      complexity: 极高
+      days: 40
+      priority: P2
+    - id: F11-12
+      name: 配置与权限管理
+      desc: 预警规则配置，指标库管理，评级模型管理，用户权限管理，债券池配置管理
+      complexity: 低
+      days: 15
+      priority: P2
+  tech_design:
+    pattern: 信用评估引擎 + 全生命周期状态机 + 实时预警管道
+    data_model: >
+      CreditEntity (entityId, name, type, internalRating, externalRating, updatedAt) ;
+      BondPool (poolId, bondId, status, entryDate, exitDate, exitReason) ;
+      CreditAlert (alertId, entityId, alertType, severity, triggeredAt, resolved) ;
+      InvestmentApproval (approvalId, bondId, amount, status, approvedBy, approvedAt)
+    core_stack: >
+      Java 21 (评估引擎/审批工作流) + Python (信用模型/预警规则) ;
+      Kafka (信用事件流，实时预警触发) ;
+      PostgreSQL (评级库/审批记录) ; Elasticsearch (信用事件全文检索)
+    key_interfaces:
+    - 外部数据服务 → Wind/中诚信/联合评级数据接入 (API)
+    - IBOR → 持仓数据同步 (敞口与集中度分析)
+    - 定价平台 → 信用利差/违约曲线/CDS定价 (gRPC)
+    - 现券交易系统 → 准入后自动开放交易权限
+    key_decisions:
+    - 信用评估引擎与交易系统解耦，评级变更通过事件流异步通知不阻塞交易
+    - 投资池状态由评估引擎自动驱动，减少人工维护防止遗漏风险信号
+    - CDS定价复用定价平台，本模块专注交易录入与风险管理
+    open_questions:
+    - 内部信用评级模型的监管认可问题（需与合规/法务确认）
+    - CDS交易量预估（目前国内市场较小，需确认是否值得单独开发）
