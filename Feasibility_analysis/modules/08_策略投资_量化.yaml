@@ -15,7 +15,7 @@ module:
   team_sz: 12
   person_months: 96
   note: 因子框架+回测引擎，低延迟执行
-  source_slide: null
+  source_slide: 41
   functions:
   - id: F08-01
     name: 因子模型框架

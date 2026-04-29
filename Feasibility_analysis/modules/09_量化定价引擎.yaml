@@ -15,7 +15,7 @@ module:
   team_sz: 15
   person_months: 225
   note: 蒙特卡洛/有限差分，替代衡泰核心
-  source_slide: null
+  source_slide: 56
   functions:
   - id: F09-01
     name: 期限结构模型

@@ -15,7 +15,7 @@ module:
   team_sz: 10
   person_months: 80
   note: 替代衡泰老旧系统，信创切入口
-  source_slide: null
+  source_slide: 52
   functions:
   - id: F04-01
     name: VaR/CVaR/ES计算

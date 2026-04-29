@@ -15,7 +15,7 @@ module:
   team_sz: 6
   person_months: 28
   note: 嵌入交易前拦截，合规刚需
-  source_slide: null
+  source_slide: 51
   functions:
   - id: F06-01
     name: 投资策略合规规则库

@@ -15,7 +15,7 @@ module:
   team_sz: 14
   person_months: 130
   note: 整个FICC平台的账薄主干，27项功能覆盖持仓/现金/估值/事件/对账/合规/试算全链路
-  source_slide: null
+  source_slide: 55
   data_inputs:
   - 交易指令数据
   - 行情/估值数据

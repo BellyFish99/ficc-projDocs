@@ -15,7 +15,7 @@ module:
   team_sz: 10
   person_months: 80
   note: CDS定价+信用利差分析
-  source_slide: null
+  source_slide: 42
   functions:
   - id: F11-01
     name: 信用利差分析

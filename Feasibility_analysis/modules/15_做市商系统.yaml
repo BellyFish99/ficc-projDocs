@@ -15,7 +15,7 @@ module:
   team_sz: 12
   person_months: 120
   note: 双边报价引擎，需深度市场经验
-  source_slide: null
+  source_slide: 53
   functions:
   - id: F15-01
     name: 双边报价引擎

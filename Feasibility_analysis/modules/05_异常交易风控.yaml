@@ -15,7 +15,7 @@ module:
   team_sz: 8
   person_months: 42
   note: 监管驱动，AI差异化，快速商业化
-  source_slide: null
+  source_slide: 50
   functions:
   - id: F05-01
     name: 实时CEP监控引擎

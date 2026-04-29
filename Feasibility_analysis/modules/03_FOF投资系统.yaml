@@ -1,0 +1,55 @@
+module:
+  'no': 3
+  cn: FOF投资系统
+  en: FOF Investment System
+  domain: 前台交易
+  priority: P2
+  market_demand: 3
+  competitor_strength: 2
+  current_state: L2
+  target_state: L4
+  gap: 中
+  competitor: 恒生/金证
+  foundation: IBOR持仓账薄
+  duration_m: 4
+  team_sz: 5
+  person_months: 18
+  note: 基金/FOF投资业务系统化管理，覆盖基础信息、交易录入、组合风控全链路；对应PPT Slide 43
+  source_slide: 43
+  functions:
+  - id: F03-01
+    name: 管理人与基础信息管理
+    desc: 管理人黑名单维护，基金策略分类，基金基础要素（规模/净值/评级）录入与更新
+    complexity: 低
+    days: 15
+    priority: P2
+  - id: F03-02
+    name: 基金资产信息获取
+    desc: 通过邮箱/API自动获取基金资产报告，解析持仓明细并入库，多来源数据合并去重
+    complexity: 中
+    days: 20
+    priority: P2
+  - id: F03-03
+    name: 交易录入与审核
+    desc: 申购/赎回/换仓交易录入，交易明细管理，双级审核工作流，审批记录留痕
+    complexity: 中
+    days: 20
+    priority: P2
+  - id: F03-04
+    name: 组合风控报告生成
+    desc: 按管理人策略限制/投资占比限制/白名单分类生成风控日报和周报，自动推送给风控人员
+    complexity: 中
+    days: 20
+    priority: P2
+  - id: F03-05
+    name: 子基金持仓穿透
+    desc: 穿透底层基金持仓至个券/个股层面，合并计算组合总敞口，支持集中度与评级分布分析
+    complexity: 高
+    days: 25
+    priority: P2
+  - id: F03-06
+    name: 申赎情况跟踪
+    desc: 子基金申购/赎回状态全生命周期跟踪，到账确认，净值更新后自动触发持仓重算
+    complexity: 中
+    days: 15
+    priority: P2
