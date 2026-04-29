@@ -11,39 +11,114 @@ module:
   gap: 小
   competitor: 无主导者
   foundation: ARC+AI规则引擎
-  duration_m: 6
+  duration_m: 8
   team_sz: 8
-  person_months: 42
-  note: 监管驱动，AI差异化，快速商业化
+  person_months: 55
+  note: 监管驱动，AI差异化（LLM+RAG+Agent+MCP），快速商业化；对应PPT Slide 50
   source_slide: 50
-  functions:
-  - id: F05-01
-    name: 实时CEP监控引擎
-    desc: 基于复杂事件处理（CEP），毫秒级事件流检测，滑动窗口聚合
-    complexity: 极高
-    days: 50
-    priority: P1
-  - id: F05-02
-    name: 异常价格检测
-    desc: 基于历史分位数/实时行情计算价格偏离度，动态阈值自适应
-    complexity: 高
-    days: 25
-    priority: P1
-  - id: F05-03
-    name: AI异常识别模型
-    desc: 机器学习（XGBoost/LSTM）训练异常交易识别模型，在线推理
-    complexity: 高
-    days: 40
-    priority: P1
-  - id: F05-04
-    name: 规则引擎（可配置）
-    desc: No-Code规则配置界面，合规人员自助维护检测规则
-    complexity: 中
-    days: 20
-    priority: P1
-  - id: F05-05
-    name: 监管报送自动化
-    desc: 一键生成证监会/人行格式异常交易报告，历史追溯查询
-    complexity: 中
-    days: 25
-    priority: P1
+  function_domains:
+  - id: D1
+    name: AI智能引擎
+    functions:
+    - id: F05-01
+      name: LLM大语言模型应用
+      desc: 客户意图识别，自然语言处理交易描述，智能报告自动生成，新规合规解读
+      complexity: 极高
+      days: 40
+      priority: P1
+    - id: F05-02
+      name: RAG检索增强生成
+      desc: 监管规则知识库构建，新规则智能固化，合规智能问答，上下文理解与规则推理
+      complexity: 高
+      days: 30
+      priority: P1
+    - id: F05-03
+      name: Agent智能体
+      desc: 异常处置任务自动化，决策支持工作流，多步骤异常核查流程优化，自动推送处置建议
+      complexity: 高
+      days: 30
+      priority: P1
+    - id: F05-04
+      name: MCP外部服务集成
+      desc: 外部数据源调用接口，固化规则调用标准协议，与行情/持仓/交易系统数据对接
+      complexity: 中
+      days: 20
+      priority: P1
+  - id: D2
+    name: 异常识别引擎
+    functions:
+    - id: F05-05
+      name: 代持与反向交易识别
+      desc: 代持相关交易检测，同券同额反向识别，多日反向低频交易模式识别
+      complexity: 高
+      days: 25
+      priority: P1
+    - id: F05-06
+      name: 价格行为异常检测
+      desc: 高买低卖行为识别，信用债价格异常检测，基于历史分位数与实时行情动态偏离度计算
+      complexity: 高
+      days: 25
+      priority: P1
+    - id: F05-07
+      name: 交易对手异常监控
+      desc: 同一交易对手频繁交易预警，多次修改交易对手行为识别，持仓结构异常检测
+      complexity: 高
+      days: 20
+      priority: P1
+    - id: F05-08
+      name: 交易量异常检测
+      desc: 交易量统计异常识别，集中度异常告警，与历史基准对比的量级偏离检测
+      complexity: 中
+      days: 15
+      priority: P1
+    - id: F05-09
+      name: 动态规则管理
+      desc: 异常模式智能探索与规则固化，No-Code规则配置界面，合规人员自助维护，规则版本管理
+      complexity: 中
+      days: 20
+      priority: P1
+  - id: D3
+    name: 运营与报告
+    functions:
+    - id: F05-10
+      name: 异常交易定位
+      desc: 按时间范围快速查找历史异常交易，标记异常类型，可视化展示异常分布与趋势
+      complexity: 中
+      days: 15
+      priority: P1
+    - id: F05-11
+      name: 数据上传校验
+      desc: 支持用户上传交易数据文件，瞬时完成异常交易校验并输出校验结果报告
+      complexity: 中
+      days: 15
+      priority: P1
+    - id: F05-12
+      name: 智能报告生成
+      desc: 模板自定义与场景数据一键应用，监管报送格式（证监会/人行），新业务过会合规分析报告
+      complexity: 中
+      days: 20
+      priority: P1
+  tech_design:
+    pattern: 规则引擎 + AI双驱动（实时流检测 + LLM智能分析）
+    data_model: >
+      TradeEvent (tradeId, bookId, counterpartyId, instrumentId, price, qty, tradeTime) ;
+      AnomalyRecord (anomalyId, tradeId, anomalyType, severity, detectedAt, status) ;
+      RuleConfig (ruleId, ruleType, parameters, createdBy, version, isActive) ;
+      AnomalyReport (reportId, reportType, period, content, regulatoryFormat, submittedAt)
+    core_stack: >
+      Java 21 (规则引擎/CEP) + Python (ML/LLM/RAG) ;
+      Apache Flink (实时流处理，毫秒级异常检测) ;
+      LangChain + 国产LLM (RAG知识库 + Agent工作流) ;
+      Elasticsearch (历史异常交易检索) ; Kafka (交易事件流)
+    key_interfaces:
+    - 现券交易/TRS → 实时交易事件 (Kafka topic: trade.executed)
+    - IBOR → 持仓数据 (用于持仓结构异常检测)
+    - 行情平台 → 实时价格 (用于高买低卖价格偏离计算)
+    - 监管报送系统 → 异常交易报告 (REST API，证监会/人行格式)
+    key_decisions:
+    - 规则引擎与AI模型并行运行，规则引擎负责已知类型快速拦截，AI负责未知模式发现
+    - RAG知识库基于监管文件构建，新规落地后24h内自动更新规则，实现快速响应
+    - LLM仅用于报告生成和规则解读，实时检测路径不依赖LLM确保低延迟
+    open_questions:
+    - LLM选型：国产大模型（文心/通义）vs私有化部署，取决于数据合规要求
+    - 历史异常标注数据的获取（需与合规团队协作人工标注）
