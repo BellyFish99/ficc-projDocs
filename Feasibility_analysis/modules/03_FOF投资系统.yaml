@@ -16,40 +16,75 @@ module:
   person_months: 18
   note: 基金/FOF投资业务系统化管理，覆盖基础信息、交易录入、组合风控全链路；对应PPT Slide 43
   source_slide: 43
-  functions:
-  - id: F03-01
-    name: 管理人与基础信息管理
-    desc: 管理人黑名单维护，基金策略分类，基金基础要素（规模/净值/评级）录入与更新
-    complexity: 低
-    days: 15
-    priority: P2
-  - id: F03-02
-    name: 基金资产信息获取
-    desc: 通过邮箱/API自动获取基金资产报告，解析持仓明细并入库，多来源数据合并去重
-    complexity: 中
-    days: 20
-    priority: P2
-  - id: F03-03
-    name: 交易录入与审核
-    desc: 申购/赎回/换仓交易录入，交易明细管理，双级审核工作流，审批记录留痕
-    complexity: 中
-    days: 20
-    priority: P2
-  - id: F03-04
-    name: 组合风控报告生成
-    desc: 按管理人策略限制/投资占比限制/白名单分类生成风控日报和周报，自动推送给风控人员
-    complexity: 中
-    days: 20
-    priority: P2
-  - id: F03-05
-    name: 子基金持仓穿透
-    desc: 穿透底层基金持仓至个券/个股层面，合并计算组合总敞口，支持集中度与评级分布分析
-    complexity: 高
-    days: 25
-    priority: P2
-  - id: F03-06
-    name: 申赎情况跟踪
-    desc: 子基金申购/赎回状态全生命周期跟踪，到账确认，净值更新后自动触发持仓重算
-    complexity: 中
-    days: 15
-    priority: P2
+  function_domains:
+  - id: D1
+    name: 基础信息管理
+    functions:
+    - id: F03-01
+      name: 管理人与基金基础信息
+      desc: 管理人黑名单维护，基金策略分类，基金基础要素（规模/净值/评级）录入与更新，管理人信息库
+      complexity: 低
+      days: 15
+      priority: P2
+    - id: F03-02
+      name: 基金资产信息获取
+      desc: 通过邮箱/API自动获取基金资产报告，解析持仓明细并入库，多来源数据合并去重，导入工具
+      complexity: 中
+      days: 20
+      priority: P2
+    - id: F03-03
+      name: 子基金持仓穿透
+      desc: 穿透底层基金持仓至个券/个股层面，合并计算组合总敞口，支持集中度与评级分布分析
+      complexity: 高
+      days: 25
+      priority: P2
+  - id: D2
+    name: 交易管理
+    functions:
+    - id: F03-04
+      name: 交易录入与审核
+      desc: 申购/赎回/换仓交易录入，交易明细管理，双级审核工作流（投资助理录入→风控复核），审批记录留痕
+      complexity: 中
+      days: 20
+      priority: P2
+    - id: F03-05
+      name: 申赎情况跟踪
+      desc: 子基金申购/赎回状态全生命周期跟踪，到账确认，净值更新后自动触发持仓重算
+      complexity: 中
+      days: 15
+      priority: P2
+  - id: D3
+    name: 风控报告
+    functions:
+    - id: F03-06
+      name: 组合风控报告生成
+      desc: 按管理人策略限制/投资占比限制/白名单分类/子基金申赎情况生成风控日报和周报
+      complexity: 中
+      days: 20
+      priority: P2
+    - id: F03-07
+      name: 报告推送与查阅
+      desc: 风控日报/周报自动推送给风控人员，支持在线查看与下载，历史报告归档查询
+      complexity: 低
+      days: 10
+      priority: P2
+  tech_design:
+    pattern: 标准CRUD + 工作流审批 + 定时报告生成
+    data_model: >
+      FundManager (managerId, name, strategy, blacklisted, updatedAt) ;
+      SubFund (fundId, managerId, nav, scale, rating, asOf) ;
+      FofTrade (tradeId, fundId, tradeType, amount, status, approvedBy, tradeDate) ;
+      RiskReport (reportId, reportType, period, content, sentAt)
+    core_stack: >
+      Java 21 (业务逻辑) ; PostgreSQL (基础数据) ;
+      Python (邮件解析/资产报告抓取) ;
+      定时任务框架 (日报/周报定时生成推送)
+    key_interfaces:
+    - IBOR → 持仓数据同步 (用于穿透分析和组合风控)
+    - 邮件服务器 → 基金资产报告自动获取 (IMAP/API)
+    - 风控人员 → 报告推送 (企微/邮件)
+    key_decisions:
+    - 穿透分析依赖IBOR底层持仓数据，避免重复维护数据
+    - 报告生成与推送解耦，生成失败不影响正常交易录入
+    open_questions:
+    - 基金资产报告格式不统一，需与各管理人约定标准格式或开发多格式解析器
