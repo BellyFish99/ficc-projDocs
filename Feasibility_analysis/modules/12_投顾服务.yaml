@@ -11,45 +11,85 @@ module:
   gap: 中
   competitor: 衡泰/金证
   foundation: IBOR持仓账薄
-  duration_m: 4
-  team_sz: 4
-  person_months: 14
+  duration_m: 5
+  team_sz: 5
+  person_months: 20
   note: 全链条数字化债券投顾服务，覆盖投资建议、账户分析、投研报告；对应PPT Slide 48
   source_slide: 48
-  functions:
-  - id: F12-01
+  function_domains:
+  - id: D1
     name: 投顾工作台
-    desc: 投顾人员操作界面，管理客户委托，上传研究报告，发送投资建议，查看客户反馈
-    complexity: 中
-    days: 20
-    priority: P2
-  - id: F12-02
+    functions:
+    - id: F12-01
+      name: 投顾操作工作台
+      desc: 投顾人员管理客户委托，上传研究报告，发送投资建议，查看客户反馈与确认状态
+      complexity: 中
+      days: 20
+      priority: P2
+    - id: F12-02
+      name: 投资建议书管理
+      desc: 投资建议书线上生成与审批，客户确认全流程，留痕追溯，电子签收，历史建议书归档
+      complexity: 中
+      days: 20
+      priority: P2
+    - id: F12-03
+      name: 投研报告服务
+      desc: 日/周/月研究报告上传与定向推送，RPA自动获取基础数据，报告分类管理与检索
+      complexity: 中
+      days: 15
+      priority: P2
+  - id: D2
     name: 客户终端
-    desc: 客户查看投资建议与分析报告，确认交易服务，查看账户净值走势、持仓明细、交易明细
-    complexity: 中
-    days: 20
-    priority: P2
-  - id: F12-03
-    name: 投资建议书管理
-    desc: 投资建议书线上生成、审批、确认全流程，留痕追溯，客户电子签收
-    complexity: 中
-    days: 15
-    priority: P2
-  - id: F12-04
-    name: 账户分析报告
-    desc: 账户净值走势、久期走势、归因分析、估值台账等核心数据展示及定期报告生成
-    complexity: 高
-    days: 25
-    priority: P2
-  - id: F12-05
-    name: 投研报告服务
-    desc: 日/周/月研究报告上传与推送，RPA自动获取基础数据，报告分类管理
-    complexity: 中
-    days: 15
-    priority: P2
-  - id: F12-06
-    name: 客户服务与基础服务
-    desc: 服务中心、消息中心、问卷系统；用户/账户/数据管理，消息群发，登录注册
-    complexity: 低
-    days: 10
-    priority: P2
+    functions:
+    - id: F12-04
+      name: 客户投资服务界面
+      desc: 客户查看投资建议与分析报告，发送确认，查看账户净值走势、持仓明细、交易明细
+      complexity: 中
+      days: 20
+      priority: P2
+    - id: F12-05
+      name: 账户深度分析
+      desc: 账户净值走势，久期走势，归因分析，估值台账，持仓明细，交易明细，定期分析报告生成
+      complexity: 高
+      days: 25
+      priority: P2
+    - id: F12-06
+      name: 交易服务对接
+      desc: 客户查看投资建议后直接触发交易委托，与销售交易系统对接，全程数字化交易确认
+      complexity: 中
+      days: 15
+      priority: P2
+  - id: D3
+    name: 基础服务
+    functions:
+    - id: F12-07
+      name: 客户服务中心
+      desc: 服务中心，消息中心，常见问题，问卷系统，客户满意度管理
+      complexity: 低
+      days: 10
+      priority: P2
+    - id: F12-08
+      name: 平台基础管理
+      desc: 用户管理，账户管理，数据管理，消息群发，登录注册，权限控制
+      complexity: 低
+      days: 10
+      priority: P2
+  tech_design:
+    pattern: 双端应用（投顾端 + 客户端）+ RPA数据采集
+    data_model: >
+      AdvisoryReport (reportId, advisorId, clientId, content, status, confirmedAt) ;
+      ClientAccount (clientId, name, nav, duration, lastUpdated) ;
+      ResearchReport (reportId, type, period, content, sentTo, publishedAt)
+    core_stack: >
+      Java 21 (业务逻辑) + React/H5 (投顾工作台 + 客户端) ;
+      Python/RPA (基础数据自动获取) ;
+      PostgreSQL (账户/报告数据) ; 企微API (报告推送/消息通知)
+    key_interfaces:
+    - IBOR → 客户持仓/净值/归因数据 (用于账户分析报告)
+    - 销售交易系统 → 交易委托触发 (客户确认建议后)
+    - 衡泰系统 → 现有账户数据同步
+    key_decisions:
+    - 投顾端与客户端共用同一套数据层，报告生成与推送解耦
+    - RPA数据采集作为过渡方案，长期目标是直连数据源API
+    open_questions:
+    - 客户端是否需要独立App或集成到现有客户门户（需产品确认）
