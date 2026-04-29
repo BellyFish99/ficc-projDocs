@@ -45,6 +45,11 @@ __pycache__/
 .venv/
 venv/
 
+# ── Generated / backup artifacts ──────────────────────────────────────────────
+gy/backup/
+gy/tmp_diagrams/
+*.png
+
 # ── What IS tracked (no entry needed — tracked by default) ───────────────────
 # *.md        solution docs, PPT content, checkpoints, READMEs
 # *.drawio    diagrams
