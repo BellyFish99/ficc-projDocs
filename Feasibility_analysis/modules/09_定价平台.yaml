@@ -14,42 +14,135 @@ module:
   duration_m: 18
   team_sz: 15
   person_months: 225
-  note: 蒙特卡洛/有限差分，替代衡泰核心
+  note: 蒙特卡洛/有限差分，替代衡泰核心，覆盖权益/利率/大宗商品/外汇/衍生品全品种；对应PPT Slide 56
   source_slide: 56
-  functions:
-  - id: F09-01
-    name: 期限结构模型
-    desc: Nelson-Siegel/Svensson/HJM等多模型参数拟合，实时曲线
-    complexity: 极高
-    days: 60
-    priority: P2
-  - id: F09-02
-    name: 蒙特卡洛求解器
-    desc: GPU加速MC，QMC低差异序列，支持路径相关期权定价
-    complexity: 极高
-    days: 70
-    priority: P2
-  - id: F09-03
-    name: 有限差分（PDE）
-    desc: Crank-Nicolson/ADI方法，含权债/可转债精确定价
-    complexity: 极高
-    days: 60
-    priority: P2
-  - id: F09-04
-    name: 实时Greeks
-    desc: Delta/Gamma/Vega/Theta/Rho分布式实时计算
-    complexity: 高
-    days: 40
-    priority: P2
-  - id: F09-05
-    name: 定价服务微服务架构
-    desc: REST/gRPC定价API，支持横向扩展，p99<100ms
-    complexity: 高
-    days: 40
-    priority: P2
-  - id: F09-06
-    name: 历史估值回测
-    desc: 基于历史行情重放定价误差分析，模型验证框架
-    complexity: 高
-    days: 30
-    priority: P2
+  function_domains:
+  - id: D1
+    name: 金融产品覆盖
+    functions:
+    - id: F09-01
+      name: 期权收益结构定价
+      desc: 香草期权/价差期权/欧式/美式/雪球/自定义期权定价，挂钩标的覆盖国债/期货/股票/指数/商品
+      complexity: 极高
+      days: 60
+      priority: P2
+    - id: F09-02
+      name: 结构化产品定价
+      desc: 场外期权/远期/收益凭证/收益互换/融资融券/合约型互换定价，支持自定义结构化产品
+      complexity: 极高
+      days: 50
+      priority: P2
+    - id: F09-03
+      name: 固收品种定价
+      desc: 固息/浮息国债，含权债，可转债精确定价，信用债估值，ABS定价
+      complexity: 高
+      days: 40
+      priority: P2
+  - id: D2
+    name: 市场数据底座
+    functions:
+    - id: F09-04
+      name: 利率与信用曲线构建
+      desc: 利率曲线（多插值方法），信用利差曲线，利差曲线，违约曲线，全品种统一曲线服务
+      complexity: 极高
+      days: 60
+      priority: P2
+    - id: F09-05
+      name: 波动率曲面构建
+      desc: 隐含波动率曲面，红利曲线，汇率曲线，Local Volatility曲面，波动率微笑校准
+      complexity: 极高
+      days: 50
+      priority: P2
+    - id: F09-06
+      name: 市场数据管理
+      desc: 境内外权益/债券/外汇/商品资讯统一接入，数据清洗，异常值处理，数据质量监控
+      complexity: 高
+      days: 30
+      priority: P2
+  - id: D3
+    name: 定价模型引擎
+    functions:
+    - id: F09-07
+      name: 蒙特卡洛求解器
+      desc: GPU加速MC，QMC低差异序列，支持路径相关期权定价，并行情景模拟
+      complexity: 极高
+      days: 70
+      priority: P2
+    - id: F09-08
+      name: 解析解与数值解
+      desc: Black-Scholes解析解，Hull-White利率模型，SABR波动率模型，二叉树/三叉树数值解
+      complexity: 极高
+      days: 60
+      priority: P2
+    - id: F09-09
+      name: 有限差分（PDE）
+      desc: Crank-Nicolson/ADI方法，含权债/可转债精确定价，局部波动率模型数值解
+      complexity: 极高
+      days: 60
+      priority: P2
+    - id: F09-10
+      name: 实时Greeks计算
+      desc: Delta/Gamma/Vega/Theta/Rho分布式实时计算，DV01/CS01，分桶敏感度
+      complexity: 高
+      days: 40
+      priority: P2
+  - id: D4
+    name: 定价应用场景
+    functions:
+    - id: F09-11
+      name: 估值与结算计算
+      desc: 日终估值，盯市计算，保证金计算，结算价格，历史估值回测与误差分析
+      complexity: 高
+      days: 40
+      priority: P2
+    - id: F09-12
+      name: 风控与情景计算
+      desc: 风险计量（VaR/压力测试）调用，情景分析，保证金计算，为风控平台提供统一定价接口
+      complexity: 高
+      days: 35
+      priority: P2
+    - id: F09-13
+      name: 客需报价服务
+      desc: 为销售交易/TRS系统提供实时报价，一站式报价接口，支持结构化产品定制化快速报价
+      complexity: 高
+      days: 35
+      priority: P2
+  - id: D5
+    name: 平台基础设施
+    functions:
+    - id: F09-14
+      name: 定价微服务架构
+      desc: REST/gRPC定价API，横向弹性扩容，p99<100ms，模型插件化注册，版本管理
+      complexity: 高
+      days: 40
+      priority: P2
+    - id: F09-15
+      name: 灵活二次开发能力
+      desc: 全平台级/单功能模块级/系统框架级可扩展，支持自定义模型接入，策略团队自助扩展
+      complexity: 高
+      days: 30
+      priority: P2
+  tech_design:
+    pattern: 微服务定价引擎 + HPC数值计算网格（GPU加速）
+    data_model: >
+      PricingRequest (reqId, productType, params, asOf, requestedBy) ;
+      PricingResult (reqId, price, greeks, modelUsed, latencyMs, computedAt) ;
+      CurveSnapshot (curveId, curveType, nodes, interpolation, asOf) ;
+      VolSurface (surfaceId, underlier, strikes, expiries, vols, asOf)
+    core_stack: >
+      C++ (核心数值计算，蒙特卡洛/PDE引擎) + Python (曲线构建/数据清洗) ;
+      CUDA/GPU (蒙特卡洛并行加速) ;
+      gRPC (高性能定价API) ; Redis (曲线/曲面实时缓存) ;
+      Kubernetes (弹性计算网格调度)
+    key_interfaces:
+    - 行情平台 → 实时市场数据 (Kafka)
+    - 风控平台 → 定价/Greeks/情景计算 (gRPC streaming)
+    - 销售交易/TRS → 客需实时报价 (REST, p99<100ms)
+    - 策略投资 → 估值/曲线数据 (gRPC)
+    key_decisions:
+    - 所有系统使用同一套曲线/曲面服务，确保全公司定价一致性，避免数据割裂
+    - 模型插件化设计，新产品定价模型无需修改核心引擎即可接入
+    - GPU加速仅用于批量蒙特卡洛，实时Greeks路径使用解析解保证低延迟
+    open_questions:
+    - GPU集群采购与信创兼容性（国产GPU如昆仑/寒武纪 vs NVIDIA）
+    - 衡泰现有定价模型参数迁移方案（模型验证与对标测试周期估计6个月）
