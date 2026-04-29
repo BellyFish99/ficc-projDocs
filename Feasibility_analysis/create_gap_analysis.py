@@ -77,7 +77,7 @@ MODULES = [
     (4,  "FICC风险计量平台",       "FICC Risk Measurement",   "中台风控",        "P1", 5, 4, "L2", "L4", "中", "衡泰(垄断)", "ARC风险引擎",               10, 10, 80,  "替代衡泰老旧系统，信创切入口"),
     (5,  "异常交易风控",           "Abnormal Trade Monitor",  "中台风控",        "P1", 5, 1, "L3", "L5", "小", "无主导者",  "ARC+AI规则引擎",             6,  8,  42,  "监管驱动，AI差异化，快速商业化"),
     (6,  "事前风控/合规",          "Pre-trade Risk",          "中台风控",        "P1", 5, 2, "L3", "L4", "小", "恒生/金证", "ARC合规模块",                5,  6,  28,  "嵌入交易前拦截，合规刚需"),
-    (7,  "组合管理+绩效归因",      "Portfolio Mgmt & Perf",   "前台投资管理",    "P1", 5, 3, "L2", "L4", "中", "SimCorp/衡泰", "M9 PMS模块",              9,  10, 76,  "Brinson归因+固收久期优化"),
+    (7,  "组合管理+绩效归因",      "Portfolio Mgmt & Perf",   "前台投资管理",    "P1", 5, 3, "L2", "L4", "中", "SimCorp/衡泰", "M9 PMS模块",              12, 12, 120, "17项功能含量化底座集成；Slide44全景展开"),
     (8,  "策略投资/量化",          "Quant Strategy",          "前台投研",        "P1", 4, 2, "L1", "L3", "中", "无主导者",  "低延迟ATP执行层",            10, 12, 96,  "因子框架+回测引擎，低延迟执行"),
     (9,  "量化定价引擎",           "Quant Pricing Engine",    "中台定价",        "P2", 5, 5, "L1", "L4", "大", "衡泰(垄断)", "ARC基础数值库",             18, 15, 225, "蒙特卡洛/有限差分，替代衡泰核心"),
     (10, "利率衍生品",             "Interest Rate Derivatives","前台交易",       "P2", 4, 4, "L1", "L3", "大", "Murex/衡泰", "无直接基础",                12, 12, 108, "IRS/OIS/CCS，需专业量化团队"),
@@ -136,13 +136,30 @@ FUNCTIONS = [
     (6, 4,  "合规审批工作流",         "超限申请→审批→记录全流程，支持移动端审批",                                             "中",   15),
     (6, 5,  "监管白/黑名单",          "证券/交易对手监管限制名单实时同步，拦截违规交易",                                       "中",   15),
 
-    # ─── 7. 组合管理+绩效归因
-    (7, 1,  "多维度组合构建",         "因子约束/跟踪误差/久期目标等多目标组合优化",                                           "高",   40),
-    (7, 2,  "再平衡引擎",             "基于信号/规则自动生成调仓指令，考虑交易成本与冲击",                                    "高",   30),
-    (7, 3,  "Brinson绩效归因",        "Brinson-Hood-Beebower模型，资产配置/个券选择/交互效应",                               "高",   35),
-    (7, 4,  "固收久期/凸度管理",      "组合DV01/凸度实时监控，与风险计量平台对接",                                            "中",   20),
-    (7, 5,  "基准指数对比",           "跟踪误差计算，超额收益（Alpha）归因，信息比率监控",                                    "中",   20),
-    (7, 6,  "实时PnL归因",            "已实现/未实现PnL按因子/资产/策略三维归因",                                             "高",   30),
+    # ─── 7. 组合管理+绩效归因  (基于0417规划文档Slide 44展开)
+    # A. 组合分析
+    (7,  1, "债券横截面与时序分析",   "跨品种横截面信号挖掘（利差、久期偏差），历史时序趋势/均值回归分析",                    "高",   35),
+    (7,  2, "相对价值分析",           "利差/Z-spread/OAS相对价值，历史分位数定位，套利信号识别",                               "高",   30),
+    (7,  3, "组合相关度分析",         "资产间收益相关矩阵计算，组合集中度风险识别，分散化系数监控",                            "中",   25),
+    # B. 风险计量
+    (7,  4, "情景分析",               "利率/信用/流动性三类自定义情景，组合P&L影响量化，多情景并行对比",                       "高",   35),
+    (7,  5, "敏感度分析",             "久期/DV01/凸度/利差敏感度多因子并行计算，组合对冲比率建议",                             "高",   25),
+    (7,  6, "极端事件分析",           "历史极端情景（924行情/2015股灾/2020疫情）组合压测，尾部损失分布",                       "高",   30),
+    # C. 绩效归因
+    (7,  7, "指数比较分析",           "对标中债综合/信用/政策行等指数，跟踪误差（TE）实时监控，超额Alpha分解",                  "中",   25),
+    (7,  8, "绩效归因（Brinson）",    "BHB模型三效应：资产配置/个券选择/交互效应，日频计算，周/月/季报自动生成",               "高",   40),
+    # D. 组合优化与再平衡
+    (7,  9, "虚拟组合分析",           "组合调整前后效果模拟（净值/风险/收益），交易冲击成本预估，方案比较",                    "高",   20),
+    (7, 10, "再平衡方案试算与比较",   "久期/集中度/流动性约束联合优化，多方案并行试算，最优路径推荐",                          "高",   35),
+    (7, 11, "资产配置策略分析",       "宏观因子驱动大类资产配置模型（利率/信用/权益），动态权重优化建议",                      "高",   40),
+    (7, 12, "固收+策略分析",          "债券底仓+衍生品增强策略P&L归因，风险分解，固收+产品净值模拟",                           "高",   30),
+    (7, 13, "量化策略组合分析",       "多策略组合叠加容量约束，策略相关性管理，Sharpe/最大回撤监控",                           "高",   35),
+    # E. 流动性管理
+    (7, 14, "流动性分析",             "逐券换手率/市场深度评估，组合变现能力分析，流动性压力下变现损失估算",                    "中",   20),
+    # F. 量化计算底座集成
+    (7, 15, "定价计算集成",           "调用量化定价引擎实时估值与Greeks，支持含权债/可转债，结果缓存与推送",                    "高",   20),
+    (7, 16, "利率曲线集成",           "多曲线实时消费（国债/政策行/信用），曲线因子提取（水平/斜率/曲率），敏感度映射",         "中",   15),
+    (7, 17, "因子模型",               "多因子风险模型（利率/信用/流动性/行业因子），Alpha因子库，因子暴露实时计算",             "高",   40),
 
     # ─── 8. 策略投资/量化
     (8, 1,  "因子模型框架",           "多因子Alpha模型+风险因子，支持自定义因子上传与测试",                                   "高",   40),
@@ -647,6 +664,257 @@ def make_s4(wb):
     ws.row_dimensions[ir].height = 52
 
 
+def make_detail_portfolio(wb):
+    """Dedicated detail sheet for 组合管理+绩效归因 — sourced from Slide 44 of
+    基于国内外FICC平台发展经验规划FICC平台建设路径0417.pptx"""
+
+    ws = wb.create_sheet("详情_组合管理")
+    ws.sheet_view.showGridLines = False
+
+    # ── Title ──────────────────────────────────────────────────────────────────
+    ws.merge_cells("A1:J1")
+    t = ws.cell(row=1, column=1,
+                value="系统详情：组合管理+绩效归因  |  Portfolio Management & Performance Attribution")
+    t.font = Font(name="Arial", size=13, bold=True, color=WHITE)
+    t.fill = _fill(NAVY)
+    t.alignment = _align("center")
+    ws.row_dimensions[1].height = 24
+
+    # ── Core Objective (from Slide 44) ─────────────────────────────────────────
+    ws.merge_cells("A2:J2")
+    obj = ws.cell(row=2, column=1, value=(
+        "核心目标（Slide 44）：为FICC投资组合管理提供全面解决方案，"
+        "通过分析投资组合头寸、风险计量、绩效归因，"
+        "为投资经理在资产管理、组合构建、组合再平衡、指数投资等方面赋能。"
+    ))
+    obj.font = Font(name="Arial", size=10, italic=True, color=DNAV)
+    obj.fill = _fill(CFILL)
+    obj.alignment = _align(wrap=True)
+    obj.border = _border(DNAV)
+    ws.row_dimensions[2].height = 36
+
+    # ── Architecture Block (data inputs → quant base → analysis platform) ─────
+    ws.merge_cells("A3:J3")
+    arch = ws.cell(row=3, column=1, value=(
+        "架构层次：  "
+        "【数据层】交易数据 / 头寸数据 / 行情数据 / 估值数据  →  "
+        "【量化底座】定价计算 · 利率曲线 · 因子模型  →  "
+        "【组合分析平台】6大功能域（见下表）"
+    ))
+    arch.font = Font(name="Arial", size=10, bold=True, color=WHITE)
+    arch.fill = _fill(DNAV)
+    arch.alignment = _align(wrap=True)
+    arch.border = _border("4472C4")
+    ws.row_dimensions[3].height = 28
+
+    # ── Column headers ─────────────────────────────────────────────────────────
+    headers = [
+        ("功能域", 16), ("编号", 8), ("功能名称", 22), ("功能描述（来源Slide44）", 48),
+        ("验收标准", 26), ("集成依赖", 20), ("复杂度", 8),
+        ("预估(人天)", 10), ("优先级", 7), ("备注", 18),
+    ]
+    for col, (h, w) in enumerate(headers, 1):
+        header_style(ws, 4, col, h, width=w)
+    ws.row_dimensions[4].height = 28
+
+    # ── Function data: (domain, domain_fill, func_no, name, desc, acceptance,
+    #                    dependency, complexity, days, priority, note)
+    funcs = [
+        # A. 组合分析
+        ("A. 组合分析", MBLUE,
+         "F07-01", "债券横截面与时序分析",
+         "跨品种横截面信号挖掘（利差/久期偏差），历史时序趋势与均值回归分析，支持日/周/月时间窗口",
+         "横截面信号与实际收益相关性>0.3；时序模型回测夏普>0.5",
+         "AMD行情平台 / 估值数据",
+         "高", 35, "P1", "Slide44首项分析能力"),
+        ("A. 组合分析", MBLUE,
+         "F07-02", "相对价值分析",
+         "利差/Z-spread/OAS相对价值计算，历史分位数定位，跨品种套利信号识别，个券评分",
+         "OAS计算误差<1bps；分位数计算覆盖5年历史",
+         "量化定价引擎 / AMD行情",
+         "高", 30, "P1", "投资经理最常用分析工具"),
+        ("A. 组合分析", MBLUE,
+         "F07-03", "组合相关度分析",
+         "资产间收益相关矩阵计算（滚动窗口60/120/250日），组合集中度风险识别，分散化系数监控",
+         "相关矩阵计算耗时<30s（500券组合）",
+         "IBOR头寸 / AMD历史行情",
+         "中", 25, "P1", ""),
+
+        # B. 风险计量
+        ("B. 风险计量", DNAV,
+         "F07-04", "情景分析",
+         "利率平移/扭转/蝶式、信用利差扩大、流动性冲击三类情景；自定义情景编辑器；多情景P&L并行对比",
+         "情景P&L计算与手工核算误差<0.5%；支持≥20个情景并行",
+         "FICC风险计量平台 / 量化定价引擎",
+         "高", 35, "P1", "复用风险计量模块情景库"),
+        ("B. 风险计量", DNAV,
+         "F07-05", "敏感度分析",
+         "久期/DV01/凸度/利差/Vega敏感度多因子并行计算，组合层面聚合，对冲比率建议输出",
+         "DV01与Bloomberg基准误差<0.5bps",
+         "量化定价引擎Greeks接口",
+         "高", 25, "P1", ""),
+        ("B. 风险计量", DNAV,
+         "F07-06", "极端事件分析",
+         "内置924行情/2015股灾/2020疫情等8+极端情景，组合尾部损失分布，ES(99%)计算",
+         "历史情景复现误差<1%；与风险计量平台情景库共享",
+         "FICC风险计量平台",
+         "高", 30, "P1", "与风险计量平台共享情景库"),
+
+        # C. 绩效归因
+        ("C. 绩效归因", BBLUE,
+         "F07-07", "指数比较分析",
+         "对标中债综合/信用/政策行/定制基准指数；跟踪误差（TE）日频实时监控；超额Alpha三因子分解",
+         "TE计算误差<1bps；支持≥10个基准指数同时跟踪",
+         "AMD中债估值 / IBOR持仓",
+         "中", 25, "P1", "中债指数数据接入为前提"),
+        ("C. 绩效归因", BBLUE,
+         "F07-08", "绩效归因（Brinson模型）",
+         "BHB三效应：资产配置/个券选择/交互效应；日/周/月/季多时间维度；报告PDF自动生成",
+         "Brinson归因结果与Bloomberg AIM误差<0.1%；报告T+1 9:00前自动生成",
+         "IBOR持仓 / AMD行情 / 指数数据",
+         "高", 40, "P1", "核心差异化功能，对标SimCorp/Aladdin"),
+
+        # D. 组合优化与再平衡
+        ("D. 组合优化与再平衡", "3B7DD8",
+         "F07-09", "虚拟组合分析",
+         "组合调整前后净值/风险/收益效果模拟（纸面交易）；市场冲击成本预估；多方案结果对比展示",
+         "虚拟组合模拟结果与真实执行偏差<0.3%",
+         "IBOR / 现券交易系统（冲击模型）",
+         "高", 20, "P1", ""),
+        ("D. 组合优化与再平衡", "3B7DD8",
+         "F07-10", "再平衡方案试算与比较",
+         "久期/集中度/流动性/合规约束联合优化（二次规划QP），多方案并行试算，最优路径推荐",
+         "QP求解100券组合<5s；约束满足率100%",
+         "事前风控/合规 / IBOR / 现券系统",
+         "高", 35, "P1", "QP求解器选型：CVXPY/Gurobi"),
+        ("D. 组合优化与再平衡", "3B7DD8",
+         "F07-11", "资产配置策略分析",
+         "宏观因子（利率周期/信用周期/流动性）驱动大类资产配置模型；动态权重优化建议；历史回测验证",
+         "回测期≥5年；模型收益预测方向胜率>55%",
+         "AMD宏观数据 / 因子模型",
+         "高", 40, "P2", "Phase 1后期或Phase 2"),
+        ("D. 组合优化与再平衡", "3B7DD8",
+         "F07-12", "固收+策略分析",
+         "债券底仓+衍生品增强策略P&L归因，风险分解（利率/信用/期权贡献），固收+产品净值模拟",
+         "固收+净值模拟与实际偏差<0.5%",
+         "IBOR / 利率衍生品系统（Phase 2）",
+         "高", 30, "P2", "依赖利率衍生品模块"),
+        ("D. 组合优化与再平衡", "3B7DD8",
+         "F07-13", "量化策略组合分析",
+         "多策略组合叠加容量约束，策略相关性管理，Sharpe/最大回撤/Calmar实时监控，策略权重优化",
+         "策略容量计算误差<5%；组合Sharpe≥1.2（回测）",
+         "策略投资/量化系统",
+         "高", 35, "P2", "与策略投资模块深度整合"),
+
+        # E. 流动性
+        ("E. 流动性管理", "9DC3E6",
+         "F07-14", "流动性分析",
+         "逐券换手率/市场深度评估（日均成交量法），组合变现能力分析，流动性压力下变现损失（LVaR）估算",
+         "LVaR计算与市场基准误差<5%；日均成交量数据覆盖≥95%持仓",
+         "AMD行情（成交量） / IBOR持仓",
+         "中", 20, "P1", "监管流动性要求驱动"),
+
+        # F. 量化底座
+        ("F. 量化底座集成", CANVAS,
+         "F07-15", "定价计算集成",
+         "调用量化定价引擎实时估值与Greeks；支持含权债/可转债/IRS；结果缓存（Redis）与Kafka推送",
+         "定价API p99<200ms；日终全量估值<30min（10万券）",
+         "量化定价引擎（P2模块）",
+         "高", 20, "P2", "Phase 1用AMD估值代替，Phase 2升级"),
+        ("F. 量化底座集成", CANVAS,
+         "F07-16", "利率曲线集成",
+         "多曲线实时消费（国债/政策行/AAA信用/OIS）；Nelson-Siegel参数提取（水平/斜率/曲率）；敏感度映射",
+         "曲线更新延迟<1s；NS参数拟合R²>0.999",
+         "AMD行情平台 / 量化定价引擎",
+         "中", 15, "P1", ""),
+        ("F. 量化底座集成", CANVAS,
+         "F07-17", "因子模型",
+         "多因子风险模型（利率/信用/流动性/行业因子）；Alpha因子库（≥20个因子）；因子暴露实时计算与归因",
+         "因子模型解释方差>80%；Alpha IC均值>0.05",
+         "AMD历史行情 / IBOR持仓",
+         "高", 40, "P1", "复用策略投资模块因子库"),
+    ]
+
+    domain_fill_map = {}
+    row = 5
+    cur_domain = None
+
+    for item in funcs:
+        (domain, dom_fill, fno, fname, fdesc, accept, dep,
+         complexity, days, priority, note) = item
+
+        # Domain group header
+        if cur_domain != domain:
+            cur_domain = domain
+            ws.merge_cells(f"A{row}:J{row}")
+            dh = ws.cell(row=row, column=1, value=domain)
+            is_dark = dom_fill not in (CANVAS, "9DC3E6")
+            dh.font = Font(name="Arial", bold=True, size=10,
+                           color=WHITE if is_dark else DNAV)
+            dh.fill = _fill(dom_fill)
+            dh.alignment = _align()
+            dh.border = _border("4472C4")
+            ws.row_dimensions[row].height = 18
+            row += 1
+
+        # Row fill: alternate light shades per domain
+        row_fill = P1COL if priority == "P1" else P2COL
+
+        data_cell(ws, row, 1, domain,     row_fill)
+        data_cell(ws, row, 2, fno,        row_fill, align="center")
+        data_cell(ws, row, 3, fname,      row_fill, bold=True)
+        data_cell(ws, row, 4, fdesc,      row_fill)
+        data_cell(ws, row, 5, accept,     row_fill)
+        data_cell(ws, row, 6, dep,        row_fill)
+
+        cc = ws.cell(row=row, column=7, value=complexity)
+        cc.font = Font(name="Arial", bold=True, size=9,
+                       color=WHITE if complexity == "极高" else RED if complexity == "高" else DNAV)
+        cc.fill = _fill(MBLUE if complexity == "极高" else P2COL)
+        cc.alignment = _align("center")
+        cc.border = _border()
+
+        dc = ws.cell(row=row, column=8, value=days)
+        dc.font = Font(name="Arial", color="0000FF", size=10)
+        dc.fill = _fill(row_fill)
+        dc.alignment = _align("center")
+        dc.border = _border()
+
+        pc = ws.cell(row=row, column=9, value=priority)
+        pc.font = Font(name="Arial", bold=True, size=10,
+                       color=WHITE if priority == "P1" else DNAV)
+        pc.fill = _fill(MBLUE if priority == "P1" else BBLUE)
+        pc.alignment = _align("center")
+        pc.border = _border()
+
+        data_cell(ws, row, 10, note, row_fill)
+        ws.row_dimensions[row].height = 48
+        row += 1
+
+    # Totals
+    ws.merge_cells(f"A{row}:G{row}")
+    tf = ws.cell(row=row, column=1,
+                 value=f"合计 17项功能  |  P1: 12项  |  P2: 5项  |  来源：Slide 44 + 扩展")
+    tf.font = Font(name="Arial", bold=True, color=WHITE, size=10)
+    tf.fill = _fill(DNAV)
+    tf.alignment = _align()
+    tf.border = _border("4472C4")
+
+    tc = ws.cell(row=row, column=8, value=f"=SUM(H5:H{row-1})")
+    tc.font = Font(name="Arial", bold=True, color=WHITE, size=10)
+    tc.fill = _fill(DNAV)
+    tc.alignment = _align("center")
+    tc.border = _border("4472C4")
+
+    for col in [9, 10]:
+        c = ws.cell(row=row, column=col, value="")
+        c.fill = _fill(DNAV)
+        c.border = _border("4472C4")
+
+    ws.page_setup.orientation = "landscape"
+    ws.page_setup.fitToWidth = 1
+
+
 def main():
     wb = Workbook()
     wb.remove(wb.active)
@@ -655,6 +923,7 @@ def main():
     make_s2(wb)
     make_s3(wb)
     make_s4(wb)
+    make_detail_portfolio(wb)
 
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
     wb.save(OUT)
