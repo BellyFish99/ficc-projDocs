@@ -11,39 +11,118 @@ module:
   gap: 大
   competitor: Murex/专项
   foundation: ATP报价接口
-  duration_m: 12
+  duration_m: 14
   team_sz: 12
-  person_months: 120
-  note: 双边报价引擎，需深度市场经验
+  person_months: 140
+  note: 双边报价引擎，做市义务监控，报价策略自动优化，支持双边/TRS/RFQ/API四种做市模式；对应PPT Slide 53-54
   source_slide: 53
-  functions:
-  - id: F15-01
-    name: 双边报价引擎
-    desc: 多品种同时双边报价，延迟<5ms，报价宽度动态优化
-    complexity: 极高
-    days: 70
-    priority: P3
-  - id: F15-02
-    name: 库存风险实时管理
-    desc: 做市库存PnL实时监控，Delta对冲自动触发
-    complexity: 极高
-    days: 60
-    priority: P3
-  - id: F15-03
-    name: 报价优化算法
-    desc: 基于市场微结构理论动态调整bid-ask spread
-    complexity: 极高
-    days: 50
-    priority: P3
-  - id: F15-04
-    name: 竞争力分析
-    desc: 与市场最优报价对比，中签率分析，策略调优
-    complexity: 高
-    days: 25
-    priority: P3
-  - id: F15-05
-    name: 交易对手管理集成
-    desc: 做市交易对手信用实时检查，额度占用同步更新
-    complexity: 中
-    days: 20
-    priority: P3
+  function_domains:
+  - id: D1
+    name: 做市模式管理
+    functions:
+    - id: F15-01
+      name: 双边报价做市
+      desc: 多品种同时双边报价，延迟<5ms，报价宽度动态优化，支持国债/信用债/利率互换多品种做市
+      complexity: 极高
+      days: 70
+      priority: P3
+    - id: F15-02
+      name: TRS做市服务
+      desc: TRS产品双边报价，与TRS收益互换系统深度集成，对冲报价敞口，支持客户TRS交易
+      complexity: 极高
+      days: 40
+      priority: P3
+    - id: F15-03
+      name: RFQ询价响应
+      desc: 接收客户询价请求，自动生成报价，报价有效期管理，成交确认，询价历史记录
+      complexity: 高
+      days: 25
+      priority: P3
+    - id: F15-04
+      name: API程序化做市
+      desc: 对外提供做市API接口，支持程序化交易对手接入，流式报价推送，API鉴权与频率限制
+      complexity: 高
+      days: 25
+      priority: P3
+  - id: D2
+    name: 报价策略管理
+    functions:
+    - id: F15-05
+      name: 报价策略配置
+      desc: 各品种做市参数配置（报价宽度/报价量/报价频率），分时段策略，按交易对手差异化报价
+      complexity: 中
+      days: 20
+      priority: P3
+    - id: F15-06
+      name: 报价优化算法
+      desc: 基于市场微结构理论动态调整bid-ask spread，流动性自适应调节，机器学习辅助报价优化
+      complexity: 极高
+      days: 50
+      priority: P3
+    - id: F15-07
+      name: 债券过滤与筛选
+      desc: 做市标的券池管理，流动性分级筛选，黑名单管理，临时暂停做市规则
+      complexity: 低
+      days: 10
+      priority: P3
+  - id: D3
+    name: 做市义务监控
+    functions:
+    - id: F15-08
+      name: 做市义务实时监控
+      desc: 实时监控做市义务完成情况（报价连续性/报价宽度/报价量达标），义务违规预警，监管报告生成
+      complexity: 高
+      days: 30
+      priority: P3
+    - id: F15-09
+      name: 做市行情展示
+      desc: 做市报价行情矩阵，实时价格展示，报价历史回放，市场最优报价对比，中签率统计
+      complexity: 中
+      days: 20
+      priority: P3
+  - id: D4
+    name: 订单与风险管理
+    functions:
+    - id: F15-10
+      name: 做市订单管理
+      desc: 做市委托生成、撤改、成交回报处理，订单状态实时跟踪，批量撤单，做市台账
+      complexity: 高
+      days: 30
+      priority: P3
+    - id: F15-11
+      name: 库存风险实时管理
+      desc: 做市库存PnL实时监控，Delta对冲自动触发，库存敞口上限控制，实时盯市损益
+      complexity: 极高
+      days: 60
+      priority: P3
+    - id: F15-12
+      name: 竞争力分析
+      desc: 与市场最优报价对比，中签率分析，报价表现统计，策略调优建议，竞争对手报价分析
+      complexity: 高
+      days: 25
+      priority: P3
+  tech_design:
+    pattern: C++低延迟报价引擎(<5ms) + Java策略管理 + 实时库存风险监控
+    data_model: >
+      MarketMakeQuote (quoteId, bondId, bidPrice, askPrice, bidQty, askQty, strategy, latencyMs, createdAt) ;
+      MmInventory (bondId, qty, avgCost, marketValue, pnl, deltaExposure, updatedAt) ;
+      MmObligation (date, bondId, quotedMinutes, requiredMinutes, avgSpread, maxAllowedSpread, compliant) ;
+      HedgeOrder (orderId, triggeredBy, bondId, side, qty, price, status, executedAt)
+    core_stack: >
+      C++ (核心报价引擎，延迟<5ms) + Java 21 (策略配置/义务监控/风险管理) ;
+      Redis (实时库存/PnL缓存) ; Kafka (成交事件/对冲触发) ;
+      Python (报价优化算法/ML模型) ; React (策略配置工作台)
+    key_interfaces:
+    - ATP/交易所接口 → 报价委托发送与成交回报 (<5ms延迟)
+    - 定价平台 → 做市标的实时估值与Greeks (gRPC)
+    - TRS收益互换系统 → TRS做市联动 (内部API)
+    - 事前风控 → 做市前合规校验 (同步REST)
+    - IBOR → 库存持仓簿记同步
+    key_decisions:
+    - 报价引擎与策略管理分离部署，C++引擎专注低延迟，Java层处理策略逻辑
+    - 库存风险监控异步运行，不在报价关键路径上，保证报价延迟
+    - 做市义务监控独立模块，便于监管审计与报告生成
+    open_questions:
+    - 做市品种范围确认（国债/信用债/互换，优先级排序需业务确认）
+    - 做市商资质申请时间表（监管批准周期影响上线时间）
+    - C++低延迟引擎与信创架构兼容性
