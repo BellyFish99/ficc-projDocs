@@ -1,0 +1,45 @@
+<mxGraphModel dx="1422" dy="762" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1120" pageHeight="184" math="0" shadow="0">
+  <root>
+    <mxCell id="0"/>
+    <mxCell id="1" parent="0"/>
+    <mxCell id="2" value="销售交易  |  P2  |  5月  |  5人" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#0F2060;fontColor=#FFFFFF;strokeColor=#0F2060;fontStyle=1;fontSize=12;align=center;verticalAlign=middle;" vertex="1" parent="1">
+      <mxGeometry x="10.0" y="10.0" width="1100.0" height="44" as="geometry"/>
+    </mxCell>
+    <mxCell id="3" value="D1. 报价管理" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#2B5EC7;fontColor=#FFFFFF;strokeColor=#1B3275;fontStyle=1;fontSize=10;align=center;verticalAlign=middle;" vertex="1" parent="1">
+      <mxGeometry x="10.0" y="54.0" width="366.7" height="36" as="geometry"/>
+    </mxCell>
+    <mxCell id="4" value="D2. 交易执行" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#2B5EC7;fontColor=#FFFFFF;strokeColor=#1B3275;fontStyle=1;fontSize=10;align=center;verticalAlign=middle;" vertex="1" parent="1">
+      <mxGeometry x="376.7" y="54.0" width="366.7" height="36" as="geometry"/>
+    </mxCell>
+    <mxCell id="5" value="D3. 智能服务" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#2B5EC7;fontColor=#FFFFFF;strokeColor=#1B3275;fontStyle=1;fontSize=10;align=center;verticalAlign=middle;" vertex="1" parent="1">
+      <mxGeometry x="743.3" y="54.0" width="366.7" height="36" as="geometry"/>
+    </mxCell>
+    <mxCell id="6" value="报价工作台" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
+      <mxGeometry x="10.0" y="90.0" width="366.7" height="28" as="geometry"/>
+    </mxCell>
+    <mxCell id="7" value="交易执行与要素校验" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
+      <mxGeometry x="376.7" y="90.0" width="366.7" height="28" as="geometry"/>
+    </mxCell>
+    <mxCell id="8" value="智能推荐系统" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
+      <mxGeometry x="743.3" y="90.0" width="366.7" height="28" as="geometry"/>
+    </mxCell>
+    <mxCell id="9" value="债券过滤与筛选" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
+      <mxGeometry x="10.0" y="118.0" width="366.7" height="28" as="geometry"/>
+    </mxCell>
+    <mxCell id="10" value="风控检查" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
+      <mxGeometry x="376.7" y="118.0" width="366.7" height="28" as="geometry"/>
+    </mxCell>
+    <mxCell id="11" value="综合业务平台" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
+      <mxGeometry x="743.3" y="118.0" width="366.7" height="28" as="geometry"/>
+    </mxCell>
+    <mxCell id="12" value="报价撮合与对价" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
+      <mxGeometry x="10.0" y="146.0" width="366.7" height="28" as="geometry"/>
+    </mxCell>
+    <mxCell id="13" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F7FA;fontColor=#F5F7FA;strokeColor=#D6E4F7;fontSize=9;" vertex="1" parent="1">
+      <mxGeometry x="376.7" y="146.0" width="366.7" height="28" as="geometry"/>
+    </mxCell>
+    <mxCell id="14" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F7FA;fontColor=#F5F7FA;strokeColor=#D6E4F7;fontSize=9;" vertex="1" parent="1">
+      <mxGeometry x="743.3" y="146.0" width="366.7" height="28" as="geometry"/>
+    </mxCell>
+  </root>
+</mxGraphModel>

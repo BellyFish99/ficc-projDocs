@@ -11,45 +11,80 @@ module:
   gap: 中
   competitor: 金证/顶点
   foundation: 现券交易系统/IBOR
-  duration_m: 4
-  team_sz: 4
-  person_months: 14
+  duration_m: 5
+  team_sz: 5
+  person_months: 20
   note: 面向对客服务的销售交易工作台，报价聚合、智能推荐、交易执行一体化；对应PPT Slide 47
   source_slide: 47
-  functions:
-  - id: F10-01
-    name: 销交工作台
-    desc: 报价管理主界面，历史报价管理，当日报价快捷操作，导入/导出报价，一键unrefer操作
-    complexity: 中
-    days: 20
-    priority: P2
-  - id: F10-02
-    name: 债券过滤与筛选
-    desc: 信用债/利率债过滤，信用债全品种过滤，利率债国债/证金债/地方债分类过滤，精确与模糊识别
-    complexity: 低
-    days: 10
-    priority: P2
-  - id: F10-03
-    name: 报价撮合与对价
-    desc: 报价展示（对价/最优报价），撮合对价，报价提醒，交易包管理，报价成交确认
-    complexity: 中
-    days: 20
-    priority: P2
-  - id: F10-04
-    name: 交易执行与审批
-    desc: 意向达成，交易要素校验，手工价录入，业务审批流程，交易执行
-    complexity: 中
-    days: 15
-    priority: P2
-  - id: F10-05
-    name: 风控检查
-    desc: 交易前风控规则校验，限额检查，合规拦截，风控记录留痕
-    complexity: 中
-    days: 15
-    priority: P2
-  - id: F10-06
-    name: 智能推荐系统
-    desc: 从被动客户服务转向主动服务，基于客户画像与持仓分析智能推荐券种，提升客户响应效率
-    complexity: 高
-    days: 25
-    priority: P2
+  function_domains:
+  - id: D1
+    name: 报价管理
+    functions:
+    - id: F10-01
+      name: 报价工作台
+      desc: 历史报价管理，当日报价快捷操作，导入/导出报价，一键unrefer，报价提醒功能
+      complexity: 中
+      days: 20
+      priority: P2
+    - id: F10-02
+      name: 债券过滤与筛选
+      desc: 信用债全品种过滤，利率债（国债/证金债/地方债）过滤，精确识别与模糊识别双模式
+      complexity: 低
+      days: 10
+      priority: P2
+    - id: F10-03
+      name: 报价撮合与对价
+      desc: 对价/最优报价聚合展示，撮合对价，交易包管理，报价成交确认，一键成交
+      complexity: 中
+      days: 20
+      priority: P2
+  - id: D2
+    name: 交易执行
+    functions:
+    - id: F10-04
+      name: 交易执行与要素校验
+      desc: 意向达成，交易要素自动校验，手工价录入，业务审批流程，交易记录管理
+      complexity: 中
+      days: 15
+      priority: P2
+    - id: F10-05
+      name: 风控检查
+      desc: 交易前风控规则同步校验，限额检查，合规拦截，风控记录留痕，不通过自动拦截
+      complexity: 中
+      days: 15
+      priority: P2
+  - id: D3
+    name: 智能服务
+    functions:
+    - id: F10-06
+      name: 智能推荐系统
+      desc: 基于客户画像与历史交易数据主动推荐券种，从被动服务转向主动服务，提升客户响应效率
+      complexity: 高
+      days: 25
+      priority: P2
+    - id: F10-07
+      name: 综合业务平台
+      desc: 解决交易员分散办公与客户交易信息共享问题，报价聚合展示，客户快速服务，多地协同
+      complexity: 中
+      days: 15
+      priority: P2
+  tech_design:
+    pattern: 工作台 + 实时报价聚合 + 风控同步校验
+    data_model: >
+      Quote (quoteId, bondId, price, side, traderId, status, createdAt) ;
+      SalesOrder (orderId, clientId, bondId, qty, price, status, executedAt) ;
+      ClientProfile (clientId, name, preferredBonds, historyStats, updatedAt)
+    core_stack: >
+      Java 21 (交易执行/风控校验) + React (工作台前端) ;
+      Redis (实时报价缓存) ; Kafka (报价事件流) ;
+      Python (智能推荐模型)
+    key_interfaces:
+    - 现券交易系统 → 报价/成交数据共享
+    - 事前风控 → 交易前同步校验 (REST, p99<50ms)
+    - IBOR → 客户持仓与账户数据
+    - 定价平台 → 实时估值/报价参考
+    key_decisions:
+    - 智能推荐与交易执行解耦，推荐系统异步运行不影响交易主流程
+    - 报价聚合支持多交易员协同，解决分散办公信息不共享问题
+    open_questions:
+    - 智能推荐模型的冷启动问题（历史交易数据积累周期）
