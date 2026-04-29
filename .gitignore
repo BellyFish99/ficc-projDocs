@@ -50,6 +50,10 @@ gy/backup/
 gy/tmp_diagrams/
 *.png
 
+# ── Feasibility_analysis — version-control everything in this folder ──────────
+!Feasibility_analysis/
+!Feasibility_analysis/**
+
 # ── What IS tracked (no entry needed — tracked by default) ───────────────────
 # *.md        solution docs, PPT content, checkpoints, READMEs
 # *.drawio    diagrams
