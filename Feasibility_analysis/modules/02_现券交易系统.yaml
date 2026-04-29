@@ -1,7 +1,7 @@
 module:
   'no': 2
   cn: 现券交易系统
-  en: Bond Trading
+  en: Bond Trading System
   domain: 前台交易
   priority: P1
   market_demand: 5
@@ -14,42 +14,298 @@ module:
   duration_m: 6
   team_sz: 8
   person_months: 42
-  note: 银行间+交易所双市场覆盖
+  note: 银行间+交易所双市场统一订单模型，28项功能覆盖报价/订单/定价/风控/STP/做市/数据/分析全链路
   source_slide: null
-  functions:
-  - id: F02-01
-    name: 银行间双边报价
-    desc: CFETS/X-Bond两板块报价，支持询价（RFQ）和竞价
-    complexity: 高
-    days: 30
-    priority: P1
-  - id: F02-02
-    name: 交易所债券委托
-    desc: 上交所/深交所债券买卖下单，支持限价/市价/条件单
-    complexity: 中
-    days: 20
-    priority: P1
-  - id: F02-03
-    name: 收益率/价格计算
-    desc: 全品种YTM/价格双向转换，含含权债修正久期计算
-    complexity: 中
-    days: 15
-    priority: P1
-  - id: F02-04
-    name: 交易前风险校验
-    desc: 调用事前风控接口，单笔限额/集中度/利率风险实时拦截
-    complexity: 中
-    days: 15
-    priority: P1
-  - id: F02-05
-    name: 交易确认与指令生成
-    desc: 成交确认后自动生成DVP/FOP清算指令，推送清算结算模块
-    complexity: 高
-    days: 20
-    priority: P1
-  - id: F02-06
-    name: 做市/询价接口
-    desc: 支持双边报价模式，库存自动刷新，与做市商系统预留接口
-    complexity: 中
-    days: 10
-    priority: P2
+  data_inputs:
+  - CFETS/X-Bond行情与成交回报
+  - 上交所/深交所债券接口回报
+  - AMD/Bloomberg实时行情
+  - 中债估值曲线
+  foundation_layer:
+  - ATP报盘引擎
+  - IBOR持仓账薄
+  - 事前风控/合规系统
+  - 清算结算后台
+  tech_design:
+    pattern: 低延迟前台交易系统 — 统一订单模型覆盖多市场接入 + STP零人工干预链路，端到端成交<50ms
+    data_model:
+    - 'Quote层: 报价单/询价单状态机（发起→应答→成交→撤销），银行间与交易所统一抽象'
+    - 'Order层: 订单生命周期（录入→风控→报盘→部分成交→全额成交/撤单），含修正/错单流程'
+    - 'Trade层: 成交记录，含市场回报自动落账和手工录入通道，双源核对'
+    - 'Instruction层: DVP/FOP清算指令，推送清算结算系统，含失败重试与状态跟踪'
+    core_stack:
+      market_gateway: CFETS REST/FIX API + X-Bond API + 上交所债券通 + 深交所债券平台(Bond Connect预留)
+      order_engine: 自研低延迟OMS(Java/Go)，内存态订单簿，端到端<50ms
+      pretrade_risk: 调用事前风控微服务(REST同步，<10ms)，失败阻断下单
+      stp_pipeline: 成交回报→Kafka→IBOR→清算结算，正常路径零人工干预
+      pricing_service: 调用量化定价引擎微服务(Module 9)，YTM/DV01/含权债定价
+      infra: 双活部署；信创适配RocketMQ/达梦DB替换Kafka/MySQL
+    key_interfaces:
+      inbound:
+      - CFETS/X-Bond → 成交回报(FIX/REST，<50ms)
+      - 上交所/深交所 → 委托回报(交易所API，<100ms)
+      - AMD/Bloomberg → 实时行情(Kafka，<1s)
+      - 中债登 → 估值曲线(T+0日间推送，批量)
+      outbound:
+      - 现券交易 → IBOR(成交推送，Kafka，<200ms)
+      - 现券交易 → 事前风控(校验请求，REST同步，<10ms)
+      - 现券交易 → 清算结算(DVP/FOP指令，REST，T+0)
+      - 现券交易 → 组合管理(持仓变动事件，Kafka)
+    key_decisions:
+    - '统一订单模型: 银行间/交易所共用同一订单数据结构，市场差异由网关层适配，上层业务无需区分'
+    - 'STP零人工: 正常成交全程无人工干预，异常（风控拦截/交易所拒单）才触发人工介入工作流'
+    - '做市/自营共用前台: 同一报价引擎，策略标签区分做市与自营，P&L独立归因互不污染'
+    - '定价外部化: YTM/DV01/含权债定价全部调用量化定价引擎，本系统不内嵌定价逻辑，便于统一升级'
+    open_questions:
+    - CFETS新一代接口迁移时间表（旧版QDP协议 vs 新版REST API），影响网关层开发工作量
+    - 与现有ATP报盘引擎的功能边界：是改造ATP还是并行建设新OMS，双轨期如何共存
+    - Bond Connect跨境接口是否纳入一期范围（涉及境外机构准入与SWIFT报文）
+  function_domains:
+  - id: A
+    name: 市场接入与报价
+    functions:
+    - id: F02-01
+      name: 银行间双边报价
+      desc: CFETS/X-Bond两板块双边报价，支持询价(RFQ)和竞价模式，报价有效期自动管理，批量报价维护与撤单
+      complexity: 高
+      days: 30
+      priority: P1
+      acceptance: 报价发出到CFETS确认<200ms，批量报价支持≥100条/次
+      dependency: CFETS API/X-Bond API
+    - id: F02-02
+      name: 交易所债券委托
+      desc: 上交所/深交所债券买卖下单，支持限价/市价/条件单三类订单，撤单与改单，ETF债券联接与综合协议交易
+      complexity: 中
+      days: 20
+      priority: P1
+      acceptance: 委托响应<100ms，撤单成功率>99.5%
+      dependency: 上交所/深交所债券接口
+    - id: F02-07
+      name: RFQ询价管理
+      desc: 支持发起/接收/应答全链路RFQ流程，询价对象多选，报价有效期倒计时，最优报价自动高亮，历史询价记录检索
+      complexity: 中
+      days: 20
+      priority: P1
+      acceptance: RFQ全流程(发起到成交)端到端<30s，历史记录保存≥1年
+      dependency: CFETS RFQ接口
+    - id: F02-08
+      name: Bond Connect跨境接入
+      desc: 对接香港债券通(北向通)，支持境外机构通过Bond Connect参与银行间债券交易，含SWIFT报文生成与境外结算指令
+      complexity: 高
+      days: 40
+      priority: P2
+      acceptance: Bond Connect成交回报处理<500ms，SWIFT报文生成准确率100%
+      dependency: Bond Connect CFETS接口/SWIFT网关
+  - id: B
+    name: 订单管理
+    functions:
+    - id: F02-09
+      name: 订单全生命周期管理
+      desc: 订单录入/修改/撤销/挂单状态机，支持部分成交跟踪，订单有效期(GTC/GTD/IOC/FOK)配置，订单历史完整审计
+      complexity: 高
+      days: 25
+      priority: P1
+      acceptance: 订单状态更新延迟<100ms，状态机覆盖全生命周期，历史可回溯≥1年
+      dependency: CFETS/交易所接口/事前风控
+    - id: F02-10
+      name: 大宗/协议交易
+      desc: 银行间大宗交易报价协商，双边确认，超大额交易分笔拆单执行，协议交易备案与记录
+      complexity: 中
+      days: 20
+      priority: P1
+      acceptance: 大宗交易协商流程≤5步确认，拆单执行计划自动生成
+      dependency: CFETS大宗交易模块
+    - id: F02-11
+      name: 篮子交易与批量下单
+      desc: 多债券组合同时建仓/调仓，篮子订单按权重/金额/数量三种模式分配，批量状态监控与部分失败重试
+      complexity: 中
+      days: 20
+      priority: P1
+      acceptance: 篮子交易支持≥50只债券同批，批量下单耗时<5s
+      dependency: 订单引擎/IBOR持仓
+    - id: F02-12
+      name: 条件单与算法单接口
+      desc: 价格触发条件单（达到目标YTM/价格自动下单），预留TWAP/VWAP算法交易接口，算法执行进度实时展示
+      complexity: 高
+      days: 30
+      priority: P2
+      acceptance: 条件触发延迟<1s，算法接口支持主流算法交易供应商标准协议
+      dependency: AMD实时行情/量化定价引擎
+  - id: C
+    name: 定价与计算
+    functions:
+    - id: F02-03
+      name: 收益率/价格计算
+      desc: 全品种YTM/全价/净价双向转换，含权债修正久期，多计息基准(ACT/365/ACT/360/30/360)精确计算
+      complexity: 中
+      days: 15
+      priority: P1
+      acceptance: YTM计算与Bloomberg基准误差<0.1bps，含权债定价覆盖主流含权结构
+      dependency: 量化定价引擎(Module 9)/资产主数据
+    - id: F02-13
+      name: 特殊品种定价
+      desc: ABS/ABN资产支持证券、永续债、可转债、可交换债、二级资本债定价，含信用利差/流动性溢价调整
+      complexity: 高
+      days: 30
+      priority: P1
+      acceptance: 特殊品种覆盖率100%，定价结果与市场成交价偏差统计<5bps
+      dependency: 量化定价引擎/信用利差曲线数据
+    - id: F02-14
+      name: 实时浮盈浮亏
+      desc: 成交后即时PnL计算，含已实现/未实现分拆，按账户/策略/品种多维度汇总，日内PnL归因(价格/利息/汇率)
+      complexity: 高
+      days: 25
+      priority: P1
+      acceptance: PnL更新延迟<1s，已实现/未实现分拆误差为零
+      dependency: IBOR持仓/AMD实时行情
+    - id: F02-15
+      name: 利率敏感性指标
+      desc: DV01/修正久期/凸性实时计算，组合层面利率风险汇总，BP-level利率冲击情景分析
+      complexity: 中
+      days: 20
+      priority: P1
+      acceptance: 敏感性指标与Bloomberg基准误差<1%，组合汇总更新<2s
+      dependency: 量化定价引擎/IBOR持仓
+  - id: D
+    name: 交易前风控
+    functions:
+    - id: F02-04
+      name: 交易前风险校验
+      desc: 调用事前风控接口，单笔限额/账户集中度/利率风险DV01/信用评级限额实时拦截，风控拦截阻断下单
+      complexity: 中
+      days: 15
+      priority: P1
+      acceptance: 风控校验响应<10ms，零漏拦，误报率<0.05%
+      dependency: 事前风控/合规系统(Module 6)
+    - id: F02-16
+      name: 合规规则嵌入
+      desc: 投资授权范围/禁投清单/单券集中度上限/评级下限嵌入下单流程，不符合规则自动弹窗说明并阻断，支持规则热更新
+      complexity: 中
+      days: 20
+      priority: P1
+      acceptance: 合规规则覆盖投资授权书100%条款，规则热更新生效<1min
+      dependency: 事前风控/合规系统(Module 6)/投资授权书管理
+    - id: F02-17
+      name: 流动性与市场影响评估
+      desc: 大额交易前评估目标债券流动性（换手率/买卖价差/存量规模），估算市场冲击成本，超阈值触发投资经理二次确认
+      complexity: 中
+      days: 20
+      priority: P2
+      acceptance: 流动性评估结果<500ms，大额阈值可配置，确认记录100%留痕
+      dependency: AMD行情平台/债券基础数据
+  - id: E
+    name: 成交处理与STP
+    functions:
+    - id: F02-05
+      name: 交易确认与指令生成
+      desc: 成交确认后自动生成DVP/FOP清算指令，含托管账户/资金账户/ISIN/结算金额完整要素，推送清算结算模块
+      complexity: 高
+      days: 20
+      priority: P1
+      acceptance: 成交到指令生成延迟<500ms，指令要素完整率100%
+      dependency: 清算结算后台(Module 14)/中登中债登接口
+    - id: F02-18
+      name: STP直通处理
+      desc: 成交→IBOR更新→清算指令全链路无人工干预，异常（金额差异/账户不匹配）自动隔离进入人工处理队列，STP率实时监控
+      complexity: 高
+      days: 25
+      priority: P1
+      acceptance: STP直通率>98%，异常隔离延迟<1min，人工处理队列可视化
+      dependency: IBOR(Module 1)/清算结算(Module 14)/Kafka
+    - id: F02-19
+      name: 成交修正与错单处理
+      desc: 支持T+0错单撤销/修改，含双级审批工作流，修正后重新触发STP链路，错单历史与原因分类统计
+      complexity: 中
+      days: 20
+      priority: P1
+      acceptance: 错单处理T+0完成，审批链≤2级，修正后STP重触发成功率>99%
+      dependency: 权限管理/IBOR/清算结算
+    - id: F02-20
+      name: 跨市场净额轧差
+      desc: 同日同券银行间+交易所成交净额轧差计算，减少资金占用，净额结果推送清算系统，轧差差异自动核对
+      complexity: 中
+      days: 20
+      priority: P2
+      acceptance: 净额轧差计算准确率100%，与清算系统差异核对通过率>99.9%
+      dependency: 清算结算后台(Module 14)
+  - id: F
+    name: 做市与流动性管理
+    functions:
+    - id: F02-06
+      name: 做市报价接口
+      desc: 支持双边报价做市模式，库存实时刷新驱动报价价差自动调整，与做市商系统(Module 15)预留标准接口
+      complexity: 中
+      days: 10
+      priority: P2
+      acceptance: 报价刷新延迟<500ms，做市接口符合Module 15做市商系统对接规范
+      dependency: 做市商系统(Module 15)/IBOR持仓
+    - id: F02-21
+      name: 库存管理与头寸监控
+      desc: 做市库存实时监控，目标库存区间配置，超出区间触发预警，库存归零/超限自动暂停报价，日内库存P&L实时展示
+      complexity: 中
+      days: 20
+      priority: P2
+      acceptance: 库存监控更新<1s，超限预警触发率100%，暂停报价延迟<500ms
+      dependency: IBOR持仓(Module 1)/做市商系统(Module 15)
+    - id: F02-22
+      name: 报价P&L归因
+      desc: 做市盈亏拆分（买卖价差收益/库存持有收益/汇率收益），按券种/期限/信用等级多维度统计，日/月做市绩效报告
+      complexity: 中
+      days: 20
+      priority: P2
+      acceptance: P&L归因覆盖100%做市成交，维度下钻≥4级，日报T+0生成
+      dependency: IBOR持仓/实时行情/成交记录
+  - id: G
+    name: 行情与数据接入
+    functions:
+    - id: F02-23
+      name: 实时行情接入
+      desc: 接入AMD/Bloomberg实时债券成交行情、报价行情，标准化清洗，异常跳价过滤，推送至交易终端与定价层
+      complexity: 中
+      days: 20
+      priority: P1
+      acceptance: 行情延迟<1s，异常行情自动过滤告警，数据完整性>99.9%
+      dependency: AMD行情平台/Bloomberg API
+    - id: F02-24
+      name: 利率曲线与信用利差
+      desc: 中债估值曲线/国债收益率曲线/信用利差矩阵实时推送至交易终端，支持手动覆盖曲线点位（需审批），历史曲线回放
+      complexity: 中
+      days: 20
+      priority: P1
+      acceptance: 曲线更新延迟<2s，历史曲线回放支持任意交易日，覆盖率100%
+      dependency: 中债数据接口/AMD估值平台
+    - id: F02-25
+      name: 债券基础数据维护
+      desc: 债券要素（ISIN/票面/期限/评级/含权条款/付息安排/发行人）自动从中债登/Wind同步，异动实时告警，人工维护通道与审批
+      complexity: 低
+      days: 15
+      priority: P1
+      acceptance: 新券上市后基础数据就绪<2h，要素同步准确率>99.9%
+      dependency: 中债登/Wind数据接口/资产主数据系统
+  - id: H
+    name: 交易分析与报表
+    functions:
+    - id: F02-26
+      name: 交易执行质量分析(TCA)
+      desc: 成交价vs基准价(VWAP/到达价/中债估值)偏差统计，执行成本量化，滑点分析，按交易员/策略/品种多维度排名
+      complexity: 高
+      days: 25
+      priority: P2
+      acceptance: TCA覆盖100%成交记录，基准价偏差计算准确，报告T+1生成
+      dependency: 成交记录/AMD实时行情/中债估值
+    - id: F02-27
+      name: 监管报送支持
+      desc: 按CFETS/人民银行/证监会格式提取成交数据，含日成交报告/大额交易申报/异常交易上报，定时自动推送，报送状态跟踪
+      complexity: 中
+      days: 20
+      priority: P1
+      acceptance: 报送数据与成交记录一致性100%，定时推送准时率>99.9%，推送失败自动告警重试
+      dependency: 成交记录/事前风控系统/报表引擎
+    - id: F02-28
+      name: 交易统计分析
+      desc: 日/月/季成交量统计（按品种/期限/评级/账户/交易员维度），换手率趋势，市场份额分析，可视化Dashboard与Excel导出
+      complexity: 低
+      days: 15
+      priority: P2
+      acceptance: 统计报表T+1生成，支持≥6个分析维度，Excel导出格式标准
+      dependency: 成交记录/IBOR持仓
