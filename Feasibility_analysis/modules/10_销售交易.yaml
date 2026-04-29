@@ -1,0 +1,55 @@
+module:
+  'no': 10
+  cn: 销售交易
+  en: Sales Trading
+  domain: 客需业务
+  priority: P2
+  market_demand: 3
+  competitor_strength: 2
+  current_state: L1
+  target_state: L3
+  gap: 中
+  competitor: 金证/顶点
+  foundation: 现券交易系统/IBOR
+  duration_m: 4
+  team_sz: 4
+  person_months: 14
+  note: 面向对客服务的销售交易工作台，报价聚合、智能推荐、交易执行一体化；对应PPT Slide 47
+  source_slide: 47
+  functions:
+  - id: F10-01
+    name: 销交工作台
+    desc: 报价管理主界面，历史报价管理，当日报价快捷操作，导入/导出报价，一键unrefer操作
+    complexity: 中
+    days: 20
+    priority: P2
+  - id: F10-02
+    name: 债券过滤与筛选
+    desc: 信用债/利率债过滤，信用债全品种过滤，利率债国债/证金债/地方债分类过滤，精确与模糊识别
+    complexity: 低
+    days: 10
+    priority: P2
+  - id: F10-03
+    name: 报价撮合与对价
+    desc: 报价展示（对价/最优报价），撮合对价，报价提醒，交易包管理，报价成交确认
+    complexity: 中
+    days: 20
+    priority: P2
+  - id: F10-04
+    name: 交易执行与审批
+    desc: 意向达成，交易要素校验，手工价录入，业务审批流程，交易执行
+    complexity: 中
+    days: 15
+    priority: P2
+  - id: F10-05
+    name: 风控检查
+    desc: 交易前风控规则校验，限额检查，合规拦截，风控记录留痕
+    complexity: 中
+    days: 15
+    priority: P2
+  - id: F10-06
+    name: 智能推荐系统
+    desc: 从被动客户服务转向主动服务，基于客户画像与持仓分析智能推荐券种，提升客户响应效率
+    complexity: 高
+    days: 25
+    priority: P2

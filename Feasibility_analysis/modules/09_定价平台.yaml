@@ -1,7 +1,7 @@
 module:
   'no': 9
-  cn: 量化定价引擎
-  en: Quant Pricing Engine
+  cn: 定价平台
+  en: Pricing Platform
   domain: 中台定价
   priority: P2
   market_demand: 5

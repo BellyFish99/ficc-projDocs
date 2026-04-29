@@ -1,0 +1,55 @@
+module:
+  'no': 13
+  cn: TRS收益互换
+  en: Total Return Swap
+  domain: 客需业务
+  priority: P2
+  market_demand: 3
+  competitor_strength: 3
+  current_state: L1
+  target_state: L3
+  gap: 中
+  competitor: 衡泰/森浦(STC)
+  foundation: 现券交易系统/IBOR
+  duration_m: 5
+  team_sz: 5
+  person_months: 20
+  note: 场外衍生品主经纪商客需服务，覆盖TRS交易端/客户端/管理端及自动对冲；对应PPT Slide 49
+  source_slide: 49
+  functions:
+  - id: F13-01
+    name: TRS交易端
+    desc: 报价提供，成交回报，对冲委托与自动对冲，请求报价，行情与资讯，历史确认
+    complexity: 高
+    days: 30
+    priority: P2
+  - id: F13-02
+    name: TRS客户端
+    desc: 开户申请，客户委托，出入金申请，合约持仓，标的持仓，资金管理，行情矩阵，自主下单
+    complexity: 高
+    days: 25
+    priority: P2
+  - id: F13-03
+    name: TRS管理端
+    desc: 开户申请审批，合约成交管理，出入金审批，运营管理，对账，库存，对冲录入
+    complexity: 中
+    days: 20
+    priority: P2
+  - id: F13-04
+    name: 自动对冲
+    desc: 对冲委托自动触发，对冲回报处理，风险校验，组合重叠分析，开平仓设置
+    complexity: 高
+    days: 25
+    priority: P2
+  - id: F13-05
+    name: 通知与确认文件
+    desc: 企微通知提醒，确认书/结算单/估值报告/出入金通知自动生成并通过邮箱发送
+    complexity: 中
+    days: 15
+    priority: P2
+  - id: F13-06
+    name: 系统集成
+    desc: 与衡泰系统客户信息同步，QTrade聊天记录同步，交易管理系统对接，银行流水对接
+    complexity: 高
+    days: 25
+    priority: P2
