@@ -41,8 +41,8 @@ module:
     key_interfaces:
       inbound:
       - OMS/ATP → 成交回报(Kafka实时，<200ms)
-      - AMD/Bloomberg → 行情估值(Kafka实时，<1s)
-      - 中登/中债登 → 日终持仓(SFTP批量，T+0 EOD)
+      - WIND/Bloomberg → 行情估值(Kafka实时，<1s)
+      - 中登/中债登/上清 → 日终持仓(SFTP批量，T+0 EOD)
       - 资金系统 → 现金划拨(REST实时)
       outbound:
       - IBOR → 风险计量平台(Kafka推送，持仓+估值变化事件)
@@ -63,7 +63,7 @@ module:
     name: 实时持仓管理
     functions:
     - id: F01-01
-      name: 跨资产实时头寸
+      name: 全资产实时头寸
       desc: 债券/回购/利率衍生品全品种T0实时持仓，含未交割与待交割敞口分层展示
       complexity: 高
       days: 40
@@ -85,7 +85,7 @@ module:
       days: 20
       priority: P1
       acceptance: T0/T1持仓差=未交割敞口，自动核验通过率>99%
-      dependency: 中登/中债登结算接口
+      dependency: 中登/中债登/上清结算接口
     - id: F01-04
       name: 可用券与冻结管理
       desc: 质押券/司法冻结券/回购占用券从可用头寸自动剔除，前台实时可用量查询
