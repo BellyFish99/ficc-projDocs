@@ -1,0 +1,55 @@
+module:
+  'no': 4
+  cn: FICC风险计量平台
+  en: FICC Risk Measurement
+  domain: 中台风控
+  priority: P1
+  market_demand: 5
+  competitor_strength: 4
+  current_state: L2
+  target_state: L4
+  gap: 中
+  competitor: 衡泰(垄断)
+  foundation: ARC风险引擎
+  duration_m: 10
+  team_sz: 10
+  person_months: 80
+  note: 替代衡泰老旧系统，信创切入口
+  source_slide: null
+  functions:
+  - id: F04-01
+    name: VaR/CVaR/ES计算
+    desc: 历史模拟法/参数法/蒙特卡洛三模式，置信度99%/99.5%可选
+    complexity: 极高
+    days: 60
+    priority: P1
+  - id: F04-02
+    name: 压力测试情景库
+    desc: 内置924行情/2015股灾/2020疫情等10+情景，支持自定义
+    complexity: 高
+    days: 40
+    priority: P1
+  - id: F04-03
+    name: 限额体系与超限预警
+    desc: 交易员/策略/产品/公司4级限额，实时穿透预警，告警推送
+    complexity: 高
+    days: 30
+    priority: P1
+  - id: F04-04
+    name: 信用风险（CCR）
+    desc: 交易对手敞口实时聚合，EEPE/PFE/CVA估算
+    complexity: 极高
+    days: 50
+    priority: P1
+  - id: F04-05
+    name: 希腊字母（Greeks）
+    desc: Delta/Gamma/Vega/Theta/DV01日内实时计算，覆盖固收+衍生品
+    complexity: 高
+    days: 35
+    priority: P1
+  - id: F04-06
+    name: 风险报告自动化
+    desc: 每日风险报告（Excel/PDF）自动生成，支持监管报送格式
+    complexity: 中
+    days: 20
+    priority: P1

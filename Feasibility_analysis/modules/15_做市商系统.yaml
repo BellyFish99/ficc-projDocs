@@ -1,0 +1,49 @@
+module:
+  'no': 15
+  cn: 做市商系统
+  en: Market Making
+  domain: 前台做市
+  priority: P3
+  market_demand: 3
+  competitor_strength: 5
+  current_state: L0
+  target_state: L2
+  gap: 大
+  competitor: Murex/专项
+  foundation: ATP报价接口
+  duration_m: 12
+  team_sz: 12
+  person_months: 120
+  note: 双边报价引擎，需深度市场经验
+  source_slide: null
+  functions:
+  - id: F15-01
+    name: 双边报价引擎
+    desc: 多品种同时双边报价，延迟<5ms，报价宽度动态优化
+    complexity: 极高
+    days: 70
+    priority: P3
+  - id: F15-02
+    name: 库存风险实时管理
+    desc: 做市库存PnL实时监控，Delta对冲自动触发
+    complexity: 极高
+    days: 60
+    priority: P3
+  - id: F15-03
+    name: 报价优化算法
+    desc: 基于市场微结构理论动态调整bid-ask spread
+    complexity: 极高
+    days: 50
+    priority: P3
+  - id: F15-04
+    name: 竞争力分析
+    desc: 与市场最优报价对比，中签率分析，策略调优
+    complexity: 高
+    days: 25
+    priority: P3
+  - id: F15-05
+    name: 交易对手管理集成
+    desc: 做市交易对手信用实时检查，额度占用同步更新
+    complexity: 中
+    days: 20
+    priority: P3

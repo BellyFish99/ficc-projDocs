@@ -11,13 +11,12 @@ Can be run standalone or imported by build_all.py:
 
 import html
 import os
-import yaml
+from load_data import load as _load_data
 
 # ---------------------------------------------------------------------------
 # Paths
 # ---------------------------------------------------------------------------
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-YAML_PATH  = os.path.join(SCRIPT_DIR, 'ficc_data.yaml')
 OUT_DIR    = os.path.join(SCRIPT_DIR, 'drawio')
 
 # ---------------------------------------------------------------------------
@@ -194,8 +193,7 @@ def build_module_diagram(m):
 def main():
     os.makedirs(OUT_DIR, exist_ok=True)
 
-    with open(YAML_PATH, encoding='utf-8') as f:
-        data = yaml.safe_load(f)
+    data = _load_data()
 
     generated = []
     skipped   = []

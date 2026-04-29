@@ -1,0 +1,55 @@
+module:
+  'no': 9
+  cn: 量化定价引擎
+  en: Quant Pricing Engine
+  domain: 中台定价
+  priority: P2
+  market_demand: 5
+  competitor_strength: 5
+  current_state: L1
+  target_state: L4
+  gap: 大
+  competitor: 衡泰(垄断)
+  foundation: ARC基础数值库
+  duration_m: 18
+  team_sz: 15
+  person_months: 225
+  note: 蒙特卡洛/有限差分，替代衡泰核心
+  source_slide: null
+  functions:
+  - id: F09-01
+    name: 期限结构模型
+    desc: Nelson-Siegel/Svensson/HJM等多模型参数拟合，实时曲线
+    complexity: 极高
+    days: 60
+    priority: P2
+  - id: F09-02
+    name: 蒙特卡洛求解器
+    desc: GPU加速MC，QMC低差异序列，支持路径相关期权定价
+    complexity: 极高
+    days: 70
+    priority: P2
+  - id: F09-03
+    name: 有限差分（PDE）
+    desc: Crank-Nicolson/ADI方法，含权债/可转债精确定价
+    complexity: 极高
+    days: 60
+    priority: P2
+  - id: F09-04
+    name: 实时Greeks
+    desc: Delta/Gamma/Vega/Theta/Rho分布式实时计算
+    complexity: 高
+    days: 40
+    priority: P2
+  - id: F09-05
+    name: 定价服务微服务架构
+    desc: REST/gRPC定价API，支持横向扩展，p99<100ms
+    complexity: 高
+    days: 40
+    priority: P2
+  - id: F09-06
+    name: 历史估值回测
+    desc: 基于历史行情重放定价误差分析，模型验证框架
+    complexity: 高
+    days: 30
+    priority: P2

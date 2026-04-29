@@ -1,0 +1,49 @@
+module:
+  'no': 11
+  cn: 信用债/信用衍生品
+  en: Credit & CDS
+  domain: 前台交易
+  priority: P2
+  market_demand: 4
+  competitor_strength: 4
+  current_state: L1
+  target_state: L3
+  gap: 大
+  competitor: 衡泰/Bloomberg
+  foundation: ARC信用风险框架
+  duration_m: 10
+  team_sz: 10
+  person_months: 80
+  note: CDS定价+信用利差分析
+  source_slide: null
+  functions:
+  - id: F11-01
+    name: 信用利差分析
+    desc: 行业/评级/期限信用利差曲线实时计算，历史分位数分析
+    complexity: 高
+    days: 30
+    priority: P2
+  - id: F11-02
+    name: CDS/CLN定价
+    desc: 信用违约互换定价，ISDA标准，生存概率曲线校准
+    complexity: 极高
+    days: 50
+    priority: P2
+  - id: F11-03
+    name: 信用评级动态监控
+    desc: 对接外部评级机构（中诚信/联合/大公），评级下调预警
+    complexity: 中
+    days: 20
+    priority: P2
+  - id: F11-04
+    name: 违约概率（PD）建模
+    desc: 结构化Merton模型+市场隐含PD，信用风险计量
+    complexity: 高
+    days: 40
+    priority: P2
+  - id: F11-05
+    name: 集中度限额管理
+    desc: 行业/发行人/评级集中度多维限额，超限预警
+    complexity: 中
+    days: 20
+    priority: P2

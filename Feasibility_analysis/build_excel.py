@@ -14,19 +14,17 @@ Sheets:
 """
 
 import os
-import yaml
 from openpyxl import Workbook
 from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 from openpyxl.utils import get_column_letter
+from load_data import load as _load_data
 
 # ── Paths ──────────────────────────────────────────────────────────────────────
 _HERE = os.path.dirname(os.path.abspath(__file__))
-YAML_PATH = os.path.join(_HERE, "ficc_data.yaml")
 OUT = os.path.join(_HERE, "FICC_Gap_Analysis.xlsx")
 
-# ── Load YAML ──────────────────────────────────────────────────────────────────
-with open(YAML_PATH, encoding="utf-8") as _f:
-    _data = yaml.safe_load(_f)
+# ── Load data ──────────────────────────────────────────────────────────────────
+_data = _load_data()
 
 MODULES = _data["modules"]   # list of dicts
 ROLES   = _data["roles"]     # list of dicts

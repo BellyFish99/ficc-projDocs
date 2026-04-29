@@ -1,0 +1,49 @@
+module:
+  'no': 10
+  cn: 利率衍生品
+  en: Interest Rate Derivatives
+  domain: 前台交易
+  priority: P2
+  market_demand: 4
+  competitor_strength: 4
+  current_state: L1
+  target_state: L3
+  gap: 大
+  competitor: Murex/衡泰
+  foundation: 无直接基础
+  duration_m: 12
+  team_sz: 12
+  person_months: 108
+  note: IRS/OIS/CCS，需专业量化团队
+  source_slide: null
+  functions:
+  - id: F10-01
+    name: IRS/OIS/CCS定价
+    desc: 利率互换标准与非标结构定价，折现曲线OIS
+    complexity: 极高
+    days: 60
+    priority: P2
+  - id: F10-02
+    name: 久期/DV01/凸度
+    desc: 利率衍生品Greeks实时计算，组合对冲比率
+    complexity: 高
+    days: 30
+    priority: P2
+  - id: F10-03
+    name: LCH/上清所CCP接口
+    desc: 标准化IRS中央清算，保证金（IM/VM）计算
+    complexity: 高
+    days: 35
+    priority: P2
+  - id: F10-04
+    name: 压力测试/情景分析
+    desc: 利率曲线平移/扭转/蝶式情景，组合P&L影响
+    complexity: 高
+    days: 30
+    priority: P2
+  - id: F10-05
+    name: 利率曲线发布
+    desc: 多曲线框架（OIS/中债曲线）实时发布
+    complexity: 高
+    days: 30
+    priority: P2

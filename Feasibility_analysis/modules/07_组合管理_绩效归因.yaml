@@ -1,0 +1,182 @@
+module:
+  'no': 7
+  cn: 组合管理+绩效归因
+  en: Portfolio Mgmt & Perf
+  domain: 前台投资管理
+  priority: P1
+  market_demand: 5
+  competitor_strength: 3
+  current_state: L2
+  target_state: L4
+  gap: 中
+  competitor: SimCorp/衡泰
+  foundation: M9 PMS模块
+  duration_m: 12
+  team_sz: 12
+  person_months: 120
+  note: 17项功能含量化底座集成；Slide44全景展开
+  source_slide: 44
+  data_inputs:
+  - 交易数据
+  - 头寸数据
+  - 行情数据
+  - 估值数据
+  foundation_layer:
+  - 定价计算
+  - 利率曲线
+  - 因子模型
+  function_domains:
+  - id: A
+    name: 组合分析
+    functions:
+    - id: F07-01
+      name: 债券横截面与时序分析
+      desc: 跨品种横截面信号挖掘（利差/久期偏差），历史时序趋势与均值回归分析
+      complexity: 高
+      days: 35
+      priority: P1
+      acceptance: 横截面信号与实际收益相关性>0.3
+      dependency: AMD行情平台/估值数据
+    - id: F07-02
+      name: 相对价值分析
+      desc: 利差/Z-spread/OAS相对价值计算，历史分位数定位，跨品种套利信号识别
+      complexity: 高
+      days: 30
+      priority: P1
+      acceptance: OAS计算误差<1bps，分位数覆盖5年历史
+      dependency: 量化定价引擎/AMD行情
+    - id: F07-03
+      name: 组合相关度分析
+      desc: 资产间收益相关矩阵计算（滚动60/120/250日），组合集中度风险识别，分散化系数监控
+      complexity: 中
+      days: 25
+      priority: P1
+      acceptance: 相关矩阵计算<30s（500券组合）
+      dependency: IBOR头寸/AMD历史行情
+  - id: B
+    name: 风险计量
+    functions:
+    - id: F07-04
+      name: 情景分析
+      desc: 利率/信用/流动性三类自定义情景，组合P&L影响量化，多情景并行对比
+      complexity: 高
+      days: 35
+      priority: P1
+      acceptance: 情景P&L与手工核算误差<0.5%，支持≥20情景并行
+      dependency: FICC风险计量平台/量化定价引擎
+    - id: F07-05
+      name: 敏感度分析
+      desc: 久期/DV01/凸度/利差/Vega敏感度多因子并行计算，组合对冲比率建议
+      complexity: 高
+      days: 25
+      priority: P1
+      acceptance: DV01与Bloomberg基准误差<0.5bps
+      dependency: 量化定价引擎Greeks接口
+    - id: F07-06
+      name: 极端事件分析
+      desc: 历史极端情景（924行情/2015股灾/2020疫情等8+情景），组合尾部损失分布，ES(99%)计算
+      complexity: 高
+      days: 30
+      priority: P1
+      acceptance: 历史情景复现误差<1%
+      dependency: FICC风险计量平台
+  - id: C
+    name: 绩效归因
+    functions:
+    - id: F07-07
+      name: 指数比较分析
+      desc: 对标中债综合/信用/政策行等指数，跟踪误差（TE）日频监控，超额Alpha三因子分解
+      complexity: 中
+      days: 25
+      priority: P1
+      acceptance: TE计算误差<1bps，支持≥10基准指数
+      dependency: AMD中债估值/IBOR持仓
+    - id: F07-08
+      name: 绩效归因（Brinson）
+      desc: BHB三效应：资产配置/个券选择/交互效应，日/周/月/季多维度，报告PDF自动生成
+      complexity: 高
+      days: 40
+      priority: P1
+      acceptance: Brinson结果与Bloomberg AIM误差<0.1%，T+1 9:00前自动报告
+      dependency: IBOR持仓/AMD行情/指数数据
+  - id: D
+    name: 组合优化与再平衡
+    functions:
+    - id: F07-09
+      name: 虚拟组合分析
+      desc: 组合调整前后净值/风险/收益效果模拟（纸面交易），冲击成本预估，多方案对比
+      complexity: 高
+      days: 20
+      priority: P1
+      acceptance: 虚拟组合模拟与真实执行偏差<0.3%
+      dependency: IBOR/现券交易系统
+    - id: F07-10
+      name: 再平衡方案试算与比较
+      desc: 久期/集中度/流动性/合规约束联合优化（二次规划QP），多方案并行试算，最优路径推荐
+      complexity: 高
+      days: 35
+      priority: P1
+      acceptance: QP求解100券组合<5s，约束满足率100%
+      dependency: 事前风控/合规/IBOR/现券系统
+    - id: F07-11
+      name: 资产配置策略分析
+      desc: 宏观因子（利率/信用/流动性周期）驱动大类资产配置模型，动态权重优化，历史回测验证
+      complexity: 高
+      days: 40
+      priority: P2
+      acceptance: 回测期≥5年，预测方向胜率>55%
+      dependency: AMD宏观数据/因子模型
+    - id: F07-12
+      name: 固收+策略分析
+      desc: 债券底仓+衍生品增强策略P&L归因，风险分解（利率/信用/期权贡献），固收+净值模拟
+      complexity: 高
+      days: 30
+      priority: P2
+      acceptance: 固收+净值模拟与实际偏差<0.5%
+      dependency: IBOR/利率衍生品系统
+    - id: F07-13
+      name: 量化策略组合分析
+      desc: 多策略组合叠加容量约束，策略相关性管理，Sharpe/最大回撤/Calmar实时监控
+      complexity: 高
+      days: 35
+      priority: P2
+      acceptance: 策略容量计算误差<5%
+      dependency: 策略投资/量化系统
+  - id: E
+    name: 流动性管理
+    functions:
+    - id: F07-14
+      name: 流动性分析
+      desc: 逐券换手率/市场深度评估，组合变现能力分析，流动性压力下变现损失（LVaR）估算
+      complexity: 中
+      days: 20
+      priority: P1
+      acceptance: LVaR与市场基准误差<5%，日均成交量覆盖≥95%持仓
+      dependency: AMD行情/IBOR持仓
+  - id: F
+    name: 量化底座集成
+    functions:
+    - id: F07-15
+      name: 定价计算集成
+      desc: 调用量化定价引擎实时估值与Greeks，含权债/可转债/IRS，结果缓存（Redis）与Kafka推送
+      complexity: 高
+      days: 20
+      priority: P2
+      acceptance: 定价API p99<200ms，日终全量估值<30min（10万券）
+      dependency: 量化定价引擎
+    - id: F07-16
+      name: 利率曲线集成
+      desc: 多曲线实时消费（国债/政策行/AAA信用/OIS），NS参数提取（水平/斜率/曲率），敏感度映射
+      complexity: 中
+      days: 15
+      priority: P1
+      acceptance: 曲线更新延迟<1s，NS拟合R²>0.999
+      dependency: AMD行情平台/量化定价引擎
+    - id: F07-17
+      name: 因子模型
+      desc: 多因子风险模型（利率/信用/流动性/行业因子），Alpha因子库（≥20因子），因子暴露实时计算
+      complexity: 高
+      days: 40
+      priority: P1
+      acceptance: 因子模型解释方差>80%，Alpha IC均值>0.05
+      dependency: AMD历史行情/IBOR持仓

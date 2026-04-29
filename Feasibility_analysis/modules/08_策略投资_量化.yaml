@@ -1,0 +1,49 @@
+module:
+  'no': 8
+  cn: 策略投资/量化
+  en: Quant Strategy
+  domain: 前台投研
+  priority: P1
+  market_demand: 4
+  competitor_strength: 2
+  current_state: L1
+  target_state: L3
+  gap: 中
+  competitor: 无主导者
+  foundation: 低延迟ATP执行层
+  duration_m: 10
+  team_sz: 12
+  person_months: 96
+  note: 因子框架+回测引擎，低延迟执行
+  source_slide: null
+  functions:
+  - id: F08-01
+    name: 因子模型框架
+    desc: 多因子Alpha模型+风险因子，支持自定义因子上传与测试
+    complexity: 高
+    days: 40
+    priority: P1
+  - id: F08-02
+    name: Tick级回测引擎
+    desc: Tick数据驱动回测，真实滑点/冲击模型，批量参数优化
+    complexity: 极高
+    days: 60
+    priority: P1
+  - id: F08-03
+    name: 信号生成与调度
+    desc: 策略信号实时计算，支持Python/C++策略脚本沙箱运行
+    complexity: 高
+    days: 40
+    priority: P1
+  - id: F08-04
+    name: 低延迟执行接口
+    desc: 与ATP超低延迟执行层对接，算法拆单（TWAP/VWAP/IS）
+    complexity: 极高
+    days: 45
+    priority: P1
+  - id: F08-05
+    name: 实时策略监控
+    desc: 持仓/PnL/回撤/Sharpe实时看板，风险触发自动平仓
+    complexity: 中
+    days: 20
+    priority: P1

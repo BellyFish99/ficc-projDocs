@@ -1,0 +1,49 @@
+module:
+  'no': 12
+  cn: 数据管理/行情平台
+  en: Market Data Platform
+  domain: 基础数据
+  priority: P2
+  market_demand: 4
+  competitor_strength: 3
+  current_state: L3
+  target_state: L4
+  gap: 小
+  competitor: Bloomberg/Wind
+  foundation: AMD行情平台
+  duration_m: 4
+  team_sz: 6
+  person_months: 22
+  note: 多源聚合+估值价格发布，赋能其他模块
+  source_slide: null
+  functions:
+  - id: F12-01
+    name: 多源行情聚合
+    desc: Bloomberg/Wind/中汇信/Refinitiv多源融合，冲突解析
+    complexity: 高
+    days: 25
+    priority: P2
+  - id: F12-02
+    name: 数据质量校验
+    desc: 异常值/缺失值/跳价自动检测，修复建议与人工审核
+    complexity: 中
+    days: 15
+    priority: P2
+  - id: F12-03
+    name: 历史数据仓库
+    desc: Tick/日频历史行情存储，高效查询（ClickHouse/TimescaleDB）
+    complexity: 高
+    days: 25
+    priority: P2
+  - id: F12-04
+    name: 收益率曲线发布
+    desc: 国债/政策行/高等级信用曲线实时发布，Kafka广播
+    complexity: 高
+    days: 20
+    priority: P2
+  - id: F12-05
+    name: 估值价格服务
+    desc: 非活跃债券估值价格（中债估值基准），API接口提供
+    complexity: 中
+    days: 15
+    priority: P2

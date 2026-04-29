@@ -1,0 +1,49 @@
+module:
+  'no': 3
+  cn: 回购管理
+  en: Repo Management
+  domain: 前台交易
+  priority: P1
+  market_demand: 5
+  competitor_strength: 2
+  current_state: L2
+  target_state: L4
+  gap: 中
+  competitor: 恒生/金证
+  foundation: M9回购管理模块
+  duration_m: 5
+  team_sz: 6
+  person_months: 27
+  note: 资金融通核心，与IBOR强耦合
+  source_slide: null
+  functions:
+  - id: F03-01
+    name: 正/逆回购全周期
+    desc: 协议回购（GC/质押式）发起、续做、到期，双方确认闭环
+    complexity: 高
+    days: 30
+    priority: P1
+  - id: F03-02
+    name: 质押品篮子管理
+    desc: 多类质押品估值与折扣率，支持替换与追加保证金（Margin Call）
+    complexity: 高
+    days: 25
+    priority: P1
+  - id: F03-03
+    name: 资金头寸监控
+    desc: 日内融资头寸实时监控，资金缺口预警，与IBOR现金流对接
+    complexity: 中
+    days: 20
+    priority: P1
+  - id: F03-04
+    name: 到期自动提醒
+    desc: 到期前T-1/T-3提醒，支持批量续作规则配置
+    complexity: 低
+    days: 10
+    priority: P1
+  - id: F03-05
+    name: CCP/上清所接口
+    desc: 标准化质押式回购通过上清所CCP清算，接口对接
+    complexity: 高
+    days: 20
+    priority: P1

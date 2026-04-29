@@ -1,0 +1,49 @@
+module:
+  'no': 5
+  cn: 异常交易风控
+  en: Abnormal Trade Monitor
+  domain: 中台风控
+  priority: P1
+  market_demand: 5
+  competitor_strength: 1
+  current_state: L3
+  target_state: L5
+  gap: 小
+  competitor: 无主导者
+  foundation: ARC+AI规则引擎
+  duration_m: 6
+  team_sz: 8
+  person_months: 42
+  note: 监管驱动，AI差异化，快速商业化
+  source_slide: null
+  functions:
+  - id: F05-01
+    name: 实时CEP监控引擎
+    desc: 基于复杂事件处理（CEP），毫秒级事件流检测，滑动窗口聚合
+    complexity: 极高
+    days: 50
+    priority: P1
+  - id: F05-02
+    name: 异常价格检测
+    desc: 基于历史分位数/实时行情计算价格偏离度，动态阈值自适应
+    complexity: 高
+    days: 25
+    priority: P1
+  - id: F05-03
+    name: AI异常识别模型
+    desc: 机器学习（XGBoost/LSTM）训练异常交易识别模型，在线推理
+    complexity: 高
+    days: 40
+    priority: P1
+  - id: F05-04
+    name: 规则引擎（可配置）
+    desc: No-Code规则配置界面，合规人员自助维护检测规则
+    complexity: 中
+    days: 20
+    priority: P1
+  - id: F05-05
+    name: 监管报送自动化
+    desc: 一键生成证监会/人行格式异常交易报告，历史追溯查询
+    complexity: 中
+    days: 25
+    priority: P1

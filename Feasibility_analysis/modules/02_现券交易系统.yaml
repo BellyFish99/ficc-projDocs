@@ -1,0 +1,55 @@
+module:
+  'no': 2
+  cn: 现券交易系统
+  en: Bond Trading
+  domain: 前台交易
+  priority: P1
+  market_demand: 5
+  competitor_strength: 2
+  current_state: L3
+  target_state: L4
+  gap: 小
+  competitor: 恒生/金证
+  foundation: ATP债券报盘引擎
+  duration_m: 6
+  team_sz: 8
+  person_months: 42
+  note: 银行间+交易所双市场覆盖
+  source_slide: null
+  functions:
+  - id: F02-01
+    name: 银行间双边报价
+    desc: CFETS/X-Bond两板块报价，支持询价（RFQ）和竞价
+    complexity: 高
+    days: 30
+    priority: P1
+  - id: F02-02
+    name: 交易所债券委托
+    desc: 上交所/深交所债券买卖下单，支持限价/市价/条件单
+    complexity: 中
+    days: 20
+    priority: P1
+  - id: F02-03
+    name: 收益率/价格计算
+    desc: 全品种YTM/价格双向转换，含含权债修正久期计算
+    complexity: 中
+    days: 15
+    priority: P1
+  - id: F02-04
+    name: 交易前风险校验
+    desc: 调用事前风控接口，单笔限额/集中度/利率风险实时拦截
+    complexity: 中
+    days: 15
+    priority: P1
+  - id: F02-05
+    name: 交易确认与指令生成
+    desc: 成交确认后自动生成DVP/FOP清算指令，推送清算结算模块
+    complexity: 高
+    days: 20
+    priority: P1
+  - id: F02-06
+    name: 做市/询价接口
+    desc: 支持双边报价模式，库存自动刷新，与做市商系统预留接口
+    complexity: 中
+    days: 10
+    priority: P2

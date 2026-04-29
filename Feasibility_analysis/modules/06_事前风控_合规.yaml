@@ -1,0 +1,49 @@
+module:
+  'no': 6
+  cn: 事前风控/合规
+  en: Pre-trade Risk
+  domain: 中台风控
+  priority: P1
+  market_demand: 5
+  competitor_strength: 2
+  current_state: L3
+  target_state: L4
+  gap: 小
+  competitor: 恒生/金证
+  foundation: ARC合规模块
+  duration_m: 5
+  team_sz: 6
+  person_months: 28
+  note: 嵌入交易前拦截，合规刚需
+  source_slide: null
+  functions:
+  - id: F06-01
+    name: 投资策略合规规则库
+    desc: 内置1000+条监管规则（投资指引/证监会规定），支持新增
+    complexity: 高
+    days: 30
+    priority: P1
+  - id: F06-02
+    name: 实时订单拦截
+    desc: 在交易指令提交前同步校验，不满足规则则拦截+原因告知
+    complexity: 极高
+    days: 25
+    priority: P1
+  - id: F06-03
+    name: 限额多维度检查
+    desc: 单笔名义/资产类别/集中度/净敞口/利率敏感度多维并行检查
+    complexity: 高
+    days: 25
+    priority: P1
+  - id: F06-04
+    name: 合规审批工作流
+    desc: 超限申请→审批→记录全流程，支持移动端审批
+    complexity: 中
+    days: 15
+    priority: P1
+  - id: F06-05
+    name: 监管白/黑名单
+    desc: 证券/交易对手监管限制名单实时同步，拦截违规交易
+    complexity: 中
+    days: 15
+    priority: P1

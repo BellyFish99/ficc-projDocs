@@ -1,0 +1,49 @@
+module:
+  'no': 13
+  cn: 交易对手管理
+  en: Counterparty Management
+  domain: 中台信用
+  priority: P2
+  market_demand: 4
+  competitor_strength: 3
+  current_state: L1
+  target_state: L3
+  gap: 中大
+  competitor: 衡泰/专项系统
+  foundation: ARC信用模块
+  duration_m: 8
+  team_sz: 8
+  person_months: 56
+  note: ISDA/CSA管理+CVA/DVA计算
+  source_slide: null
+  functions:
+  - id: F13-01
+    name: 对手方评级与审批
+    desc: 内部信用评级模型，新增/变更交易对手审批流
+    complexity: 中
+    days: 20
+    priority: P2
+  - id: F13-02
+    name: 实时敞口聚合
+    desc: 跨产品交易对手名义/MtM敞口实时聚合，压力敞口（EPE）
+    complexity: 高
+    days: 35
+    priority: P2
+  - id: F13-03
+    name: ISDA/CSA协议管理
+    desc: 主协议文档管理，净额结算协议（Netting Set）配置
+    complexity: 高
+    days: 25
+    priority: P2
+  - id: F13-04
+    name: CVA/DVA/FVA计算
+    desc: 信用/债务/资金估值调整实时估算，敞口报告
+    complexity: 极高
+    days: 40
+    priority: P2
+  - id: F13-05
+    name: 集中度与限额
+    desc: 对手方/集团合并敞口限额，超限审批与记录
+    complexity: 中
+    days: 15
+    priority: P2
