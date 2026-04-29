@@ -10,40 +10,121 @@ module:
   target_state: L3
   gap: 中
   competitor: 无主导者
-  foundation: 低延迟ATP执行层
-  duration_m: 10
+  foundation: 低延迟ATP执行层/定价平台
+  duration_m: 12
   team_sz: 12
-  person_months: 96
-  note: 因子框架+回测引擎，低延迟执行
+  person_months: 120
+  note: 因子框架+回测引擎+模拟盘+AI辅助开发，覆盖利差/基差/跨市场套利等固收量化策略全流程；对应PPT Slide 41
   source_slide: 41
-  functions:
-  - id: F08-01
-    name: 因子模型框架
-    desc: 多因子Alpha模型+风险因子，支持自定义因子上传与测试
-    complexity: 高
-    days: 40
-    priority: P1
-  - id: F08-02
-    name: Tick级回测引擎
-    desc: Tick数据驱动回测，真实滑点/冲击模型，批量参数优化
-    complexity: 极高
-    days: 60
-    priority: P1
-  - id: F08-03
-    name: 信号生成与调度
-    desc: 策略信号实时计算，支持Python/C++策略脚本沙箱运行
-    complexity: 高
-    days: 40
-    priority: P1
-  - id: F08-04
-    name: 低延迟执行接口
-    desc: 与ATP超低延迟执行层对接，算法拆单（TWAP/VWAP/IS）
-    complexity: 极高
-    days: 45
-    priority: P1
-  - id: F08-05
-    name: 实时策略监控
-    desc: 持仓/PnL/回撤/Sharpe实时看板，风险触发自动平仓
-    complexity: 中
-    days: 20
-    priority: P1
+  function_domains:
+  - id: D1
+    name: 策略研发
+    functions:
+    - id: F08-01
+      name: 策略编写与版本管理
+      desc: Python/C++策略脚本编写，沙箱隔离运行，策略版本管理，策略库分类管理（利差/基差/跨市场套利/网格/固收/量价）
+      complexity: 高
+      days: 40
+      priority: P1
+    - id: F08-02
+      name: AI辅助策略开发
+      desc: AI代码生成辅助，AI因子生成，AI参数优化建议，自然语言描述策略逻辑转代码
+      complexity: 高
+      days: 35
+      priority: P1
+    - id: F08-03
+      name: 因子挖掘与管理
+      desc: 因子编写，信号生成，因子库管理，AlphaLens因子有效性分析，量化模型库，宏观/技术/基本面因子
+      complexity: 高
+      days: 40
+      priority: P1
+  - id: D2
+    name: 回测与模拟验证
+    functions:
+    - id: F08-04
+      name: Tick级回测引擎
+      desc: Tick数据驱动回测，真实滑点/冲击模型，批量参数优化，风险计量，绩效归因，AlphaLens分析集成
+      complexity: 极高
+      days: 60
+      priority: P1
+    - id: F08-05
+      name: 模拟盘验证
+      desc: 情景模拟，敏感度模拟，极端场景模拟，性能测试，模拟盘与实盘结果对比分析
+      complexity: 高
+      days: 30
+      priority: P1
+  - id: D3
+    name: 策略上线管理
+    functions:
+    - id: F08-06
+      name: 策略上线审批
+      desc: 模拟盘通过后触发上线审批流程，多级合规审核，审批留痕，参数锁定后方可实盘运行
+      complexity: 中
+      days: 20
+      priority: P1
+    - id: F08-07
+      name: 策略运行管理
+      desc: 实盘策略启停管理，策略状态实时监控，支持手动干预和自动触发停止，多策略并发调度
+      complexity: 高
+      days: 30
+      priority: P1
+    - id: F08-08
+      name: 策略绩效分析
+      desc: 实时PnL/持仓/回撤/Sharpe看板，策略归因分析，与基准对比，风险触发自动平仓
+      complexity: 中
+      days: 25
+      priority: P1
+  - id: D4
+    name: 行情分析
+    functions:
+    - id: F08-09
+      name: 实时多市场行情
+      desc: 现券/国债期货/股票/商品实时行情聚合展示，实时利差分析，跨市场价差监控，行情小窗
+      complexity: 中
+      days: 20
+      priority: P1
+    - id: F08-10
+      name: 历史行情回放
+      desc: 现券/国债期货/股票/商品历史行情回放，支持任意时间点快照，用于回测验证和策略复盘
+      complexity: 中
+      days: 20
+      priority: P1
+  - id: D5
+    name: 量化底座
+    functions:
+    - id: F08-11
+      name: CEP流引擎与信号调度
+      desc: 复杂事件处理引擎，策略信号实时计算与调度，低延迟执行接口对接ATP超低延迟执行层
+      complexity: 极高
+      days: 45
+      priority: P1
+    - id: F08-12
+      name: 基础数据与模型底座
+      desc: 宏观因子库，债券曲线模型，估值数据接入，账户权限管理，AI引擎集成接口
+      complexity: 高
+      days: 30
+      priority: P1
+  tech_design:
+    pattern: 事件驱动策略框架 + 分布式回测网格 + CEP实时信号引擎
+    data_model: >
+      Strategy (strategyId, name, type, code, version, status, approvedBy) ;
+      BacktestJob (jobId, strategyId, startDate, endDate, params, result, createdAt) ;
+      Factor (factorId, name, category, formula, icScore, lastUpdated) ;
+      LivePosition (strategyId, instrumentId, qty, pnl, drawdown, updatedAt)
+    core_stack: >
+      Python (策略开发/因子研究/AlphaLens) + C++ (CEP流引擎/低延迟信号) ;
+      Spark (分布式回测) + Redis (实时信号缓存) ;
+      LangChain + LLM (AI辅助策略开发) ;
+      ClickHouse (Tick历史数据) ; Kafka (实时行情事件流)
+    key_interfaces:
+    - 定价平台 → 估值/曲线数据 (gRPC)
+    - IBOR → 实时持仓与账户数据
+    - ATP执行层 → 低延迟订单发送 (CEP信号直连)
+    - 行情平台 → 现券/期货/股票/商品实时Tick (Kafka)
+    key_decisions:
+    - 回测引擎与实盘信号引擎共享同一套因子计算逻辑，确保回测结果可复现
+    - 模拟盘必须通过审批才能转实盘，防止未经验证策略直接上线
+    - AI生成代码仅作为建议，最终代码需人工审核通过才能入库
+    open_questions:
+    - AlphaLens集成方案（开源版 vs 内部定制）需与量化团队确认
+    - CEP引擎选型：自研 vs 基于Flink CEP，取决于延迟目标
