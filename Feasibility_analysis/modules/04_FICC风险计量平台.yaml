@@ -101,12 +101,12 @@ module:
       priority: P1
     - id: F04-20
       name: 信用风险计量（CVA/PD/LGD）
-      desc: 债券组合信用风险：基于历史迁移矩阵的发行人PD（违约概率）/LGD（违约损失率）估算，IFRS 9三阶段分类（Stage 1/2/3）预期信用损失（ECL）计算；OTC衍生品CVA（信用估值调整）/DVA（借方估值调整）：基于蒙特卡洛模拟的预期正敞口EPE × PD × LGD，信用迁移风险（1年/3年迁移矩阵压力测试）
+      desc: 债券组合信用风险：基于历史迁移矩阵的发行人PD（违约概率）/LGD（违约损失率）估算，IFRS 9三阶段分类（Stage 1/2/3）预期信用损失（ECL）计算；动态PD曲线（CDS隐含PD提取，实时市场信号），按交易对手PD/LGD分层差异化处理，信用限额仪表盘（跨限额维度利用率）；OTC衍生品CVA（信用估值调整）/DVA（借方估值调整）：基于蒙特卡洛模拟的预期正敞口EPE × PD × LGD，信用迁移风险（1年/3年迁移矩阵压力测试）
       complexity: 极高
-      days: 35
+      days: 45
       priority: P1
-      acceptance: CVA计算与对手方差异<1%，IFRS 9 ECL覆盖全债券持仓，PD/LGD数据源可追溯
-      dependency: 定价平台M09（衍生品估值/EPE模拟，含M09 F09-16 XVA引擎）/IBOR持仓/外部信用评级数据（Wind/Bloomberg）
+      acceptance: CVA计算与对手方差异<1%，IFRS 9 ECL覆盖全债券持仓，PD/LGD数据源可追溯，动态PD曲线更新<30s，信用限额仪表盘实时刷新
+      dependency: 定价平台M09（衍生品估值/EPE模拟，含M09 F09-16 XVA引擎）/IBOR持仓/外部信用评级数据（Wind/Bloomberg/CDS市场数据）
   - id: D4
     name: 投后风险分析
     functions:
@@ -130,6 +130,14 @@ module:
       priority: P1
       acceptance: 超限告警延迟<1min，限额利用率仪表盘实时刷新，限额变更全程留痕，监管核查导出<5min
       dependency: M06合规规则（SSoT，限额参数引用M06 F06-02）/IBOR持仓/M04 F04-04实时风险计量
+    - id: F04-22
+      name: 交易前风险影响分析
+      desc: "Real-time pre-trade risk impact calculator（Aladdin Decision Support pattern）：traders输入提议交易（债券/数量/价格/对手方） → 实时输出ΔVaR（95% confidence），ΔDV01（by bucket），ΔGreeks（Delta/Gamma/Vega/Theta/Rho），limit breach check（vs F04-21 limits），estimated FVA if derivative；集成M06 F06-04 pre-trade validation：combine risk impact + compliance impact in unified PM dashboard；feed to M01 F01-25 what-if sandbox for full portfolio stress scenarios；M07 F07-22 consumption for intraday decision support"
+      complexity: 高
+      days: 25
+      priority: P1
+      acceptance: Impact calc <500ms (p99)，accuracy ±2% vs actual execution，limit breach detection 100%，UI adoption by 80% of traders within 3 months
+      dependency: M04 F04-04 (实时风险计量), M04 F04-10 (VaR model), M06 F06-04 (pre-trade compliance validation), M01 F01-25 (what-if sandbox), M07 F07-22 (intraday P&L)
     - id: F04-23
       name: 模型治理与回测框架
       desc: Independent model risk governance infrastructure：daily backtesting of all risk models (VaR/Greeks/CVA/CVA)，exception tracking with severity classification；Kupiec POF statistical test performed quarterly；model exception investigation workflow with auto-escalation to quant team if >3 exceptions/quarter；regulatory model governance documentation (Basel III backtesting audit trail，FRTB internal model approval requirements)；exception resolution and model re-calibration scheduling；complete model inventory with version control，parameter audit trail，and approval workflow

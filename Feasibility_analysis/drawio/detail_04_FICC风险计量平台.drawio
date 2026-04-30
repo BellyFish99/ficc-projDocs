@@ -74,7 +74,7 @@
     <mxCell id="25" value="压力测试与情景分析" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
       <mxGeometry x="450.0" y="174.0" width="220.0" height="28" as="geometry"/>
     </mxCell>
-    <mxCell id="26" value="模型治理与回测框架" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
+    <mxCell id="26" value="交易前风险影响分析" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
       <mxGeometry x="670.0" y="174.0" width="220.0" height="28" as="geometry"/>
     </mxCell>
     <mxCell id="27" value="AI风险预警" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
@@ -89,7 +89,7 @@
     <mxCell id="30" value="估值与盈亏分解" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
       <mxGeometry x="450.0" y="202.0" width="220.0" height="28" as="geometry"/>
     </mxCell>
-    <mxCell id="31" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F7FA;fontColor=#F5F7FA;strokeColor=#D6E4F7;fontSize=9;" vertex="1" parent="1">
+    <mxCell id="31" value="模型治理与回测框架" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
       <mxGeometry x="670.0" y="202.0" width="220.0" height="28" as="geometry"/>
     </mxCell>
     <mxCell id="32" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F7FA;fontColor=#F5F7FA;strokeColor=#D6E4F7;fontSize=9;" vertex="1" parent="1">
