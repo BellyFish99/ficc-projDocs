@@ -32,7 +32,7 @@
     <mxCell id="11" value="H. What-if 投资试算" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#2B5EC7;fontColor=#FFFFFF;strokeColor=#1B3275;fontStyle=1;fontSize=10;align=center;verticalAlign=middle;" vertex="1" parent="1">
       <mxGeometry x="972.5" y="86.0" width="137.5" height="36" as="geometry"/>
     </mxCell>
-    <mxCell id="12" value="跨资产实时头寸" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
+    <mxCell id="12" value="全资产实时头寸" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
       <mxGeometry x="10.0" y="122.0" width="137.5" height="28" as="geometry"/>
     </mxCell>
     <mxCell id="13" value="实时现金余额" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
