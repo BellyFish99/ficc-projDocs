@@ -56,7 +56,7 @@
     <mxCell id="19" value="监管报送数据支持（数据提取，非合规逻辑）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
       <mxGeometry x="560.0" y="122.0" width="110.0" height="28" as="geometry"/>
     </mxCell>
-    <mxCell id="20" value="行情数据接入" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
+    <mxCell id="20" value="原始行情数据接入" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
       <mxGeometry x="670.0" y="122.0" width="110.0" height="28" as="geometry"/>
     </mxCell>
     <mxCell id="21" value="多时态头寸视图（IBOR数据基础设施，供上层消费）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
@@ -104,7 +104,7 @@
     <mxCell id="35" value="多币种资金管理" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
       <mxGeometry x="120.0" y="178.0" width="110.0" height="28" as="geometry"/>
     </mxCell>
-    <mxCell id="36" value="衍生品逐日盯市" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
+    <mxCell id="36" value="衍生品逐日盯市（消费M09定价）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
       <mxGeometry x="230.0" y="178.0" width="110.0" height="28" as="geometry"/>
     </mxCell>
     <mxCell id="37" value="公司行为通知" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">

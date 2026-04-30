@@ -156,11 +156,16 @@ module:
       gRPC (高性能定价API) ; Redis (曲线/曲面实时缓存) ;
       Kubernetes (弹性计算网格调度)
     key_interfaces:
-    - 行情平台 → 实时市场数据 (Kafka)
-    - M04风险计量平台 → 定价/Greeks/情景计算 (gRPC streaming)
-    - M07组合管理 → 实时估值/Greeks/KRD（Campisi归因所需逐券KRD，gRPC）
-    - M08策略投资_量化 → 逐券DV01/CS01/KRD/Greeks（作为因子载荷原始输入，gRPC）；曲线/估值（策略研究消费）
-    - 销售交易/TRS → 客需实时报价 (REST, p99<100ms)
+      inbound:
+      - IBOR(M01 F01-19) → 原始行情quote/估值参考价/隐含波动率quote (Kafka，供F09-04/F09-05曲线曲面构建)
+      - 行情平台 → 实时市场数据补充 (Kafka)
+      - 交易对手数据 → 外部信用数据PD/LGD供F09-16 XVA消费
+      outbound:
+      - M01(IBOR F01-10) ← 衍生品定价/Greeks (gRPC，用于衍生品逐日盯市)
+      - M04风险计量平台 ← Greeks/DV01/CS01/曲线/曲面/XVA (gRPC streaming，M04为消费聚合方)
+      - M07组合管理 ← 实时估值/逐券Greeks/KRD（Campisi归因所需逐券KRD，gRPC）
+      - M08策略投资_量化 ← 逐券DV01/CS01/KRD/Greeks（作为因子载荷原始输入，gRPC）；曲线/估值（策略研究消费）
+      - 销售交易/TRS ← 客需实时报价 (REST, p99<100ms)
     key_decisions:
     - 本模块边界：只负责定价/曲线/Greeks/敏感度计算，不建因子模型；M08消费本模块DV01/CS01/KRD/Greeks作为因子载荷输入，M09无感知因子体系
     - KRD必须覆盖全品种（含权债/可转债），因为M07 Campisi 2.0归因依赖逐券KRD，缺品种覆盖直接导致归因误差

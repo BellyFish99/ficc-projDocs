@@ -20,7 +20,7 @@
     <mxCell id="7" value="D5. 风控基础设施" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#2B5EC7;fontColor=#FFFFFF;strokeColor=#1B3275;fontStyle=1;fontSize=10;align=center;verticalAlign=middle;" vertex="1" parent="1">
       <mxGeometry x="890.0" y="54.0" width="220.0" height="36" as="geometry"/>
     </mxCell>
-    <mxCell id="8" value="投资预测分析" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
+    <mxCell id="8" value="交易前风险影响分析" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
       <mxGeometry x="10.0" y="90.0" width="220.0" height="28" as="geometry"/>
     </mxCell>
     <mxCell id="9" value="实时风险计量" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
@@ -32,7 +32,7 @@
     <mxCell id="11" value="历史风险数据查询与趋势分析" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
       <mxGeometry x="670.0" y="90.0" width="220.0" height="28" as="geometry"/>
     </mxCell>
-    <mxCell id="12" value="数据底座与IBOR集成" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
+    <mxCell id="12" value="IBOR数据消费层（持仓/估值实时订阅）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
       <mxGeometry x="890.0" y="90.0" width="220.0" height="28" as="geometry"/>
     </mxCell>
     <mxCell id="13" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F7FA;fontColor=#F5F7FA;strokeColor=#D6E4F7;fontSize=9;" vertex="1" parent="1">
@@ -74,7 +74,7 @@
     <mxCell id="25" value="压力测试与情景分析" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
       <mxGeometry x="450.0" y="174.0" width="220.0" height="28" as="geometry"/>
     </mxCell>
-    <mxCell id="26" value="交易前风险影响分析" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
+    <mxCell id="26" value="模型治理与回测框架" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
       <mxGeometry x="670.0" y="174.0" width="220.0" height="28" as="geometry"/>
     </mxCell>
     <mxCell id="27" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F7FA;fontColor=#F5F7FA;strokeColor=#D6E4F7;fontSize=9;" vertex="1" parent="1">
@@ -89,7 +89,7 @@
     <mxCell id="30" value="信用风险计量（CVA/PD/LGD）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
       <mxGeometry x="450.0" y="202.0" width="220.0" height="28" as="geometry"/>
     </mxCell>
-    <mxCell id="31" value="模型治理与回测框架" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
+    <mxCell id="31" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F7FA;fontColor=#F5F7FA;strokeColor=#D6E4F7;fontSize=9;" vertex="1" parent="1">
       <mxGeometry x="670.0" y="202.0" width="220.0" height="28" as="geometry"/>
     </mxCell>
     <mxCell id="32" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F7FA;fontColor=#F5F7FA;strokeColor=#D6E4F7;fontSize=9;" vertex="1" parent="1">

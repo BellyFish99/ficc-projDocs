@@ -14,7 +14,7 @@ module:
   duration_m: 13
   team_sz: 14
   person_months: 133
-  note: 整个FICC平台的账薄主干，27项功能（新增F01-29数据质量监控）覆盖持仓/现金/估值/事件/对账/监管报送/试算/抵押品/数据质量全链路；核心创新：ML-based reconciliation (F01-14)，DQ-first foundation (F01-29)，CA-aware sandbox (F01-25)；合规检查规则与执行由M06负责，情景P&L分析由M04+M07负责，IBOR为SSoT数据源
+  note: 整个FICC平台的账薄主干（IBOR为持仓/交易/资金SSoT），27项功能覆盖持仓/现金/估值/事件/对账/监管报送/试算/抵押品/数据质量全链路；核心创新：ML-based reconciliation (F01-14)，DQ-first foundation (F01-29)，CA-aware sandbox (F01-25)；明确边界：合规规则与执行由M06负责，曲线/曲面构建由M09负责（M01只接入原始行情），P&L归因由M07负责（M01只做基础MtM），衍生品Margin Call由F01-28负责（F01-10只做盯市估值）；情景P&L分析由M04+M07负责
   source_slide: 55
   data_inputs:
   - 交易指令数据
@@ -116,13 +116,13 @@ module:
       acceptance: 应计利息与Bloomberg基准误差<0.01元/百元面值
       dependency: 资产主数据（票面率/计息基准/付息频率）
     - id: F01-10
-      name: 衍生品逐日盯市
-      desc: IRS/CDS/国债期货逐日MtM计算，保证金余额实时更新，追加保证金（Margin Call）自动触发
+      name: 衍生品逐日盯市（消费M09定价）
+      desc: IRS/CDS/国债期货逐日MtM计算（消费M09 F09-10 Greeks + F09-04曲线进行重定价）；MtM结果推送F01-28抵押品管理触发Margin Call工作流；本模块只负责盯市估值，不重复实现Margin Call流程（由F01-28负责）
       complexity: 高
-      days: 50
+      days: 40
       priority: P1
-      acceptance: 衍生品MtM与对手方差异<0.5bps，Margin Call触发延迟<5min
-      dependency: 量化定价引擎/交易对手管理
+      acceptance: 衍生品MtM与对手方差异<0.5bps，MtM事件推送F01-28延迟<1s
+      dependency: M09 F09-10（衍生品Greeks/重定价）/M09 F09-04曲线/F01-28抵押品管理
   - id: D
     name: 事件处理
     functions:
@@ -192,13 +192,13 @@ module:
     name: 数据接入与集成
     functions:
     - id: F01-19
-      name: 行情数据接入
-      desc: 接入AMD/Bloomberg/Wind实时行情（中债估值/利率曲线/信用利差/波动率曲面），标准化清洗后推送至IBOR定价层
+      name: 原始行情数据接入
+      desc: 接入AMD/Bloomberg/Wind原始市场行情（债券/期货/期权/外汇报价、外部估值参考价、隐含波动率quote），标准化清洗后推送至定价平台M09用于曲线/曲面构建（M01不构建曲线/曲面）；F01-29 DQ监控覆盖行情staleness/completeness异常
       complexity: 高
       days: 30
       priority: P1
-      acceptance: 行情延迟<1s，数据完整性>99.9%，异常行情自动过滤告警
-      dependency: AMD行情平台/Bloomberg API/Wind数据接口
+      acceptance: 行情延迟<1s，数据完整性>99.9%，异常行情过滤+F01-29告警
+      dependency: AMD行情平台/Bloomberg API/Wind数据接口/M09 F09-04曲线消费方/F01-29 DQ监控
     - id: F01-20
       name: 交易数据接入
       desc: 从OMS/交易终端实时获取成交回报（债券/回购/衍生品），含完整交易状态机（报盘/成交/撤单/部分成交）追踪
@@ -290,10 +290,12 @@ module:
     key_interfaces:
       inbound:
       - OMS/ATP → 成交回报(Kafka实时，<200ms)
-      - WIND/Bloomberg → 行情估值(Kafka实时，<1s)
+      - WIND/Bloomberg/AMD → 原始行情quote(Kafka实时，<1s) — 由F01-19接入，转发M09构建曲线
       - 中登/中债登/上清 → 日终持仓(SFTP批量，T+0 EOD)
       - 资金系统 → 现金划拨(REST实时)
+      - 定价平台(M09) ← Greeks/估值/曲线消费(gRPC) — F01-10衍生品MtM消费M09 F09-10
       outbound:
+      - IBOR → M09定价平台（原始行情转发，供M09 F09-04/F09-05构建曲线/曲面）
       - IBOR → M04风险计量平台（Kafka推送，持仓+估值变化事件；M04叠加市场冲击做情景P&L，IBOR不做）
       - IBOR → M07组合管理（REST查询API + Kafka实时订阅；M07 F07-05调用F01-25沙箱做Shadow Portfolio分析）
       - IBOR → M06事前风控/合规（REST同步，持仓数据供F06-11持续合规监控）

@@ -59,7 +59,7 @@
     <mxCell id="20" value="衍生品对冲决策引擎" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
       <mxGeometry x="743.3" y="150.0" width="183.3" height="28" as="geometry"/>
     </mxCell>
-    <mxCell id="21" value="利率曲线集成" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
+    <mxCell id="21" value="利率曲线消费集成（消费M09 F09-04）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
       <mxGeometry x="926.7" y="150.0" width="183.3" height="28" as="geometry"/>
     </mxCell>
     <mxCell id="22" value="相对价值分析" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
