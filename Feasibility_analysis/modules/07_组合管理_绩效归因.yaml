@@ -11,10 +11,10 @@ module:
   gap: 中
   competitor: SimCorp/衡泰
   foundation: M9 PMS模块
-  duration_m: 12
-  team_sz: 12
-  person_months: 120
-  note: 17项功能含量化底座集成；Slide44全景展开
+  duration_m: 14
+  team_sz: 14
+  person_months: 160
+  note: 全资产组合管理驾驶舱，十大核心能力：全资产持仓模型/QP优化/Shadow Portfolio/Campisi 2.0固收归因/Brinson归因/因子风险分解+MCTR/Component VaR/敏感度/情景压测/流动性；对应PPT Slide 44 + gy_solution 4.4.1
   source_slide: 44
   data_inputs:
   - 交易数据
@@ -24,159 +24,196 @@ module:
   foundation_layer:
   - 定价计算
   - 利率曲线
-  - 因子模型
+  - 因子模型(2200+风险因子)
   function_domains:
   - id: A
-    name: 组合分析
+    name: 全资产持仓管理
     functions:
     - id: F07-01
-      name: 债券横截面与时序分析
-      desc: 跨品种横截面信号挖掘（利差/久期偏差），历史时序趋势与均值回归分析
+      name: 全资产统一持仓模型
+      desc: 八类资产（利率债/信用债/权益/基金/黄金/商品/衍生品/非标）实时T+0持仓，多层组合树（公司→部门→策略→子组合→投资经理），穿透式敞口展示（品种/久期/评级/行业/地区分布），真实组合+Shadow Portfolio并行展示
       complexity: 高
-      days: 35
+      days: 40
       priority: P1
-      acceptance: 横截面信号与实际收益相关性>0.3
-      dependency: AMD行情平台/估值数据
+      acceptance: T+0持仓实时刷新，穿透层级≥5层，数据与IBOR差异<0.01%
+      dependency: IBOR持仓账薄/AMD行情
     - id: F07-02
-      name: 相对价值分析
-      desc: 利差/Z-spread/OAS相对价值计算，历史分位数定位，跨品种套利信号识别
+      name: 跨资产相关性分析
+      desc: 全持仓跨资产相关矩阵（股/债/商品/衍生品/基金），多窗口滚动（20/60/252日），压力情景相关性vs历史相关性对比，动态相关性漂移预警，分散化比率(Diversification Ratio)计算，低相关候选资产推荐
       complexity: 高
       days: 30
       priority: P1
-      acceptance: OAS计算误差<1bps，分位数覆盖5年历史
-      dependency: 量化定价引擎/AMD行情
-    - id: F07-03
-      name: 组合相关度分析
-      desc: 资产间收益相关矩阵计算（滚动60/120/250日），组合集中度风险识别，分散化系数监控
-      complexity: 中
-      days: 25
-      priority: P1
-      acceptance: 相关矩阵计算<30s（500券组合）
+      acceptance: 相关矩阵计算<30s（500券组合），动态漂移预警阈值可配
       dependency: IBOR头寸/AMD历史行情
+    - id: F07-03
+      name: 相对价值分析
+      desc: 利差/Z-spread/OAS相对价值计算，历史分位数定位（覆盖5年），跨品种套利信号识别，债券横截面信号挖掘（利差/久期偏差），时序均值回归分析
+      complexity: 高
+      days: 30
+      priority: P1
+      acceptance: OAS计算误差<1bps，历史分位数覆盖5年，横截面信号与实际收益相关性>0.3
+      dependency: 定价平台/AMD行情
   - id: B
-    name: 风险计量
+    name: 组合优化与再平衡
     functions:
     - id: F07-04
-      name: 情景分析
-      desc: 利率/信用/流动性三类自定义情景，组合P&L影响量化，多情景并行对比
+      name: QP智能再平衡引擎
+      desc: 二次规划多目标优化（最小化跟踪误差+交易摩擦+融资成本+IFRS9波动），500+约束（合规/风险预算/流动性/IFRS9），2000+持仓毫秒级求解，支持整数规划（面值/手数取整），多期优化（含到期券），三种触发（定时/事件/手动），一键生成交易指令
       complexity: 高
-      days: 35
+      days: 40
       priority: P1
-      acceptance: 情景P&L与手工核算误差<0.5%，支持≥20情景并行
-      dependency: FICC风险计量平台/量化定价引擎
+      acceptance: QP求解2000持仓<200ms，约束满足率100%，调仓前后TE对比即时输出
+      dependency: 事前风控/合规/IBOR/现券系统/定价平台
     - id: F07-05
-      name: 敏感度分析
-      desc: 久期/DV01/凸度/利差/Vega敏感度多因子并行计算，组合对冲比率建议
-      complexity: 高
-      days: 25
-      priority: P1
-      acceptance: DV01与Bloomberg基准误差<0.5bps
-      dependency: 量化定价引擎Greeks接口
-    - id: F07-06
-      name: 极端事件分析
-      desc: 历史极端情景（924行情/2015股灾/2020疫情等8+情景），组合尾部损失分布，ES(99%)计算
+      name: Shadow Portfolio虚拟试算
+      desc: 100+虚拟组合与真实组合并行运行，多维试算（增减仓/换仓/加杠杆/新资产类别），即时显示试算后风险指标/归因/相关性/预期收益，真实vs虚拟所有指标差异对比视图，冲击成本预估
       complexity: 高
       days: 30
       priority: P1
-      acceptance: 历史情景复现误差<1%
-      dependency: FICC风险计量平台
+      acceptance: 虚拟组合模拟与真实执行偏差<0.3%，秒级响应
+      dependency: IBOR/定价平台/现券交易系统
+    - id: F07-06
+      name: 资产配置策略分析
+      desc: SAA战略→TAA战术精准联动（投委会指令直接转化为因子约束输入QP引擎），宏观因子（利率/信用/流动性周期）驱动大类资产配置模型，动态权重优化，历史回测验证（≥5年），固收+策略P&L归因（债券底仓+衍生品增强）
+      complexity: 高
+      days: 40
+      priority: P2
+      acceptance: 回测期≥5年，预测方向胜率>55%，SAA→TAA指令转化全程无人工干预
+      dependency: AMD宏观数据/因子模型/IBOR
   - id: C
     name: 绩效归因
     functions:
     - id: F07-07
-      name: 指数比较分析
-      desc: 对标中债综合/信用/政策行等指数，跟踪误差（TE）日频监控，超额Alpha三因子分解
+      name: Campisi 2.0 固收绩效归因
+      desc: 固定收益五效应完整拆解：①收入效应（票息+摊销），②国债效应（利率平移/曲线斜率/曲率三效应分离，用Key Rate Duration精确映射），③利差效应（DTS贡献/行业配置效应/个券选择效应），④交易效应（择时Alpha或损耗量化），⑤残差校验（<5bp合格）；日/周/月/季多维度报告自动生成
+      complexity: 高
+      days: 40
+      priority: P1
+      acceptance: 五效应合计与实际收益残差<5bps，T+1 9:00前自动报告
+      dependency: IBOR持仓/AMD行情/定价平台
+    - id: F07-08
+      name: Brinson 资产组合绩效归因
+      desc: 三效应：大类资产配置效应（超/低配决策贡献）/个券选择效应（同类标的选择Alpha）/交互效应，支持多层穿透（资产大类→行业→子行业→个股/个基），FOF基金穿透底层持仓，日/月/季/年累计归因趋势，投资经理能力量化排名
+      complexity: 高
+      days: 35
+      priority: P1
+      acceptance: Brinson结果与Bloomberg AIM误差<0.1%，穿透层级≥4层
+      dependency: IBOR持仓/AMD行情/指数数据
+    - id: F07-09
+      name: 指数跟踪误差与主动风险归因
+      desc: 对标中债综合/信用/政策行等基准指数，跟踪误差（TE）日频监控，TE分解（配置效应TE+选券效应TE+协方差），信息比率（IR）实时监控（目标IR>0.5，预警IR连续3月<0），超额Alpha三因子分解
       complexity: 中
       days: 25
       priority: P1
-      acceptance: TE计算误差<1bps，支持≥10基准指数
-      dependency: AMD中债估值/IBOR持仓
-    - id: F07-08
-      name: 绩效归因（Brinson）
-      desc: BHB三效应：资产配置/个券选择/交互效应，日/周/月/季多维度，报告PDF自动生成
+      acceptance: TE计算误差<1bps，支持≥10基准指数，IR预警自动推送
+      dependency: AMD中债估值/IBOR持仓/因子模型
+  - id: D
+    name: 风险计量
+    functions:
+    - id: F07-10
+      name: 因子风险分解 + MCTR边际风险贡献
+      desc: 全持仓分解为2200+风险因子（利率/信用/权益/商品/汇率），系统性风险+特异性风险分离；MCTR边际风险贡献（∂组合波动率/∂持仓权重），风险消耗排名（识别"风险大户"），减仓/加仓优先级引导，风险预算仪表盘（已用/剩余/预警线三档）
       complexity: 高
       days: 40
       priority: P1
-      acceptance: Brinson结果与Bloomberg AIM误差<0.1%，T+1 9:00前自动报告
-      dependency: IBOR持仓/AMD行情/指数数据
-  - id: D
-    name: 组合优化与再平衡
-    functions:
-    - id: F07-09
-      name: 虚拟组合分析
-      desc: 组合调整前后净值/风险/收益效果模拟（纸面交易），冲击成本预估，多方案对比
-      complexity: 高
-      days: 20
-      priority: P1
-      acceptance: 虚拟组合模拟与真实执行偏差<0.3%
-      dependency: IBOR/现券交易系统
-    - id: F07-10
-      name: 再平衡方案试算与比较
-      desc: 久期/集中度/流动性/合规约束联合优化（二次规划QP），多方案并行试算，最优路径推荐
+      acceptance: 因子模型解释方差>80%，MCTR实时更新延迟<5s，Alpha IC均值>0.05
+      dependency: AMD历史行情/IBOR持仓/定价平台
+    - id: F07-11
+      name: Component VaR 四层穿透分析
+      desc: VaR四层穿透：资产类别VaR→行业/子市场VaR→评级/信用质量VaR→单一发行人Component VaR，含跨类分散化收益量化；三种方法互验（历史模拟500日99%置信度/Monte Carlo 10000次/参数解析法），方法差异超阈值自动预警
       complexity: 高
       days: 35
       priority: P1
-      acceptance: QP求解100券组合<5s，约束满足率100%
-      dependency: 事前风控/合规/IBOR/现券系统
-    - id: F07-11
-      name: 资产配置策略分析
-      desc: 宏观因子（利率/信用/流动性周期）驱动大类资产配置模型，动态权重优化，历史回测验证
-      complexity: 高
-      days: 40
-      priority: P2
-      acceptance: 回测期≥5年，预测方向胜率>55%
-      dependency: AMD宏观数据/因子模型
+      acceptance: 三方法VaR差异<10%，穿透至发行人层，全量计算<1min
+      dependency: FICC风险计量平台/定价平台/IBOR
     - id: F07-12
-      name: 固收+策略分析
-      desc: 债券底仓+衍生品增强策略P&L归因，风险分解（利率/信用/期权贡献），固收+净值模拟
+      name: 敏感度分析（多维Shock Grid）
+      desc: 利率敏感度（DV01/关键期限点KRD/凸性），信用敏感度（CS01/DTS分评级/分行业），权益敏感度（Delta/Beta/行业Beta），商品汇率敏感度；利率×信用利差二维冲击矩阵（Shock Grid），识别最脆弱组合方向，对冲比率建议
+      complexity: 高
+      days: 30
+      priority: P1
+      acceptance: DV01与Bloomberg基准误差<0.5bps，Shock Grid 5×5矩阵实时刷新
+      dependency: 定价平台Greeks接口/IBOR
+    - id: F07-13
+      name: 情景分析与压力测试
+      desc: 三层：①历史情景重演（924行情/2019包商/2013钱荒/2015股灾等8+事件，含冲击参数还原），②假设情景模拟（自定义任意冲击组合，即时P&L输出+应急对冲建议），③反向压力测试（倒推触发止损线的临界市场情景+历史发生频率），≥20情景并行
+      complexity: 高
+      days: 35
+      priority: P1
+      acceptance: 历史情景复现误差<1%，情景P&L误差<0.5%，支持≥20情景并行
+      dependency: FICC风险计量平台/定价平台
+  - id: E
+    name: 流动性与对冲管理
+    functions:
+    - id: F07-14
+      name: 流动性风险管理（LVaR）
+      desc: 逐持仓变现能力评估（规模/日均成交量→变现天数），Almgren-Chriss市场冲击成本模型，流动性压力测试（X天内变现Y亿最优路径+成本），流动性调整VaR（LVaR=传统VaR+流动性溢价），流动性覆盖率/缓冲监控（1/3/5/10日分层），回购到期日历
+      complexity: 中
+      days: 25
+      priority: P1
+      acceptance: LVaR与市场基准误差<5%，日均成交量覆盖≥95%持仓，变现路径建议<3s
+      dependency: AMD行情/IBOR持仓
+    - id: F07-15
+      name: 衍生品对冲决策引擎
+      desc: 七类工具矩阵（国债期货2/5/10/30Y/IRS/CDS/股指期货IF/IH/IC/IM/股指期权/黄金期货/外汇远掉期），系统推荐最优对冲方案（成本最小约束），一键生成对冲指令，对冲效果追踪（前后风险指标对比/效率/执行滑点）；支持快速/精细/尾部/跨资产四种场景
       complexity: 高
       days: 30
       priority: P2
-      acceptance: 固收+净值模拟与实际偏差<0.5%
-      dependency: IBOR/利率衍生品系统
-    - id: F07-13
-      name: 量化策略组合分析
-      desc: 多策略组合叠加容量约束，策略相关性管理，Sharpe/最大回撤/Calmar实时监控
-      complexity: 高
-      days: 35
-      priority: P2
-      acceptance: 策略容量计算误差<5%
-      dependency: 策略投资/量化系统
-  - id: E
-    name: 流动性管理
-    functions:
-    - id: F07-14
-      name: 流动性分析
-      desc: 逐券换手率/市场深度评估，组合变现能力分析，流动性压力下变现损失（LVaR）估算
-      complexity: 中
-      days: 20
-      priority: P1
-      acceptance: LVaR与市场基准误差<5%，日均成交量覆盖≥95%持仓
-      dependency: AMD行情/IBOR持仓
+      acceptance: 对冲方案推荐<5s，DV01对冲误差<5%，指令自动流转执行引擎
+      dependency: 衍生品交易系统/IBOR/定价平台/事前风控
   - id: F
     name: 量化底座集成
     functions:
-    - id: F07-15
+    - id: F07-16
       name: 定价计算集成
-      desc: 调用量化定价引擎实时估值与Greeks，含权债/可转债/IRS，结果缓存（Redis）与Kafka推送
+      desc: 调用定价平台实时估值与Greeks（含权债/可转债/IRS），Redis缓存结果，Kafka推送持仓+估值变化事件，日终全量估值批处理
       complexity: 高
       days: 20
       priority: P2
       acceptance: 定价API p99<200ms，日终全量估值<30min（10万券）
-      dependency: 量化定价引擎
-    - id: F07-16
+      dependency: 定价平台
+    - id: F07-17
       name: 利率曲线集成
-      desc: 多曲线实时消费（国债/政策行/AAA信用/OIS），NS参数提取（水平/斜率/曲率），敏感度映射
+      desc: 多曲线实时消费（国债/政策行/AAA信用/OIS），NS参数提取（水平/斜率/曲率），关键期限点敏感度映射，曲线版本快照（供归因历史复现）
       complexity: 中
       days: 15
       priority: P1
       acceptance: 曲线更新延迟<1s，NS拟合R²>0.999
-      dependency: AMD行情平台/量化定价引擎
-    - id: F07-17
+      dependency: AMD行情平台/定价平台
+    - id: F07-18
       name: 因子模型
-      desc: 多因子风险模型（利率/信用/流动性/行业因子），Alpha因子库（≥20因子），因子暴露实时计算
+      desc: 多因子风险模型（2200+风险因子：利率/信用/流动性/权益Beta/行业/风格/商品/汇率），Alpha因子库（≥20因子，IC均值>0.05），因子暴露实时计算与历史追踪，因子风险贡献预算管理
       complexity: 高
       days: 40
       priority: P1
-      acceptance: 因子模型解释方差>80%，Alpha IC均值>0.05
+      acceptance: 因子模型解释方差>80%，因子暴露更新延迟<10s
       dependency: AMD历史行情/IBOR持仓
+  tech_design:
+    pattern: 因子驱动组合管理引擎（QP优化器 + 2200因子模型 + Campisi/Brinson双归因框架）
+    data_model: >
+      Portfolio (portfolioId, managerId, level, parentId, benchmarkId, riskBudget) ;
+      Position (positionId, portfolioId, assetClass, bondId, qty, marketValue, pnl, updatedAt) ;
+      FactorExposure (portfolioId, factorId, exposure, mctr, riskBudget, asOf) ;
+      Attribution (portfolioId, date, model, incomeEffect, rateEffect, spreadEffect, tradeEffect, selectionEffect, allocationEffect) ;
+      ScenarioResult (scenarioId, portfolioId, shockParams, pnlImpact, worstHoldings, computedAt) ;
+      LiquidityProfile (positionId, avgDailyVolume, liquidationDays, impactCost, lvar, updatedAt)
+    core_stack: >
+      Java 21 (组合管理/归因/流动性引擎) + Python (QP求解器/因子模型/Campisi归因) ;
+      C++ (MCTR/Component VaR高性能矩阵计算) ;
+      Redis (实时因子暴露/持仓缓存) ; Kafka (持仓+估值变化事件流) ;
+      PostgreSQL (归因历史/情景结果) ; React (投资驾驶舱前端)
+    key_interfaces:
+    - IBOR → 实时持仓/历史交易 (Kafka推送，持仓变化事件<200ms)
+    - 定价平台 → 估值/Greeks/曲线 (gRPC streaming)
+    - AMD行情平台 → 历史行情/指数/宏观数据 (Kafka实时+SFTP批量)
+    - 事前风控 → QP优化合规约束同步 (REST)
+    - 衍生品交易系统 → 对冲指令执行 (REST)
+    key_decisions:
+    - Campisi 2.0与Brinson双归因并存：固收用Campisi（五效应），跨资产用Brinson（三效应），结果互补不重叠
+    - QP求解器实时同步事前风控合规约束，确保优化结果直接可执行，无需二次校验
+    - Component VaR三方法互验（历史模拟/MC/参数法），差异超阈值自动预警，防单方法失真
+    - Shadow Portfolio与真实组合共享同一定价引擎，确保模拟结果可信
+    - 2200+因子模型统一供全系统使用（组合管理/风险计量/归因共用），避免因子定义不一致
+    open_questions:
+    - 2200+因子模型数据源选型（Wind Factor vs 自建 vs 第三方风险模型供应商如Barra）
+    - Campisi归因所需关键期限点KRD计算：由定价平台提供还是本模块自建
