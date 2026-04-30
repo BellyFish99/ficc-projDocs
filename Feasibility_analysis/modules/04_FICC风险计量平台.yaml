@@ -14,24 +14,12 @@ module:
   duration_m: 15
   team_sz: 12
   person_months: 135
-  note: 替代衡泰老旧系统，信创切入口；覆盖投前/投中/投后全生命周期风险管理，新增信用风险计量（CVA/PD/LGD/IFRS9 ECL）、限额治理全生命周期、VaR回测框架（F04-10增强）、模型治理（新增F04-23）、pre-trade impact（Phase 2 F04-22）；曲线/曲面构建由M09独占，M04通过gRPC消费；对应PPT Slide 52
+  note: 替代衡泰老旧系统，信创切入口；本模块职责为风险计算与治理（VaR引擎/限额执行/CVA-PD-LGD/模型治理/监管报送）；Greeks/DV01/CS01/KRD由M09 F09-10统一计算（M04 F04-08/F04-09为消费聚合方），曲线/曲面由M09 F09-04/F09-05独占；P&L归因由M07 F07-07/F07-22负责（M04不重复Campisi）；流动性LVaR/TCA由M07 F07-14/F07-20负责；新增F04-22(Phase 2 pre-trade)、F04-23(模型治理与回测SSoT)；对应PPT Slide 52
   source_slide: 52
   function_domains:
   - id: D1
     name: 投前风险分析
     functions:
-    - id: F04-01
-      name: 组合What-if分析
-      desc: What-if情景建模，Duration & Convexity影响分析，VaR贡献分解，风险因子敞口，集中度分析
-      complexity: 高
-      days: 30
-      priority: P1
-    - id: F04-02
-      name: 授权敞口分析
-      desc: 交易前限额验证，交易对手/集中度/监管/组合约束多维度限额检查，Pre-trade拦截
-      complexity: 高
-      days: 25
-      priority: P1
     - id: F04-03
       name: 投资预测分析
       desc: P&L与风险归因预测建模，收益率曲线/利差/波动率因子预测，组合构建优化，多情景对比分析
@@ -43,28 +31,26 @@ module:
     functions:
     - id: F04-04
       name: 实时风险计量
-      desc: Real-time DV01/CS01，Live VaR，Dynamic Greeks，日内P&L与归因，风险限额利用率实时展示
+      desc: 实时风险指标计算引擎：Live VaR（消费M09 Greeks/DV01），实时风险敞口聚合，实时风险事件流推送至下游消费方；P&L归因由M07 F07-22负责，限额利用率展示由F04-21负责，本模块只产出风险量化指标
       complexity: 极高
       days: 40
       priority: P1
+      acceptance: 风险指标更新延迟<1s，VaR计算调用M09 Greeks <500ms，事件推送Kafka <200ms
+      dependency: M09 F09-10（Greeks SSoT）/F04-10（VaR模型）/IBOR持仓
     - id: F04-05
       name: 交易对手风险实时监控
       desc: 实时敞口聚合，抵押品监控，信用限额使用率，结算风险，净额结算协议管理
       complexity: 高
       days: 30
       priority: P1
-    - id: F04-06
-      name: 流动性分析与交易成本
-      desc: 执行风险监控，市场冲击分析，流动性成本追踪，滑点计量，最优执行合规
-      complexity: 高
-      days: 25
-      priority: P1
     - id: F04-07
       name: 实时风险全景图
-      desc: 实时持仓追踪，流式风险指标，实时限额监控，告警管理，异常跟踪仪表板
+      desc: 风险驾驶舱仪表板：聚合展示F04-04风险指标 + F04-21限额状态 + F04-05对手方风险 + F04-19 AI预警；告警管理与异常跟踪；本模块只做展示编排，不重复计算或维护限额数据
       complexity: 高
       days: 25
       priority: P1
+      acceptance: 全景图刷新<3s，告警延迟<5s，所有数据来自上游F04-04/F04-05/F04-19/F04-21
+      dependency: F04-04（风险指标）/F04-05（对手方风险）/F04-19（AI预警）/F04-21（限额状态）
   - id: D3
     name: 风控引擎
     functions:
@@ -85,23 +71,18 @@ module:
       acceptance: 组合Greeks聚合<2s，限额比对实时，与M09单券结果一致性100%
       dependency: M09 F09-10（逐券Greeks计算唯一权威）/IBOR持仓/M04 F04-21限额
     - id: F04-10
-      name: VaR模型
-      desc: 参数法/历史模拟法/蒙特卡洛三模式，Expected Shortfall；integrated daily backtesting framework：daily actual P&L vs predicted VaR tracking，exception flagging and reporting；quarterly Kupiec POF (Proportion of Failures) statistical test per regulatory standard；model exception log with severity levels，>3 exceptions/quarter triggers automatic re-calibration workflow to F04-23；VaR model validation reports auto-generated for regulatory submission (Basel III backtesting rules, FRTB internal model requirements)
+      name: VaR模型计算引擎
+      desc: VaR三方法计算引擎：参数法/历史模拟法/蒙特卡洛，Expected Shortfall；每日VaR计算与持久化（供F04-13查询/F04-23回测）；P&L vs VaR异常初次检测（实时事件推送至F04-23）；本模块只负责VaR数值计算与异常事件输出，回测框架/Kupiec POF/模型治理/监管报送由F04-23独立模型治理模块负责
       complexity: 极高
-      days: 60
+      days: 50
       priority: P1
-      acceptance: Daily backtest completion <6:00AM，exception detection accuracy >95%，Kupiec POF test run quarterly with statistical documentation，regulatory reports auto-generated for compliance，model exception escalation <1h from detection
+      acceptance: VaR计算延迟<5s（10万券组合MC），三方法一致性验证（差异<3%），异常事件推送F04-23 <1min
+      dependency: M09 F09-10（Greeks/敏感度SSoT）/M09 F09-04曲线/IBOR持仓/F04-23模型治理框架
     - id: F04-11
       name: 压力测试与情景分析
       desc: 内置历史情景（GFC/COVID-19/利率冲击），假设情景（曲线扭转/利差走阔），反向压力测试
       complexity: 高
       days: 35
-      priority: P1
-    - id: F04-12
-      name: 估值与盈亏分解
-      desc: Carry & Roll-down，曲线效应，信用利差贡献，择券贡献，基于因子的盈亏多维分解
-      complexity: 高
-      days: 30
       priority: P1
     - id: F04-20
       name: 信用风险计量（CVA/PD/LGD）
@@ -115,11 +96,13 @@ module:
     name: 投后风险分析
     functions:
     - id: F04-13
-      name: 历史风险回溯
-      desc: 历史VaR计算回放，压力测试结果归档，风险趋势分析，限额例外统计，VaR回测报告
+      name: 历史风险数据查询与趋势分析
+      desc: 历史风险指标查询API（VaR/DV01/CS01历史快照），风险趋势分析（按日/周/月聚合），限额例外历史统计，压力测试历史结果归档；VaR回测与模型验证由F04-23模型治理框架负责，本模块只做历史数据查询与可视化
       complexity: 中
       days: 20
       priority: P1
+      acceptance: 历史查询API延迟<3s，覆盖最近5年，趋势分析支持任意时间窗口
+      dependency: ClickHouse历史风险数据库/F04-04实时风险计量/F04-23模型治理
     - id: F04-15
       name: 监管报表与风控日报
       desc: 日/周/月风险报告自动生成，监管资本计算，Basel III/FRTB报送，压力测试摘要，风险归因仪表板
