@@ -107,12 +107,6 @@ module:
       complexity: 中
       days: 20
       priority: P1
-    - id: F04-14
-      name: 绩效归因与风险计量
-      desc: 收益率曲线效应，信用利差分解，行业配置效应，个券择券，Carry & Roll-down贡献
-      complexity: 高
-      days: 30
-      priority: P1
     - id: F04-15
       name: 监管报表与风控日报
       desc: 日/周/月风险报告自动生成，监管资本计算，Basel III/FRTB报送，压力测试摘要，风险归因仪表板
@@ -159,13 +153,16 @@ module:
       ClickHouse (历史风险数据分析) ; Kubernetes (HPC网格弹性调度)
     key_interfaces:
     - IBOR → 实时持仓推送 (Kafka topic: position.updated)
-    - 定价平台 → 估值/Greeks数据 (gRPC streaming)
+    - 定价平台(模块09) → 估值/Greeks数据 (gRPC streaming)
     - 现券交易/TRS → 交易事件 (Kafka topic: trade.executed)
     - 监管报送系统 → 标准化风险报告 (REST API)
+    - 组合管理(模块07) → 向M07提供VaR/Greeks/DV01/CS01/情景计算服务 (gRPC，本模块作为计算引擎，M07作为消费方)
     key_decisions:
     - 采用Event Sourcing确保持仓数据全链路可审计，满足监管穿透式要求
     - HPC网格与业务逻辑解耦，支持蒙特卡洛/压力测试弹性扩容而不影响实时风控
     - VaR与Greeks共享同一套曲线/曲面构建服务，确保全公司数据一致性
+    - 本模块职责边界：计算与治理（VaR引擎/限额执行/监管报送）；投资绩效归因（Campisi/Brinson）归属M07，不在本模块重复实现
+    - 情景分析由本模块维护场景库并提供计算API；M07通过API调用获取场景P&L，M07自身拥有PM决策工作流（对冲建议/再平衡触发）
     open_questions:
     - FRTB内部模型法（IMA）vs标准法（SA）的选择取决于监管批准进度
     - AI预警模型的训练数据来源及监管合规性需法律确认
