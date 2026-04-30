@@ -115,6 +115,14 @@ module:
       priority: P1
       acceptance: 逐券Carry计算与实际票息收入误差<1bps，Carry预算仪表盘T+1 9:00前自动刷新
       dependency: IBOR持仓/AMD行情（回购利率/票面利率）/定价平台（估值价格）
+    - id: F07-20
+      name: 交易成本分析TCA
+      desc: 事后TCA：实施成本差（Implementation Shortfall = 决策时盘中价−成交均价）、VWAP/TWAP基准偏差，滑点分解（市场冲击+时机成本+价差成本）；经纪商执行质量排名（月度），超额成本自动触发路由策略优化建议，逐交易TCA反馈循环（成本预测模型再训练输入）；TCA结果回写F07-07归因（提升交易效应精确度）；实时TCA反馈推送至F07-22盘中P&L仪表盘
+      complexity: 中
+      days: 25
+      priority: P2
+      acceptance: TCA报告T+1生成，经纪商排名覆盖≥90%成交量，实施成本差计算与外部TCA服务误差<1bps，每日TCA反馈驱动<100bps超额成本自动预警
+      dependency: IBOR交易记录/AMD实时行情（决策时间戳价格）/现券交易系统成交回报/F07-22盘中P&L
     - id: F07-21
       name: 绩效报告生成
       desc: TWR（时间加权收益率）/MWR（资金加权收益率）多期计算，Grap算法多期归因链接（月度→季度→年度），PM工作台标准化绩效仪表盘（夏普/IR/最大回撤/信息比率），自动生成投委会汇报材料（PDF/PPT），历史归因报告版本存档与对比
@@ -177,14 +185,6 @@ module:
       priority: P2
       acceptance: 对冲方案推荐<5s，DV01对冲误差<5%，指令自动流转执行引擎
       dependency: 衍生品交易系统/IBOR/定价平台/事前风控
-    - id: F07-20
-      name: 交易成本分析TCA
-      desc: 事后TCA：实施成本差（Implementation Shortfall = 决策时盘中价−成交均价）、VWAP/TWAP基准偏差，滑点分解（市场冲击+时机成本+价差成本）；经纪商执行质量排名（月度），超额成本自动触发路由策略优化建议，逐交易TCA反馈循环（成本预测模型再训练输入）；TCA结果回写F07-07归因（提升交易效应精确度）；实时TCA反馈推送至F07-22盘中P&L仪表盘
-      complexity: 中
-      days: 25
-      priority: P2
-      acceptance: TCA报告T+1生成，经纪商排名覆盖≥90%成交量，实施成本差计算与外部TCA服务误差<1bps，每日TCA反馈驱动<100bps超额成本自动预警
-      dependency: IBOR交易记录/AMD实时行情（决策时间戳价格）/现券交易系统成交回报/F07-22盘中P&L
     - id: F07-22
       name: 实时盘中P&L拆解与TCA集成
       desc: "Real-time intraday P&L breakdown：traders实时查看持仓P&L分解（实现收益/浮动收益），按持仓逐笔拆解Greeks贡献(Delta P&L/Gamma P&L/Vega P&L/Theta P&L)、市场因子冲击(DV01 impact × δrate等)、执行成本(滑点/摩擦成本/费用)；集成F07-20 TCA反馈：每笔交易的成本差对标(实际成交价 vs VWAP)实时显示；盘中预期P&L vs实际P&L偏差分析（对标理论Greeks P&L），超阈值自动告警；支持多维聚合(按持仓/交易对手/交易员/策略维度)；驱动交易员决策(对冲/止损/加仓优化)"

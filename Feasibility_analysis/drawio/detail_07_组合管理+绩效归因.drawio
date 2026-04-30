@@ -1,4 +1,4 @@
-<mxGraphModel dx="1422" dy="762" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1120" pageHeight="304" math="0" shadow="0">
+<mxGraphModel dx="1422" dy="762" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1120" pageHeight="332" math="0" shadow="0">
   <root>
     <mxCell id="0"/>
     <mxCell id="1" parent="0"/>
@@ -74,7 +74,7 @@
     <mxCell id="25" value="敏感度展示（多维Shock Grid，调用M04引擎）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
       <mxGeometry x="560.0" y="178.0" width="183.3" height="28" as="geometry"/>
     </mxCell>
-    <mxCell id="26" value="交易成本分析TCA" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
+    <mxCell id="26" value="实时盘中P&amp;L拆解与TCA集成" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
       <mxGeometry x="743.3" y="178.0" width="183.3" height="28" as="geometry"/>
     </mxCell>
     <mxCell id="27" value="因子暴露集成（消费M08，不建模）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
@@ -92,7 +92,7 @@
     <mxCell id="31" value="情景分析PM决策层（调用M04场景库）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
       <mxGeometry x="560.0" y="206.0" width="183.3" height="28" as="geometry"/>
     </mxCell>
-    <mxCell id="32" value="实时盘中P&amp;L拆解与TCA集成" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
+    <mxCell id="32" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F7FA;fontColor=#F5F7FA;strokeColor=#D6E4F7;fontSize=9;" vertex="1" parent="1">
       <mxGeometry x="743.3" y="206.0" width="183.3" height="28" as="geometry"/>
     </mxCell>
     <mxCell id="33" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F7FA;fontColor=#F5F7FA;strokeColor=#D6E4F7;fontSize=9;" vertex="1" parent="1">
@@ -104,7 +104,7 @@
     <mxCell id="35" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F7FA;fontColor=#F5F7FA;strokeColor=#D6E4F7;fontSize=9;" vertex="1" parent="1">
       <mxGeometry x="193.3" y="234.0" width="183.3" height="28" as="geometry"/>
     </mxCell>
-    <mxCell id="36" value="绩效报告生成" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
+    <mxCell id="36" value="交易成本分析TCA" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
       <mxGeometry x="376.7" y="234.0" width="183.3" height="28" as="geometry"/>
     </mxCell>
     <mxCell id="37" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F7FA;fontColor=#F5F7FA;strokeColor=#D6E4F7;fontSize=9;" vertex="1" parent="1">
@@ -116,8 +116,26 @@
     <mxCell id="39" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F7FA;fontColor=#F5F7FA;strokeColor=#D6E4F7;fontSize=9;" vertex="1" parent="1">
       <mxGeometry x="926.7" y="234.0" width="183.3" height="28" as="geometry"/>
     </mxCell>
-    <mxCell id="40" value="量化底座：定价计算 · 利率曲线 · 因子模型(2200+风险因子)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1B3275;fontColor=#FFFFFF;strokeColor=#1B3275;fontSize=10;align=left;verticalAlign=middle;" vertex="1" parent="1">
-      <mxGeometry x="10.0" y="262.0" width="1100.0" height="32" as="geometry"/>
+    <mxCell id="40" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F7FA;fontColor=#F5F7FA;strokeColor=#D6E4F7;fontSize=9;" vertex="1" parent="1">
+      <mxGeometry x="10.0" y="262.0" width="183.3" height="28" as="geometry"/>
+    </mxCell>
+    <mxCell id="41" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F7FA;fontColor=#F5F7FA;strokeColor=#D6E4F7;fontSize=9;" vertex="1" parent="1">
+      <mxGeometry x="193.3" y="262.0" width="183.3" height="28" as="geometry"/>
+    </mxCell>
+    <mxCell id="42" value="绩效报告生成" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
+      <mxGeometry x="376.7" y="262.0" width="183.3" height="28" as="geometry"/>
+    </mxCell>
+    <mxCell id="43" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F7FA;fontColor=#F5F7FA;strokeColor=#D6E4F7;fontSize=9;" vertex="1" parent="1">
+      <mxGeometry x="560.0" y="262.0" width="183.3" height="28" as="geometry"/>
+    </mxCell>
+    <mxCell id="44" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F7FA;fontColor=#F5F7FA;strokeColor=#D6E4F7;fontSize=9;" vertex="1" parent="1">
+      <mxGeometry x="743.3" y="262.0" width="183.3" height="28" as="geometry"/>
+    </mxCell>
+    <mxCell id="45" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F7FA;fontColor=#F5F7FA;strokeColor=#D6E4F7;fontSize=9;" vertex="1" parent="1">
+      <mxGeometry x="926.7" y="262.0" width="183.3" height="28" as="geometry"/>
+    </mxCell>
+    <mxCell id="46" value="量化底座：定价计算 · 利率曲线 · 因子模型(2200+风险因子)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1B3275;fontColor=#FFFFFF;strokeColor=#1B3275;fontSize=10;align=left;verticalAlign=middle;" vertex="1" parent="1">
+      <mxGeometry x="10.0" y="290.0" width="1100.0" height="32" as="geometry"/>
     </mxCell>
   </root>
 </mxGraphModel>
