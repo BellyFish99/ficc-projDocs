@@ -9,12 +9,12 @@ module:
   current_state: L2
   target_state: L4
   gap: 中
-  competitor: 衡泰(老旧)
+  competitor: 衡泰(ABOR)
   foundation: AMI/AMDB账户体系
   duration_m: 12
   team_sz: 14
   person_months: 130
-  note: 整个FICC平台的账薄主干，27项功能覆盖持仓/现金/估值/事件/对账/合规/试算全链路
+  note: 整个FICC平台的账薄主干，26项功能覆盖持仓/现金/估值/事件/对账/监管报送/试算全链路；合规检查规则与执行由M06负责，IBOR仅提供持仓数据源
   source_slide: 55
   data_inputs:
   - 交易指令数据
@@ -26,12 +26,13 @@ module:
   - Kafka实时消息
   - Redis分布式缓存
   tech_design:
-    pattern: 第三代实时提取IBOR — 事件驱动架构(EDA)，按需即时生成头寸视图，不使用清除填充或滚动余额模式
+    pattern: 实时提取IBOR — 事件驱动架构(EDA)，按需即时生成头寸视图，不使用清除填充或滚动余额模式
     data_model:
     - 'Transaction层: 原始交易/非交易事件全量流水，含完整状态机'
     - 'Trade层: 成交簿记与Trade enrichment（子账户/策略/指令信息补充）'
     - 'Position层: 实时头寸计算、成本核算、多时态快照存储'
     - 'Asset层: 估值定价、风险指标加工、会计分类标注'
+    - 'MarketData层: 行情与估值数据实时输入，清洗后分发至定价层'
     core_stack:
       realtime_engine: Kafka(事件总线) + 自研PHX计算引擎(事件驱动实时计算)
       position_store: Redis Cluster(日内实时缓存，<1ms读写) + TiDB/OceanBase(历史时序，5年快照)
@@ -64,9 +65,9 @@ module:
     functions:
     - id: F01-01
       name: 全资产实时头寸
-      desc: 债券/回购/利率衍生品全品种T0实时持仓，含未交割与待交割敞口分层展示
+      desc: 权益/债券/期货/回购/利率衍生品全品种T0实时持仓，含未交割与待交割敞口分层展示
       complexity: 高
-      days: 40
+      days: 60
       priority: P1
       acceptance: 持仓更新延迟<500ms，全品种覆盖率100%
       dependency: 交易系统OMS/ATP报盘接口
@@ -74,7 +75,7 @@ module:
       name: 多账户层级汇总
       desc: 基金/策略/组合/公司四级持仓合并与分拆，支持跨基金同标的穿透聚合
       complexity: 中
-      days: 20
+      days: 30
       priority: P1
       acceptance: 层级汇总数据与单账户加总误差为零
       dependency: AMI/AMDB账户主数据
@@ -82,7 +83,7 @@ module:
       name: 账薄T0/T1切换
       desc: 交易日账薄（含未交割）与结算账薄（T+1已交割）自动切换，切换耗时<1min
       complexity: 中
-      days: 20
+      days: 30
       priority: P1
       acceptance: T0/T1持仓差=未交割敞口，自动核验通过率>99%
       dependency: 中登/中债登/上清结算接口
@@ -90,7 +91,7 @@ module:
       name: 可用券与冻结管理
       desc: 质押券/司法冻结券/回购占用券从可用头寸自动剔除，前台实时可用量查询
       complexity: 中
-      days: 15
+      days: 30
       priority: P1
       acceptance: 可用量计算误差为零，冻结事件<30s生效
       dependency: 回购管理系统/风控系统
@@ -98,7 +99,7 @@ module:
       name: 资产打标与组合树管理
       desc: 多维度资产标签体系（评级/行业/策略/流动性层级/会计分类）灵活配置，支持自定义组合树构建多分析视角；标签驱动持仓穿透聚合和报表分组
       complexity: 中
-      days: 20
+      days: 30
       priority: P2
       acceptance: 标签体系支持≥10维度，组合树层级≥4级，标签变更<1min生效影响所有聚合视图
       dependency: 资产主数据/IBOR持仓引擎/报表系统
@@ -109,7 +110,7 @@ module:
       name: 实时现金余额
       desc: 多账户已结算/未结算现金实时汇总，T0资金头寸含日间资金划拨记录
       complexity: 高
-      days: 25
+      days: 60
       priority: P1
       acceptance: 现金余额与银行回单误差为零，日中更新频率≥每分钟
       dependency: 资金系统/清算结算接口
@@ -117,7 +118,7 @@ module:
       name: 现金流预测
       desc: 回购到期/票息支付/衍生品结算现金流7-30日滚动预测，流动性缺口预警
       complexity: 高
-      days: 30
+      days: 40
       priority: P1
       acceptance: 7日现金流预测准确率>95%，流动性预警提前24h触发
       dependency: 回购管理/利率衍生品/IBOR持仓
@@ -125,7 +126,7 @@ module:
       name: 多币种资金管理
       desc: CNY/USD/HKD等多币种现金分账户轧差，FX即期换算折算人民币净敞口
       complexity: 中
-      days: 20
+      days: 50
       priority: P2
       acceptance: 多币种折算汇率误差<0.01%，轧差结果实时刷新
       dependency: 外汇系统/AMD行情平台
@@ -136,7 +137,7 @@ module:
       name: 实时市值计算
       desc: 接入AMD/Bloomberg/Wind估值价格，全持仓实时MtM与日内PnL计算，支持估值价格覆盖
       complexity: 高
-      days: 35
+      days: 50
       priority: P1
       acceptance: MtM更新延迟<1s，估值覆盖审批留痕100%
       dependency: AMD行情平台/Bloomberg数据接口
@@ -144,7 +145,7 @@ module:
       name: 应计利息计算
       desc: 债券应计利息按实际/365、实际/360、30/360多计息基准精确计算，日终净值自动生成
       complexity: 中
-      days: 20
+      days: 30
       priority: P1
       acceptance: 应计利息与Bloomberg基准误差<0.01元/百元面值
       dependency: 资产主数据（票面率/计息基准/付息频率）
@@ -152,7 +153,7 @@ module:
       name: 衍生品逐日盯市
       desc: IRS/CDS/国债期货逐日MtM计算，保证金余额实时更新，追加保证金（Margin Call）自动触发
       complexity: 高
-      days: 30
+      days: 50
       priority: P1
       acceptance: 衍生品MtM与对手方差异<0.5bps，Margin Call触发延迟<5min
       dependency: 量化定价引擎/交易对手管理
@@ -171,7 +172,7 @@ module:
       name: 回购滚动管理
       desc: 质押式/买断式回购到期自动识别，支持一键续作指令生成，回购占用券随生命周期自动更新
       complexity: 高
-      days: 25
+      days: 30
       priority: P1
       acceptance: 到期回购提前1日预警，续作指令生成成功率>99%
       dependency: 回购管理系统/IBOR头寸
@@ -179,7 +180,7 @@ module:
       name: 公司行为通知
       desc: 债券评级变动/提前偿还/强制赎回等公司行为实时推送，影响持仓自动标注，处理决策记录留痕
       complexity: 中
-      days: 20
+      days: 30
       priority: P2
       acceptance: 公司行为推送延迟<30min，影响持仓标注覆盖率100%
       dependency: AMD行情平台/资产主数据
@@ -190,7 +191,7 @@ module:
       name: 托管行持仓对账
       desc: 与中登（交易所债券）、中债登（银行间债券）日终持仓对账，差异自动分类（未交割/错误/缺漏）并推送告警
       complexity: 高
-      days: 30
+      days: 60
       priority: P1
       acceptance: 日终对账完成时间<8:00AM，差异识别率100%，自动匹配率>95%
       dependency: 中登/中债登结算接口/SFTP
@@ -198,7 +199,7 @@ module:
       name: IBOR-ABOR差异对比
       desc: 投资账薄（实时）与会计账薄（已结算）差异对比，差异原因自动分类（未结算/估值差/计提差），供中台复核
       complexity: 中
-      days: 20
+      days: 60
       priority: P1
       acceptance: IBOR-ABOR差异原因分类准确率>98%，日终净值差=0（已结算口径）
       dependency: 会计核算系统(ABOR)/IBOR持仓
@@ -206,26 +207,18 @@ module:
       name: 交割失败追踪
       desc: 未交割记录全生命周期管理，T+N逾期告警，补交割流程触发，交割失败率统计分析
       complexity: 中
-      days: 15
+      days: 30
       priority: P1
       acceptance: 交割失败识别延迟<1h，补交割触发成功率>95%
       dependency: 清算结算系统/中登中债登
   - id: F
-    name: 合规与监管
+    name: 监管数据输出
     functions:
-    - id: F01-17
-      name: 实时合规检查
-      desc: 投资授权范围/单券集中度/久期限额/评级限额实时监控，违规自动告警并阻断交易指令
-      complexity: 高
-      days: 25
-      priority: P1
-      acceptance: 合规检查响应<200ms，零漏报，误报率<0.1%
-      dependency: 事前风控/合规系统/投资授权书管理
     - id: F01-18
-      name: 监管报送数据支持
-      desc: 按人民银行/证监会/银保监会格式提取持仓/交易/资金数据，支持报表模板配置与定时推送
+      name: 监管报送数据支持（数据提取，非合规逻辑）
+      desc: "【数据提取输出】基于IBOR持仓/交易/资金数据，按人民银行/证监会/银保监会格式打包生成报送数据；支持报表模板配置与定时推送至监管接口。本功能仅负责数据提取与格式转换，合规规则解释与违规判定由M06负责"
       complexity: 中
-      days: 20
+      days: 30
       priority: P1
       acceptance: 报送数据与IBOR源数据一致性100%，定时推送准时率>99.9%
       dependency: IBOR全域数据/报表引擎
@@ -236,7 +229,7 @@ module:
       name: 行情数据接入
       desc: 接入AMD/Bloomberg/Wind实时行情（中债估值/利率曲线/信用利差/波动率曲面），标准化清洗后推送至IBOR定价层
       complexity: 高
-      days: 25
+      days: 30
       priority: P1
       acceptance: 行情延迟<1s，数据完整性>99.9%，异常行情自动过滤告警
       dependency: AMD行情平台/Bloomberg API/Wind数据接口
@@ -244,7 +237,7 @@ module:
       name: 交易数据接入
       desc: 从OMS/交易终端实时获取成交回报（债券/回购/衍生品），含完整交易状态机（报盘/成交/撤单/部分成交）追踪
       complexity: 中
-      days: 20
+      days: 30
       priority: P1
       acceptance: 成交回报接收延迟<200ms，数据完整性100%，状态机覆盖全交易生命周期
       dependency: ATP报盘引擎/CFETS银行间接口/交易所接口
@@ -252,7 +245,7 @@ module:
       name: 持仓数据获取
       desc: 期初从托管行/清算系统获取存量持仓，日间成交驱动增量更新，支持多来源持仓比对与主数据确认
       complexity: 中
-      days: 20
+      days: 30
       priority: P1
       acceptance: 期初持仓加载完成<7:00AM，日间增量延迟<500ms，多源持仓一致性核验通过率>99%
       dependency: 中登/中债登/托管行SFTP接口/清算结算系统

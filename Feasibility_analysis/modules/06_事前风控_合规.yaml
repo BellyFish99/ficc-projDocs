@@ -28,7 +28,7 @@ module:
       priority: P1
     - id: F06-02
       name: 多维度限额配置
-      desc: 交易对手/交易员/券三维度限额设置，集中度/净敞口/利率敏感度/单笔名义多类型限额
+      desc: 交易对手/交易员/券三维度交易限额设置（集中度/净敞口/利率敏感度/单笔名义）；同时覆盖投资授权范围规则（单券集中度上限/组合久期区间/评级门槛/资产类别限制），作为F06-04交易时点拦截和F06-11持仓持续监控的统一规则来源
       complexity: 高
       days: 25
       priority: P1
@@ -66,7 +66,7 @@ module:
       days: 25
       priority: P1
   - id: D3
-    name: 统计与审计（管理端）
+    name: 统计、监控与审计（管理端）
     functions:
     - id: F06-08
       name: 日内异常统计看板
@@ -86,11 +86,20 @@ module:
       complexity: 中
       days: 15
       priority: P1
+    - id: F06-11
+      name: 持仓合规状态持续监控（原M01 F01-17迁移）
+      desc: "【持仓层面持续监控，区别于F06-04交易时点拦截】订阅IBOR实时持仓事件，基于F06-02规则持续检测：投资授权范围越限/单券集中度漂移/久期区间偏离/评级门槛击穿（因市价波动而非新交易导致的违规）；违规自动告警并推送责任人；合规状态写回IBOR Position的complianceFlag字段，供组合管理系统展示"
+      complexity: 高
+      days: 30
+      priority: P1
+      acceptance: 持仓合规状态刷新延迟<30s，零漏报，误报率<0.1%，状态写回IBOR<5s
+      dependency: IBOR实时持仓（Kafka订阅）/F06-02限额规则/M09定价平台（实时估值，用于集中度计算）
   tech_design:
     pattern: 同步拦截中间件（嵌入交易录入流程）+ AI聊天监控异步管道
     data_model: >
       ComplianceRule (ruleId, dimension, ruleType, parameters, version, isActive) ;
       PreTradeCheck (checkId, tradeId, traderId, dimension, result, failReason, checkedAt) ;
+      PositionComplianceStatus (portfolioId, instrumentId, ruleId, status[ok|warn|breach], breachDetail, lastCheckedAt) ;
       AnomalyReport (reportId, tradeId, traderId, reportContent, approvedBy, submittedAt) ;
       ChatRecord (recordId, traderId, counterparty, bond, content, flagged, classifiedAt)
     core_stack: >
@@ -101,9 +110,12 @@ module:
     key_interfaces:
     - 现券交易系统 → 交易录入前调用事前风控API (同步REST, p99<50ms)
     - 企微/IM → 聊天记录实时抓取 (Webhook + 消息队列)
-    - IBOR → 实时持仓/限额利用率 (用于集中度检查)
+    - IBOR → 实时持仓/限额利用率（Kafka订阅，F06-11持续监控消费）
+    - M06 → IBOR Position.complianceFlag 写回（REST，持仓合规状态同步，<5s）
     - 衡泰OMS → 交易发送前最终校验节点
     key_decisions:
+    - 合规规则SSoT：投资授权范围/限额/名单等所有合规规则统一在本模块（M06）配置维护；IBOR/交易系统/组合管理均为消费方，不自建规则副本
+    - 两层合规检查互补：F06-04（交易时点同步拦截，p99<50ms）+ F06-11（持仓持续异步监控，<30s刷新）；前者防新违规进入，后者捕获市价波动导致的存量越限
     - 事前拦截采用同步调用确保零漏检，延迟目标p99<50ms避免影响交易效率
     - AI聊天监控与拦截引擎解耦，异步处理不阻塞交易主流程
     - 规则引擎与AI共用同一套违规判定结果，统一写入审计日志
