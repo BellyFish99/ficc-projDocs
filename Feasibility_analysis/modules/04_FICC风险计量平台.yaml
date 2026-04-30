@@ -14,144 +14,144 @@ module:
   duration_m: 15
   team_sz: 12
   person_months: 135
-  note: 替代衡泰老旧系统，信创切入口；本模块职责为风险计算与治理（VaR引擎/限额执行/CVA-PD-LGD/模型治理/监管报送）；Greeks/DV01/CS01/KRD由M09 F09-10统一计算（M04 F04-08/F04-09为消费聚合方），曲线/曲面由M09 F09-04/F09-05独占；P&L归因由M07 F07-07/F07-22负责（M04不重复Campisi）；流动性LVaR/TCA由M07 F07-14/F07-20负责；新增F04-22(Phase 2 pre-trade)、F04-23(模型治理与回测SSoT)；对应PPT Slide 52
+  note: 替代衡泰老旧系统，信创切入口；本模块职责为风险计算与治理（VaR引擎/限额执行/CVA-PD-LGD/模型治理/监管报送）；Greeks/DV01/CS01/KRD由M09 F09-10统一计算（M04 F04-05/F04-06为消费聚合方），曲线/曲面由M09 F09-04/F09-05独占；P&L归因由M07 F07-07/F07-19负责（M04不重复Campisi）；流动性LVaR/TCA由M07 F07-17/F07-11负责；新增F04-01(Phase 2 pre-trade)、F04-13(模型治理与回测SSoT)；对应PPT Slide 52
   source_slide: 52
   function_domains:
   - id: D1
     name: 投前风险分析
     functions:
-    - id: F04-22
+    - id: F04-01
       name: 交易前风险影响分析
-      desc: "Real-time pre-trade risk impact calculator（Aladdin Decision Support pattern）：traders输入提议交易（债券/数量/价格/对手方） → 实时输出ΔVaR（95% confidence），ΔDV01（by bucket），ΔGreeks（Delta/Gamma/Vega/Theta/Rho），limit breach check（vs F04-21 limits），estimated FVA if derivative；集成M06 F06-04 pre-trade validation：combine risk impact + compliance impact in unified PM dashboard；feed to M01 F01-25 what-if sandbox for full portfolio stress scenarios；M07 F07-22 consumption for intraday decision support"
+      desc: "Real-time pre-trade risk impact calculator（Aladdin Decision Support pattern）：traders输入提议交易（债券/数量/价格/对手方） → 实时输出ΔVaR（95% confidence），ΔDV01（by bucket），ΔGreeks（Delta/Gamma/Vega/Theta/Rho），limit breach check（vs F04-12 limits），estimated FVA if derivative；集成M06 F06-04 pre-trade validation：combine risk impact + compliance impact in unified PM dashboard；feed to M01 F01-25 what-if sandbox for full portfolio stress scenarios；M07 F07-19 consumption for intraday decision support"
       complexity: 高
       days: 25
       priority: P1
       acceptance: Impact calc <500ms (p99)，accuracy ±2% vs actual execution，limit breach detection 100%，UI adoption by 80% of traders within 3 months
-      dependency: M04 F04-04 (实时风险计量), M04 F04-10 (VaR model), M06 F06-04 (pre-trade compliance validation), M01 F01-25 (what-if sandbox), M07 F07-22 (intraday P&L)
+      dependency: M04 F04-02 (实时风险计量), M04 F04-07 (VaR model), M06 F06-04 (pre-trade compliance validation), M01 F01-25 (what-if sandbox), M07 F07-19 (intraday P&L)
   - id: D2
     name: 投中实时监控
     functions:
-    - id: F04-04
+    - id: F04-02
       name: 实时风险计量
-      desc: 实时风险指标计算引擎：Live VaR（消费M09 Greeks/DV01），实时风险敞口聚合，实时风险事件流推送至下游消费方；P&L归因由M07 F07-22负责，限额利用率展示由F04-21负责，本模块只产出风险量化指标
+      desc: 实时风险指标计算引擎：Live VaR（消费M09 Greeks/DV01），实时风险敞口聚合，实时风险事件流推送至下游消费方；P&L归因由M07 F07-19负责，限额利用率展示由F04-12负责，本模块只产出风险量化指标
       complexity: 极高
       days: 40
       priority: P1
       acceptance: 风险指标更新延迟<1s，VaR计算调用M09 Greeks <500ms，事件推送Kafka <200ms
-      dependency: M09 F09-10（Greeks SSoT）/F04-10（VaR模型）/IBOR持仓
-    - id: F04-05
+      dependency: M09 F09-10（Greeks SSoT）/F04-07（VaR模型）/IBOR持仓
+    - id: F04-03
       name: 交易对手风险实时监控
       desc: 实时敞口聚合，抵押品监控，信用限额使用率，结算风险，净额结算协议管理
       complexity: 高
       days: 30
       priority: P1
-    - id: F04-07
+    - id: F04-04
       name: 实时风险全景图
-      desc: 风险驾驶舱仪表板：聚合展示F04-04风险指标 + F04-21限额状态 + F04-05对手方风险 + F04-19 AI预警；告警管理与异常跟踪；本模块只做展示编排，不重复计算或维护限额数据
+      desc: 风险驾驶舱仪表板：聚合展示F04-02风险指标 + F04-12限额状态 + F04-03对手方风险 + F04-16 AI预警；告警管理与异常跟踪；本模块只做展示编排，不重复计算或维护限额数据
       complexity: 高
       days: 25
       priority: P1
-      acceptance: 全景图刷新<3s，告警延迟<5s，所有数据来自上游F04-04/F04-05/F04-19/F04-21
-      dependency: F04-04（风险指标）/F04-05（对手方风险）/F04-19（AI预警）/F04-21（限额状态）
+      acceptance: 全景图刷新<3s，告警延迟<5s，所有数据来自上游F04-02/F04-03/F04-16/F04-12
+      dependency: F04-02（风险指标）/F04-03（对手方风险）/F04-16（AI预警）/F04-12（限额状态）
   - id: D3
     name: 风控引擎
     functions:
-    - id: F04-08
+    - id: F04-05
       name: DV01/CS01风险聚合（消费M09 F09-10）
-      desc: "【消费方】消费M09 F09-10的逐券DV01/CS01计算结果，本模块负责风险视角聚合：组合层面汇总（按资产类别/行业/评级/久期分桶），限额比对（vs F04-21），监管报送格式化（Basel III/FRTB），平行与非平行冲击情景；本模块不重复计算单券敏感度"
+      desc: "【消费方】消费M09 F09-10的逐券DV01/CS01计算结果，本模块负责风险视角聚合：组合层面汇总（按资产类别/行业/评级/久期分桶），限额比对（vs F04-12），监管报送格式化（Basel III/FRTB），平行与非平行冲击情景；本模块不重复计算单券敏感度"
       complexity: 高
       days: 25
       priority: P1
       acceptance: 组合DV01聚合与M09单券结果误差<0.1bps，分桶聚合<2s，限额比对实时刷新
-      dependency: M09 F09-10（逐券DV01/CS01计算唯一权威）/IBOR持仓/M04 F04-21限额
-    - id: F04-09
+      dependency: M09 F09-10（逐券DV01/CS01计算唯一权威）/IBOR持仓/M04 F04-12限额
+    - id: F04-06
       name: Greeks风险聚合与解释（消费M09 F09-10）
       desc: "【消费方】消费M09 F09-10的逐券Delta/Gamma/Vega/Theta/Rho，本模块负责风险解释聚合：组合Greeks汇总、衍生品Greeks限额监控、Greeks敞口风险分析、Greeks-driven VaR输入；本模块不重复计算Greeks，纯消费方"
       complexity: 高
       days: 20
       priority: P1
       acceptance: 组合Greeks聚合<2s，限额比对实时，与M09单券结果一致性100%
-      dependency: M09 F09-10（逐券Greeks计算唯一权威）/IBOR持仓/M04 F04-21限额
-    - id: F04-10
+      dependency: M09 F09-10（逐券Greeks计算唯一权威）/IBOR持仓/M04 F04-12限额
+    - id: F04-07
       name: VaR模型计算引擎
-      desc: VaR三方法计算引擎：参数法/历史模拟法/蒙特卡洛，Expected Shortfall；每日VaR计算与持久化（供F04-13查询/F04-23回测）；P&L vs VaR异常初次检测（实时事件推送至F04-23）；本模块只负责VaR数值计算与异常事件输出，回测框架/Kupiec POF/模型治理/监管报送由F04-23独立模型治理模块负责
+      desc: VaR三方法计算引擎：参数法/历史模拟法/蒙特卡洛，Expected Shortfall；每日VaR计算与持久化（供F04-10查询/F04-13回测）；P&L vs VaR异常初次检测（实时事件推送至F04-13）；本模块只负责VaR数值计算与异常事件输出，回测框架/Kupiec POF/模型治理/监管报送由F04-13独立模型治理模块负责
       complexity: 极高
       days: 50
       priority: P1
-      acceptance: VaR计算延迟<5s（10万券组合MC），三方法一致性验证（差异<3%），异常事件推送F04-23 <1min
-      dependency: M09 F09-10（Greeks/敏感度SSoT）/M09 F09-04曲线/IBOR持仓/F04-23模型治理框架
-    - id: F04-11
+      acceptance: VaR计算延迟<5s（10万券组合MC），三方法一致性验证（差异<3%），异常事件推送F04-13 <1min
+      dependency: M09 F09-10（Greeks/敏感度SSoT）/M09 F09-04曲线/IBOR持仓/F04-13模型治理框架
+    - id: F04-08
       name: 压力测试与情景分析
       desc: 内置历史情景（GFC/COVID-19/利率冲击），假设情景（曲线扭转/利差走阔），反向压力测试
       complexity: 高
       days: 35
       priority: P1
-    - id: F04-20
+    - id: F04-09
       name: 信用风险计量（CVA/PD/LGD）
       desc: 债券组合信用风险：基于历史迁移矩阵的发行人PD（违约概率）/LGD（违约损失率）估算，IFRS 9三阶段分类（Stage 1/2/3）预期信用损失（ECL）计算；动态PD曲线（CDS隐含PD提取，实时市场信号），按交易对手PD/LGD分层差异化处理，信用限额仪表盘（跨限额维度利用率）；OTC衍生品CVA（信用估值调整）/DVA（借方估值调整）：基于蒙特卡洛模拟的预期正敞口EPE × PD × LGD，信用迁移风险（1年/3年迁移矩阵压力测试）
       complexity: 极高
       days: 45
       priority: P1
       acceptance: CVA计算与对手方差异<1%，IFRS 9 ECL覆盖全债券持仓，PD/LGD数据源可追溯，动态PD曲线更新<30s，信用限额仪表盘实时刷新
-      dependency: 定价平台M09（衍生品估值/EPE模拟，含M09 F09-16 XVA引擎）/IBOR持仓/外部信用评级数据（Wind/Bloomberg/CDS市场数据）
+      dependency: 定价平台M09（衍生品估值/EPE模拟，含M09 F09-14 XVA引擎）/IBOR持仓/外部信用评级数据（Wind/Bloomberg/CDS市场数据）
   - id: D4
     name: 投后风险分析
     functions:
-    - id: F04-13
+    - id: F04-10
       name: 历史风险数据查询与趋势分析
-      desc: 历史风险指标查询API（VaR/DV01/CS01历史快照），风险趋势分析（按日/周/月聚合），限额例外历史统计，压力测试历史结果归档；VaR回测与模型验证由F04-23模型治理框架负责，本模块只做历史数据查询与可视化
+      desc: 历史风险指标查询API（VaR/DV01/CS01历史快照），风险趋势分析（按日/周/月聚合），限额例外历史统计，压力测试历史结果归档；VaR回测与模型验证由F04-13模型治理框架负责，本模块只做历史数据查询与可视化
       complexity: 中
       days: 20
       priority: P1
       acceptance: 历史查询API延迟<3s，覆盖最近5年，趋势分析支持任意时间窗口
-      dependency: ClickHouse历史风险数据库/F04-04实时风险计量/F04-23模型治理
-    - id: F04-15
+      dependency: ClickHouse历史风险数据库/F04-02实时风险计量/F04-13模型治理
+    - id: F04-11
       name: 监管报表与风控日报
       desc: 日/周/月风险报告自动生成，监管资本计算，Basel III/FRTB报送，压力测试摘要，风险归因仪表板
       complexity: 中
       days: 20
       priority: P1
-    - id: F04-21
+    - id: F04-12
       name: 限额治理工作流
       desc: 全生命周期限额治理：新限额申请→风控审批→激活→日常利用率监控→超限告警（三级：预警/黄线/红线）→超限处置记录（豁免/压缩/升级审批）→定期复审（季度/年度自动触发）；限额与实际敞口双向穿透溯源；限额版本管理，历史变更审计，监管核查一键导出
       complexity: 中
       days: 20
       priority: P1
       acceptance: 超限告警延迟<1min，限额利用率仪表盘实时刷新，限额变更全程留痕，监管核查导出<5min
-      dependency: M06合规规则（SSoT，限额参数引用M06 F06-02）/IBOR持仓/M04 F04-04实时风险计量
-    - id: F04-23
+      dependency: M06合规规则（SSoT，限额参数引用M06 F06-02）/IBOR持仓/M04 F04-02实时风险计量
+    - id: F04-13
       name: 模型治理与回测框架
       desc: Independent model risk governance infrastructure：daily backtesting of all risk models (VaR/Greeks/CVA/CVA)，exception tracking with severity classification；Kupiec POF statistical test performed quarterly；model exception investigation workflow with auto-escalation to quant team if >3 exceptions/quarter；regulatory model governance documentation (Basel III backtesting audit trail，FRTB internal model approval requirements)；exception resolution and model re-calibration scheduling；complete model inventory with version control，parameter audit trail，and approval workflow
       complexity: 中
       days: 20
       priority: P1
       acceptance: Daily backtest by 6am，exception report accuracy >95%，model governance documentation audit-ready for regulator review，exception escalation <1h from trigger，model parameter changes tracked with approval chain，Kupiec POF test results documented quarterly
-      dependency: F04-10 (VaR model), F04-20 (credit risk CVA model), F04-08/09 (Greeks/DV01 calculations), all upstream risk calculation functions, independent data validation
+      dependency: F04-07 (VaR model), F04-09 (credit risk CVA model), F04-05/09 (Greeks/DV01 calculations), all upstream risk calculation functions, independent data validation
   - id: D5
     name: 风控基础设施
     functions:
-    - id: F04-16
+    - id: F04-14
       name: IBOR数据消费层（持仓/估值实时订阅）
-      desc: 风险计量数据接入层：通过Kafka订阅M01 IBOR的position.updated/valuation.updated事件流，构建风险计算所需的标准化持仓视图；本模块不实现事件溯源（M01已提供），不做数据存储（仅缓存当前snapshot供F04-04/F04-08/F04-09热路径使用）
+      desc: 风险计量数据接入层：通过Kafka订阅M01 IBOR的position.updated/valuation.updated事件流，构建风险计算所需的标准化持仓视图；本模块不实现事件溯源（M01已提供），不做数据存储（仅缓存当前snapshot供F04-02/F04-05/F04-06热路径使用）
       complexity: 中
       days: 20
       priority: P1
-      acceptance: IBOR订阅延迟<200ms，标准化转换<100ms，与M01 F01-29 DQ告警联动
-      dependency: M01 F01-01/F01-08持仓估值事件 + M01 F01-29 DQ监控
-    - id: F04-18
+      acceptance: IBOR订阅延迟<200ms，标准化转换<100ms，与M01 F01-27 DQ告警联动
+      dependency: M01 F01-01/F01-09持仓估值事件 + M01 F01-27 DQ监控
+    - id: F04-15
       name: HPC计算网格
       desc: 分布式计算引擎，并行蒙特卡洛，压力测试网格调度，弹性扩容，p99计算延迟<5s
       complexity: 极高
       days: 40
       priority: P1
-    - id: F04-19
+    - id: F04-16
       name: AI风险预警
       desc: ML驱动的风险异常检测：异常风险指标识别（VaR/DV01/Greeks突变），预测性风险分析（基于历史风险模式），异常交易模式识别（如不寻常的持仓变化），智能告警分级；合规风险预分析归M06负责（本模块不重复）
       complexity: 高
       days: 30
       priority: P1
       acceptance: 异常检测召回率>90%，误报率<5%，告警延迟<1min
-      dependency: F04-04实时风险指标/F04-10 VaR结果/F04-13历史风险数据
+      dependency: F04-02实时风险指标/F04-07 VaR结果/F04-10历史风险数据
   tech_design:
     pattern: 事件驱动微服务 + HPC计算网格
     data_model: >
@@ -166,7 +166,7 @@ module:
       Apache Kafka (实时风险事件流) ; Redis (实时限额/持仓缓存) ;
       ClickHouse (历史风险数据分析) ; Kubernetes (HPC网格弹性调度)
     key_interfaces:
-    - IBOR(模块01) → 实时持仓推送 (Kafka topic: position.updated) + DQ监控(F01-29)
+    - IBOR(模块01) → 实时持仓推送 (Kafka topic: position.updated) + DQ监控(F01-27)
     - 定价平台(模块09) → 估值/Greeks/DV01/CS01/KRD/曲线/曲面/XVA数据 (gRPC streaming；M09为计算SSoT，M04为消费方)
     - 策略投资_量化(模块08) → 因子模型/2200+因子协方差矩阵 (gRPC，用于因子风险分解的协方差)
     - 现券交易/TRS → 交易事件 (Kafka topic: trade.executed)
@@ -174,11 +174,11 @@ module:
     - 监管报送系统 → 标准化风险报告 (REST API)
     - 组合管理(模块07) → 向M07提供VaR/情景P&L/限额状态服务 (gRPC，本模块为风险计算引擎，M07为决策消费方；Greeks/敏感度由M09直供)
     key_decisions:
-    - 模块职责边界（核心）：本模块负责风险计算与治理（VaR/限额执行/CVA-PD-LGD/模型治理/监管报送）；明确不做的工作：Greeks/DV01/CS01/KRD计算（M09 F09-10）、曲线/曲面构建（M09 F09-04/F09-05）、绩效归因（M07 F07-07/F07-22）、流动性LVaR与TCA（M07 F07-14/F07-20）、合规规则（M06）、Event Sourcing存储（M01）
+    - 模块职责边界（核心）：本模块负责风险计算与治理（VaR/限额执行/CVA-PD-LGD/模型治理/监管报送）；明确不做的工作：Greeks/DV01/CS01/KRD计算（M09 F09-10）、曲线/曲面构建（M09 F09-04/F09-05）、绩效归因（M07 F07-07/F07-19）、流动性LVaR与TCA（M07 F07-17/F07-11）、合规规则（M06）、Event Sourcing存储（M01）
     - HPC网格与业务逻辑解耦，支持蒙特卡洛/压力测试弹性扩容而不影响实时风控
-    - F04-08/F04-09为风险聚合视图（消费M09逐券Greeks/DV01/CS01），与M07 F07-12并列消费方但服务不同视角（监管报送 vs PM决策）
+    - F04-05/F04-06为风险聚合视图（消费M09逐券Greeks/DV01/CS01），与M07 F07-15并列消费方但服务不同视角（监管报送 vs PM决策）
     - 情景分析由本模块维护场景库并提供计算API；M07通过API调用获取场景P&L，M07自身拥有PM决策工作流（对冲建议/再平衡触发）
-    - F04-23模型治理为本模块所有风险模型的回测SSoT；F04-10只产出VaR数值与异常事件，F04-13只做历史查询，回测/Kupiec POF/监管报送统一在F04-23
+    - F04-13模型治理为本模块所有风险模型的回测SSoT；F04-07只产出VaR数值与异常事件，F04-10只做历史查询，回测/Kupiec POF/监管报送统一在F04-13
     open_questions:
     - FRTB内部模型法（IMA）vs标准法（SA）的选择取决于监管批准进度
     - AI预警模型的训练数据来源及监管合规性需法律确认

@@ -14,7 +14,7 @@ module:
   duration_m: 13
   team_sz: 14
   person_months: 133
-  note: 整个FICC平台的账薄主干（IBOR为持仓/交易/资金SSoT），27项功能覆盖持仓/现金/估值/事件/对账/监管报送/试算/抵押品/数据质量全链路；核心创新：ML-based reconciliation (F01-14)，DQ-first foundation (F01-29)，CA-aware sandbox (F01-25)；明确边界：合规规则与执行由M06负责，曲线/曲面构建由M09负责（M01只接入原始行情），P&L归因由M07负责（M01只做基础MtM），衍生品Margin Call由F01-28负责（F01-10只做盯市估值）；情景P&L分析由M04+M07负责
+  note: 整个FICC平台的账薄主干（IBOR为持仓/交易/资金SSoT），27项功能覆盖持仓/现金/估值/事件/对账/监管报送/试算/抵押品/数据质量全链路；核心创新：ML-based reconciliation (F01-15)，DQ-first foundation (F01-27)，CA-aware sandbox (F01-25)；明确边界：合规规则与执行由M06负责，曲线/曲面构建由M09负责（M01只接入原始行情），P&L归因由M07负责（M01只做基础MtM），衍生品Margin Call由F01-26负责（F01-11只做盯市估值）；情景P&L分析由M04+M07负责
   source_slide: 55
   data_inputs:
   - 交易指令数据
@@ -61,7 +61,7 @@ module:
       priority: P1
       acceptance: 可用量计算误差为零，冻结事件<30s生效
       dependency: 回购管理系统/风控系统
-    - id: F01-27
+    - id: F01-05
       name: 资产打标与组合树管理
       desc: 多维度资产标签体系（评级/行业/策略/流动性层级/会计分类）灵活配置，支持自定义组合树构建多分析视角；标签驱动持仓穿透聚合和报表分组
       complexity: 中
@@ -72,7 +72,7 @@ module:
   - id: B
     name: 现金管理
     functions:
-    - id: F01-05
+    - id: F01-06
       name: 实时现金余额
       desc: 多账户已结算/未结算现金实时汇总，T0资金头寸含日间资金划拨记录
       complexity: 高
@@ -80,7 +80,7 @@ module:
       priority: P1
       acceptance: 现金余额与银行回单误差为零，日中更新频率≥每分钟
       dependency: 资金系统/清算结算接口
-    - id: F01-06
+    - id: F01-07
       name: 现金流预测
       desc: 回购到期/票息支付/衍生品结算现金流7-30日滚动预测，流动性缺口预警
       complexity: 高
@@ -88,7 +88,7 @@ module:
       priority: P1
       acceptance: 7日现金流预测准确率>95%，流动性预警提前24h触发
       dependency: 回购管理/利率衍生品/IBOR持仓
-    - id: F01-07
+    - id: F01-08
       name: 多币种资金管理
       desc: CNY/USD/HKD等多币种现金分账户轧差，FX即期换算折算人民币净敞口
       complexity: 中
@@ -99,7 +99,7 @@ module:
   - id: C
     name: 估值与净值
     functions:
-    - id: F01-08
+    - id: F01-09
       name: 实时市值计算
       desc: 接入AMD/Bloomberg/Wind估值价格，全持仓实时MtM与日内PnL计算，支持估值价格覆盖
       complexity: 高
@@ -107,7 +107,7 @@ module:
       priority: P1
       acceptance: MtM更新延迟<1s，估值覆盖审批留痕100%
       dependency: AMD行情平台/Bloomberg数据接口
-    - id: F01-09
+    - id: F01-10
       name: 应计利息计算
       desc: 债券应计利息按实际/365、实际/360、30/360多计息基准精确计算，日终净值自动生成
       complexity: 中
@@ -115,18 +115,18 @@ module:
       priority: P1
       acceptance: 应计利息与Bloomberg基准误差<0.01元/百元面值
       dependency: 资产主数据（票面率/计息基准/付息频率）
-    - id: F01-10
+    - id: F01-11
       name: 衍生品逐日盯市（消费M09定价）
-      desc: IRS/CDS/国债期货逐日MtM计算（消费M09 F09-10 Greeks + F09-04曲线进行重定价）；MtM结果推送F01-28抵押品管理触发Margin Call工作流；本模块只负责盯市估值，不重复实现Margin Call流程（由F01-28负责）
+      desc: IRS/CDS/国债期货逐日MtM计算（消费M09 F09-10 Greeks + F09-04曲线进行重定价）；MtM结果推送F01-26抵押品管理触发Margin Call工作流；本模块只负责盯市估值，不重复实现Margin Call流程（由F01-26负责）
       complexity: 高
       days: 40
       priority: P1
-      acceptance: 衍生品MtM与对手方差异<0.5bps，MtM事件推送F01-28延迟<1s
-      dependency: M09 F09-10（衍生品Greeks/重定价）/M09 F09-04曲线/F01-28抵押品管理
+      acceptance: 衍生品MtM与对手方差异<0.5bps，MtM事件推送F01-26延迟<1s
+      dependency: M09 F09-10（衍生品Greeks/重定价）/M09 F09-04曲线/F01-26抵押品管理
   - id: D
     name: 事件处理
     functions:
-    - id: F01-11
+    - id: F01-12
       name: 付息与到期处理
       desc: 债券票息自动计算并入账，到期本金偿还自动处理，含权债（可赎回/可回售）行权事件提醒与执行
       complexity: 高
@@ -134,7 +134,7 @@ module:
       priority: P1
       acceptance: 付息/到期处理T+0完成，含权债提前5交易日发起行权提示
       dependency: 资产主数据/托管行结算通知
-    - id: F01-12
+    - id: F01-13
       name: 回购滚动管理
       desc: 质押式/买断式回购到期自动识别，支持一键续作指令生成，回购占用券随生命周期自动更新
       complexity: 高
@@ -142,7 +142,7 @@ module:
       priority: P1
       acceptance: 到期回购提前1日预警，续作指令生成成功率>99%
       dependency: 回购管理系统/IBOR头寸
-    - id: F01-13
+    - id: F01-14
       name: 公司行为通知
       desc: 债券评级变动/提前偿还/强制赎回等公司行为实时推送，影响持仓自动标注，处理决策记录留痕
       complexity: 中
@@ -153,23 +153,23 @@ module:
   - id: E
     name: 对账与数据质量
     functions:
-    - id: F01-14
+    - id: F01-15
       name: 托管行持仓对账
-      desc: 与中登（交易所债券）、中债登（银行间债券）日终持仓对账，差异自动分类（未交割/错误/缺漏）并推送告警；新增ML-based break matching（容差窗口/多规则自动路由）、Temporal-backed exception workflow（自动→经理审批→CRO升级）、Reconciliation Dashboard（实时break aging/SLA追踪）；集成F01-29 DQ监控作为前置条件，确保数据质量后再进行对账
+      desc: 与中登（交易所债券）、中债登（银行间债券）日终持仓对账，差异自动分类（未交割/错误/缺漏）并推送告警；新增ML-based break matching（容差窗口/多规则自动路由）、Temporal-backed exception workflow（自动→经理审批→CRO升级）、Reconciliation Dashboard（实时break aging/SLA追踪）；集成F01-27 DQ监控作为前置条件，确保数据质量后再进行对账
       complexity: 高
       days: 75
       priority: P1
       acceptance: 日终对账完成时间<6:00AM，差异识别率>98%，break自动解决率>80%（ML匹配），exception routing <30s，manager review trigger by T+2
       dependency: 中登/中债登结算接口/SFTP
-    - id: F01-15
+    - id: F01-16
       name: IBOR-ABOR差异对比
-      desc: 投资账薄（实时）与会计账薄（已结算）差异对比，差异原因自动分类（未结算/估值差/计提差），供中台复核；exception workflow集成：差异超阈值自动流转F01-14工作流；数据质量指标推送至F01-29 DQ Dashboard
+      desc: 投资账薄（实时）与会计账薄（已结算）差异对比，差异原因自动分类（未结算/估值差/计提差），供中台复核；exception workflow集成：差异超阈值自动流转F01-15工作流；数据质量指标推送至F01-27 DQ Dashboard
       complexity: 中
       days: 60
       priority: P1
       acceptance: IBOR-ABOR差异原因分类准确率>98%，日终净值差=0（已结算口径）
       dependency: 会计核算系统(ABOR)/IBOR持仓
-    - id: F01-16
+    - id: F01-17
       name: 交割失败追踪
       desc: 未交割记录全生命周期管理，T+N逾期告警，补交割流程触发，交割失败率统计分析
       complexity: 中
@@ -193,12 +193,12 @@ module:
     functions:
     - id: F01-19
       name: 原始行情数据接入
-      desc: 接入AMD/Bloomberg/Wind原始市场行情（债券/期货/期权/外汇报价、外部估值参考价、隐含波动率quote），标准化清洗后推送至定价平台M09用于曲线/曲面构建（M01不构建曲线/曲面）；F01-29 DQ监控覆盖行情staleness/completeness异常
+      desc: 接入AMD/Bloomberg/Wind原始市场行情（债券/期货/期权/外汇报价、外部估值参考价、隐含波动率quote），标准化清洗后推送至定价平台M09用于曲线/曲面构建（M01不构建曲线/曲面）；F01-27 DQ监控覆盖行情staleness/completeness异常
       complexity: 高
       days: 30
       priority: P1
-      acceptance: 行情延迟<1s，数据完整性>99.9%，异常行情过滤+F01-29告警
-      dependency: AMD行情平台/Bloomberg API/Wind数据接口/M09 F09-04曲线消费方/F01-29 DQ监控
+      acceptance: 行情延迟<1s，数据完整性>99.9%，异常行情过滤+F01-27告警
+      dependency: AMD行情平台/Bloomberg API/Wind数据接口/M09 F09-04曲线消费方/F01-27 DQ监控
     - id: F01-20
       name: 交易数据接入
       desc: 从OMS/交易终端实时获取成交回报（债券/回购/衍生品），含完整交易状态机（报盘/成交/撤单/部分成交）追踪
@@ -220,15 +220,15 @@ module:
     functions:
     - id: F01-22
       name: 多时态头寸视图（IBOR数据基础设施，供上层消费）
-      desc: "【数据基础设施】基于事件溯源存储，提供任意历史as-of/as-on日期的头寸快照API（历史切片），以及基于已知未来事件（到期/付息/回购续作）的前瞻头寸视图。本模块不做投资分析——绩效复盘由M07调用本API；流动性预判由M07 F07-14调用本API+F01-06现金流；情景分析由M04/M07调用本API叠加市场冲击"
+      desc: "【数据基础设施】基于事件溯源存储，提供任意历史as-of/as-on日期的头寸快照API（历史切片），以及基于已知未来事件（到期/付息/回购续作）的前瞻头寸视图。本模块不做投资分析——绩效复盘由M07调用本API；流动性预判由M07 F07-17调用本API+F01-07现金流；情景分析由M04/M07调用本API叠加市场冲击"
       complexity: 高
       days: 30
       priority: P1
       acceptance: 历史快照查询任意日期延迟<3s，前瞻视图覆盖30日，API并发支持≥20消费方
-      dependency: IBOR事件存储引擎/F01-06现金流预测
+      dependency: IBOR事件存储引擎/F01-07现金流预测
     - id: F01-23
       name: 会计分类估值配置与稽核
-      desc: 按FVTPL（市值法）/FVOCI（可供出售）/AMC（摊余成本法）三类配置逐券估值方法，算法热加载不重启，支持OCI账户再分类触发边界校验（防止调仓意外触发IFRS9分类变更）；估值稽核规则引擎实时校验计算结果合理性。**ABOR差异对比不在此处重复**——由F01-15负责；本函数专注估值方法配置正确性
+      desc: 按FVTPL（市值法）/FVOCI（可供出售）/AMC（摊余成本法）三类配置逐券估值方法，算法热加载不重启，支持OCI账户再分类触发边界校验（防止调仓意外触发IFRS9分类变更）；估值稽核规则引擎实时校验计算结果合理性。**ABOR差异对比不在此处重复**——由F01-16负责；本函数专注估值方法配置正确性
       complexity: 高
       days: 30
       priority: P1
@@ -249,11 +249,11 @@ module:
       days: 35
       priority: P1
       acceptance: 沙箱持仓生效<2s，MtM误差<0.1%，≥10方案并行无数据污染，scenario P&L计算<5s，数据流向M04/M07 <1s，支持≥5种公司行为(split/merge/distribution/rights/spinoff)，支持10+市场冲击场景(yield curve parallel/butterfly/bear/bull, FX moves, spread moves)
-      dependency: IBOR实时持仓/M09估值引擎/M06事前风控（沙箱指令同样需合规校验）/M01 F01-29 DQ监控(作为数据质量前置条件)/M04 F04-22(消费sandbox数据做pre-trade impact)/M07 F07-22(消费sandbox结果做P&L分析)
+      dependency: IBOR实时持仓/M09估值引擎/M06事前风控（沙箱指令同样需合规校验）/M01 F01-27 DQ监控(作为数据质量前置条件)/M04 F04-01(消费sandbox数据做pre-trade impact)/M07 F07-19(消费sandbox结果做P&L分析)
   - id: I
     name: 抵押品管理
     functions:
-    - id: F01-28
+    - id: F01-26
       name: 抵押品管理（Collateral Management）
       desc: 回购质押券管理：合格性验证（发行人评级/品种/余期限制）、折扣率（Haircut）维护、替换申请工作流；场外衍生品保证金管理：初始保证金（IM，SIMM方法）与变动保证金（VM）每日计算，Margin Call发出/确认/追缴全流程；抵押品库存优化：自动推荐最优抵押品组合（最小化高质量流动性资产占用），支持三方托管接口（中债登）；抵押品头寸与IBOR持仓双向同步，冻结/释放自动联动F01-04可用券管理
       complexity: 高
@@ -264,14 +264,14 @@ module:
   - id: J
     name: 数据质量监控与运维
     functions:
-    - id: F01-29
+    - id: F01-27
       name: 数据质量监控与SLA治理
-      desc: 跨层级实时监控IBOR数据质量：staleness监控（行情/估值超过5s老化触发告警），completeness检测（缺失持仓>1%触发告警），continuity检测（Kafka dropped events/consumer lag detection）；Dashboard展示：数据源实时健康度、SLA compliance heatmap（按行情/估值/托管行接口分别追踪），alert路由至duty team；集成至F01-14 reconciliation engine（作为DQ issues前置条件）和M04风险计量平台（signal data freshness问题，防止垃圾数据进入风险计算）；支持Great Expectations + Deequ开源数据质量框架
+      desc: 跨层级实时监控IBOR数据质量：staleness监控（行情/估值超过5s老化触发告警），completeness检测（缺失持仓>1%触发告警），continuity检测（Kafka dropped events/consumer lag detection）；Dashboard展示：数据源实时健康度、SLA compliance heatmap（按行情/估值/托管行接口分别追踪），alert路由至duty team；集成至F01-15 reconciliation engine（作为DQ issues前置条件）和M04风险计量平台（signal data freshness问题，防止垃圾数据进入风险计算）；支持Great Expectations + Deequ开源数据质量框架
       complexity: 中
       days: 25
       priority: P1
       acceptance: Staleness detection <10s，completeness check <30s，alert transmission <1min，DQ dashboard real-time刷新<5s，覆盖全部data_model层级(Transaction/Trade/Position/Asset/MarketData/Collateral)，告警路由命中率>99%
-      dependency: 所有inbound interfaces（OMS/ATP报盘, AMD行情, 中登/中债登/上清托管, 资金系统划拨）/F01-14 reconciliation/M04 risk platform/内部metrics infrastructure
+      dependency: 所有inbound interfaces（OMS/ATP报盘, AMD行情, 中登/中债登/上清托管, 资金系统划拨）/F01-15 reconciliation/M04 risk platform/内部metrics infrastructure
   tech_design:
     pattern: 实时提取IBOR — 事件驱动架构(EDA)，按需即时生成头寸视图，不使用清除填充或滚动余额模式
     data_model:
@@ -293,7 +293,7 @@ module:
       - WIND/Bloomberg/AMD → 原始行情quote(Kafka实时，<1s) — 由F01-19接入，转发M09构建曲线
       - 中登/中债登/上清 → 日终持仓(SFTP批量，T+0 EOD)
       - 资金系统 → 现金划拨(REST实时)
-      - 定价平台(M09) ← Greeks/估值/曲线消费(gRPC) — F01-10衍生品MtM消费M09 F09-10
+      - 定价平台(M09) ← Greeks/估值/曲线消费(gRPC) — F01-11衍生品MtM消费M09 F09-10
       outbound:
       - IBOR → M09定价平台（原始行情转发，供M09 F09-04/F09-05构建曲线/曲面）
       - IBOR → M04风险计量平台（Kafka推送，持仓+估值变化事件；M04叠加市场冲击做情景P&L，IBOR不做）

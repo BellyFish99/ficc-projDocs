@@ -14,7 +14,7 @@ module:
   duration_m: 15
   team_sz: 14
   person_months: 220
-  note: 全资产组合管理工作台，十五大核心能力：全资产持仓模型/QP优化/Shadow Portfolio/Campisi 2.0固收归因/Brinson归因/多周期因子风险分解+MCTR(F07-10增强)/Component VaR/敏感度/情景压测/流动性/Carry预算分析/TCA反馈循环(F07-20增强)/实时盘中P&L拆解(新增F07-22)/绩效报告生成；Phase 2强化：多周期因子归因、TCA反馈驱动、盘中实时P&L；对应PPT Slide 44 + gy_solution 4.4.1
+  note: 全资产组合管理工作台，十五大核心能力：全资产持仓模型/QP优化/Shadow Portfolio/Campisi 2.0固收归因/Brinson归因/多周期因子风险分解+MCTR(F07-13增强)/Component VaR/敏感度/情景压测/流动性/Carry预算分析/TCA反馈循环(F07-11增强)/实时盘中P&L拆解(新增F07-19)/绩效报告生成；Phase 2强化：多周期因子归因、TCA反馈驱动、盘中实时P&L；对应PPT Slide 44 + gy_solution 4.4.1
   source_slide: 44
   data_inputs:
   - 交易数据
@@ -107,7 +107,7 @@ module:
       priority: P1
       acceptance: TE计算误差<1bps，支持≥10基准指数，IR预警自动推送
       dependency: AMD中债估值/IBOR持仓/因子模型
-    - id: F07-19
+    - id: F07-10
       name: 净利差与Carry预算分析
       desc: 逐券Carry分解（票息收入−回购成本−摊销损益）与Roll-down P&L，构建组合Carry热力图（信用类vs利率类carry对比）；Carry预算与实际消耗追踪，偏离超阈值自动预警；Carry归因拆分（利率carry/信用carry/久期carry）供投委会汇报
       complexity: 中
@@ -115,15 +115,15 @@ module:
       priority: P1
       acceptance: 逐券Carry计算与实际票息收入误差<1bps，Carry预算仪表盘T+1 9:00前自动刷新
       dependency: IBOR持仓/AMD行情（回购利率/票面利率）/定价平台（估值价格）
-    - id: F07-20
+    - id: F07-11
       name: 交易成本分析TCA
-      desc: 事后TCA：实施成本差（Implementation Shortfall = 决策时盘中价−成交均价）、VWAP/TWAP基准偏差，滑点分解（市场冲击+时机成本+价差成本）；经纪商执行质量排名（月度），超额成本自动触发路由策略优化建议，逐交易TCA反馈循环（成本预测模型再训练输入）；TCA结果回写F07-07归因（提升交易效应精确度）；实时TCA反馈推送至F07-22盘中P&L仪表盘
+      desc: 事后TCA：实施成本差（Implementation Shortfall = 决策时盘中价−成交均价）、VWAP/TWAP基准偏差，滑点分解（市场冲击+时机成本+价差成本）；经纪商执行质量排名（月度），超额成本自动触发路由策略优化建议，逐交易TCA反馈循环（成本预测模型再训练输入）；TCA结果回写F07-07归因（提升交易效应精确度）；实时TCA反馈推送至F07-19盘中P&L仪表盘
       complexity: 中
       days: 25
       priority: P2
       acceptance: TCA报告T+1生成，经纪商排名覆盖≥90%成交量，实施成本差计算与外部TCA服务误差<1bps，每日TCA反馈驱动<100bps超额成本自动预警
-      dependency: IBOR交易记录/AMD实时行情（决策时间戳价格）/现券交易系统成交回报/F07-22盘中P&L
-    - id: F07-21
+      dependency: IBOR交易记录/AMD实时行情（决策时间戳价格）/现券交易系统成交回报/F07-19盘中P&L
+    - id: F07-12
       name: 绩效报告生成
       desc: TWR（时间加权收益率）/MWR（资金加权收益率）多期计算，Grap算法多期归因链接（月度→季度→年度），PM工作台标准化绩效仪表盘（夏普/IR/最大回撤/信息比率），自动生成投委会汇报材料（PDF/PPT），历史归因报告版本存档与对比
       complexity: 中
@@ -134,7 +134,7 @@ module:
   - id: D
     name: 风险计量
     functions:
-    - id: F07-10
+    - id: F07-13
       name: 因子风险分解 + MCTR边际风险贡献（消费M08因子暴露）
       desc: "【消费M08因子暴露结果】将组合持仓分解为系统性风险（2200+因子，来自M08）+特异性风险；计算MCTR边际风险贡献（∂组合波动率/∂持仓权重，热路径用C++矩阵求导），输出风险消耗排名（识别「风险大户」），驱动减仓/加仓优先级；多周期因子归因分解（日/周/月级跨期间）：按宏观因子类别（利率水平/曲线斜率/曲率/信用利差/流动性溢价/汇率/商品/权益Beta）拆分组合收益来源，因子贡献追踪与漂移预警；提供QP再平衡的风险预算约束输入。本模块不计算因子协方差矩阵，协方差矩阵由M08维护"
       complexity: 高
@@ -142,34 +142,34 @@ module:
       priority: P1
       acceptance: 因子模型解释方差>80%（由M08保证），MCTR实时更新延迟<5s，多周期因子归因对账<1bps，日度初步结果<2h，风险预算仪表盘刷新延迟<5s
       dependency: M08因子暴露API（协方差矩阵）/IBOR持仓/定价平台
-    - id: F07-11
+    - id: F07-14
       name: Component VaR 四层穿透展示（调用M04引擎）
-      desc: PM决策展示层——调用M04(F04-10)VaR计算引擎获取三方法结果，在本模块实现四层穿透钻取：资产类别VaR→行业/子市场VaR→评级/信用质量VaR→单一发行人Component VaR，含跨类分散化收益量化；本模块不重复实现VaR计算，专注投资决策视角的风险溯源与持仓优化引导
+      desc: PM决策展示层——调用M04(F04-07)VaR计算引擎获取三方法结果，在本模块实现四层穿透钻取：资产类别VaR→行业/子市场VaR→评级/信用质量VaR→单一发行人Component VaR，含跨类分散化收益量化；本模块不重复实现VaR计算，专注投资决策视角的风险溯源与持仓优化引导
       complexity: 中
       days: 40
       priority: P1
       acceptance: 穿透至发行人层展示<3s，三方法差异预警由M04提供，本模块直接透传
-      dependency: FICC风险计量平台(M04 F04-10)/IBOR
-    - id: F07-12
+      dependency: FICC风险计量平台(M04 F04-07)/IBOR
+    - id: F07-15
       name: 敏感度展示（多维Shock Grid，消费M09定价引擎）
-      desc: PM决策展示层——M09(F09-10)是Greeks/DV01/CS01/KRD唯一计算权威，本模块直接消费M09逐券敏感度结果，负责：组合层面聚合（按资产类别/行业/评级汇总），构建利率×信用利差二维冲击矩阵（Shock Grid 5×5），识别最脆弱组合方向，输出对冲比率建议；本模块与M04 F04-08/F04-09同为消费方，分别服务PM决策与风险监管
+      desc: PM决策展示层——M09(F09-10)是Greeks/DV01/CS01/KRD唯一计算权威，本模块直接消费M09逐券敏感度结果，负责：组合层面聚合（按资产类别/行业/评级汇总），构建利率×信用利差二维冲击矩阵（Shock Grid 5×5），识别最脆弱组合方向，输出对冲比率建议；本模块与M04 F04-05/F04-06同为消费方，分别服务PM决策与风险监管
       complexity: 中
       days: 40
       priority: P1
       acceptance: Shock Grid 5×5矩阵实时刷新，组合DV01聚合与M09单券结果误差<0.1bps
       dependency: 定价平台(M09 F09-10 Greeks/DV01/CS01/KRD唯一权威)/IBOR
-    - id: F07-13
+    - id: F07-16
       name: 情景分析PM决策层（调用M04场景库）
-      desc: PM投资决策层——M04(F04-11)维护历史场景库并提供计算API，本模块负责：①调用M04获取场景P&L结果（924行情/包商/钱荒/股灾等8+历史场景+自定义场景），②PM工作流：基于场景结果生成对冲建议、触发再平衡方案、输出持仓调整优先级，③反向压力测试（倒推临界情景→止损线设计依据）；场景库维护与全公司治理由M04负责
+      desc: PM投资决策层——M04(F04-08)维护历史场景库并提供计算API，本模块负责：①调用M04获取场景P&L结果（924行情/包商/钱荒/股灾等8+历史场景+自定义场景），②PM工作流：基于场景结果生成对冲建议、触发再平衡方案、输出持仓调整优先级，③反向压力测试（倒推临界情景→止损线设计依据）；场景库维护与全公司治理由M04负责
       complexity: 中
       days: 60
       priority: P1
       acceptance: 调用M04 API获取场景P&L<2s，PM决策输出（对冲建议）<5s，≥20情景并行
-      dependency: FICC风险计量平台(M04 F04-11 场景API)/定价平台
+      dependency: FICC风险计量平台(M04 F04-08 场景API)/定价平台
   - id: E
     name: 流动性与对冲管理
     functions:
-    - id: F07-14
+    - id: F07-17
       name: 流动性风险管理（LVaR）
       desc: 逐持仓变现能力评估（规模/日均成交量→变现天数），Almgren-Chriss市场冲击成本模型，流动性压力测试（X天内变现Y亿最优路径+成本），流动性调整VaR（LVaR=传统VaR+流动性溢价），流动性覆盖率/缓冲监控（1/3/5/10日分层），回购到期日历
       complexity: 中
@@ -177,7 +177,7 @@ module:
       priority: P1
       acceptance: LVaR与市场基准误差<5%，日均成交量覆盖≥95%持仓，变现路径建议<3s
       dependency: AMD行情/IBOR持仓
-    - id: F07-15
+    - id: F07-18
       name: 衍生品对冲决策引擎
       desc: 七类工具矩阵（国债期货2/5/10/30Y/IRS/CDS/股指期货IF/IH/IC/IM/股指期权/黄金期货/外汇远掉期），系统推荐最优对冲方案（成本最小约束），一键生成对冲指令，对冲效果追踪（前后风险指标对比/效率/执行滑点）；支持快速/精细/尾部/跨资产四种场景
       complexity: 高
@@ -185,18 +185,18 @@ module:
       priority: P2
       acceptance: 对冲方案推荐<5s，DV01对冲误差<5%，指令自动流转执行引擎
       dependency: 衍生品交易系统/IBOR/定价平台/事前风控
-    - id: F07-22
+    - id: F07-19
       name: 实时盘中P&L拆解与TCA集成
-      desc: "Real-time intraday P&L breakdown：traders实时查看持仓P&L分解（实现收益/浮动收益），按持仓逐笔拆解Greeks贡献(Delta P&L/Gamma P&L/Vega P&L/Theta P&L)、市场因子冲击(DV01 impact × δrate等)、执行成本(滑点/摩擦成本/费用)；集成F07-20 TCA反馈：每笔交易的成本差对标(实际成交价 vs VWAP)实时显示；盘中预期P&L vs实际P&L偏差分析（对标理论Greeks P&L），超阈值自动告警；支持多维聚合(按持仓/交易对手/交易员/策略维度)；驱动交易员决策(对冲/止损/加仓优化)"
+      desc: "Real-time intraday P&L breakdown：traders实时查看持仓P&L分解（实现收益/浮动收益），按持仓逐笔拆解Greeks贡献(Delta P&L/Gamma P&L/Vega P&L/Theta P&L)、市场因子冲击(DV01 impact × δrate等)、执行成本(滑点/摩擦成本/费用)；集成F07-11 TCA反馈：每笔交易的成本差对标(实际成交价 vs VWAP)实时显示；盘中预期P&L vs实际P&L偏差分析（对标理论Greeks P&L），超阈值自动告警；支持多维聚合(按持仓/交易对手/交易员/策略维度)；驱动交易员决策(对冲/止损/加仓优化)"
       complexity: 高
       days: 30
       priority: P1
       acceptance: "P&L刷新<30s（100+持仓），Greeks分解精度±5bps，执行成本反馈<1h，trader采纳率70% within 3 months"
-      dependency: M04 F04-04 (实时风险计量/Greeks), M07 F07-20 (TCA反馈), IBOR实时持仓/AMD实时行情/现券交易系统成交回报
+      dependency: M04 F04-02 (实时风险计量/Greeks), M07 F07-11 (TCA反馈), IBOR实时持仓/AMD实时行情/现券交易系统成交回报
   - id: F
     name: 量化底座集成
     functions:
-    - id: F07-16
+    - id: F07-20
       name: 定价计算集成
       desc: 调用定价平台实时估值与Greeks（含权债/可转债/IRS），Redis缓存结果，Kafka推送持仓+估值变化事件，日终全量估值批处理
       complexity: 高
@@ -204,7 +204,7 @@ module:
       priority: P2
       acceptance: 定价API p99<200ms，日终全量估值<30min（10万券）
       dependency: 定价平台
-    - id: F07-17
+    - id: F07-21
       name: 利率曲线消费集成（消费M09 F09-04）
       desc: "【消费方】消费M09 F09-04统一曲线服务（国债/政策行/AAA信用/OIS等多曲线）；本模块负责：曲线快照本地缓存（供Campisi归因历史复现），关键期限点映射至持仓久期分桶，曲线版本治理（归因复现需要asof快照）；NS参数/水平/斜率/曲率等曲线特征已由M09 F09-04统一提供，本模块直接消费不重复拟合"
       complexity: 中
@@ -212,7 +212,7 @@ module:
       priority: P1
       acceptance: 曲线消费延迟<1s，归因复现支持任意历史asof日期
       dependency: M09 F09-04（曲线SSoT）/IBOR持仓久期数据
-    - id: F07-18
+    - id: F07-22
       name: 因子暴露集成（消费M08，不建模）
       desc: "【消费方】消费M08发布的逐券因子载荷与协方差矩阵，本模块负责：①按持仓权重聚合组合层面2200+风险因子暴露（利率/信用/流动性/权益Beta/行业/风格/商品/汇率八类），②因子暴露历史追踪与漂移预警，③因子风险预算仪表盘（已用/剩余/三档预警）。因子定义/协方差矩阵/逐券载荷计算全部由M08负责，本模块零重复建设"
       complexity: 中
