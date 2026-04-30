@@ -25,41 +25,6 @@ module:
   - 账户体系(AMI/AMDB)
   - Kafka实时消息
   - Redis分布式缓存
-  tech_design:
-    pattern: 实时提取IBOR — 事件驱动架构(EDA)，按需即时生成头寸视图，不使用清除填充或滚动余额模式
-    data_model:
-    - 'Transaction层: 原始交易/非交易事件全量流水，含完整状态机'
-    - 'Trade层: 成交簿记与Trade enrichment（子账户/策略/指令信息补充）'
-    - 'Position层: 实时头寸计算、成本核算、多时态快照存储'
-    - 'Asset层: 估值定价、风险指标加工、会计分类标注'
-    - 'MarketData层: 行情与估值数据实时输入，清洗后分发至定价层'
-    - 'Collateral层: 质押券/保证金台账，Margin Call状态机，抵押品优化分配'
-    core_stack:
-      realtime_engine: Kafka(事件总线) + 自研PHX计算引擎(事件驱动实时计算)
-      position_store: Redis Cluster(日内实时缓存，<1ms读写) + TiDB/OceanBase(历史时序，5年快照)
-      batch_engine: Airflow(日终调度) + Spark(批量全量估值)
-      api_layer: REST/gRPC(同步查询) + Kafka Topic(异步推送给下游系统)
-      infra: 双活部署，核心服务99.99% SLA；信创适配RocketMQ/GaussDB可替换
-    key_interfaces:
-      inbound:
-      - OMS/ATP → 成交回报(Kafka实时，<200ms)
-      - WIND/Bloomberg → 行情估值(Kafka实时，<1s)
-      - 中登/中债登/上清 → 日终持仓(SFTP批量，T+0 EOD)
-      - 资金系统 → 现金划拨(REST实时)
-      outbound:
-      - IBOR → M04风险计量平台（Kafka推送，持仓+估值变化事件；M04叠加市场冲击做情景P&L，IBOR不做）
-      - IBOR → M07组合管理（REST查询API + Kafka实时订阅；M07 F07-05调用F01-25沙箱做Shadow Portfolio分析）
-      - IBOR → M06事前风控/合规（REST同步，持仓数据供F06-11持续合规监控）
-      - IBOR → 报表引擎/监管报送（REST批量拉取）
-    key_decisions:
-    - '双态部署: 生产态(实时)与模拟态(What-if沙箱)数据隔离，模拟态与生产态T-0同步'
-    - '估值算法可插拔: FVTPL/FVOCI/AMC通过配置切换，粒度支持个券维度，算法热加载不重启'
-    - '信创优先: 消息队列优先RocketMQ，数据库优先OceanBase/GaussDB，Kafka/TiDB作备选'
-    - '多时态头寸: 以Event Sourcing方式存储全量事件，任意时间点头寸按需重建，无需预存快照'
-    open_questions:
-    - 与现有ABOR会计系统的接口协议待确认（文件/API/CDC）
-    - 信创环境下RocketMQ替代Kafka的性能基准测试待完成
-    - What-if模拟态与生产态的数据同步延迟SLA待与业务方对齐
   function_domains:
   - id: A
     name: 实时持仓管理
@@ -307,3 +272,38 @@ module:
       priority: P1
       acceptance: Staleness detection <10s，completeness check <30s，alert transmission <1min，DQ dashboard real-time刷新<5s，覆盖全部data_model层级(Transaction/Trade/Position/Asset/MarketData/Collateral)，告警路由命中率>99%
       dependency: 所有inbound interfaces（OMS/ATP报盘, AMD行情, 中登/中债登/上清托管, 资金系统划拨）/F01-14 reconciliation/M04 risk platform/内部metrics infrastructure
+  tech_design:
+    pattern: 实时提取IBOR — 事件驱动架构(EDA)，按需即时生成头寸视图，不使用清除填充或滚动余额模式
+    data_model:
+    - 'Transaction层: 原始交易/非交易事件全量流水，含完整状态机'
+    - 'Trade层: 成交簿记与Trade enrichment（子账户/策略/指令信息补充）'
+    - 'Position层: 实时头寸计算、成本核算、多时态快照存储'
+    - 'Asset层: 估值定价、风险指标加工、会计分类标注'
+    - 'MarketData层: 行情与估值数据实时输入，清洗后分发至定价层'
+    - 'Collateral层: 质押券/保证金台账，Margin Call状态机，抵押品优化分配'
+    core_stack:
+      realtime_engine: Kafka(事件总线) + 自研PHX计算引擎(事件驱动实时计算)
+      position_store: Redis Cluster(日内实时缓存，<1ms读写) + TiDB/OceanBase(历史时序，5年快照)
+      batch_engine: Airflow(日终调度) + Spark(批量全量估值)
+      api_layer: REST/gRPC(同步查询) + Kafka Topic(异步推送给下游系统)
+      infra: 双活部署，核心服务99.99% SLA；信创适配RocketMQ/GaussDB可替换
+    key_interfaces:
+      inbound:
+      - OMS/ATP → 成交回报(Kafka实时，<200ms)
+      - WIND/Bloomberg → 行情估值(Kafka实时，<1s)
+      - 中登/中债登/上清 → 日终持仓(SFTP批量，T+0 EOD)
+      - 资金系统 → 现金划拨(REST实时)
+      outbound:
+      - IBOR → M04风险计量平台（Kafka推送，持仓+估值变化事件；M04叠加市场冲击做情景P&L，IBOR不做）
+      - IBOR → M07组合管理（REST查询API + Kafka实时订阅；M07 F07-05调用F01-25沙箱做Shadow Portfolio分析）
+      - IBOR → M06事前风控/合规（REST同步，持仓数据供F06-11持续合规监控）
+      - IBOR → 报表引擎/监管报送（REST批量拉取）
+    key_decisions:
+    - '双态部署: 生产态(实时)与模拟态(What-if沙箱)数据隔离，模拟态与生产态T-0同步'
+    - '估值算法可插拔: FVTPL/FVOCI/AMC通过配置切换，粒度支持个券维度，算法热加载不重启'
+    - '信创优先: 消息队列优先RocketMQ，数据库优先OceanBase/GaussDB，Kafka/TiDB作备选'
+    - '多时态头寸: 以Event Sourcing方式存储全量事件，任意时间点头寸按需重建，无需预存快照'
+    open_questions:
+    - 与现有ABOR会计系统的接口协议待确认（文件/API/CDC）
+    - 信创环境下RocketMQ替代Kafka的性能基准测试待完成
+    - What-if模拟态与生产态的数据同步延迟SLA待与业务方对齐
