@@ -14,7 +14,7 @@ module:
   duration_m: 20
   team_sz: 15
   person_months: 235
-  note: 蒙特卡洛/有限差分，替代衡泰核心，覆盖权益/利率/大宗商品/外汇/衍生品全品种，新增XVA引擎（CVA/DVA/FVA）和模型验证/P&L Explain；对应PPT Slide 56
+  note: 蒙特卡洛/有限差分，替代衡泰核心，覆盖权益/利率/大宗商品/外汇/衍生品全品种；Phase 1强化：曲线平滑+套利检测（F09-04增强），DQ-first数据治理；新增XVA引擎（CVA/DVA/FVA）、模型验证/P&L Explain、多曲线折扣(Phase 3)；对应PPT Slide 56
   source_slide: 56
   function_domains:
   - id: D1
@@ -43,10 +43,11 @@ module:
     functions:
     - id: F09-04
       name: 利率与信用曲线构建
-      desc: 利率曲线（多插值方法），信用利差曲线，利差曲线，违约曲线，全品种统一曲线服务
+      desc: 利率曲线（多插值方法），信用利差曲线，利差曲线，违约曲线，全品种统一曲线服务；新增automated curve smoothing（spline tension controls, Piecewise-Linear Moneyness interpolation）保证曲线平滑性；arbitrage validation pipeline：overnight batch after daily curve recalibration进行：(1)negative forward detection（无负利率），(2)cheap bond detection（price < dirty price floor），(3)cross-curve arbitrage checks；validation failure自动trigger manual review workflow；clean curve snapshot materialized in Redis for intraday consumption；smoothness metrics + arbitrage violations reported to F01-29 DQ Dashboard
       complexity: 极高
-      days: 60
+      days: 70
       priority: P2
+      acceptance: Curve smoothing ensures no arbitrage violations for consecutive >30 days，negative forward detection accuracy 100%，cheap bond detection accuracy >99%，arbitrage validation completion <10min after overnight curve build，clean curve snapshots ready by 6:30am for market open，DQ metrics push to F01-29 real-time
     - id: F09-05
       name: 波动率曲面构建
       desc: 隐含波动率曲面，红利曲线，汇率曲线，Local Volatility曲面，波动率微笑校准

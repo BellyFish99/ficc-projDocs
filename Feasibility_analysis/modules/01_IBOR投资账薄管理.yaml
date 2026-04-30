@@ -14,7 +14,7 @@ module:
   duration_m: 13
   team_sz: 14
   person_months: 133
-  note: 整个FICC平台的账薄主干，26项功能覆盖持仓/现金/估值/事件/对账/监管报送/试算/抵押品管理全链路；合规检查规则与执行由M06负责，情景P&L分析由M04+M07负责，IBOR仅提供数据
+  note: 整个FICC平台的账薄主干，27项功能（新增F01-29数据质量监控）覆盖持仓/现金/估值/事件/对账/监管报送/试算/抵押品/数据质量全链路；核心创新：ML-based reconciliation (F01-14)，DQ-first foundation (F01-29)，CA-aware sandbox (F01-25)；合规检查规则与执行由M06负责，情景P&L分析由M04+M07负责，IBOR为SSoT数据源
   source_slide: 55
   data_inputs:
   - 交易指令数据
@@ -190,15 +190,15 @@ module:
     functions:
     - id: F01-14
       name: 托管行持仓对账
-      desc: 与中登（交易所债券）、中债登（银行间债券）日终持仓对账，差异自动分类（未交割/错误/缺漏）并推送告警
+      desc: 与中登（交易所债券）、中债登（银行间债券）日终持仓对账，差异自动分类（未交割/错误/缺漏）并推送告警；新增ML-based break matching（容差窗口/多规则自动路由）、Temporal-backed exception workflow（自动→经理审批→CRO升级）、Reconciliation Dashboard（实时break aging/SLA追踪）；集成F01-29 DQ监控作为前置条件，确保数据质量后再进行对账
       complexity: 高
-      days: 60
+      days: 75
       priority: P1
-      acceptance: 日终对账完成时间<8:00AM，差异识别率100%，自动匹配率>95%
+      acceptance: 日终对账完成时间<6:00AM，差异识别率>98%，break自动解决率>80%（ML匹配），exception routing <30s，manager review trigger by T+2
       dependency: 中登/中债登结算接口/SFTP
     - id: F01-15
       name: IBOR-ABOR差异对比
-      desc: 投资账薄（实时）与会计账薄（已结算）差异对比，差异原因自动分类（未结算/估值差/计提差），供中台复核
+      desc: 投资账薄（实时）与会计账薄（已结算）差异对比，差异原因自动分类（未结算/估值差/计提差），供中台复核；exception workflow集成：差异超阈值自动流转F01-14工作流；数据质量指标推送至F01-29 DQ Dashboard
       complexity: 中
       days: 60
       priority: P1
@@ -281,10 +281,10 @@ module:
       name: What-if持仓沙箱（供M07 Shadow Portfolio调用）
       desc: "【IBOR位置引擎层，不做投资分析】接收模拟交易指令（不实际成交），在隔离沙箱中实时计算假设成交后的持仓快照+MtM+P&L，支持≥10方案写时复制(CoW)并行。本模块输出边界：持仓变化+基础损益；风险敏感度/因子暴露/最优路径推荐由M07 F07-05 Shadow Portfolio在本API基础上完成，本模块不重复计算"
       complexity: 高
-      days: 25
+      days: 35
       priority: P1
-      acceptance: 沙箱持仓生效<2s，MtM误差<0.1%，≥10方案并行无数据污染
-      dependency: IBOR实时持仓/M09估值引擎/M06事前风控（沙箱指令同样需合规校验）
+      acceptance: 沙箱持仓生效<2s，MtM误差<0.1%，≥10方案并行无数据污染，scenario P&L计算<5s，数据流向M04/M07 <1s，支持≥5种公司行为(split/merge/distribution/rights/spinoff)，支持10+市场冲击场景(yield curve parallel/butterfly/bear/bull, FX moves, spread moves)
+      dependency: IBOR实时持仓/M09估值引擎/M06事前风控（沙箱指令同样需合规校验）/M01 F01-29 DQ监控(作为数据质量前置条件)/M04 F04-22(消费sandbox数据做pre-trade impact)/M07 F07-22(消费sandbox结果做P&L分析)
   - id: I
     name: 抵押品管理
     functions:
@@ -296,3 +296,14 @@ module:
       priority: P1
       acceptance: Haircut配置覆盖全品种，Margin Call计算与对手方差异<0.5%，抵押品状态与F01-04同步延迟<30s，三方托管接口联通率100%
       dependency: IBOR持仓（F01-01/F01-04）/定价平台M09（抵押品MtM）/交易对手管理/中债登三方托管接口
+  - id: J
+    name: 数据质量监控与运维
+    functions:
+    - id: F01-29
+      name: 数据质量监控与SLA治理
+      desc: 跨层级实时监控IBOR数据质量：staleness监控（行情/估值超过5s老化触发告警），completeness检测（缺失持仓>1%触发告警），continuity检测（Kafka dropped events/consumer lag detection）；Dashboard展示：数据源实时健康度、SLA compliance heatmap（按行情/估值/托管行接口分别追踪），alert路由至duty team；集成至F01-14 reconciliation engine（作为DQ issues前置条件）和M04风险计量平台（signal data freshness问题，防止垃圾数据进入风险计算）；支持Great Expectations + Deequ开源数据质量框架
+      complexity: 中
+      days: 25
+      priority: P1
+      acceptance: Staleness detection <10s，completeness check <30s，alert transmission <1min，DQ dashboard real-time刷新<5s，覆盖全部data_model层级(Transaction/Trade/Position/Asset/MarketData/Collateral)，告警路由命中率>99%
+      dependency: 所有inbound interfaces（OMS/ATP报盘, AMD行情, 中登/中债登/上清托管, 资金系统划拨）/F01-14 reconciliation/M04 risk platform/内部metrics infrastructure

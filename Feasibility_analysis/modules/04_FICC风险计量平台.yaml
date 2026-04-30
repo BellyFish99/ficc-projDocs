@@ -14,7 +14,7 @@ module:
   duration_m: 15
   team_sz: 12
   person_months: 135
-  note: 替代衡泰老旧系统，信创切入口；覆盖投前/投中/投后全生命周期风险管理，新增信用风险计量（CVA/PD/LGD/IFRS9 ECL）和限额治理全生命周期工作流；对应PPT Slide 52
+  note: 替代衡泰老旧系统，信创切入口；覆盖投前/投中/投后全生命周期风险管理，新增信用风险计量（CVA/PD/LGD/IFRS9 ECL）、限额治理全生命周期、VaR回测框架（F04-10增强）、模型治理（新增F04-23）、pre-trade impact（Phase 2 F04-22）；对应PPT Slide 52
   source_slide: 52
   function_domains:
   - id: D1
@@ -82,10 +82,11 @@ module:
       priority: P1
     - id: F04-10
       name: VaR模型
-      desc: 参数法/历史模拟法/蒙特卡洛三模式，Expected Shortfall (ES)，回测与例外检验
+      desc: 参数法/历史模拟法/蒙特卡洛三模式，Expected Shortfall；integrated daily backtesting framework：daily actual P&L vs predicted VaR tracking，exception flagging and reporting；quarterly Kupiec POF (Proportion of Failures) statistical test per regulatory standard；model exception log with severity levels，>3 exceptions/quarter triggers automatic re-calibration workflow to F04-23；VaR model validation reports auto-generated for regulatory submission (Basel III backtesting rules, FRTB internal model requirements)
       complexity: 极高
-      days: 50
+      days: 60
       priority: P1
+      acceptance: Daily backtest completion <6:00AM，exception detection accuracy >95%，Kupiec POF test run quarterly with statistical documentation，regulatory reports auto-generated for compliance，model exception escalation <1h from detection
     - id: F04-11
       name: 压力测试与情景分析
       desc: 内置历史情景（GFC/COVID-19/利率冲击），假设情景（曲线扭转/利差走阔），反向压力测试
@@ -129,6 +130,14 @@ module:
       priority: P1
       acceptance: 超限告警延迟<1min，限额利用率仪表盘实时刷新，限额变更全程留痕，监管核查导出<5min
       dependency: M06合规规则（SSoT，限额参数引用M06 F06-02）/IBOR持仓/M04 F04-04实时风险计量
+    - id: F04-23
+      name: 模型治理与回测框架
+      desc: Independent model risk governance infrastructure：daily backtesting of all risk models (VaR/Greeks/CVA/CVA)，exception tracking with severity classification；Kupiec POF statistical test performed quarterly；model exception investigation workflow with auto-escalation to quant team if >3 exceptions/quarter；regulatory model governance documentation (Basel III backtesting audit trail，FRTB internal model approval requirements)；exception resolution and model re-calibration scheduling；complete model inventory with version control，parameter audit trail，and approval workflow
+      complexity: 中
+      days: 20
+      priority: P1
+      acceptance: Daily backtest by 6am，exception report accuracy >95%，model governance documentation audit-ready for regulator review，exception escalation <1h from trigger，model parameter changes tracked with approval chain，Kupiec POF test results documented quarterly
+      dependency: F04-10 (VaR model), F04-20 (credit risk CVA model), F04-08/09 (Greeks/DV01 calculations), all upstream risk calculation functions, independent data validation
   - id: D5
     name: 风控基础设施
     functions:
