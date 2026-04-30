@@ -11,10 +11,10 @@ module:
   gap: 中
   competitor: 衡泰(ABOR)
   foundation: AMI/AMDB账户体系
-  duration_m: 12
+  duration_m: 13
   team_sz: 14
-  person_months: 130
-  note: 整个FICC平台的账薄主干，25项功能覆盖持仓/现金/估值/事件/对账/监管报送/试算全链路；合规检查规则与执行由M06负责，情景P&L分析由M04+M07负责，IBOR仅提供数据
+  person_months: 133
+  note: 整个FICC平台的账薄主干，26项功能覆盖持仓/现金/估值/事件/对账/监管报送/试算/抵押品管理全链路；合规检查规则与执行由M06负责，情景P&L分析由M04+M07负责，IBOR仅提供数据
   source_slide: 55
   data_inputs:
   - 交易指令数据
@@ -33,6 +33,7 @@ module:
     - 'Position层: 实时头寸计算、成本核算、多时态快照存储'
     - 'Asset层: 估值定价、风险指标加工、会计分类标注'
     - 'MarketData层: 行情与估值数据实时输入，清洗后分发至定价层'
+    - 'Collateral层: 质押券/保证金台账，Margin Call状态机，抵押品优化分配'
     core_stack:
       realtime_engine: Kafka(事件总线) + 自研PHX计算引擎(事件驱动实时计算)
       position_store: Redis Cluster(日内实时缓存，<1ms读写) + TiDB/OceanBase(历史时序，5年快照)
@@ -284,3 +285,14 @@ module:
       priority: P1
       acceptance: 沙箱持仓生效<2s，MtM误差<0.1%，≥10方案并行无数据污染
       dependency: IBOR实时持仓/M09估值引擎/M06事前风控（沙箱指令同样需合规校验）
+  - id: I
+    name: 抵押品管理
+    functions:
+    - id: F01-28
+      name: 抵押品管理（Collateral Management）
+      desc: 回购质押券管理：合格性验证（发行人评级/品种/余期限制）、折扣率（Haircut）维护、替换申请工作流；场外衍生品保证金管理：初始保证金（IM，SIMM方法）与变动保证金（VM）每日计算，Margin Call发出/确认/追缴全流程；抵押品库存优化：自动推荐最优抵押品组合（最小化高质量流动性资产占用），支持三方托管接口（中债登）；抵押品头寸与IBOR持仓双向同步，冻结/释放自动联动F01-04可用券管理
+      complexity: 高
+      days: 40
+      priority: P1
+      acceptance: Haircut配置覆盖全品种，Margin Call计算与对手方差异<0.5%，抵押品状态与F01-04同步延迟<30s，三方托管接口联通率100%
+      dependency: IBOR持仓（F01-01/F01-04）/定价平台M09（抵押品MtM）/交易对手管理/中债登三方托管接口

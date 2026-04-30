@@ -11,10 +11,10 @@ module:
   gap: 大
   competitor: 衡泰(垄断)
   foundation: ARC基础数值库
-  duration_m: 18
+  duration_m: 20
   team_sz: 15
-  person_months: 225
-  note: 蒙特卡洛/有限差分，替代衡泰核心，覆盖权益/利率/大宗商品/外汇/衍生品全品种；对应PPT Slide 56
+  person_months: 235
+  note: 蒙特卡洛/有限差分，替代衡泰核心，覆盖权益/利率/大宗商品/外汇/衍生品全品种，新增XVA引擎（CVA/DVA/FVA）和模型验证/P&L Explain；对应PPT Slide 56
   source_slide: 56
   function_domains:
   - id: D1
@@ -107,6 +107,14 @@ module:
       complexity: 高
       days: 35
       priority: P2
+    - id: F09-16
+      name: XVA计算引擎（CVA/DVA/FVA）
+      desc: 场外衍生品全套XVA计算：CVA（信用估值调整）= EPE × 对手方PD × LGD；DVA（借方估值调整）= ENE × 自身PD × LGD；FVA（融资估值调整）= 融资利差 × 资金净敞口；蒙特卡洛路径模拟（1000+路径，支持GPU加速），IFRS 13第三层级公允价值合规；CVA/DVA结果供M04 F04-20信用风险计量消费，FVA供交易定价和P&L Explain消费
+      complexity: 极高
+      days: 50
+      priority: P2
+      acceptance: CVA计算单笔IRS p99<1s，EPE曲线与行业工具误差<2%，IFRS 13文档输出满足审计要求
+      dependency: 定价模型引擎（MC求解器F09-07）/交易对手信用数据（PD/LGD，外部数据源）/M09曲线服务（F09-04）
   - id: D5
     name: 平台基础设施
     functions:
@@ -122,13 +130,23 @@ module:
       complexity: 高
       days: 30
       priority: P2
+    - id: F09-17
+      name: 定价模型验证与P&L Explain
+      desc: 每日P&L Explain：理论P&L（Greeks × 市场因子变动）与实际P&L对比，逐笔差异分类（模型误差/交易摩擦/数据质量/新交易），差异超阈值自动告警；模型回测：定价模型预测价格 vs 市场成交价，统计检验（Kupiec/Christoffersen），回测报告按模型类型（BS/HW/SABR等）分类归档；价格争议审计追踪：逐笔定价记录+参数快照存档，支持T+5内完整再现定价过程
+      complexity: 高
+      days: 30
+      priority: P2
+      acceptance: P&L Explain覆盖率≥95%持仓，差异阈值可配，争议定价T+5内完整复现，模型回测报告月度自动生成
+      dependency: 定价平台核心引擎（F09-07~F09-10）/IBOR实际P&L数据/市场成交数据
   tech_design:
     pattern: 微服务定价引擎 + HPC数值计算网格（GPU加速）
     data_model: >
       PricingRequest (reqId, productType, params, asOf, requestedBy) ;
       PricingResult (reqId, price, greeks, modelUsed, latencyMs, computedAt) ;
       CurveSnapshot (curveId, curveType, nodes, interpolation, asOf) ;
-      VolSurface (surfaceId, underlier, strikes, expiries, vols, asOf)
+      VolSurface (surfaceId, underlier, strikes, expiries, vols, asOf) ;
+      XVAResult (tradeId, cva, dva, fva, epe, ene, counterpartyPd, asOf) ;
+      ModelValidation (modelId, date, theoreticalPnl, actualPnl, explainGap, testResult[pass|warning|fail], reportRef)
     core_stack: >
       C++ (核心数值计算，蒙特卡洛/PDE引擎) + Python (曲线构建/数据清洗) ;
       CUDA/GPU (蒙特卡洛并行加速) ;

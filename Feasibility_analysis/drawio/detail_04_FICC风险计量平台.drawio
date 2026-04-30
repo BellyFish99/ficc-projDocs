@@ -1,8 +1,8 @@
-<mxGraphModel dx="1422" dy="762" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1120" pageHeight="240" math="0" shadow="0">
+<mxGraphModel dx="1422" dy="762" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1120" pageHeight="268" math="0" shadow="0">
   <root>
     <mxCell id="0"/>
     <mxCell id="1" parent="0"/>
-    <mxCell id="2" value="FICC风险计量平台  |  P1  |  14月  |  12人" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#0F2060;fontColor=#FFFFFF;strokeColor=#0F2060;fontStyle=1;fontSize=12;align=center;verticalAlign=middle;" vertex="1" parent="1">
+    <mxCell id="2" value="FICC风险计量平台  |  P1  |  15月  |  12人" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#0F2060;fontColor=#FFFFFF;strokeColor=#0F2060;fontStyle=1;fontSize=12;align=center;verticalAlign=middle;" vertex="1" parent="1">
       <mxGeometry x="10.0" y="10.0" width="1100.0" height="44" as="geometry"/>
     </mxCell>
     <mxCell id="3" value="D1. 投前风险分析" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#2B5EC7;fontColor=#FFFFFF;strokeColor=#1B3275;fontStyle=1;fontSize=10;align=center;verticalAlign=middle;" vertex="1" parent="1">
@@ -44,7 +44,7 @@
     <mxCell id="15" value="Greeks与敏感度计算" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
       <mxGeometry x="450.0" y="118.0" width="220.0" height="28" as="geometry"/>
     </mxCell>
-    <mxCell id="16" value="绩效归因与风险计量" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
+    <mxCell id="16" value="监管报表与风控日报" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
       <mxGeometry x="670.0" y="118.0" width="220.0" height="28" as="geometry"/>
     </mxCell>
     <mxCell id="17" value="收益率曲线与波动率曲面" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
@@ -59,7 +59,7 @@
     <mxCell id="20" value="VaR模型" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
       <mxGeometry x="450.0" y="146.0" width="220.0" height="28" as="geometry"/>
     </mxCell>
-    <mxCell id="21" value="监管报表与风控日报" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
+    <mxCell id="21" value="限额治理工作流" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
       <mxGeometry x="670.0" y="146.0" width="220.0" height="28" as="geometry"/>
     </mxCell>
     <mxCell id="22" value="HPC计算网格" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
@@ -94,6 +94,21 @@
     </mxCell>
     <mxCell id="32" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F7FA;fontColor=#F5F7FA;strokeColor=#D6E4F7;fontSize=9;" vertex="1" parent="1">
       <mxGeometry x="890.0" y="202.0" width="220.0" height="28" as="geometry"/>
+    </mxCell>
+    <mxCell id="33" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F7FA;fontColor=#F5F7FA;strokeColor=#D6E4F7;fontSize=9;" vertex="1" parent="1">
+      <mxGeometry x="10.0" y="230.0" width="220.0" height="28" as="geometry"/>
+    </mxCell>
+    <mxCell id="34" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F7FA;fontColor=#F5F7FA;strokeColor=#D6E4F7;fontSize=9;" vertex="1" parent="1">
+      <mxGeometry x="230.0" y="230.0" width="220.0" height="28" as="geometry"/>
+    </mxCell>
+    <mxCell id="35" value="信用风险计量（CVA/PD/LGD）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
+      <mxGeometry x="450.0" y="230.0" width="220.0" height="28" as="geometry"/>
+    </mxCell>
+    <mxCell id="36" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F7FA;fontColor=#F5F7FA;strokeColor=#D6E4F7;fontSize=9;" vertex="1" parent="1">
+      <mxGeometry x="670.0" y="230.0" width="220.0" height="28" as="geometry"/>
+    </mxCell>
+    <mxCell id="37" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F7FA;fontColor=#F5F7FA;strokeColor=#D6E4F7;fontSize=9;" vertex="1" parent="1">
+      <mxGeometry x="890.0" y="230.0" width="220.0" height="28" as="geometry"/>
     </mxCell>
   </root>
 </mxGraphModel>

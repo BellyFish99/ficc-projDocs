@@ -11,10 +11,10 @@ module:
   gap: 中
   competitor: SimCorp/衡泰
   foundation: M9 PMS模块
-  duration_m: 14
+  duration_m: 15
   team_sz: 14
-  person_months: 160
-  note: 全资产组合管理工作台，十大核心能力：全资产持仓模型/QP优化/Shadow Portfolio/Campisi 2.0固收归因/Brinson归因/因子风险分解+MCTR/Component VaR/敏感度/情景压测/流动性；对应PPT Slide 44 + gy_solution 4.4.1
+  person_months: 165
+  note: 全资产组合管理工作台，十三大核心能力：全资产持仓模型/QP优化/Shadow Portfolio/Campisi 2.0固收归因/Brinson归因/因子风险分解+MCTR/Component VaR/敏感度/情景压测/流动性/Carry预算分析/交易成本TCA/绩效报告生成；对应PPT Slide 44 + gy_solution 4.4.1
   source_slide: 44
   data_inputs:
   - 交易数据
@@ -107,6 +107,22 @@ module:
       priority: P1
       acceptance: TE计算误差<1bps，支持≥10基准指数，IR预警自动推送
       dependency: AMD中债估值/IBOR持仓/因子模型
+    - id: F07-19
+      name: 净利差与Carry预算分析
+      desc: 逐券Carry分解（票息收入−回购成本−摊销损益）与Roll-down P&L，构建组合Carry热力图（信用类vs利率类carry对比）；Carry预算与实际消耗追踪，偏离超阈值自动预警；Carry归因拆分（利率carry/信用carry/久期carry）供投委会汇报
+      complexity: 中
+      days: 25
+      priority: P1
+      acceptance: 逐券Carry计算与实际票息收入误差<1bps，Carry预算仪表盘T+1 9:00前自动刷新
+      dependency: IBOR持仓/AMD行情（回购利率/票面利率）/定价平台（估值价格）
+    - id: F07-21
+      name: 绩效报告生成
+      desc: TWR（时间加权收益率）/MWR（资金加权收益率）多期计算，Grap算法多期归因链接（月度→季度→年度），PM工作台标准化绩效仪表盘（夏普/IR/最大回撤/信息比率），自动生成投委会汇报材料（PDF/PPT），历史归因报告版本存档与对比
+      complexity: 中
+      days: 20
+      priority: P1
+      acceptance: TWR/MWR与Bloomberg AIM误差<0.1%，月度报告T+1 9:00前自动生成，支持≥12期累计归因
+      dependency: M07归因引擎（F07-07/F07-08）/IBOR持仓/AMD指数基准
   - id: D
     name: 风险计量
     functions:
@@ -161,6 +177,14 @@ module:
       priority: P2
       acceptance: 对冲方案推荐<5s，DV01对冲误差<5%，指令自动流转执行引擎
       dependency: 衍生品交易系统/IBOR/定价平台/事前风控
+    - id: F07-20
+      name: 交易成本分析TCA
+      desc: 事后TCA：实施成本差（Implementation Shortfall = 决策时盘中价−成交均价）、VWAP/TWAP基准偏差，滑点分解（市场冲击+时机成本+价差成本）；经纪商执行质量排名（月度），超额成本自动触发路由策略优化建议；TCA结果回写F07-07归因（提升交易效应精确度）
+      complexity: 中
+      days: 20
+      priority: P2
+      acceptance: TCA报告T+1生成，经纪商排名覆盖≥90%成交量，实施成本差计算与外部TCA服务误差<1bps
+      dependency: IBOR交易记录/AMD实时行情（决策时间戳价格）/现券交易系统成交回报
   - id: F
     name: 量化底座集成
     functions:
@@ -201,7 +225,10 @@ module:
       RebalanceSuggestion (sugId, portfolioId, triggerType[scheduled|event|manual], tradeList, preTE, postTE, costEstimate, ifrs9Impact, status, createdAt) ;
       HedgeRecommendation (recId, portfolioId, targetExposure, toolMix, estimatedCost, preRisk, postRisk, status, createdAt) ;
       LiquidityProfile (positionId, avgDailyVolume, liquidationDays, impactCost, lvar, updatedAt) ;
-      LiquidityCashflow (portfolioId, date, repoMaturity, netCashNeed, liquidableBuffer, updatedAt)
+      LiquidityCashflow (portfolioId, date, repoMaturity, netCashNeed, liquidableBuffer, updatedAt) ;
+      CarryAnalysis (portfolioId, positionId, couponIncome, repoCost, rolldownPnl, netCarry, carryType[rate|credit|duration], asOf) ;
+      TCAResult (tradeId, benchmarkType[vwap|twap|is], benchmarkPrice, execPrice, implementationShortfall, marketImpact, timingCost, spreadCost, brokerId, asOf) ;
+      PerformanceReport (reportId, portfolioId, periodType[monthly|quarterly|annual], twr, mwr, sharpe, ir, maxDrawdown, attributionLinked, generatedAt)
     core_stack: >
       Java 21 (组合管理/归因/流动性/指令流转引擎) ;
       Python + CVXPY/OSQP (QP再平衡求解器，支持整数规划用Gurobi) ;

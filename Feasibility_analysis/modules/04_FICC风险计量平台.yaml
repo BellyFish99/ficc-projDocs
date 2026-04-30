@@ -11,10 +11,10 @@ module:
   gap: 大
   competitor: 衡泰(垄断)
   foundation: ARC风险引擎/IBOR
-  duration_m: 14
+  duration_m: 15
   team_sz: 12
-  person_months: 130
-  note: 替代衡泰老旧系统，信创切入口；覆盖投前/投中/投后全生命周期风险管理；对应PPT Slide 52
+  person_months: 135
+  note: 替代衡泰老旧系统，信创切入口；覆盖投前/投中/投后全生命周期风险管理，新增信用风险计量（CVA/PD/LGD/IFRS9 ECL）和限额治理全生命周期工作流；对应PPT Slide 52
   source_slide: 52
   function_domains:
   - id: D1
@@ -98,6 +98,14 @@ module:
       complexity: 高
       days: 30
       priority: P1
+    - id: F04-20
+      name: 信用风险计量（CVA/PD/LGD）
+      desc: 债券组合信用风险：基于历史迁移矩阵的发行人PD（违约概率）/LGD（违约损失率）估算，IFRS 9三阶段分类（Stage 1/2/3）预期信用损失（ECL）计算；OTC衍生品CVA（信用估值调整）/DVA（借方估值调整）：基于蒙特卡洛模拟的预期正敞口EPE × PD × LGD，信用迁移风险（1年/3年迁移矩阵压力测试）
+      complexity: 极高
+      days: 35
+      priority: P1
+      acceptance: CVA计算与对手方差异<1%，IFRS 9 ECL覆盖全债券持仓，PD/LGD数据源可追溯
+      dependency: 定价平台M09（衍生品估值/EPE模拟，含M09 F09-16 XVA引擎）/IBOR持仓/外部信用评级数据（Wind/Bloomberg）
   - id: D4
     name: 投后风险分析
     functions:
@@ -113,6 +121,14 @@ module:
       complexity: 中
       days: 20
       priority: P1
+    - id: F04-21
+      name: 限额治理工作流
+      desc: 全生命周期限额治理：新限额申请→风控审批→激活→日常利用率监控→超限告警（三级：预警/黄线/红线）→超限处置记录（豁免/压缩/升级审批）→定期复审（季度/年度自动触发）；限额与实际敞口双向穿透溯源；限额版本管理，历史变更审计，监管核查一键导出
+      complexity: 中
+      days: 20
+      priority: P1
+      acceptance: 超限告警延迟<1min，限额利用率仪表盘实时刷新，限额变更全程留痕，监管核查导出<5min
+      dependency: M06合规规则（SSoT，限额参数引用M06 F06-02）/IBOR持仓/M04 F04-04实时风险计量
   - id: D5
     name: 风控基础设施
     functions:
@@ -146,7 +162,9 @@ module:
       Position (positionId, bookId, instrumentId, qty, marketValue, dv01, cs01, var1d) ;
       RiskLimit (limitId, dimension, limitType, threshold, current, utilizationPct) ;
       StressScenario (scenarioId, name, shockParams, asOf) ;
-      RiskReport (reportId, reportType, asOf, content, status)
+      RiskReport (reportId, reportType, asOf, content, status) ;
+      CreditRiskMeasure (measureId, portfolioId, instrumentId, pd, lgd, ead, ecl, ifrStage, cva, dva, asOf) ;
+      LimitGovernance (limitId, limitType, proposedBy, approvedBy, activatedAt, lastReviewAt, nextReviewAt, utilizationPct, breachCount, status[active|suspended|expired])
     core_stack: >
       Java 21 (风控引擎核心) + Python (ML/AI预警) + C++ (HPC数值计算) ;
       Apache Kafka (实时风险事件流) ; Redis (实时限额/持仓缓存) ;

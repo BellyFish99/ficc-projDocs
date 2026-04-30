@@ -11,7 +11,7 @@
     <mxCell id="4" value="D2. 交易前拦截（用户端）" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#2B5EC7;fontColor=#FFFFFF;strokeColor=#1B3275;fontStyle=1;fontSize=10;align=center;verticalAlign=middle;" vertex="1" parent="1">
       <mxGeometry x="376.7" y="54.0" width="366.7" height="36" as="geometry"/>
     </mxCell>
-    <mxCell id="5" value="D3. 统计与审计（管理端）" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#2B5EC7;fontColor=#FFFFFF;strokeColor=#1B3275;fontStyle=1;fontSize=10;align=center;verticalAlign=middle;" vertex="1" parent="1">
+    <mxCell id="5" value="D3. 统计、监控与审计（管理端）" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#2B5EC7;fontColor=#FFFFFF;strokeColor=#1B3275;fontStyle=1;fontSize=10;align=center;verticalAlign=middle;" vertex="1" parent="1">
       <mxGeometry x="743.3" y="54.0" width="366.7" height="36" as="geometry"/>
     </mxCell>
     <mxCell id="6" value="风控规则配置" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
@@ -47,7 +47,7 @@
     <mxCell id="16" value="AI交易要素提取" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
       <mxGeometry x="376.7" y="174.0" width="366.7" height="28" as="geometry"/>
     </mxCell>
-    <mxCell id="17" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F7FA;fontColor=#F5F7FA;strokeColor=#D6E4F7;fontSize=9;" vertex="1" parent="1">
+    <mxCell id="17" value="持仓合规状态持续监控（原M01 F01-17迁移）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
       <mxGeometry x="743.3" y="174.0" width="366.7" height="28" as="geometry"/>
     </mxCell>
   </root>
