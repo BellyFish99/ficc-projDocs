@@ -13,7 +13,7 @@ module:
   foundation: ARC风险引擎/IBOR
   duration_m: 14
   team_sz: 12
-  person_months: 140
+  person_months: 130
   note: 替代衡泰老旧系统，信创切入口；覆盖投前/投中/投后全生命周期风险管理；对应PPT Slide 52
   source_slide: 52
   function_domains:

@@ -13,7 +13,7 @@ module:
   foundation: M9 PMS模块
   duration_m: 14
   team_sz: 14
-  person_months: 160
+  person_months: 150
   note: 全资产组合管理驾驶舱，十大核心能力：全资产持仓模型/QP优化/Shadow Portfolio/Campisi 2.0固收归因/Brinson归因/因子风险分解+MCTR/Component VaR/敏感度/情景压测/流动性；对应PPT Slide 44 + gy_solution 4.4.1
   source_slide: 44
   data_inputs:
