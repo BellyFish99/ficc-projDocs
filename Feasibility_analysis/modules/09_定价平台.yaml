@@ -42,12 +42,12 @@ module:
     name: 市场数据底座
     functions:
     - id: F09-04
-      name: 利率与信用曲线构建
-      desc: 利率曲线（多插值方法），信用利差曲线，利差曲线，违约曲线，全品种统一曲线服务；新增automated curve smoothing（spline tension controls, Piecewise-Linear Moneyness interpolation）保证曲线平滑性；arbitrage validation pipeline：overnight batch after daily curve recalibration进行：(1)negative forward detection（无负利率），(2)cheap bond detection（price < dirty price floor），(3)cross-curve arbitrage checks；validation failure自动trigger manual review workflow；clean curve snapshot materialized in Redis for intraday consumption；smoothness metrics + arbitrage violations reported to F01-29 DQ Dashboard
+      name: 利率与信用曲线构建（全公司统一曲线服务）
+      desc: 利率曲线（多插值方法）、信用利差曲线、利差曲线、违底线、全品种统一曲线服务（为M04风险计量/M07组合管理/M08因子模型/M01预测分析提供曲线基础）；新增automated curve smoothing（spline tension controls, Piecewise-Linear Moneyness interpolation）保证曲线平滑性；arbitrage validation pipeline：overnight batch after daily curve recalibration进行：(1)negative forward detection（无负利率），(2)cheap bond detection（price < dirty price floor），(3)cross-curve arbitrage checks；validation failure自动trigger manual review workflow；clean curve snapshot materialized in Redis for intraday consumption；smoothness metrics + arbitrage violations reported to F01-29 DQ Dashboard；支持多曲线框架（OIS/SOFR vs LIBOR/SONIA basis）供XVA引擎消费
       complexity: 极高
       days: 70
       priority: P2
-      acceptance: Curve smoothing ensures no arbitrage violations for consecutive >30 days，negative forward detection accuracy 100%，cheap bond detection accuracy >99%，arbitrage validation completion <10min after overnight curve build，clean curve snapshots ready by 6:30am for market open，DQ metrics push to F01-29 real-time
+      acceptance: Curve smoothing ensures no arbitrage violations for consecutive >30 days，negative forward detection accuracy 100%，cheap bond detection accuracy >99%，arbitrage validation completion <10min after overnight curve build，clean curve snapshots ready by 6:30am for market open，DQ metrics push to F01-29 real-time，API支持≥10个下游消费系统并发请求
     - id: F09-05
       name: 波动率曲面构建
       desc: 隐含波动率曲面，红利曲线，汇率曲线，Local Volatility曲面，波动率微笑校准
@@ -82,11 +82,13 @@ module:
       days: 60
       priority: P2
     - id: F09-10
-      name: 实时Greeks与敏感度计算（M07/M08/M04共用基础）
-      desc: "分布式实时计算全品种逐券敏感度，结果为M07归因、M08因子载荷、M04风险计量三方共用权威数据源：Delta/Gamma/Vega/Theta/Rho（期权/结构化产品），DV01/CS01/Key Rate Duration分桶（KRD，覆盖含权债/可转债/利率债全品种），分桶利差敏感度。本模块为唯一定价计算权威，消费方不重复计算"
+      name: 实时Greeks与敏感度计算（M01/M04/M07/M08共用基础）
+      desc: "分布式实时计算全品种逐券敏感度，结果为M01衍生品MtM/M04风险聚合/M07归因展示/M08因子载荷四方共用权威数据源：Delta/Gamma/Vega/Theta/Rho（期权/结构化产品），DV01/CS01/Key Rate Duration分桶（KRD，覆盖含权债/可转债/利率债全品种），分桶利差敏感度。本模块为唯一定价计算权威，所有消费方禁止重复计算（M04 F04-08/F04-09/M07 F07-12/M08因子载荷均为消费视图）"
       complexity: 高
       days: 40
       priority: P2
+      acceptance: 全品种Greeks/DV01/CS01/KRD覆盖率100%，单券计算延迟<200ms，并发支持≥20消费方
+      dependency: F09-04曲线/F09-05波动率曲面/F09-07~F09-09模型引擎/IBOR持仓
   - id: D4
     name: 定价应用场景
     functions:
@@ -162,7 +164,7 @@ module:
     key_decisions:
     - 本模块边界：只负责定价/曲线/Greeks/敏感度计算，不建因子模型；M08消费本模块DV01/CS01/KRD/Greeks作为因子载荷输入，M09无感知因子体系
     - KRD必须覆盖全品种（含权债/可转债），因为M07 Campisi 2.0归因依赖逐券KRD，缺品种覆盖直接导致归因误差
-    - 所有系统使用同一套曲线/曲面服务，确保全公司定价一致性，避免数据割裂
+    - 所有系统使用同一套曲线/曲面服务，确保全公司定价一致性，避免数据割裂；曲线构建职责100%归属M09 F09-04/F09-05，M04/M07/M01等所有消费方通过gRPC API调用，禁止重复实现
     - 模型插件化设计，新产品定价模型无需修改核心引擎即可接入
     - GPU加速仅用于批量蒙特卡洛，实时Greeks路径使用解析解保证低延迟
     open_questions:

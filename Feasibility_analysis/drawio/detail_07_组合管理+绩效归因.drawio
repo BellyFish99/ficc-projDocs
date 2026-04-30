@@ -71,7 +71,7 @@
     <mxCell id="24" value="指数跟踪误差与主动风险归因" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
       <mxGeometry x="376.7" y="178.0" width="183.3" height="28" as="geometry"/>
     </mxCell>
-    <mxCell id="25" value="敏感度展示（多维Shock Grid，调用M04引擎）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
+    <mxCell id="25" value="敏感度展示（多维Shock Grid，消费M09定价引擎）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
       <mxGeometry x="560.0" y="178.0" width="183.3" height="28" as="geometry"/>
     </mxCell>
     <mxCell id="26" value="实时盘中P&amp;L拆解与TCA集成" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">

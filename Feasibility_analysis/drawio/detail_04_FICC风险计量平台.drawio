@@ -26,7 +26,7 @@
     <mxCell id="9" value="实时风险计量" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
       <mxGeometry x="230.0" y="90.0" width="220.0" height="28" as="geometry"/>
     </mxCell>
-    <mxCell id="10" value="DV01/CS01计算" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
+    <mxCell id="10" value="DV01/CS01风险聚合（消费M09 F09-10）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
       <mxGeometry x="450.0" y="90.0" width="220.0" height="28" as="geometry"/>
     </mxCell>
     <mxCell id="11" value="历史风险回溯" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
@@ -41,13 +41,13 @@
     <mxCell id="14" value="交易对手风险实时监控" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
       <mxGeometry x="230.0" y="118.0" width="220.0" height="28" as="geometry"/>
     </mxCell>
-    <mxCell id="15" value="Greeks与敏感度计算" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
+    <mxCell id="15" value="Greeks风险聚合与解释（消费M09 F09-10）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
       <mxGeometry x="450.0" y="118.0" width="220.0" height="28" as="geometry"/>
     </mxCell>
     <mxCell id="16" value="监管报表与风控日报" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
       <mxGeometry x="670.0" y="118.0" width="220.0" height="28" as="geometry"/>
     </mxCell>
-    <mxCell id="17" value="收益率曲线与波动率曲面" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
+    <mxCell id="17" value="HPC计算网格" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
       <mxGeometry x="890.0" y="118.0" width="220.0" height="28" as="geometry"/>
     </mxCell>
     <mxCell id="18" value="投资预测分析" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
@@ -62,7 +62,7 @@
     <mxCell id="21" value="限额治理工作流" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
       <mxGeometry x="670.0" y="146.0" width="220.0" height="28" as="geometry"/>
     </mxCell>
-    <mxCell id="22" value="HPC计算网格" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
+    <mxCell id="22" value="AI风险预警" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
       <mxGeometry x="890.0" y="146.0" width="220.0" height="28" as="geometry"/>
     </mxCell>
     <mxCell id="23" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F7FA;fontColor=#F5F7FA;strokeColor=#D6E4F7;fontSize=9;" vertex="1" parent="1">
@@ -77,7 +77,7 @@
     <mxCell id="26" value="交易前风险影响分析" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
       <mxGeometry x="670.0" y="174.0" width="220.0" height="28" as="geometry"/>
     </mxCell>
-    <mxCell id="27" value="AI风险预警" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F7;fontColor=#1B3275;strokeColor=#1B3275;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
+    <mxCell id="27" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F7FA;fontColor=#F5F7FA;strokeColor=#D6E4F7;fontSize=9;" vertex="1" parent="1">
       <mxGeometry x="890.0" y="174.0" width="220.0" height="28" as="geometry"/>
     </mxCell>
     <mxCell id="28" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F7FA;fontColor=#F5F7FA;strokeColor=#D6E4F7;fontSize=9;" vertex="1" parent="1">

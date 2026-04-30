@@ -14,7 +14,7 @@ module:
   duration_m: 15
   team_sz: 12
   person_months: 135
-  note: 替代衡泰老旧系统，信创切入口；覆盖投前/投中/投后全生命周期风险管理，新增信用风险计量（CVA/PD/LGD/IFRS9 ECL）、限额治理全生命周期、VaR回测框架（F04-10增强）、模型治理（新增F04-23）、pre-trade impact（Phase 2 F04-22）；对应PPT Slide 52
+  note: 替代衡泰老旧系统，信创切入口；覆盖投前/投中/投后全生命周期风险管理，新增信用风险计量（CVA/PD/LGD/IFRS9 ECL）、限额治理全生命周期、VaR回测框架（F04-10增强）、模型治理（新增F04-23）、pre-trade impact（Phase 2 F04-22）；曲线/曲面构建由M09独占，M04通过gRPC消费；对应PPT Slide 52
   source_slide: 52
   function_domains:
   - id: D1
@@ -69,17 +69,21 @@ module:
     name: 风控引擎
     functions:
     - id: F04-08
-      name: DV01/CS01计算
-      desc: dPV/dy价格敏感度，信用利差敏感度，分桶移动与关键期限，平行与非平行冲击
-      complexity: 极高
-      days: 40
+      name: DV01/CS01风险聚合（消费M09 F09-10）
+      desc: "【消费方】消费M09 F09-10的逐券DV01/CS01计算结果，本模块负责风险视角聚合：组合层面汇总（按资产类别/行业/评级/久期分桶），限额比对（vs F04-21），监管报送格式化（Basel III/FRTB），平行与非平行冲击情景；本模块不重复计算单券敏感度"
+      complexity: 高
+      days: 25
       priority: P1
+      acceptance: 组合DV01聚合与M09单券结果误差<0.1bps，分桶聚合<2s，限额比对实时刷新
+      dependency: M09 F09-10（逐券DV01/CS01计算唯一权威）/IBOR持仓/M04 F04-21限额
     - id: F04-09
-      name: Greeks与敏感度计算
-      desc: Delta/Gamma/Vega/Theta/Rho分布式实时计算，覆盖固收全品种与衍生品
-      complexity: 极高
-      days: 35
+      name: Greeks风险聚合与解释（消费M09 F09-10）
+      desc: "【消费方】消费M09 F09-10的逐券Delta/Gamma/Vega/Theta/Rho，本模块负责风险解释聚合：组合Greeks汇总、衍生品Greeks限额监控、Greeks敞口风险分析、Greeks-driven VaR输入；本模块不重复计算Greeks，纯消费方"
+      complexity: 高
+      days: 20
       priority: P1
+      acceptance: 组合Greeks聚合<2s，限额比对实时，与M09单券结果一致性100%
+      dependency: M09 F09-10（逐券Greeks计算唯一权威）/IBOR持仓/M04 F04-21限额
     - id: F04-10
       name: VaR模型
       desc: 参数法/历史模拟法/蒙特卡洛三模式，Expected Shortfall；integrated daily backtesting framework：daily actual P&L vs predicted VaR tracking，exception flagging and reporting；quarterly Kupiec POF (Proportion of Failures) statistical test per regulatory standard；model exception log with severity levels，>3 exceptions/quarter triggers automatic re-calibration workflow to F04-23；VaR model validation reports auto-generated for regulatory submission (Basel III backtesting rules, FRTB internal model requirements)
@@ -155,12 +159,6 @@ module:
       complexity: 高
       days: 30
       priority: P1
-    - id: F04-17
-      name: 收益率曲线与波动率曲面
-      desc: 利率曲线构建（多方法），波动率曲面，信用利差曲线，红利曲线，全公司一致性保障
-      complexity: 高
-      days: 30
-      priority: P1
     - id: F04-18
       name: HPC计算网格
       desc: 分布式计算引擎，并行蒙特卡洛，压力测试网格调度，弹性扩容，p99计算延迟<5s
@@ -187,11 +185,13 @@ module:
       Apache Kafka (实时风险事件流) ; Redis (实时限额/持仓缓存) ;
       ClickHouse (历史风险数据分析) ; Kubernetes (HPC网格弹性调度)
     key_interfaces:
-    - IBOR → 实时持仓推送 (Kafka topic: position.updated)
-    - 定价平台(模块09) → 估值/Greeks数据 (gRPC streaming)
+    - IBOR(模块01) → 实时持仓推送 (Kafka topic: position.updated) + DQ监控(F01-29)
+    - 定价平台(模块09) → 估值/Greeks/DV01/CS01/KRD/曲线/曲面/XVA数据 (gRPC streaming；M09为计算SSoT，M04为消费方)
+    - 策略投资_量化(模块08) → 因子模型/2200+因子协方差矩阵 (gRPC，用于因子风险分解的协方差)
     - 现券交易/TRS → 交易事件 (Kafka topic: trade.executed)
+    - 事前风控/合规(模块06) → 合规规则SSoT/限额参数 (REST，限额由M06定义，M04执行监控)
     - 监管报送系统 → 标准化风险报告 (REST API)
-    - 组合管理(模块07) → 向M07提供VaR/Greeks/DV01/CS01/情景计算服务 (gRPC，本模块作为计算引擎，M07作为消费方)
+    - 组合管理(模块07) → 向M07提供VaR/情景P&L/限额状态服务 (gRPC，本模块为风险计算引擎，M07为决策消费方；Greeks/敏感度由M09直供)
     key_decisions:
     - 采用Event Sourcing确保持仓数据全链路可审计，满足监管穿透式要求
     - HPC网格与业务逻辑解耦，支持蒙特卡洛/压力测试弹性扩容而不影响实时风控
