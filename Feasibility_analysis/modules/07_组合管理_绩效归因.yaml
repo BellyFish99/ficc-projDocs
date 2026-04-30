@@ -189,31 +189,49 @@ module:
       acceptance: 因子模型解释方差>80%，因子暴露更新延迟<10s
       dependency: AMD历史行情/IBOR持仓
   tech_design:
-    pattern: 因子驱动组合管理引擎（QP优化器 + 2200因子模型 + Campisi/Brinson双归因框架）
+    pattern: 因子驱动组合管理引擎（QP优化器 + 2200因子模型 + Campisi/Brinson双归因 + 三方法Component VaR）
     data_model: >
-      Portfolio (portfolioId, managerId, level, parentId, benchmarkId, riskBudget) ;
+      Portfolio (portfolioId, managerId, level, parentId, benchmarkId, riskBudget, riskBudgetUsed) ;
       Position (positionId, portfolioId, assetClass, bondId, qty, marketValue, pnl, updatedAt) ;
-      FactorExposure (portfolioId, factorId, exposure, mctr, riskBudget, asOf) ;
-      Attribution (portfolioId, date, model, incomeEffect, rateEffect, spreadEffect, tradeEffect, selectionEffect, allocationEffect) ;
-      ScenarioResult (scenarioId, portfolioId, shockParams, pnlImpact, worstHoldings, computedAt) ;
-      LiquidityProfile (positionId, avgDailyVolume, liquidationDays, impactCost, lvar, updatedAt)
+      FactorExposure (portfolioId, factorId, factorType, exposure, mctr, riskContribPct, asOf) ;
+      Attribution (portfolioId, date, model[campisi|brinson], incomeEffect, rateFlatEffect, rateSlopeEffect, rateCurvatureEffect, spreadDtsEffect, spreadSectorEffect, spreadSelectionEffect, tradeEffect, allocationEffect, selectionEffect, interactionEffect, residual) ;
+      ComponentVarResult (portfolioId, layer[asset|sector|rating|issuer], entityId, varContrib, diversBenefit, method[hist|mc|param], confidenceLevel, asOf) ;
+      ScenarioResult (scenarioId, portfolioId, scenarioType[hist|custom|reverse], shockParams, pnlImpact, worstHoldings, hedgeSuggestion, computedAt) ;
+      ShadowPortfolio (shadowId, basePortfolioId, trialParams, preRiskMetrics, postRiskMetrics, impactCost, status, createdAt) ;
+      RebalanceSuggestion (sugId, portfolioId, triggerType[scheduled|event|manual], tradeList, preTE, postTE, costEstimate, ifrs9Impact, status, createdAt) ;
+      HedgeRecommendation (recId, portfolioId, targetExposure, toolMix, estimatedCost, preRisk, postRisk, status, createdAt) ;
+      LiquidityProfile (positionId, avgDailyVolume, liquidationDays, impactCost, lvar, updatedAt) ;
+      LiquidityCashflow (portfolioId, date, repoMaturity, netCashNeed, liquidableBuffer, updatedAt)
     core_stack: >
-      Java 21 (组合管理/归因/流动性引擎) + Python (QP求解器/因子模型/Campisi归因) ;
-      C++ (MCTR/Component VaR高性能矩阵计算) ;
-      Redis (实时因子暴露/持仓缓存) ; Kafka (持仓+估值变化事件流) ;
-      PostgreSQL (归因历史/情景结果) ; React (投资驾驶舱前端)
+      Java 21 (组合管理/归因/流动性/指令流转引擎) ;
+      Python + CVXPY/OSQP (QP再平衡求解器，支持整数规划用Gurobi) ;
+      Python (Campisi 2.0归因/Brinson归因/因子模型/Almgren-Chriss流动性成本) ;
+      C++ (MCTR矩阵求导/Component VaR协方差计算，高频热路径) ;
+      Monte Carlo引擎: Python + NumPy并行 (10,000次模拟，可选GPU加速) ;
+      Redis (实时因子暴露/MCTR/持仓缓存，TTL=1min) ;
+      Kafka (持仓变化事件流/估值更新推送) ;
+      TimescaleDB (归因历史时序/情景结果，按portfolioId+date分区) ;
+      PostgreSQL (组合树/再平衡指令/对冲方案) ;
+      React (投资驾驶舱，组合树/Shock Grid/MCTR热力图可视化)
     key_interfaces:
-    - IBOR → 实时持仓/历史交易 (Kafka推送，持仓变化事件<200ms)
-    - 定价平台 → 估值/Greeks/曲线 (gRPC streaming)
-    - AMD行情平台 → 历史行情/指数/宏观数据 (Kafka实时+SFTP批量)
-    - 事前风控 → QP优化合规约束同步 (REST)
-    - 衍生品交易系统 → 对冲指令执行 (REST)
+    - IBOR → 实时持仓/历史交易/组合树 (Kafka推送，持仓变化事件<200ms)
+    - 定价平台 → 实时估值/Greeks/利率曲线/KRD (gRPC streaming，供Campisi归因用)
+    - AMD行情平台 → 历史行情/指数成分/宏观因子数据 (Kafka实时+SFTP批量)
+    - WIND → 指数基准成分券/宏观因子/基金持仓穿透 (HTTP API+定时拉取)
+    - 事前风控 → QP优化四类约束实时同步（合规/风险预算/流动性/IFRS9）(REST)
+    - 现券/衍生品交易系统 → 再平衡+对冲指令流转执行 (内部REST，含审批回调)
+    - FICC风险计量平台 → Component VaR历史模拟数据/压力测试参数 (gRPC)
     key_decisions:
-    - Campisi 2.0与Brinson双归因并存：固收用Campisi（五效应），跨资产用Brinson（三效应），结果互补不重叠
-    - QP求解器实时同步事前风控合规约束，确保优化结果直接可执行，无需二次校验
-    - Component VaR三方法互验（历史模拟/MC/参数法），差异超阈值自动预警，防单方法失真
-    - Shadow Portfolio与真实组合共享同一定价引擎，确保模拟结果可信
-    - 2200+因子模型统一供全系统使用（组合管理/风险计量/归因共用），避免因子定义不一致
+    - Campisi 2.0（五效应：收入/国债平移斜率曲率/利差DTS行业个券/交易/残差）专用于固收归因；Brinson（三效应）专用于跨资产归因；两套框架结果互补，残差<5bps为质量红线
+    - QP求解器同时接入四类约束（合规规则实时同步自事前风控），优化结果直接可执行；IFRS9约束单独处理OCI账户再分类触发边界，防止调仓意外触发会计分类变更
+    - MCTR（∂组合波动率/∂持仓权重）同时作为：①风险消耗排名输入（减仓优先级）②QP优化的风险预算约束输入，实现风险预算最优分配
+    - Component VaR三方法（历史模拟500日/MC 10000次/参数解析）互验：差异>10%自动触发模型校验工单，不允许单方法结果直接上报
+    - Shadow Portfolio与真实组合共享同一定价引擎和因子模型，确保试算结果与真实执行一致；100+虚拟组合并行，采用写时复制(Copy-on-Write)持仓快照避免数据污染
+    - 反向压力测试（倒推临界市场情景）结果作为止损线设计的定量依据，输出"临界情景历史发生频率"供风委会决策；比传统情景分析更主动
+    - 2200+因子模型与FICC风险计量平台共用同一套因子定义，本模块不重复建模，只消费因子暴露结果，保证全公司因子语言统一
     open_questions:
-    - 2200+因子模型数据源选型（Wind Factor vs 自建 vs 第三方风险模型供应商如Barra）
-    - Campisi归因所需关键期限点KRD计算：由定价平台提供还是本模块自建
+    - 2200+因子模型数据源选型：Wind多因子数据库 vs 自建 vs 第三方（Barra/FactSet），成本与更新频率差异大，需产品确认
+    - Campisi 2.0所需关键期限点KRD：定价平台是否已支持逐券KRD输出，还是需要本模块基于久期做近似分解
+    - Monte Carlo VaR GPU加速：是否与定价平台共用GPU集群，还是独立申请；国产GPU（昆仑/寒武纪）信创兼容性需验证
+    - 投委会SAA指令数字化接入：目前投委会决议是否有系统承载（OA/邮件），或需从零建设指令下达通道
+    - 指令管理引擎归属：再平衡/对冲指令队列是否复用现券交易系统的指令管理，还是组合管理独立维护
