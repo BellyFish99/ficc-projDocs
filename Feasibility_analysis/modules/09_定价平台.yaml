@@ -81,8 +81,8 @@ module:
       days: 60
       priority: P2
     - id: F09-10
-      name: 实时Greeks计算
-      desc: Delta/Gamma/Vega/Theta/Rho分布式实时计算，DV01/CS01，分桶敏感度
+      name: 实时Greeks与敏感度计算（M07/M08/M04共用基础）
+      desc: "分布式实时计算全品种逐券敏感度，结果为M07归因、M08因子载荷、M04风险计量三方共用权威数据源：Delta/Gamma/Vega/Theta/Rho（期权/结构化产品），DV01/CS01/Key Rate Duration分桶（KRD，覆盖含权债/可转债/利率债全品种），分桶利差敏感度。本模块为唯一定价计算权威，消费方不重复计算"
       complexity: 高
       days: 40
       priority: P2
@@ -136,10 +136,13 @@ module:
       Kubernetes (弹性计算网格调度)
     key_interfaces:
     - 行情平台 → 实时市场数据 (Kafka)
-    - 风控平台 → 定价/Greeks/情景计算 (gRPC streaming)
+    - M04风险计量平台 → 定价/Greeks/情景计算 (gRPC streaming)
+    - M07组合管理 → 实时估值/Greeks/KRD（Campisi归因所需逐券KRD，gRPC）
+    - M08策略投资_量化 → 逐券DV01/CS01/KRD/Greeks（作为因子载荷原始输入，gRPC）；曲线/估值（策略研究消费）
     - 销售交易/TRS → 客需实时报价 (REST, p99<100ms)
-    - 策略投资 → 估值/曲线数据 (gRPC)
     key_decisions:
+    - 本模块边界：只负责定价/曲线/Greeks/敏感度计算，不建因子模型；M08消费本模块DV01/CS01/KRD/Greeks作为因子载荷输入，M09无感知因子体系
+    - KRD必须覆盖全品种（含权债/可转债），因为M07 Campisi 2.0归因依赖逐券KRD，缺品种覆盖直接导致归因误差
     - 所有系统使用同一套曲线/曲面服务，确保全公司定价一致性，避免数据割裂
     - 模型插件化设计，新产品定价模型无需修改核心引擎即可接入
     - GPU加速仅用于批量蒙特卡洛，实时Greeks路径使用解析解保证低延迟

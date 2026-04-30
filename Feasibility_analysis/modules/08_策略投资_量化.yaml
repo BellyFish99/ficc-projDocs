@@ -33,10 +33,10 @@ module:
       days: 35
       priority: P1
     - id: F08-03
-      name: 因子挖掘与管理
-      desc: 因子编写，信号生成，因子库管理，AlphaLens因子有效性分析，量化模型库，宏观/技术/基本面因子
+      name: 因子模型建设与管理（全公司SSoT）
+      desc: "【全公司因子语言SSoT】统一维护2200+风险因子定义（利率/信用/流动性/权益Beta/行业/风格/商品/汇率八类）及Alpha因子库（≥20个，IC均值>0.05）；计算逐券因子载荷与因子协方差矩阵（利率/信用类载荷消费M09输出的DV01/CS01/KRD/Greeks，本模块不重新定价）；通过内部因子暴露API发布结果，M07组合管理和M04风险计量只消费，不重复建模；AlphaLens有效性分析、信号生成、宏观/技术/基本面因子挖掘均在本模块进行"
       complexity: 高
-      days: 40
+      days: 50
       priority: P1
   - id: D2
     name: 回测与模拟验证
@@ -99,8 +99,8 @@ module:
       days: 45
       priority: P1
     - id: F08-12
-      name: 基础数据与模型底座
-      desc: 宏观因子库，债券曲线模型，估值数据接入，账户权限管理，AI引擎集成接口
+      name: 量化数据底座
+      desc: "宏观因子数据接入与清洗（GDP/CPI/央行操作/信用利差等）；消费M09曲线/估值数据（不自建曲线模型）；账户与策略权限管理；AI引擎集成接口（LangChain/LLM）；统一数据对齐（asOf时间戳），确保回测与实盘使用同一套数据快照"
       complexity: 高
       days: 30
       priority: P1
@@ -110,6 +110,8 @@ module:
       Strategy (strategyId, name, type, code, version, status, approvedBy) ;
       BacktestJob (jobId, strategyId, startDate, endDate, params, result, createdAt) ;
       Factor (factorId, name, category, formula, icScore, lastUpdated) ;
+      FactorLoading (instrumentId, factorId, loading, source[m09_dv01|m09_cs01|m09_krd|m09_greeks|computed], asOf) ;
+      FactorCovariance (factorId1, factorId2, cov, windowDays, asOf) ;
       LivePosition (strategyId, instrumentId, qty, pnl, drawdown, updatedAt)
     core_stack: >
       Python (策略开发/因子研究/AlphaLens) + C++ (CEP流引擎/低延迟信号) ;
@@ -117,12 +119,15 @@ module:
       LangChain + LLM (AI辅助策略开发) ;
       ClickHouse (Tick历史数据) ; Kafka (实时行情事件流)
     key_interfaces:
-    - 定价平台 → 估值/曲线数据 (gRPC)
+    - M09定价平台 → 逐券DV01/CS01/KRD/Greeks（作为利率/信用因子载荷原始输入，gRPC）；曲线/估值数据（策略研究消费）
+    - 发布因子暴露API → M07组合管理/M04风险计量消费逐券因子载荷与协方差矩阵（内部gRPC，本模块为唯一提供方）
     - IBOR → 实时持仓与账户数据
-    - ATP执行层 → 低延迟订单发送 (CEP信号直连)
+    - ATP执行层 → 低延迟订单发送（CEP信号直连）
     - 行情平台 → 现券/期货/股票/商品实时Tick (Kafka)
     key_decisions:
-    - 回测引擎与实盘信号引擎共享同一套因子计算逻辑，确保回测结果可复现
+    - 因子模型SSoT：2200+因子定义/协方差矩阵/逐券因子载荷计算全部由本模块（M08）统一建设维护；M07/M04只消费因子暴露API，不重复建模；任何新因子必须在本模块入库后方可全公司使用
+    - 利率/信用类因子载荷直接来自M09定价平台输出（DV01/CS01/KRD/Greeks），本模块不重新定价；确保因子载荷与定价平台数据一致
+    - 回测引擎与实盘信号引擎共享同一套因子计算逻辑（含因子载荷快照），确保回测结果可复现
     - 模拟盘必须通过审批才能转实盘，防止未经验证策略直接上线
     - AI生成代码仅作为建议，最终代码需人工审核通过才能入库
     open_questions:
