@@ -14,7 +14,7 @@ module:
   duration_m: 12
   team_sz: 14
   person_months: 130
-  note: 整个FICC平台的账薄主干，26项功能覆盖持仓/现金/估值/事件/对账/监管报送/试算全链路；合规检查规则与执行由M06负责，IBOR仅提供持仓数据源
+  note: 整个FICC平台的账薄主干，25项功能覆盖持仓/现金/估值/事件/对账/监管报送/试算全链路；合规检查规则与执行由M06负责，情景P&L分析由M04+M07负责，IBOR仅提供数据
   source_slide: 55
   data_inputs:
   - 交易指令数据
@@ -46,10 +46,10 @@ module:
       - 中登/中债登/上清 → 日终持仓(SFTP批量，T+0 EOD)
       - 资金系统 → 现金划拨(REST实时)
       outbound:
-      - IBOR → 风险计量平台(Kafka推送，持仓+估值变化事件)
-      - IBOR → 组合管理系统(REST查询API + Kafka实时订阅)
-      - IBOR → 事前风控/合规(REST同步，交易前合规检查)
-      - IBOR → 报表引擎/监管报送(REST批量拉取)
+      - IBOR → M04风险计量平台（Kafka推送，持仓+估值变化事件；M04叠加市场冲击做情景P&L，IBOR不做）
+      - IBOR → M07组合管理（REST查询API + Kafka实时订阅；M07 F07-05调用F01-25沙箱做Shadow Portfolio分析）
+      - IBOR → M06事前风控/合规（REST同步，持仓数据供F06-11持续合规监控）
+      - IBOR → 报表引擎/监管报送（REST批量拉取）
     key_decisions:
     - '双态部署: 生产态(实时)与模拟态(What-if沙箱)数据隔离，模拟态与生产态T-0同步'
     - '估值算法可插拔: FVTPL/FVOCI/AMC通过配置切换，粒度支持个券维度，算法热加载不重启'
@@ -253,21 +253,21 @@ module:
     name: What-if 投资试算
     functions:
     - id: F01-22
-      name: 多时态头寸视图
-      desc: 按任意历史as-of/as-on日期提取头寸快照（历史切片），同时支持基于未来现金流和已知事件的预测头寸视图，满足绩效复盘与流动性预判双场景
+      name: 多时态头寸视图（IBOR数据基础设施，供上层消费）
+      desc: "【数据基础设施】基于事件溯源存储，提供任意历史as-of/as-on日期的头寸快照API（历史切片），以及基于已知未来事件（到期/付息/回购续作）的前瞻头寸视图。本模块不做投资分析——绩效复盘由M07调用本API；流动性预判由M07 F07-14调用本API+F01-06现金流；情景分析由M04/M07调用本API叠加市场冲击"
       complexity: 高
       days: 30
       priority: P1
-      acceptance: 历史快照查询任意日期延迟<3s，预测视图覆盖30日前瞻
-      dependency: IBOR事件存储引擎/现金流预测模块
+      acceptance: 历史快照查询任意日期延迟<3s，前瞻视图覆盖30日，API并发支持≥20消费方
+      dependency: IBOR事件存储引擎/F01-06现金流预测
     - id: F01-23
-      name: 会计分类估值与稽核
-      desc: 按FVTPL（市值法）/FVOCI（可供出售）/AMC（摊余成本法）三类会计分类配置估值方法，颗粒度支持个券维度；内嵌估值稽核规则引擎与ABOR系统定期核对，差异自动预警
+      name: 会计分类估值配置与稽核
+      desc: 按FVTPL（市值法）/FVOCI（可供出售）/AMC（摊余成本法）三类配置逐券估值方法，算法热加载不重启，支持OCI账户再分类触发边界校验（防止调仓意外触发IFRS9分类变更）；估值稽核规则引擎实时校验计算结果合理性。**ABOR差异对比不在此处重复**——由F01-15负责；本函数专注估值方法配置正确性
       complexity: 高
       days: 30
       priority: P1
-      acceptance: 估值方法配置覆盖全品种，稽核规则命中率>99%，核对差异<0.01%
-      dependency: 资产主数据（会计分类标签）/ABOR会计系统/AMD估值数据
+      acceptance: 估值方法配置覆盖全品种，稽核规则命中率>99%，OCI再分类触发边界零漏检
+      dependency: 资产主数据（会计分类标签）/AMD估值数据
     - id: F01-24
       name: 手工补录与审批工作流
       desc: 对上游系统缺失或错误数据支持手工增删改操作，修改后自动触发双级审批工作流，全操作记录审计日志，支持待办集中处理与历史审批检索
@@ -277,18 +277,10 @@ module:
       acceptance: 审批流配置覆盖100%手工操作类型，操作日志不可篡改，审批完成后数据生效<1min
       dependency: 权限管理系统/IBOR数据核心层
     - id: F01-25
-      name: 当日模拟试算
-      desc: 投资经理下达模拟交易指令（不实际成交），IBOR实时计算试算前后组合持仓/MtM/DV01/风险敞口变化，支持多方案并行对比及最优路径推荐
+      name: What-if持仓沙箱（供M07 Shadow Portfolio调用）
+      desc: "【IBOR位置引擎层，不做投资分析】接收模拟交易指令（不实际成交），在隔离沙箱中实时计算假设成交后的持仓快照+MtM+P&L，支持≥10方案写时复制(CoW)并行。本模块输出边界：持仓变化+基础损益；风险敏感度/因子暴露/最优路径推荐由M07 F07-05 Shadow Portfolio在本API基础上完成，本模块不重复计算"
       complexity: 高
-      days: 35
+      days: 25
       priority: P1
-      acceptance: 模拟指令生效<2s，试算结果与真实成交后结果误差<0.1%，支持≥10方案并行
-      dependency: IBOR实时持仓/估值引擎/事前风控系统
-    - id: F01-26
-      name: 未来情景试算
-      desc: 基于假设的未来交易路径和市场情景（利率平移/信用冲击/流动性压力），预测未来N日组合持仓状态、现金流和风险敞口，输出情景P&L分布
-      complexity: 高
-      days: 30
-      priority: P1
-      acceptance: 支持≥3类情景参数配置，N日预测（N≤30）计算完成<30s
-      dependency: IBOR现金流预测/量化定价引擎/FICC风险计量平台
+      acceptance: 沙箱持仓生效<2s，MtM误差<0.1%，≥10方案并行无数据污染
+      dependency: IBOR实时持仓/M09估值引擎/M06事前风控（沙箱指令同样需合规校验）
